@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+X-COMMENT: Main-Class will be added automatically by build
+Main-Class: Clase
+Name: Clase.class, Clase$1.class, Clase$2.class, Clase$3.class, Clase$4.class, Clase$5.class
+Java-Bean: True
