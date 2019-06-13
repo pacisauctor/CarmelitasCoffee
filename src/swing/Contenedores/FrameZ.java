@@ -6,13 +6,12 @@
 package swing.Contenedores;
 
 import java.awt.Color;
-import java.awt.Cursor;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.net.URL;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 
 /**
  *
@@ -264,12 +263,9 @@ public class FrameZ extends javax.swing.JFrame {
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
         if (isMax) {
-            setSize(width, height);
-            setLocation(x, y);
+            this.setExtendedState(NORMAL);
             isMax = false;
         } else {
-            width = this.getWidth();
-            height = this.getHeight();
             this.setExtendedState(MAXIMIZED_BOTH);
             isMax = true;
         }
