@@ -298,8 +298,9 @@ public class FrameZ extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        System.out.println("Hola mundo, Rony");
-        System.out.println("Hola mundo, Axel");
+        System.out.println("Hola mundo, ");
+        
+        System.out.println("Hola mundo, Danny");
      
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
