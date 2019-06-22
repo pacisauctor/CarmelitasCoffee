@@ -17,17 +17,17 @@ import javax.swing.JFrame;
  *
  * @author darce
  */
-public class FrameZ extends JFrame {
+public class InicioSesion extends JFrame {
 
     private String title = "";
     int x = 0, y = 0;
     boolean isMax = false;
 
-    public FrameZ() {
+    public InicioSesion() {
         initComponents();
     }
 
-    public FrameZ(String title) {
+    public InicioSesion(String title) {
         this.title = title;
         initComponents();
     }
@@ -61,8 +61,6 @@ public class FrameZ extends JFrame {
         bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
-        tpMenu = new swing.Contenedores.TabbedPaneZ();
-        dpEscritorio = new javax.swing.JDesktopPane();
 
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -166,33 +164,17 @@ public class FrameZ extends JFrame {
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
-        pContent.setLayout(new java.awt.GridBagLayout());
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        pContent.add(tpMenu, gridBagConstraints);
 
-        javax.swing.GroupLayout dpEscritorioLayout = new javax.swing.GroupLayout(dpEscritorio);
-        dpEscritorio.setLayout(dpEscritorioLayout);
-        dpEscritorioLayout.setHorizontalGroup(
-            dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+        javax.swing.GroupLayout pContentLayout = new javax.swing.GroupLayout(pContent);
+        pContent.setLayout(pContentLayout);
+        pContentLayout.setHorizontalGroup(
+            pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
-        dpEscritorioLayout.setVerticalGroup(
-            dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+        pContentLayout.setVerticalGroup(
+            pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 284, Short.MAX_VALUE)
         );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.weighty = 0.8;
-        pContent.add(dpEscritorio, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -281,7 +263,7 @@ public class FrameZ extends JFrame {
                 /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrameZ prueba = new FrameZ("Carmelitas Coffee");
+                InicioSesion prueba = new InicioSesion("Inicio de Sesión");
                 prueba.setSize(600, 700);
                 prueba.setVisible(true);
             }
@@ -291,10 +273,8 @@ public class FrameZ extends JFrame {
     private javax.swing.JButton bCerrar;
     private javax.swing.JButton bMaximizar;
     private javax.swing.JButton bMinimizar;
-    private javax.swing.JDesktopPane dpEscritorio;
     private javax.swing.JLabel lTitle;
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pToolBar;
-    private swing.Contenedores.TabbedPaneZ tpMenu;
     // End of variables declaration//GEN-END:variables
 }
