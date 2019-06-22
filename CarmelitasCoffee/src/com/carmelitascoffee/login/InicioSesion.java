@@ -254,7 +254,7 @@ public class InicioSesion extends JFrame {
         bMaximizar.setIcon(iconoMaximizar);
         //escribiendo título
         if ("".equals(title)) {
-            title = "Nueva Ventana";
+            title = "Nueva Windows";
         }
         lTitle.setText(title);
     }//GEN-LAST:event_formWindowOpened
