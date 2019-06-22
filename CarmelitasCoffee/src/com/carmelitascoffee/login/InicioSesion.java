@@ -6,9 +6,11 @@
 package com.carmelitascoffee.login;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -21,7 +23,6 @@ public class InicioSesion extends JFrame {
 
     private String title = "";
     int x = 0, y = 0;
-    boolean isMax = false;
 
     public InicioSesion() {
         initComponents();
@@ -78,6 +79,9 @@ public class InicioSesion extends JFrame {
             }
         });
         pToolBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pToolBarMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pToolBarMousePressed(evt);
             }
@@ -161,6 +165,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 0, 1);
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
@@ -169,11 +174,11 @@ public class InicioSesion extends JFrame {
         pContent.setLayout(pContentLayout);
         pContentLayout.setHorizontalGroup(
             pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         pContentLayout.setVerticalGroup(
             pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+            .addGap(0, 282, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -182,6 +187,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 1, 1, 1);
         getContentPane().add(pContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -207,13 +213,7 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_bMaximizarMouseExited
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
-        if (isMax) {
-            this.setExtendedState(NORMAL);
-            isMax = false;
-        } else {
-            this.setExtendedState(MAXIMIZED_BOTH);
-            isMax = true;
-        }
+        restaurarVentana();
     }//GEN-LAST:event_bMaximizarActionPerformed
 
     private void bMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseEntered
@@ -239,6 +239,12 @@ public class InicioSesion extends JFrame {
         y = evt.getY();
     }//GEN-LAST:event_pToolBarMousePressed
 
+    private void pToolBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pToolBarMouseClicked
+        if (evt.getClickCount() == 2) {
+            restaurarVentana();
+        }
+    }//GEN-LAST:event_pToolBarMouseClicked
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         getContentPane().setBackground(new Color(0, 0, 204));
         //creando iconos 
@@ -254,18 +260,26 @@ public class InicioSesion extends JFrame {
         bMaximizar.setIcon(iconoMaximizar);
         //escribiendo título
         if ("".equals(title)) {
-            title = "Nueva Windows";
+            title = "Nueva Ventana";
         }
         lTitle.setText(title);
     }//GEN-LAST:event_formWindowOpened
 
     public static void main(String[] args) {
-                /* Create and display the form */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InicioSesion prueba = new InicioSesion("Inicio de Sesión");
-                prueba.setSize(600, 700);
-                prueba.setVisible(true);
+                //configurando para resizable sin undecorated
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                int frameWidth = 400;
+                int frameHeight = 400;
+                InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión");
+                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
+                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
+                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
+                FullResizibleFrame fullResizibleFrame;
+                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, inicioSesion);
+                inicioSesion.setVisible(true);
             }
         });
     }
@@ -277,4 +291,12 @@ public class InicioSesion extends JFrame {
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pToolBar;
     // End of variables declaration//GEN-END:variables
+
+    private void restaurarVentana() {
+        if (getExtendedState() == MAXIMIZED_BOTH) {
+            this.setExtendedState(NORMAL);
+        } else {
+            this.setExtendedState(MAXIMIZED_BOTH);
+        }
+    }
 }

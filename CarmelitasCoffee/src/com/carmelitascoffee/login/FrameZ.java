@@ -6,9 +6,11 @@
 package com.carmelitascoffee.login;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -21,7 +23,6 @@ public class FrameZ extends JFrame {
 
     private String title = "";
     int x = 0, y = 0;
-    boolean isMax = false;
 
     public FrameZ() {
         initComponents();
@@ -64,6 +65,7 @@ public class FrameZ extends JFrame {
         tpMenu = new swing.Contenedores.TabbedPaneZ();
         dpEscritorio = new javax.swing.JDesktopPane();
 
+        setBackground(new java.awt.Color(0, 51, 102));
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -80,12 +82,16 @@ public class FrameZ extends JFrame {
             }
         });
         pToolBar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pToolBarMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pToolBarMousePressed(evt);
             }
         });
         pToolBar.setLayout(new java.awt.GridBagLayout());
 
+        lTitle.setBackground(new java.awt.Color(0, 51, 102));
         lTitle.setText("Texto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -163,6 +169,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 0, 3);
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
@@ -179,20 +186,14 @@ public class FrameZ extends JFrame {
         dpEscritorio.setLayout(dpEscritorioLayout);
         dpEscritorioLayout.setHorizontalGroup(
             dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         dpEscritorioLayout.setVerticalGroup(
             dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.weighty = 0.8;
-        pContent.add(dpEscritorio, gridBagConstraints);
+        pContent.add(dpEscritorio, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -200,6 +201,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 3, 3);
         getContentPane().add(pContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -225,13 +227,7 @@ public class FrameZ extends JFrame {
     }//GEN-LAST:event_bMaximizarMouseExited
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
-        if (isMax) {
-            this.setExtendedState(NORMAL);
-            isMax = false;
-        } else {
-            this.setExtendedState(MAXIMIZED_BOTH);
-            isMax = true;
-        }
+        restaurarVentana();
     }//GEN-LAST:event_bMaximizarActionPerformed
 
     private void bMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseEntered
@@ -277,13 +273,28 @@ public class FrameZ extends JFrame {
         lTitle.setText(title);
     }//GEN-LAST:event_formWindowOpened
 
+    private void pToolBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pToolBarMouseClicked
+        if (evt.getClickCount() == 2) {
+            restaurarVentana();
+        }
+    }//GEN-LAST:event_pToolBarMouseClicked
+
     public static void main(String[] args) {
-                /* Create and display the form */
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
-                FrameZ prueba = new FrameZ("Carmelitas Coffee");
-                prueba.setSize(600, 700);
-                prueba.setVisible(true);
+                //configurando para resizable sin undecorated
+                Toolkit toolkit = Toolkit.getDefaultToolkit();
+                int frameWidth = 400;
+                int frameHeight = 400;
+                FrameZ frameZ = new FrameZ("Carmelitas Coffeee");
+                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
+                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
+                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
+                FullResizibleFrame fullResizibleFrame;
+                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
+                frameZ.setVisible(true);
             }
         });
     }
@@ -297,4 +308,12 @@ public class FrameZ extends JFrame {
     private javax.swing.JPanel pToolBar;
     private swing.Contenedores.TabbedPaneZ tpMenu;
     // End of variables declaration//GEN-END:variables
+
+    private void restaurarVentana() {
+        if (getExtendedState() == MAXIMIZED_BOTH) {
+            this.setExtendedState(NORMAL);
+        } else {
+            this.setExtendedState(MAXIMIZED_BOTH);
+        }
+    }
 }
