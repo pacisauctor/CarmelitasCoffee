@@ -5,6 +5,17 @@
  */
 package com.carmelitascoffee.login;
 
+import com.carmelitascoffee.compras.Compras;
+import com.carmelitascoffee.compras.Proveedores;
+import com.carmelitascoffee.egresos.Egresos;
+import com.carmelitascoffee.inventario.Insumos;
+import com.carmelitascoffee.inventario.Productos;
+import com.carmelitascoffee.inventario.Servicios;
+import com.carmelitascoffee.personal.AgregarEmpleado;
+import com.carmelitascoffee.ventas.NuevaOrden;
+import com.carmelitascoffee.ventas.NuevaPersonaContacto;
+import com.carmelitascoffee.ventas.NuevoCliente;
+import com.carmelitascoffee.ventas.OrdenVista;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -22,14 +33,16 @@ import javax.swing.JFrame;
 public class FrameZ extends JFrame {
 
     private String title = "";
+    private String rol;
     int x = 0, y = 0;
 
     public FrameZ() {
         initComponents();
     }
 
-    public FrameZ(String title) {
+    public FrameZ(String title, String rol) {
         this.title = title;
+        this.rol = rol;
         initComponents();
     }
 
@@ -56,6 +69,24 @@ public class FrameZ extends JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        pCompras = new swing.Contenedores.PanelZ();
+        bCompras = new swing.Controles.ButtonZ();
+        bProveedores = new swing.Controles.ButtonZ();
+        pEgresos = new swing.Contenedores.PanelZ();
+        bEgresos = new swing.Controles.ButtonZ();
+        pInventario = new swing.Contenedores.PanelZ();
+        bInsumos = new swing.Controles.ButtonZ();
+        bProductos = new swing.Controles.ButtonZ();
+        bServicios = new swing.Controles.ButtonZ();
+        pPersonal = new swing.Contenedores.PanelZ();
+        bAgregarEmpleado = new swing.Controles.ButtonZ();
+        bModificarEmpleado = new swing.Controles.ButtonZ();
+        bPlanillas = new swing.Controles.ButtonZ();
+        pVentas = new swing.Contenedores.PanelZ();
+        bNuevaOrden = new swing.Controles.ButtonZ();
+        bNuevaPersonaContacto = new swing.Controles.ButtonZ();
+        bNuevoCliente = new swing.Controles.ButtonZ();
+        bOrdenVista = new swing.Controles.ButtonZ();
         pToolBar = new javax.swing.JPanel();
         lTitle = new javax.swing.JLabel();
         bCerrar = new javax.swing.JButton();
@@ -64,6 +95,178 @@ public class FrameZ extends JFrame {
         pContent = new javax.swing.JPanel();
         tpMenu = new swing.Contenedores.TabbedPaneZ();
         dpEscritorio = new javax.swing.JDesktopPane();
+
+        pCompras.setLayout(new java.awt.GridBagLayout());
+
+        bCompras.setText("Administrar Compras");
+        bCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bComprasActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pCompras.add(bCompras, gridBagConstraints);
+
+        bProveedores.setText("Administrar Proveedores");
+        bProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bProveedoresActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pCompras.add(bProveedores, gridBagConstraints);
+
+        pEgresos.setLayout(new java.awt.GridBagLayout());
+
+        bEgresos.setText("Administrar Egresos");
+        bEgresos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEgresosActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pEgresos.add(bEgresos, gridBagConstraints);
+
+        pInventario.setLayout(new java.awt.GridBagLayout());
+
+        bInsumos.setText("Administrar Insumos");
+        bInsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bInsumosActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pInventario.add(bInsumos, gridBagConstraints);
+
+        bProductos.setText("Administrar Productos");
+        bProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bProductosActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pInventario.add(bProductos, gridBagConstraints);
+
+        bServicios.setText("Administrar Servicios");
+        bServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bServiciosActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pInventario.add(bServicios, gridBagConstraints);
+
+        pPersonal.setLayout(new java.awt.GridBagLayout());
+
+        bAgregarEmpleado.setText("Agregar Empleado");
+        bAgregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarEmpleadoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pPersonal.add(bAgregarEmpleado, gridBagConstraints);
+
+        bModificarEmpleado.setText("Modificar Empleado");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pPersonal.add(bModificarEmpleado, gridBagConstraints);
+
+        bPlanillas.setText("Administrar Planillas");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pPersonal.add(bPlanillas, gridBagConstraints);
+
+        pVentas.setLayout(new java.awt.GridBagLayout());
+
+        bNuevaOrden.setText("Nueva Orden");
+        bNuevaOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNuevaOrdenActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pVentas.add(bNuevaOrden, gridBagConstraints);
+
+        bNuevaPersonaContacto.setText("Nueva Persona Contacto");
+        bNuevaPersonaContacto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNuevaPersonaContactoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pVentas.add(bNuevaPersonaContacto, gridBagConstraints);
+
+        bNuevoCliente.setText("Nuevo Cliente");
+        bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNuevoClienteActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pVentas.add(bNuevoCliente, gridBagConstraints);
+
+        bOrdenVista.setText("Orden Vista");
+        bOrdenVista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOrdenVistaActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pVentas.add(bOrdenVista, gridBagConstraints);
 
         setBackground(new java.awt.Color(0, 51, 102));
         setUndecorated(true);
@@ -74,8 +277,9 @@ public class FrameZ extends JFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pToolBar.setBackground(new java.awt.Color(0, 102, 255));
+        pToolBar.setBackground(new java.awt.Color(0, 51, 102));
         pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 204)));
+        pToolBar.setForeground(new java.awt.Color(255, 255, 255));
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pToolBarMouseDragged(evt);
@@ -92,6 +296,7 @@ public class FrameZ extends JFrame {
         pToolBar.setLayout(new java.awt.GridBagLayout());
 
         lTitle.setBackground(new java.awt.Color(0, 51, 102));
+        lTitle.setForeground(new java.awt.Color(255, 255, 255));
         lTitle.setText("Texto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -102,14 +307,14 @@ public class FrameZ extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         pToolBar.add(lTitle, gridBagConstraints);
 
-        bCerrar.setBackground(new java.awt.Color(0, 102, 255));
+        bCerrar.setBackground(new java.awt.Color(0, 51, 102));
         bCerrar.setToolTipText("");
         bCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bCerrarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 bCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bCerrarMouseExited(evt);
             }
         });
         bCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +328,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMaximizar.setBackground(new java.awt.Color(0, 102, 255));
+        bMaximizar.setBackground(new java.awt.Color(0, 51, 102));
         bMaximizar.setToolTipText("");
         bMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -144,7 +349,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bMaximizar, gridBagConstraints);
 
-        bMinimizar.setBackground(new java.awt.Color(0, 102, 255));
+        bMinimizar.setBackground(new java.awt.Color(0, 51, 102));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -174,6 +379,8 @@ public class FrameZ extends JFrame {
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
         pContent.setLayout(new java.awt.GridBagLayout());
+
+        tpMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -181,6 +388,8 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pContent.add(tpMenu, gridBagConstraints);
+
+        dpEscritorio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout dpEscritorioLayout = new javax.swing.GroupLayout(dpEscritorio);
         dpEscritorio.setLayout(dpEscritorioLayout);
@@ -193,7 +402,11 @@ public class FrameZ extends JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        pContent.add(dpEscritorio, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.9;
+        gridBagConstraints.weighty = 0.9;
+        pContent.add(dpEscritorio, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -206,7 +419,8 @@ public class FrameZ extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseExited
-        bCerrar.setBackground(new Color(0, 102, 255));
+        bCerrar.setBackground(new Color(0, 51, 102));
+
     }//GEN-LAST:event_bCerrarMouseExited
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
@@ -223,7 +437,7 @@ public class FrameZ extends JFrame {
     }//GEN-LAST:event_bMaximizarMouseEntered
 
     private void bMaximizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseExited
-        bMaximizar.setBackground(new Color(0, 102, 255));
+        bMaximizar.setBackground(new Color(0, 51, 102));
     }//GEN-LAST:event_bMaximizarMouseExited
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
@@ -235,7 +449,7 @@ public class FrameZ extends JFrame {
     }//GEN-LAST:event_bMinimizarMouseEntered
 
     private void bMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseExited
-        bMinimizar.setBackground(new Color(0, 102, 255));
+        bMinimizar.setBackground(new Color(0, 51, 102));
     }//GEN-LAST:event_bMinimizarMouseExited
 
     private void bMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMinimizarActionPerformed
@@ -279,33 +493,129 @@ public class FrameZ extends JFrame {
         }
     }//GEN-LAST:event_pToolBarMouseClicked
 
+    private void bEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEgresosActionPerformed
+        Egresos egresos = new Egresos();
+        egresos.setVisible(true);
+        dpEscritorio.add(egresos);
+    }//GEN-LAST:event_bEgresosActionPerformed
+
+    private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
+        AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
+        agregarEmpleado.setVisible(true);
+        dpEscritorio.add(agregarEmpleado);
+    }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
+
+    private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
+        NuevaOrden nuevaOrden = new NuevaOrden();
+        nuevaOrden.setVisible(true);
+        dpEscritorio.add(nuevaOrden);
+    }//GEN-LAST:event_bNuevaOrdenActionPerformed
+
+    private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
+        NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto();
+        nuevaPersonaContacto.setVisible(true);
+        dpEscritorio.add(nuevaPersonaContacto);
+    }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
+
+    private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
+        NuevoCliente nuevoCliente = new NuevoCliente();
+        nuevoCliente.setVisible(true);
+        dpEscritorio.add(nuevoCliente);
+    }//GEN-LAST:event_bNuevoClienteActionPerformed
+
+    private void bOrdenVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenVistaActionPerformed
+        OrdenVista ordenVista = new OrdenVista();
+        ordenVista.setVisible(true);
+        dpEscritorio.add(ordenVista);
+    }//GEN-LAST:event_bOrdenVistaActionPerformed
+
+    private void bComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprasActionPerformed
+        Compras compras = new Compras();
+        compras.setVisible(true);
+        dpEscritorio.add(compras);
+    }//GEN-LAST:event_bComprasActionPerformed
+
+    private void bProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProveedoresActionPerformed
+        Proveedores proveedores = new Proveedores();
+        proveedores.setVisible(true);
+        dpEscritorio.add(proveedores);
+    }//GEN-LAST:event_bProveedoresActionPerformed
+
+    private void bInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInsumosActionPerformed
+        Insumos insumos = new Insumos();
+        insumos.setVisible(true);
+        dpEscritorio.add(insumos);
+    }//GEN-LAST:event_bInsumosActionPerformed
+
+    private void bProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProductosActionPerformed
+        Productos productos = new Productos();
+        productos.setVisible(true);
+        dpEscritorio.add(productos);
+    }//GEN-LAST:event_bProductosActionPerformed
+
+    private void bServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bServiciosActionPerformed
+        Servicios servicios = new Servicios();
+        servicios.setVisible(true);
+        dpEscritorio.add(servicios);
+    }//GEN-LAST:event_bServiciosActionPerformed
+
     public static void main(String[] args) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 //configurando para resizable sin undecorated
                 Toolkit toolkit = Toolkit.getDefaultToolkit();
                 int frameWidth = 400;
                 int frameHeight = 400;
-                FrameZ frameZ = new FrameZ("Carmelitas Coffeee");
+                FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
                 Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
                         (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
                 Dimension initialDimension = new Dimension(frameWidth, frameHeight);
                 FullResizibleFrame fullResizibleFrame;
                 fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
+                frameZ.addPaneles();
                 frameZ.setVisible(true);
             }
+
         });
     }
+
+    private void addPaneles() {
+        if ("Maestro".equals(rol)) {
+            tpMenu.add(pVentas, "Ventas");
+            tpMenu.add(pCompras, "Compras");
+            tpMenu.add(pEgresos, "Egresos");
+            tpMenu.add(pInventario, "Inventario");
+            tpMenu.add(pPersonal, "Personal");
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ bAgregarEmpleado;
     private javax.swing.JButton bCerrar;
+    private swing.Controles.ButtonZ bCompras;
+    private swing.Controles.ButtonZ bEgresos;
+    private swing.Controles.ButtonZ bInsumos;
     private javax.swing.JButton bMaximizar;
     private javax.swing.JButton bMinimizar;
+    private swing.Controles.ButtonZ bModificarEmpleado;
+    private swing.Controles.ButtonZ bNuevaOrden;
+    private swing.Controles.ButtonZ bNuevaPersonaContacto;
+    private swing.Controles.ButtonZ bNuevoCliente;
+    private swing.Controles.ButtonZ bOrdenVista;
+    private swing.Controles.ButtonZ bPlanillas;
+    private swing.Controles.ButtonZ bProductos;
+    private swing.Controles.ButtonZ bProveedores;
+    private swing.Controles.ButtonZ bServicios;
     private javax.swing.JDesktopPane dpEscritorio;
     private javax.swing.JLabel lTitle;
+    private swing.Contenedores.PanelZ pCompras;
     private javax.swing.JPanel pContent;
+    private swing.Contenedores.PanelZ pEgresos;
+    private swing.Contenedores.PanelZ pInventario;
+    private swing.Contenedores.PanelZ pPersonal;
     private javax.swing.JPanel pToolBar;
+    private swing.Contenedores.PanelZ pVentas;
     private swing.Contenedores.TabbedPaneZ tpMenu;
     // End of variables declaration//GEN-END:variables
 
