@@ -12,14 +12,13 @@ import java.awt.event.ActionListener;
  *
  * @author Dell Inspiron
  */
-public class Egresos extends javax.swing.JFrame implements ActionListener{
+public class Egresos extends javax.swing.JInternalFrame implements ActionListener{
 
     /**
      * Creates new form Egresos
      */
     public Egresos() {
         initComponents();
-        this.setLocationRelativeTo(null);
         
     }
 
