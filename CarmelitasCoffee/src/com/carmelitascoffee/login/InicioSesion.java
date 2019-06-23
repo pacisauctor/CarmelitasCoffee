@@ -63,6 +63,7 @@ public class InicioSesion extends JFrame {
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(0, 51, 102));
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -71,7 +72,7 @@ public class InicioSesion extends JFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pToolBar.setBackground(new java.awt.Color(0, 102, 255));
+        pToolBar.setBackground(new java.awt.Color(0, 51, 102));
         pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 204)));
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -88,6 +89,7 @@ public class InicioSesion extends JFrame {
         });
         pToolBar.setLayout(new java.awt.GridBagLayout());
 
+        lTitle.setForeground(new java.awt.Color(255, 255, 255));
         lTitle.setText("Texto");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -98,14 +100,14 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         pToolBar.add(lTitle, gridBagConstraints);
 
-        bCerrar.setBackground(new java.awt.Color(0, 102, 255));
+        bCerrar.setBackground(new java.awt.Color(0, 51, 102));
         bCerrar.setToolTipText("");
         bCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bCerrarMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 bCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bCerrarMouseExited(evt);
             }
         });
         bCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +121,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMaximizar.setBackground(new java.awt.Color(0, 102, 255));
+        bMaximizar.setBackground(new java.awt.Color(0, 51, 102));
         bMaximizar.setToolTipText("");
         bMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -140,7 +142,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bMaximizar, gridBagConstraints);
 
-        bMinimizar.setBackground(new java.awt.Color(0, 102, 255));
+        bMinimizar.setBackground(new java.awt.Color(0, 51, 102));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -192,7 +194,7 @@ public class InicioSesion extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseExited
-        bCerrar.setBackground(new Color(0, 102, 255));
+        bCerrar.setBackground(new Color(0, 51, 102));
     }//GEN-LAST:event_bCerrarMouseExited
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
@@ -209,7 +211,7 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_bMaximizarMouseEntered
 
     private void bMaximizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseExited
-        bMaximizar.setBackground(new Color(0, 102, 255));
+        bMaximizar.setBackground(new Color(0, 51, 102));
     }//GEN-LAST:event_bMaximizarMouseExited
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
@@ -221,7 +223,7 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_bMinimizarMouseEntered
 
     private void bMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseExited
-        bMinimizar.setBackground(new Color(0, 102, 255));
+        bMinimizar.setBackground(new Color(0, 51, 102));
     }//GEN-LAST:event_bMinimizarMouseExited
 
     private void bMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMinimizarActionPerformed
