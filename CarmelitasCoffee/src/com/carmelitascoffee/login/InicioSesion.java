@@ -256,7 +256,7 @@ public class InicioSesion extends JFrame {
         textPaneZ1.setBackground(new java.awt.Color(0, 51, 102));
         textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 0, true));
         textPaneZ1.setForeground(new java.awt.Color(204, 204, 204));
-        textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
+        textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable. ");
         jScrollPane1.setViewportView(textPaneZ1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

@@ -269,7 +269,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="En caso de olvidar sus datos de usuario  comunicarselo al debido responsable "/>
+                <Property name="text" type="java.lang.String" value="En caso de olvidar sus datos de usuario  comunicarselo al debido responsable. "/>
               </Properties>
             </Component>
           </SubComponents>
