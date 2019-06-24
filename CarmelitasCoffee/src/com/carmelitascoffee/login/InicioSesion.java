@@ -353,7 +353,7 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_textFieldZ1ActionPerformed
 
     private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
