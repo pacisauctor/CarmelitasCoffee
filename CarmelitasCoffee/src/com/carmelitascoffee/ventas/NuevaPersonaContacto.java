@@ -41,19 +41,19 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
         buttonZ1 = new swing.Controles.ButtonZ();
         labelZ7 = new swing.Controles.LabelZ();
 
-        labelZ2.setText("Código de producto");
+        labelZ2.setText("Apellido");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        labelZ3.setText("Código de producto");
+        labelZ3.setText("Cédula");
         labelZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        labelZ4.setText("Código de producto");
+        labelZ4.setText("Número de contacto");
         labelZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        labelZ5.setText("Código de producto");
+        labelZ5.setText("Empresa");
         labelZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        labelZ6.setText("Código de producto");
+        labelZ6.setText("Nombre");
         labelZ6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
@@ -79,6 +79,11 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
         textFieldZ4.setCaretColor(new java.awt.Color(255, 255, 255));
         textFieldZ4.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         textFieldZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        textFieldZ4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldZ4ActionPerformed(evt);
+            }
+        });
 
         textFieldZ5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         textFieldZ5.setText("");
@@ -89,7 +94,7 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
         buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
         buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 2, true));
         buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
-        buttonZ1.setText("Guardar");
+        buttonZ1.setText("Agregar");
         buttonZ1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         buttonZ1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +128,7 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
                             .addGroup(panelZ1Layout.createSequentialGroup()
                                 .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(77, 77, 77)
-                                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelZ1Layout.createSequentialGroup()
                                 .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +147,7 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
                     .addGroup(panelZ1Layout.createSequentialGroup()
                         .addGap(222, 222, 222)
                         .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 144, Short.MAX_VALUE))
+                .addGap(0, 136, Short.MAX_VALUE))
             .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelZ1Layout.createSequentialGroup()
                     .addGap(55, 55, 55)
@@ -177,7 +182,7 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
                 .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelZ1Layout.createSequentialGroup()
                     .addGap(116, 116, 116)
@@ -202,6 +207,10 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
     private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonZ1ActionPerformed
+
+    private void textFieldZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldZ4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
