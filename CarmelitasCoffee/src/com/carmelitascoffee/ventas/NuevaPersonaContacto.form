@@ -57,7 +57,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="textFieldZ4" min="-2" pref="250" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                                  <Component id="buttonZ1" min="-2" pref="124" max="-2" attributes="0"/>
+                                  <Component id="buttonZ1" min="-2" pref="168" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -88,7 +88,7 @@
                           <Component id="labelZ7" min="-2" pref="210" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="144" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="136" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -133,7 +133,7 @@
                       <Component id="textFieldZ4" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="buttonZ1" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                  <EmptySpace pref="73" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -148,7 +148,7 @@
       <SubComponents>
         <Component class="swing.Controles.LabelZ" name="labelZ2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo de producto"/>
+            <Property name="text" type="java.lang.String" value="Apellido"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
@@ -156,7 +156,7 @@
         </Component>
         <Component class="swing.Controles.LabelZ" name="labelZ3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo de producto"/>
+            <Property name="text" type="java.lang.String" value="C&#xe9;dula"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
@@ -164,7 +164,7 @@
         </Component>
         <Component class="swing.Controles.LabelZ" name="labelZ4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo de producto"/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de contacto"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
@@ -172,7 +172,7 @@
         </Component>
         <Component class="swing.Controles.LabelZ" name="labelZ5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo de producto"/>
+            <Property name="text" type="java.lang.String" value="Empresa"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
@@ -180,7 +180,7 @@
         </Component>
         <Component class="swing.Controles.LabelZ" name="labelZ6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo de producto"/>
+            <Property name="text" type="java.lang.String" value="Nombre"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>
@@ -269,6 +269,9 @@
               <Font name="Dialog" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldZ4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.TextFieldZ" name="textFieldZ5">
           <Properties>
@@ -306,7 +309,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Guardar"/>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="1"/>
             </Property>
