@@ -46,8 +46,8 @@ public class Servicios extends JInternalFrame {
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
+        setIconifiable(true);
+        setTitle("Servicios");
         setVisible(true);
 
         labelZ2.setText("Código de servicio");

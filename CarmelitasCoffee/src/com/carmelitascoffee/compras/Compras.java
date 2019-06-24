@@ -61,8 +61,9 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(ltipoCompra, gridBagConstraints);
 
         cbTipoCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Servicios", "Insumos" }));
@@ -73,6 +74,7 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(cbTipoCompra, gridBagConstraints);
 
         lCodigoCompra.setText("Código de Compra: ");
@@ -80,8 +82,9 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lCodigoCompra, gridBagConstraints);
 
         tfCodigoCompra.setEditable(false);
@@ -93,6 +96,7 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfCodigoCompra, gridBagConstraints);
 
         lProveedores.setText("Proveedor: ");
@@ -100,8 +104,9 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lProveedores, gridBagConstraints);
 
         cbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Proveedor 1", "Proveedor 2", "Proveedor 3" }));
@@ -111,6 +116,7 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(cbProveedor, gridBagConstraints);
 
         tCompras.setModel(new javax.swing.table.DefaultTableModel(
@@ -138,6 +144,7 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.8;
         gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
         buttonZ1.setText("Realizar Compras");
@@ -146,6 +153,9 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(buttonZ1, gridBagConstraints);
 
         bActualizar.setBorder(null);
@@ -158,7 +168,7 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(bActualizar, gridBagConstraints);
 
         bNuevoProveedor.setBackground(new java.awt.Color(0, 51, 102));
@@ -174,10 +184,10 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(bNuevoProveedor, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 

@@ -56,6 +56,7 @@ public class NuevaOrden extends JInternalFrame {
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Nueva Orden");
         setVisible(true);

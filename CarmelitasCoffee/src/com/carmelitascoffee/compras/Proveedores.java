@@ -81,6 +81,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
         lNombre.setText("Nombre del proveedor: ");
@@ -88,6 +89,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lNombre, gridBagConstraints);
 
         tfNombre.setText("Empresas LOL xd");
@@ -95,6 +97,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfNombre, gridBagConstraints);
 
         lDescripcion.setText("Descripción: ");
@@ -102,6 +105,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lDescripcion, gridBagConstraints);
 
         tfDescripcion.setText("Nunca quedan de acuerdo");
@@ -109,6 +113,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfDescripcion, gridBagConstraints);
 
         labelZ3.setText("Teléfono: ");
@@ -118,6 +123,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ3, gridBagConstraints);
 
         tfTelefono.setText("+50581380937");
@@ -132,6 +138,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfTelefono, gridBagConstraints);
 
         lCorreo.setText("Correo: ");
@@ -141,6 +148,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lCorreo, gridBagConstraints);
 
         tfCorreo.setText("tamarindo@example.com");
@@ -150,6 +158,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfCorreo, gridBagConstraints);
 
         labelZ5.setText("Dirección: ");
@@ -159,6 +168,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ5, gridBagConstraints);
 
         taDirección.setColumns(20);
@@ -173,6 +183,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 

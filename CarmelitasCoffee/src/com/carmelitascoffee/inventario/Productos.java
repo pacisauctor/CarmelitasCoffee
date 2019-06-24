@@ -48,8 +48,8 @@ public class Productos extends JInternalFrame {
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
-        setMaximizable(true);
-        setResizable(true);
+        setIconifiable(true);
+        setTitle("Productos");
         setVisible(true);
 
         labelZ1.setText("Código");
@@ -195,7 +195,7 @@ public class Productos extends JInternalFrame {
                 .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelZ1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

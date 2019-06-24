@@ -12,6 +12,7 @@ import com.carmelitascoffee.personal.*;
 import com.carmelitascoffee.ventas.*;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -28,6 +29,7 @@ public class FrameZ extends JFrame {
 
     private String title = "";
     private String rol;
+    private Image imagenFondo;
     int x = 0, y = 0;
 
     public FrameZ() {
@@ -88,7 +90,7 @@ public class FrameZ extends JFrame {
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
         tpMenu = new swing.Contenedores.TabbedPaneZ();
-        dpEscritorio = new javax.swing.JDesktopPane();
+        dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
         pCompras.setLayout(new java.awt.GridBagLayout());
 
@@ -392,24 +394,10 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.4;
         pContent.add(tpMenu, gridBagConstraints);
-
-        dpEscritorio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout dpEscritorioLayout = new javax.swing.GroupLayout(dpEscritorio);
-        dpEscritorio.setLayout(dpEscritorioLayout);
-        dpEscritorioLayout.setHorizontalGroup(
-            dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
-        );
-        dpEscritorioLayout.setVerticalGroup(
-            dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.9;
-        gridBagConstraints.weighty = 0.9;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         pContent.add(dpEscritorio, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -488,6 +476,10 @@ public class FrameZ extends JFrame {
             title = "Nueva Ventana";
         }
         lTitle.setText(title);
+        ruta = getClass().getClassLoader().getResource("img//fondo.jpg");
+        imagenFondo = new ImageIcon(ruta).getImage();
+        dpEscritorio.setImagenfondo(imagenFondo);
+       // repaint();
     }//GEN-LAST:event_formWindowOpened
 
     private void pToolBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pToolBarMouseClicked
@@ -515,7 +507,7 @@ public class FrameZ extends JFrame {
         nuevaOrden.setVisible(true);
         nuevaOrden.pack();
         dpEscritorio.add(nuevaOrden);
-        
+
     }//GEN-LAST:event_bNuevaOrdenActionPerformed
 
     private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
@@ -611,7 +603,7 @@ public class FrameZ extends JFrame {
         });
     }
 
-    private void addPaneles() {
+    void addPaneles() {
         if ("Maestro".equals(rol)) {
             tpMenu.add(pVentas, "Ventas");
             tpMenu.add(pCompras, "Compras");
@@ -637,7 +629,7 @@ public class FrameZ extends JFrame {
     private swing.Controles.ButtonZ bProductos;
     private swing.Controles.ButtonZ bProveedores;
     private swing.Controles.ButtonZ bServicios;
-    private javax.swing.JDesktopPane dpEscritorio;
+    private swing.Contenedores.DesktopPaneZ dpEscritorio;
     private javax.swing.JLabel lTitle;
     private swing.Contenedores.PanelZ pCompras;
     private javax.swing.JPanel pContent;
@@ -656,4 +648,9 @@ public class FrameZ extends JFrame {
             this.setExtendedState(MAXIMIZED_BOTH);
         }
     }
+
+    private void agregarFondoPantalla(Image image) {
+        
+    }
+    
 }

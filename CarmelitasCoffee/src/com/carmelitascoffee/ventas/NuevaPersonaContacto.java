@@ -26,206 +26,194 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        panelZ1 = new swing.Contenedores.PanelZ();
-        labelZ2 = new swing.Controles.LabelZ();
-        labelZ3 = new swing.Controles.LabelZ();
-        labelZ4 = new swing.Controles.LabelZ();
-        labelZ5 = new swing.Controles.LabelZ();
-        labelZ6 = new swing.Controles.LabelZ();
-        textFieldZ1 = new swing.Controles.TextFieldZ();
-        textFieldZ2 = new swing.Controles.TextFieldZ();
-        textFieldZ3 = new swing.Controles.TextFieldZ();
-        textFieldZ4 = new swing.Controles.TextFieldZ();
-        textFieldZ5 = new swing.Controles.TextFieldZ();
-        buttonZ1 = new swing.Controles.ButtonZ();
-        labelZ7 = new swing.Controles.LabelZ();
+        pContent = new swing.Contenedores.PanelZ();
+        lNombres = new swing.Controles.LabelZ();
+        tfNombre1 = new swing.Controles.TextFieldZ();
+        tfNombre2 = new swing.Controles.TextFieldZ();
+        lApelildos = new swing.Controles.LabelZ();
+        tfApellido1 = new swing.Controles.TextFieldZ();
+        tfApellido2 = new swing.Controles.TextFieldZ();
+        lTelefono = new swing.Controles.LabelZ();
+        tfTelefono = new swing.Controles.TextFieldZ();
+        lDireccion = new swing.Controles.LabelZ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDireccion = new swing.Controles.TextAreaZ();
+        lCorreo = new swing.Controles.LabelZ();
+        tfCorreo = new swing.Controles.TextFieldZ();
+        bAgregarCliente = new swing.Controles.ButtonZ();
 
-        labelZ2.setText("Apellido");
-        labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Nueva Persona Contacto");
 
-        labelZ3.setText("Cédula");
-        labelZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        pContent.setLayout(new java.awt.GridBagLayout());
 
-        labelZ4.setText("Número de contacto");
-        labelZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lNombres.setText("Nombre: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lNombres, gridBagConstraints);
 
-        labelZ5.setText("Empresa");
-        labelZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfNombre1.setText("primerNombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfNombre1, gridBagConstraints);
 
-        labelZ6.setText("Nombre");
-        labelZ6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfNombre2.setText("segundoNombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfNombre2, gridBagConstraints);
 
-        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ1.setText("");
-        textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lApelildos.setText("Nombre: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lApelildos, gridBagConstraints);
 
-        textFieldZ2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ2.setText("");
-        textFieldZ2.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ2.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfApellido1.setText("primerApellido");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfApellido1, gridBagConstraints);
 
-        textFieldZ3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ3.setText("");
-        textFieldZ3.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ3.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfApellido2.setText("segundoApellido");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfApellido2, gridBagConstraints);
 
-        textFieldZ4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ4.setText("");
-        textFieldZ4.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ4.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        textFieldZ4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldZ4ActionPerformed(evt);
-            }
-        });
+        lTelefono.setText("Teléfono: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lTelefono, gridBagConstraints);
 
-        textFieldZ5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ5.setText("");
-        textFieldZ5.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ5.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfTelefono.setText("+50581380937");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfTelefono, gridBagConstraints);
 
-        buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
-        buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 2, true));
-        buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
-        buttonZ1.setText("Agregar");
-        buttonZ1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonZ1ActionPerformed(evt);
-            }
-        });
+        lDireccion.setText("Dirección: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lDireccion, gridBagConstraints);
 
-        labelZ7.setText("Contacto de proveedor");
-        labelZ7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        taDireccion.setColumns(20);
+        taDireccion.setRows(5);
+        taDireccion.setText("De por aquí hasta alla\n");
+        jScrollPane1.setViewportView(taDireccion);
 
-        javax.swing.GroupLayout panelZ1Layout = new javax.swing.GroupLayout(panelZ1);
-        panelZ1.setLayout(panelZ1Layout);
-        panelZ1Layout.setHorizontalGroup(
-            panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelZ1Layout.createSequentialGroup()
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(129, 129, 129)
-                        .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelZ1Layout.createSequentialGroup()
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelZ1Layout.createSequentialGroup()
-                                .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(77, 77, 77)
-                                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelZ1Layout.createSequentialGroup()
-                                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelZ1Layout.createSequentialGroup()
-                                        .addGap(47, 47, 47)
-                                        .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelZ1Layout.createSequentialGroup()
-                                        .addGap(76, 76, 76)
-                                        .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelZ1Layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 136, Short.MAX_VALUE))
-            .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelZ1Layout.createSequentialGroup()
-                    .addGap(55, 55, 55)
-                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(484, Short.MAX_VALUE)))
-        );
-        panelZ1Layout.setVerticalGroup(
-            panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelZ1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
-            .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelZ1Layout.createSequentialGroup()
-                    .addGap(116, 116, 116)
-                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(285, Short.MAX_VALUE)))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.4;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(jScrollPane1, gridBagConstraints);
+
+        lCorreo.setText("Correo: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lCorreo, gridBagConstraints);
+
+        tfCorreo.setText("tumail@example.com");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfCorreo, gridBagConstraints);
+
+        bAgregarCliente.setText("Agregar Persona Contacto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.4;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(bAgregarCliente, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelZ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelZ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonZ1ActionPerformed
-
-    private void textFieldZ4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldZ4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ buttonZ1;
-    private swing.Controles.LabelZ labelZ2;
-    private swing.Controles.LabelZ labelZ3;
-    private swing.Controles.LabelZ labelZ4;
-    private swing.Controles.LabelZ labelZ5;
-    private swing.Controles.LabelZ labelZ6;
-    private swing.Controles.LabelZ labelZ7;
-    private swing.Contenedores.PanelZ panelZ1;
-    private swing.Controles.TextFieldZ textFieldZ1;
-    private swing.Controles.TextFieldZ textFieldZ2;
-    private swing.Controles.TextFieldZ textFieldZ3;
-    private swing.Controles.TextFieldZ textFieldZ4;
-    private swing.Controles.TextFieldZ textFieldZ5;
+    private swing.Controles.ButtonZ bAgregarCliente;
+    private javax.swing.JScrollPane jScrollPane1;
+    private swing.Controles.LabelZ lApelildos;
+    private swing.Controles.LabelZ lCorreo;
+    private swing.Controles.LabelZ lDireccion;
+    private swing.Controles.LabelZ lNombres;
+    private swing.Controles.LabelZ lTelefono;
+    private swing.Contenedores.PanelZ pContent;
+    private swing.Controles.TextAreaZ taDireccion;
+    private swing.Controles.TextFieldZ tfApellido1;
+    private swing.Controles.TextFieldZ tfApellido2;
+    private swing.Controles.TextFieldZ tfCorreo;
+    private swing.Controles.TextFieldZ tfNombre1;
+    private swing.Controles.TextFieldZ tfNombre2;
+    private swing.Controles.TextFieldZ tfTelefono;
     // End of variables declaration//GEN-END:variables
 }

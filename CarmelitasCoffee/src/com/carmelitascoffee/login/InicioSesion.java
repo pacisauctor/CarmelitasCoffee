@@ -178,12 +178,29 @@ public class InicioSesion extends JFrame {
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
+        pContent.setLayout(new java.awt.GridBagLayout());
 
         labelZ1.setText("Nombre de usuario");
         labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(labelZ1, gridBagConstraints);
 
         labelZ2.setText("Contraseña");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(labelZ2, gridBagConstraints);
 
         textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         textFieldZ1.setText("");
@@ -194,17 +211,46 @@ public class InicioSesion extends JFrame {
                 textFieldZ1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(textFieldZ1, gridBagConstraints);
 
         passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         passwordFieldZ1.setText("");
         passwordFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
         passwordFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(passwordFieldZ1, gridBagConstraints);
 
         buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
         buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 4, true));
         buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
         buttonZ1.setText("Ingresar");
         buttonZ1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonZ1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(buttonZ1, gridBagConstraints);
 
         textPaneZ1.setEditable(false);
         textPaneZ1.setBackground(new java.awt.Color(0, 51, 102));
@@ -213,49 +259,14 @@ public class InicioSesion extends JFrame {
         textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
         jScrollPane1.setViewportView(textPaneZ1);
 
-        javax.swing.GroupLayout pContentLayout = new javax.swing.GroupLayout(pContent);
-        pContent.setLayout(pContentLayout);
-        pContentLayout.setHorizontalGroup(
-            pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pContentLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
-                .addGap(0, 50, Short.MAX_VALUE)
-                .addGroup(pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
-                        .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
-                        .addGroup(pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(passwordFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(textFieldZ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonZ1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
-                        .addGap(42, 42, 42))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
-        pContentLayout.setVerticalGroup(
-            pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pContentLayout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(passwordFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(jScrollPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -344,6 +355,21 @@ public class InicioSesion extends JFrame {
     private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldZ1ActionPerformed
+
+    private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+                int frameWidth = 600;
+                int frameHeight = 600;
+                FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
+                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
+                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
+                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
+                FullResizibleFrame fullResizibleFrame;
+                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
+                frameZ.addPaneles();
+                frameZ.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_buttonZ1ActionPerformed
 
     public static void main(String[] args) {
         /* Create and display the form */

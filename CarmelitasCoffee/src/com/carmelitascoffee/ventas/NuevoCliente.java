@@ -57,6 +57,7 @@ public class NuevoCliente extends JInternalFrame {
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
         setResizable(true);
         setTitle("Nuevo Cliente");
         setVisible(true);
@@ -65,7 +66,7 @@ public class NuevoCliente extends JInternalFrame {
         lNombres.setText("Nombre: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lNombres, gridBagConstraints);
@@ -91,7 +92,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lApelildos, gridBagConstraints);
@@ -121,7 +122,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lTelefono, gridBagConstraints);
@@ -141,7 +142,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lDireccion, gridBagConstraints);
@@ -167,7 +168,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lCorreo, gridBagConstraints);
@@ -187,7 +188,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ1, gridBagConstraints);
@@ -212,7 +213,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(bActualizar, gridBagConstraints);
@@ -231,6 +232,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.2;
         getContentPane().add(bNuevoCliente, gridBagConstraints);
 
         bAgregarCliente.setText("Agregar Cliente");
