@@ -503,6 +503,7 @@ public class FrameZ extends JFrame {
         AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
         agregarEmpleado.setVisible(true);
         dpEscritorio.add(agregarEmpleado);
+        agregarEmpleado.setSize(725, 562);
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed

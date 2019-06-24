@@ -7,6 +7,11 @@ package com.carmelitascoffee.egresos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JSpinner.DefaultEditor;
+import swing.Controles.ButtonZ;
 
 /**
  *
@@ -19,7 +24,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
      */
     public Egresos() {
         initComponents();
-        
+        ((DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setEditable(false);
     }
 
     /**
@@ -38,20 +43,103 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TEXTFIELD_busquedadepositos = new swing.Controles.TextFieldZ();
         BTN_actualizardepositos = new swing.Controles.ButtonZ();
         BTN_salirdepositos = new swing.Controles.ButtonZ();
+        PANEL_consultarpagos = new swing.Contenedores.PanelZ();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TABLE_pagos = new swing.Controles.TableZ();
+        labelZ2 = new swing.Controles.LabelZ();
+        TEXTFIELD_busquedapagos = new swing.Controles.TextFieldZ();
+        BTN_actualizarpagos = new swing.Controles.ButtonZ();
+        BTN_salirpagos = new swing.Controles.ButtonZ();
+        BTN_verpagomantenimiento = new swing.Controles.ButtonZ();
+        BTN_verpagoempleado = new swing.Controles.ButtonZ();
+        BTN_verpagoinsumo = new swing.Controles.ButtonZ();
+        PANEL_nuevodeposito = new swing.Contenedores.PanelZ();
+        labelZ3 = new swing.Controles.LabelZ();
+        labelZ4 = new swing.Controles.LabelZ();
+        labelZ5 = new swing.Controles.LabelZ();
+        labelZ6 = new swing.Controles.LabelZ();
+        labelZ7 = new swing.Controles.LabelZ();
+        BTN_nuevodeposito = new swing.Controles.ButtonZ();
+        BTN_guardardeposito = new swing.Controles.ButtonZ();
+        BTN_cancelardeposito = new swing.Controles.ButtonZ();
+        BTN_eliminardeposito = new swing.Controles.ButtonZ();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TABLE_nuevodeposito = new swing.Controles.TableZ();
+        labelZ8 = new swing.Controles.LabelZ();
+        TEXTFIELD_comprobante = new swing.Controles.TextFieldZ();
+        TEXTFIELD_banco = new swing.Controles.TextFieldZ();
+        TEXTFIELD_monto = new swing.Controles.TextFieldZ();
+        TEXTFIELD_buscardeposito = new swing.Controles.TextFieldZ();
+        BTN_actualizardeposito = new swing.Controles.ButtonZ();
+        BTN_salirnuevodeposito = new swing.Controles.ButtonZ();
+        SPINNER_fecha = new swing.Controles.SpinnerZ();
+        COMBOBOX_moneda = new swing.Controles.ComboBoxZ();
+        BTN_editardeposito = new swing.Controles.ButtonZ();
+        PANEL_nuevopagoempleado = new swing.Contenedores.PanelZ();
+        labelZ9 = new swing.Controles.LabelZ();
+        labelZ10 = new swing.Controles.LabelZ();
+        labelZ11 = new swing.Controles.LabelZ();
+        labelZ12 = new swing.Controles.LabelZ();
+        labelZ13 = new swing.Controles.LabelZ();
+        BTN_nuevopagoempleado = new swing.Controles.ButtonZ();
+        BTN_guardarpagoempleado = new swing.Controles.ButtonZ();
+        BTN_cancelarpagoempleado = new swing.Controles.ButtonZ();
+        BTN_eliminarpagoempleado = new swing.Controles.ButtonZ();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TABLE_nuevopagoempleado = new swing.Controles.TableZ();
+        labelZ14 = new swing.Controles.LabelZ();
+        TEXTFIELD_cedulaempleado = new swing.Controles.TextFieldZ();
+        TEXTFIELD_planilla = new swing.Controles.TextFieldZ();
+        TEXTFIELD_numerocomprobante = new swing.Controles.TextFieldZ();
+        TEXTFIELD_buscarpagoempleado = new swing.Controles.TextFieldZ();
+        BTN_actualizarpagoempleado = new swing.Controles.ButtonZ();
+        BTN_salirnuevopagoempleado = new swing.Controles.ButtonZ();
+        COMBOBOX_mododepago = new swing.Controles.ComboBoxZ();
+        BTN_editarpagoempleado = new swing.Controles.ButtonZ();
+        TEXTFIELD_descripcion = new swing.Controles.TextFieldZ();
+        PANEL_nuevopagoinsumo = new swing.Contenedores.PanelZ();
+        labelZ15 = new swing.Controles.LabelZ();
+        labelZ16 = new swing.Controles.LabelZ();
+        BTN_nuevopagoinsumo = new swing.Controles.ButtonZ();
+        BTN_guardarpagoinsumo = new swing.Controles.ButtonZ();
+        BTN_cancelarpagoinsumo = new swing.Controles.ButtonZ();
+        BTN_eliminarpagoinsumo = new swing.Controles.ButtonZ();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        TABLE_nuevopagoinsumo = new swing.Controles.TableZ();
+        labelZ20 = new swing.Controles.LabelZ();
+        TEXTFIELD_numerocomprobante2 = new swing.Controles.TextFieldZ();
+        TEXTFIELD_numerofactura = new swing.Controles.TextFieldZ();
+        TEXTFIELD_buscarpagoinsumo = new swing.Controles.TextFieldZ();
+        BTN_actualizarpagoinsumo = new swing.Controles.ButtonZ();
+        BTN_salirnuevopagoinsumo = new swing.Controles.ButtonZ();
+        BTN_editarpagoinsumo = new swing.Controles.ButtonZ();
+        PANEL_nuevopagomantenimiento = new swing.Contenedores.PanelZ();
+        labelZ17 = new swing.Controles.LabelZ();
+        labelZ18 = new swing.Controles.LabelZ();
+        BTN_nuevopagomantenimiento = new swing.Controles.ButtonZ();
+        BTN_guardarpagomantenimiento = new swing.Controles.ButtonZ();
+        BTN_cancelarpagomantenimiento = new swing.Controles.ButtonZ();
+        BTN_eliminarpagomantenimiento = new swing.Controles.ButtonZ();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TABLE_nuevopagomantenimiento = new swing.Controles.TableZ();
+        labelZ21 = new swing.Controles.LabelZ();
+        TEXTFIELD_numerocomprobante3 = new swing.Controles.TextFieldZ();
+        TEXTFIELD_numerofactura2 = new swing.Controles.TextFieldZ();
+        TEXTFIELD_buscarpagomantenimiento = new swing.Controles.TextFieldZ();
+        BTN_actualizarpagomantenimiento = new swing.Controles.ButtonZ();
+        BTN_salirnuevopagomantenimiento = new swing.Controles.ButtonZ();
+        BTN_editarpagomantenimiento = new swing.Controles.ButtonZ();
         Panel = new swing.Contenedores.PanelZ();
         MENUBAR = new javax.swing.JMenuBar();
         MENU_consultar = new javax.swing.JMenu();
         MENUITEM_consultardepositos = new javax.swing.JMenuItem();
-        MENU_consultarpagos = new javax.swing.JMenu();
-        MENUITEM_consultarempleado = new javax.swing.JMenuItem();
-        MENUITEM_consultarinsumo = new javax.swing.JMenuItem();
-        MENUITEM_consultarmantenimiento = new javax.swing.JMenuItem();
+        MENUITEM_consultarpagos = new javax.swing.JMenuItem();
         MENU_nuevo = new javax.swing.JMenu();
         MENUITEM_nuevodeposito = new javax.swing.JMenuItem();
         MENU_nuevopago = new javax.swing.JMenu();
-        MENUITEM_nuevoempleado = new javax.swing.JMenuItem();
-        MENUITEM_nuevoinsumo = new javax.swing.JMenuItem();
-        MENUITEM_nuevomantenimiento = new javax.swing.JMenuItem();
+        MENUITEM_nuevopagoempleado = new javax.swing.JMenuItem();
+        MENUITEM_nuevopagoinsumo = new javax.swing.JMenuItem();
+        MENUITEM_nuevopagomantenimiento = new javax.swing.JMenuItem();
 
         PANEL_consultardepositos.setPreferredSize(new java.awt.Dimension(715, 509));
 
@@ -109,20 +197,719 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                 .addGap(25, 25, 25))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Egresos");
+        jScrollPane2.setViewportView(TABLE_pagos);
+
+        labelZ2.setText("Busqueda personalizada:");
+
+        TEXTFIELD_busquedapagos.setText("");
+        TEXTFIELD_busquedapagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEXTFIELD_busquedapagosActionPerformed(evt);
+            }
+        });
+
+        BTN_actualizarpagos.setText("Actualizar");
+        BTN_actualizarpagos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_salirpagos.setBackground(new java.awt.Color(102, 0, 0));
+        BTN_salirpagos.setText("Salir");
+        BTN_salirpagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_salirpagosActionPerformed(evt);
+            }
+        });
+
+        BTN_verpagomantenimiento.setText("De mantenimiento");
+        BTN_verpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_verpagoempleado.setText("De empleados");
+        BTN_verpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_verpagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_verpagoempleadoActionPerformed(evt);
+            }
+        });
+
+        BTN_verpagoinsumo.setText("De insumos");
+        BTN_verpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        javax.swing.GroupLayout PANEL_consultarpagosLayout = new javax.swing.GroupLayout(PANEL_consultarpagos);
+        PANEL_consultarpagos.setLayout(PANEL_consultarpagosLayout);
+        PANEL_consultarpagosLayout.setHorizontalGroup(
+            PANEL_consultarpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_consultarpagosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PANEL_consultarpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PANEL_consultarpagosLayout.createSequentialGroup()
+                        .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TEXTFIELD_busquedapagos, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addComponent(BTN_salirpagos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PANEL_consultarpagosLayout.createSequentialGroup()
+                        .addComponent(BTN_verpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BTN_verpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BTN_verpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BTN_actualizarpagos, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        PANEL_consultarpagosLayout.setVerticalGroup(
+            PANEL_consultarpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PANEL_consultarpagosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PANEL_consultarpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTN_salirpagos, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_busquedapagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(PANEL_consultarpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTN_verpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTN_verpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTN_verpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BTN_actualizarpagos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        labelZ3.setText("Numero de comprobante:");
+
+        labelZ4.setText("Banco:");
+
+        labelZ5.setText("Monto:");
+
+        labelZ6.setText("Moneda:");
+
+        labelZ7.setText("Fecha:");
+
+        BTN_nuevodeposito.setText("Nuevo");
+        BTN_nuevodeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_nuevodeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_nuevodepositoActionPerformed(evt);
+            }
+        });
+
+        BTN_guardardeposito.setText("Guardar");
+        BTN_guardardeposito.setEnabled(false);
+        BTN_guardardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_guardardeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_guardardepositoActionPerformed(evt);
+            }
+        });
+
+        BTN_cancelardeposito.setText("Cancelar");
+        BTN_cancelardeposito.setEnabled(false);
+        BTN_cancelardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_cancelardeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_cancelardepositoActionPerformed(evt);
+            }
+        });
+
+        BTN_eliminardeposito.setText("Eliminar");
+        BTN_eliminardeposito.setEnabled(false);
+        BTN_eliminardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        TABLE_nuevodeposito.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
+        jScrollPane3.setViewportView(TABLE_nuevodeposito);
+
+        labelZ8.setText("Buscar:");
+
+        TEXTFIELD_comprobante.setText("");
+        TEXTFIELD_comprobante.setEnabled(false);
+
+        TEXTFIELD_banco.setText("");
+        TEXTFIELD_banco.setEnabled(false);
+
+        TEXTFIELD_monto.setText("");
+        TEXTFIELD_monto.setEnabled(false);
+
+        TEXTFIELD_buscardeposito.setText("");
+
+        BTN_actualizardeposito.setText("Actualizar");
+        BTN_actualizardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_salirnuevodeposito.setBackground(new java.awt.Color(102, 0, 0));
+        BTN_salirnuevodeposito.setText("Salir");
+        BTN_salirnuevodeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_salirnuevodepositoActionPerformed(evt);
+            }
+        });
+
+        SPINNER_fecha.setModel(new javax.swing.SpinnerDateModel());
+        SPINNER_fecha.setEnabled(false);
+        SPINNER_fecha.setFocusable(false);
+
+        COMBOBOX_moneda.setBorder(null);
+        COMBOBOX_moneda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Córdoba", "Dólar" }));
+
+        BTN_editardeposito.setText("Editar");
+        BTN_editardeposito.setEnabled(false);
+        BTN_editardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_editardeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_editardepositoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PANEL_nuevodepositoLayout = new javax.swing.GroupLayout(PANEL_nuevodeposito);
+        PANEL_nuevodeposito.setLayout(PANEL_nuevodepositoLayout);
+        PANEL_nuevodepositoLayout.setHorizontalGroup(
+            PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTN_nuevodeposito, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                    .addComponent(BTN_guardardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_cancelardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_eliminardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_actualizardeposito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_editardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                                .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TEXTFIELD_comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelZ7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(labelZ5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                                .addComponent(TEXTFIELD_buscardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BTN_salirnuevodeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TEXTFIELD_banco, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TEXTFIELD_monto, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(COMBOBOX_moneda, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SPINNER_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())))))
+        );
+        PANEL_nuevodepositoLayout.setVerticalGroup(
+            PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BTN_salirnuevodeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelZ4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_banco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelZ5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_monto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(COMBOBOX_moneda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelZ7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SPINNER_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TEXTFIELD_buscardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
+                        .addComponent(BTN_nuevodeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_editardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_guardardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_cancelardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_eliminardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(BTN_actualizardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        labelZ9.setText("Cédula de empleado:");
+
+        labelZ10.setText("Número de planilla:");
+
+        labelZ11.setText("Número de comprobante:");
+
+        labelZ12.setText("Modo de pago:");
+
+        labelZ13.setText("Descripción:");
+
+        BTN_nuevopagoempleado.setText("Nuevo");
+        BTN_nuevopagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_nuevopagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_nuevopagoempleadoActionPerformed(evt);
+            }
+        });
+
+        BTN_guardarpagoempleado.setText("Guardar");
+        BTN_guardarpagoempleado.setEnabled(false);
+        BTN_guardarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_cancelarpagoempleado.setText("Cancelar");
+        BTN_cancelarpagoempleado.setEnabled(false);
+        BTN_cancelarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_cancelarpagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_cancelarpagoempleadoActionPerformed(evt);
+            }
+        });
+
+        BTN_eliminarpagoempleado.setText("Eliminar");
+        BTN_eliminarpagoempleado.setEnabled(false);
+        BTN_eliminarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        TABLE_nuevopagoempleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
+        jScrollPane4.setViewportView(TABLE_nuevopagoempleado);
+
+        labelZ14.setText("Buscar:");
+
+        TEXTFIELD_cedulaempleado.setText("");
+        TEXTFIELD_cedulaempleado.setEnabled(false);
+
+        TEXTFIELD_planilla.setText("");
+        TEXTFIELD_planilla.setEnabled(false);
+
+        TEXTFIELD_numerocomprobante.setText("");
+        TEXTFIELD_numerocomprobante.setEnabled(false);
+
+        TEXTFIELD_buscarpagoempleado.setText("");
+
+        BTN_actualizarpagoempleado.setText("Actualizar");
+        BTN_actualizarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_salirnuevopagoempleado.setBackground(new java.awt.Color(102, 0, 0));
+        BTN_salirnuevopagoempleado.setText("Salir");
+        BTN_salirnuevopagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_salirnuevopagoempleadoActionPerformed(evt);
+            }
+        });
+
+        COMBOBOX_mododepago.setBorder(null);
+        COMBOBOX_mododepago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Depósito", "Efectivo" }));
+
+        BTN_editarpagoempleado.setText("Editar");
+        BTN_editarpagoempleado.setEnabled(false);
+        BTN_editarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_editarpagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_editarpagoempleadoActionPerformed(evt);
+            }
+        });
+
+        TEXTFIELD_descripcion.setText("");
+        TEXTFIELD_descripcion.setEnabled(false);
+
+        javax.swing.GroupLayout PANEL_nuevopagoempleadoLayout = new javax.swing.GroupLayout(PANEL_nuevopagoempleado);
+        PANEL_nuevopagoempleado.setLayout(PANEL_nuevopagoempleadoLayout);
+        PANEL_nuevopagoempleadoLayout.setHorizontalGroup(
+            PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTN_nuevopagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                                    .addComponent(BTN_guardarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_cancelarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_eliminarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_actualizarpagoempleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_editarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                                .addComponent(labelZ9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TEXTFIELD_cedulaempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(292, 292, 292)))
+                        .addContainerGap())
+                    .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelZ13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                                .addComponent(TEXTFIELD_buscarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BTN_salirnuevopagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TEXTFIELD_planilla, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TEXTFIELD_numerocomprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(COMBOBOX_mododepago, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TEXTFIELD_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(304, Short.MAX_VALUE))))))
+        );
+        PANEL_nuevopagoempleadoLayout.setVerticalGroup(
+            PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BTN_salirnuevopagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelZ9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_cedulaempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelZ10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_planilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelZ11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_numerocomprobante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(COMBOBOX_mododepago, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelZ13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TEXTFIELD_buscarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
+                        .addComponent(BTN_nuevopagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_editarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_guardarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_cancelarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_eliminarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(BTN_actualizarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        labelZ15.setText("Número de comprobante:");
+
+        labelZ16.setText("Número de factura:");
+
+        BTN_nuevopagoinsumo.setText("Nuevo");
+        BTN_nuevopagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_nuevopagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_nuevopagoinsumoActionPerformed(evt);
+            }
+        });
+
+        BTN_guardarpagoinsumo.setText("Guardar");
+        BTN_guardarpagoinsumo.setEnabled(false);
+        BTN_guardarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_cancelarpagoinsumo.setText("Cancelar");
+        BTN_cancelarpagoinsumo.setEnabled(false);
+        BTN_cancelarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_cancelarpagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_cancelarpagoinsumoActionPerformed(evt);
+            }
+        });
+
+        BTN_eliminarpagoinsumo.setText("Eliminar");
+        BTN_eliminarpagoinsumo.setEnabled(false);
+        BTN_eliminarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        TABLE_nuevopagoinsumo.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
+        jScrollPane5.setViewportView(TABLE_nuevopagoinsumo);
+
+        labelZ20.setText("Buscar:");
+
+        TEXTFIELD_numerocomprobante2.setText("");
+        TEXTFIELD_numerocomprobante2.setEnabled(false);
+
+        TEXTFIELD_numerofactura.setText("");
+        TEXTFIELD_numerofactura.setEnabled(false);
+
+        TEXTFIELD_buscarpagoinsumo.setText("");
+
+        BTN_actualizarpagoinsumo.setText("Actualizar");
+        BTN_actualizarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_salirnuevopagoinsumo.setBackground(new java.awt.Color(102, 0, 0));
+        BTN_salirnuevopagoinsumo.setText("Salir");
+        BTN_salirnuevopagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_salirnuevopagoinsumoActionPerformed(evt);
+            }
+        });
+
+        BTN_editarpagoinsumo.setText("Editar");
+        BTN_editarpagoinsumo.setEnabled(false);
+        BTN_editarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_editarpagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_editarpagoinsumoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PANEL_nuevopagoinsumoLayout = new javax.swing.GroupLayout(PANEL_nuevopagoinsumo);
+        PANEL_nuevopagoinsumo.setLayout(PANEL_nuevopagoinsumoLayout);
+        PANEL_nuevopagoinsumoLayout.setHorizontalGroup(
+            PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTN_nuevopagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_guardarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_cancelarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_eliminarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_actualizarpagoinsumo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_editarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                                .addComponent(labelZ15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TEXTFIELD_numerocomprobante2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(292, 292, 292)))
+                        .addContainerGap())
+                    .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelZ16, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(labelZ20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                                .addComponent(TEXTFIELD_buscarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BTN_salirnuevopagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                                .addComponent(TEXTFIELD_numerofactura, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
+        );
+        PANEL_nuevopagoinsumoLayout.setVerticalGroup(
+            PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BTN_salirnuevopagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TEXTFIELD_numerocomprobante2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelZ16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_numerofactura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(108, 108, 108)
+                .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TEXTFIELD_buscarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PANEL_nuevopagoinsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
+                        .addComponent(BTN_nuevopagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_editarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_guardarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_cancelarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_eliminarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(BTN_actualizarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        labelZ17.setText("Número de comprobante:");
+
+        labelZ18.setText("Número de factura:");
+
+        BTN_nuevopagomantenimiento.setText("Nuevo");
+        BTN_nuevopagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_nuevopagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_nuevopagomantenimientoActionPerformed(evt);
+            }
+        });
+
+        BTN_guardarpagomantenimiento.setText("Guardar");
+        BTN_guardarpagomantenimiento.setEnabled(false);
+        BTN_guardarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_cancelarpagomantenimiento.setText("Cancelar");
+        BTN_cancelarpagomantenimiento.setEnabled(false);
+        BTN_cancelarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_cancelarpagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_cancelarpagomantenimientoActionPerformed(evt);
+            }
+        });
+
+        BTN_eliminarpagomantenimiento.setText("Eliminar");
+        BTN_eliminarpagomantenimiento.setEnabled(false);
+        BTN_eliminarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        TABLE_nuevopagomantenimiento.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
+        jScrollPane6.setViewportView(TABLE_nuevopagomantenimiento);
+
+        labelZ21.setText("Buscar:");
+
+        TEXTFIELD_numerocomprobante3.setText("");
+        TEXTFIELD_numerocomprobante3.setEnabled(false);
+
+        TEXTFIELD_numerofactura2.setText("");
+        TEXTFIELD_numerofactura2.setEnabled(false);
+
+        TEXTFIELD_buscarpagomantenimiento.setText("");
+
+        BTN_actualizarpagomantenimiento.setText("Actualizar");
+        BTN_actualizarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        BTN_salirnuevopagomantenimiento.setBackground(new java.awt.Color(102, 0, 0));
+        BTN_salirnuevopagomantenimiento.setText("Salir");
+        BTN_salirnuevopagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_salirnuevopagomantenimientoActionPerformed(evt);
+            }
+        });
+
+        BTN_editarpagomantenimiento.setText("Editar");
+        BTN_editarpagomantenimiento.setEnabled(false);
+        BTN_editarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_editarpagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_editarpagomantenimientoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PANEL_nuevopagomantenimientoLayout = new javax.swing.GroupLayout(PANEL_nuevopagomantenimiento);
+        PANEL_nuevopagomantenimiento.setLayout(PANEL_nuevopagomantenimientoLayout);
+        PANEL_nuevopagomantenimientoLayout.setHorizontalGroup(
+            PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(BTN_nuevopagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_guardarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_cancelarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_eliminarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_actualizarpagomantenimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BTN_editarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                                .addComponent(labelZ17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TEXTFIELD_numerocomprobante3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(292, 292, 292)))
+                        .addContainerGap())
+                    .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                        .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelZ18, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(labelZ21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                                .addComponent(TEXTFIELD_buscarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BTN_salirnuevopagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                                .addComponent(TEXTFIELD_numerofactura2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
+        );
+        PANEL_nuevopagomantenimientoLayout.setVerticalGroup(
+            PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(BTN_salirnuevopagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TEXTFIELD_numerocomprobante3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelZ17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelZ18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_numerofactura2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(108, 108, 108)
+                .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TEXTFIELD_buscarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
+                        .addComponent(BTN_nuevopagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_editarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_guardarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_cancelarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BTN_eliminarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(BTN_actualizarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
         setBackground(new java.awt.Color(0, 51, 102));
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("Egresos");
         setName("EgresosFRM"); // NOI18N
-        setResizable(false);
-        setSize(new java.awt.Dimension(715, 509));
+        setVisible(true);
 
         Panel.setMinimumSize(new java.awt.Dimension(715, 509));
         Panel.setName("panel"); // NOI18N
 
-        MENUBAR.setBackground(new java.awt.Color(0, 0, 51));
+        MENUBAR.setBackground(new java.awt.Color(0, 0, 102));
         MENUBAR.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 51)));
         MENUBAR.setForeground(new java.awt.Color(255, 255, 255));
 
+        MENU_consultar.setForeground(new java.awt.Color(255, 255, 255));
         MENU_consultar.setText("Consultar");
 
         MENUITEM_consultardepositos.setText("Depositos");
@@ -133,36 +920,52 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         });
         MENU_consultar.add(MENUITEM_consultardepositos);
 
-        MENU_consultarpagos.setText("Pagos");
-
-        MENUITEM_consultarempleado.setText("...de empleado");
-        MENU_consultarpagos.add(MENUITEM_consultarempleado);
-
-        MENUITEM_consultarinsumo.setText("...de insumo");
-        MENU_consultarpagos.add(MENUITEM_consultarinsumo);
-
-        MENUITEM_consultarmantenimiento.setText("...de mantenimiento");
-        MENU_consultarpagos.add(MENUITEM_consultarmantenimiento);
-
-        MENU_consultar.add(MENU_consultarpagos);
+        MENUITEM_consultarpagos.setText("Pagos");
+        MENUITEM_consultarpagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENUITEM_consultarpagosActionPerformed(evt);
+            }
+        });
+        MENU_consultar.add(MENUITEM_consultarpagos);
 
         MENUBAR.add(MENU_consultar);
 
+        MENU_nuevo.setForeground(new java.awt.Color(255, 255, 255));
         MENU_nuevo.setText("Nuevo/Editar");
 
         MENUITEM_nuevodeposito.setText("Deposito");
+        MENUITEM_nuevodeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENUITEM_nuevodepositoActionPerformed(evt);
+            }
+        });
         MENU_nuevo.add(MENUITEM_nuevodeposito);
 
         MENU_nuevopago.setText("Pago");
 
-        MENUITEM_nuevoempleado.setText("...de empleado");
-        MENU_nuevopago.add(MENUITEM_nuevoempleado);
+        MENUITEM_nuevopagoempleado.setText("...de empleado");
+        MENUITEM_nuevopagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENUITEM_nuevopagoempleadoActionPerformed(evt);
+            }
+        });
+        MENU_nuevopago.add(MENUITEM_nuevopagoempleado);
 
-        MENUITEM_nuevoinsumo.setText("...de insumo");
-        MENU_nuevopago.add(MENUITEM_nuevoinsumo);
+        MENUITEM_nuevopagoinsumo.setText("...de insumo");
+        MENUITEM_nuevopagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENUITEM_nuevopagoinsumoActionPerformed(evt);
+            }
+        });
+        MENU_nuevopago.add(MENUITEM_nuevopagoinsumo);
 
-        MENUITEM_nuevomantenimiento.setText("...de mantenimiento");
-        MENU_nuevopago.add(MENUITEM_nuevomantenimiento);
+        MENUITEM_nuevopagomantenimiento.setText("...de mantenimiento");
+        MENUITEM_nuevopagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MENUITEM_nuevopagomantenimientoActionPerformed(evt);
+            }
+        });
+        MENU_nuevopago.add(MENUITEM_nuevopagomantenimiento);
 
         MENU_nuevo.add(MENU_nuevopago);
 
@@ -187,9 +990,9 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     }// </editor-fold>//GEN-END:initComponents
 
     private void MENUITEM_consultardepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_consultardepositosActionPerformed
+        this.Panel.removeAll();
         this.Panel.add(this.PANEL_consultardepositos);
-        this.Panel.revalidate();
-        this.Panel.repaint();
+        this.ActualizarPanel();
     }//GEN-LAST:event_MENUITEM_consultardepositosActionPerformed
 
     private void TEXTFIELD_busquedadepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_busquedadepositosActionPerformed
@@ -199,9 +1002,132 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     private void BTN_salirdepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirdepositosActionPerformed
         this.ReiniciarPANEL_consultardepositos();
         this.Panel.removeAll();
-        this.Panel.revalidate();
-        this.Panel.repaint();
+        this.ActualizarPanel();
     }//GEN-LAST:event_BTN_salirdepositosActionPerformed
+
+    private void TEXTFIELD_busquedapagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_busquedapagosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEXTFIELD_busquedapagosActionPerformed
+
+    private void BTN_salirpagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirpagosActionPerformed
+        this.ReiniciarPANEL_consultarpagos();
+        this.Panel.removeAll();
+        this.ActualizarPanel();
+    }//GEN-LAST:event_BTN_salirpagosActionPerformed
+
+    private void BTN_verpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_verpagoempleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTN_verpagoempleadoActionPerformed
+
+    private void MENUITEM_consultarpagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_consultarpagosActionPerformed
+        this.Panel.removeAll();
+        this.Panel.add(this.PANEL_consultarpagos);
+        this.ActualizarPanel();
+    }//GEN-LAST:event_MENUITEM_consultarpagosActionPerformed
+
+    private void MENUITEM_nuevodepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevodepositoActionPerformed
+        this.Panel.removeAll();
+        this.Panel.add(this.PANEL_nuevodeposito);
+        this.EstadoPANEL_nuevodeposito("RESET");
+        this.ActualizarPanel();
+    }//GEN-LAST:event_MENUITEM_nuevodepositoActionPerformed
+
+    private void BTN_salirnuevodepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevodepositoActionPerformed
+        this.EstadoPANEL_nuevodeposito("RESET");
+        this.Panel.removeAll();
+        this.ActualizarPanel();
+    }//GEN-LAST:event_BTN_salirnuevodepositoActionPerformed
+
+    private void BTN_nuevodepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevodepositoActionPerformed
+        this.EstadoPANEL_nuevodeposito("NEW");
+    }//GEN-LAST:event_BTN_nuevodepositoActionPerformed
+
+    private void BTN_cancelardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelardepositoActionPerformed
+        this.EstadoPANEL_nuevodeposito("RESET");
+    }//GEN-LAST:event_BTN_cancelardepositoActionPerformed
+
+    private void MENUITEM_nuevopagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevopagoempleadoActionPerformed
+        this.Panel.removeAll();
+        this.Panel.add(this.PANEL_nuevopagoempleado);
+        this.EstadoPANEL_nuevopagoempleado("RESET");
+        this.ActualizarPanel();
+    }//GEN-LAST:event_MENUITEM_nuevopagoempleadoActionPerformed
+
+    private void BTN_editardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editardepositoActionPerformed
+       this.EstadoPANEL_nuevodeposito("EDIT");
+    }//GEN-LAST:event_BTN_editardepositoActionPerformed
+
+    private void BTN_nuevopagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevopagoempleadoActionPerformed
+        this.EstadoPANEL_nuevopagoempleado("NEW");
+    }//GEN-LAST:event_BTN_nuevopagoempleadoActionPerformed
+
+    private void BTN_cancelarpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelarpagoempleadoActionPerformed
+        this.EstadoPANEL_nuevopagoempleado("RESET");
+    }//GEN-LAST:event_BTN_cancelarpagoempleadoActionPerformed
+
+    private void BTN_salirnuevopagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevopagoempleadoActionPerformed
+        this.EstadoPANEL_nuevopagoempleado("RESET");
+        this.Panel.removeAll();
+        this.ActualizarPanel();
+    }//GEN-LAST:event_BTN_salirnuevopagoempleadoActionPerformed
+
+    private void BTN_editarpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editarpagoempleadoActionPerformed
+        this.EstadoPANEL_nuevopagoempleado("EDIT");
+    }//GEN-LAST:event_BTN_editarpagoempleadoActionPerformed
+
+    private void BTN_guardardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_guardardepositoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTN_guardardepositoActionPerformed
+
+    private void MENUITEM_nuevopagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevopagoinsumoActionPerformed
+        this.Panel.removeAll();
+        this.Panel.add(this.PANEL_nuevopagoinsumo);
+        this.EstadoPANEL_nuevopagoinsumo("RESET");
+        this.ActualizarPanel();
+    }//GEN-LAST:event_MENUITEM_nuevopagoinsumoActionPerformed
+
+    private void BTN_nuevopagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevopagoinsumoActionPerformed
+        this.EstadoPANEL_nuevopagoinsumo("NEW");
+    }//GEN-LAST:event_BTN_nuevopagoinsumoActionPerformed
+
+    private void BTN_cancelarpagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelarpagoinsumoActionPerformed
+        this.EstadoPANEL_nuevopagoinsumo("RESET");
+    }//GEN-LAST:event_BTN_cancelarpagoinsumoActionPerformed
+
+    private void BTN_salirnuevopagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevopagoinsumoActionPerformed
+        this.EstadoPANEL_nuevopagoinsumo("RESET");
+        this.Panel.removeAll();
+        this.ActualizarPanel();
+    }//GEN-LAST:event_BTN_salirnuevopagoinsumoActionPerformed
+
+    private void BTN_editarpagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editarpagoinsumoActionPerformed
+        this.EstadoPANEL_nuevopagoinsumo("EDIT");
+    }//GEN-LAST:event_BTN_editarpagoinsumoActionPerformed
+
+    private void MENUITEM_nuevopagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevopagomantenimientoActionPerformed
+        this.Panel.removeAll();
+        this.Panel.add(this.PANEL_nuevopagomantenimiento);
+        this.EstadoPANEL_nuevopagomantenimiento("RESET");
+        this.ActualizarPanel();
+    }//GEN-LAST:event_MENUITEM_nuevopagomantenimientoActionPerformed
+
+    private void BTN_nuevopagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevopagomantenimientoActionPerformed
+        this.EstadoPANEL_nuevopagomantenimiento("NEW");
+    }//GEN-LAST:event_BTN_nuevopagomantenimientoActionPerformed
+
+    private void BTN_cancelarpagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelarpagomantenimientoActionPerformed
+        this.EstadoPANEL_nuevopagomantenimiento("RESET");
+    }//GEN-LAST:event_BTN_cancelarpagomantenimientoActionPerformed
+
+    private void BTN_salirnuevopagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevopagomantenimientoActionPerformed
+        this.EstadoPANEL_nuevopagomantenimiento("RESET");
+        this.Panel.removeAll();
+        this.ActualizarPanel();
+    }//GEN-LAST:event_BTN_salirnuevopagomantenimientoActionPerformed
+
+    private void BTN_editarpagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editarpagomantenimientoActionPerformed
+        this.EstadoPANEL_nuevopagomantenimiento("EDIT");
+    }//GEN-LAST:event_BTN_editarpagomantenimientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,31 +1168,227 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ BTN_actualizardeposito;
     private swing.Controles.ButtonZ BTN_actualizardepositos;
+    private swing.Controles.ButtonZ BTN_actualizarpagoempleado;
+    private swing.Controles.ButtonZ BTN_actualizarpagoinsumo;
+    private swing.Controles.ButtonZ BTN_actualizarpagomantenimiento;
+    private swing.Controles.ButtonZ BTN_actualizarpagos;
+    private swing.Controles.ButtonZ BTN_cancelardeposito;
+    private swing.Controles.ButtonZ BTN_cancelarpagoempleado;
+    private swing.Controles.ButtonZ BTN_cancelarpagoinsumo;
+    private swing.Controles.ButtonZ BTN_cancelarpagomantenimiento;
+    private swing.Controles.ButtonZ BTN_editardeposito;
+    private swing.Controles.ButtonZ BTN_editarpagoempleado;
+    private swing.Controles.ButtonZ BTN_editarpagoinsumo;
+    private swing.Controles.ButtonZ BTN_editarpagomantenimiento;
+    private swing.Controles.ButtonZ BTN_eliminardeposito;
+    private swing.Controles.ButtonZ BTN_eliminarpagoempleado;
+    private swing.Controles.ButtonZ BTN_eliminarpagoinsumo;
+    private swing.Controles.ButtonZ BTN_eliminarpagomantenimiento;
+    private swing.Controles.ButtonZ BTN_guardardeposito;
+    private swing.Controles.ButtonZ BTN_guardarpagoempleado;
+    private swing.Controles.ButtonZ BTN_guardarpagoinsumo;
+    private swing.Controles.ButtonZ BTN_guardarpagomantenimiento;
+    private swing.Controles.ButtonZ BTN_nuevodeposito;
+    private swing.Controles.ButtonZ BTN_nuevopagoempleado;
+    private swing.Controles.ButtonZ BTN_nuevopagoinsumo;
+    private swing.Controles.ButtonZ BTN_nuevopagomantenimiento;
     private swing.Controles.ButtonZ BTN_salirdepositos;
+    private swing.Controles.ButtonZ BTN_salirnuevodeposito;
+    private swing.Controles.ButtonZ BTN_salirnuevopagoempleado;
+    private swing.Controles.ButtonZ BTN_salirnuevopagoinsumo;
+    private swing.Controles.ButtonZ BTN_salirnuevopagomantenimiento;
+    private swing.Controles.ButtonZ BTN_salirpagos;
+    private swing.Controles.ButtonZ BTN_verpagoempleado;
+    private swing.Controles.ButtonZ BTN_verpagoinsumo;
+    private swing.Controles.ButtonZ BTN_verpagomantenimiento;
+    private swing.Controles.ComboBoxZ COMBOBOX_mododepago;
+    private swing.Controles.ComboBoxZ COMBOBOX_moneda;
     private javax.swing.JMenuBar MENUBAR;
     private javax.swing.JMenuItem MENUITEM_consultardepositos;
-    private javax.swing.JMenuItem MENUITEM_consultarempleado;
-    private javax.swing.JMenuItem MENUITEM_consultarinsumo;
-    private javax.swing.JMenuItem MENUITEM_consultarmantenimiento;
+    private javax.swing.JMenuItem MENUITEM_consultarpagos;
     private javax.swing.JMenuItem MENUITEM_nuevodeposito;
-    private javax.swing.JMenuItem MENUITEM_nuevoempleado;
-    private javax.swing.JMenuItem MENUITEM_nuevoinsumo;
-    private javax.swing.JMenuItem MENUITEM_nuevomantenimiento;
+    private javax.swing.JMenuItem MENUITEM_nuevopagoempleado;
+    private javax.swing.JMenuItem MENUITEM_nuevopagoinsumo;
+    private javax.swing.JMenuItem MENUITEM_nuevopagomantenimiento;
     private javax.swing.JMenu MENU_consultar;
-    private javax.swing.JMenu MENU_consultarpagos;
     private javax.swing.JMenu MENU_nuevo;
     private javax.swing.JMenu MENU_nuevopago;
     private swing.Contenedores.PanelZ PANEL_consultardepositos;
+    private swing.Contenedores.PanelZ PANEL_consultarpagos;
+    private swing.Contenedores.PanelZ PANEL_nuevodeposito;
+    private swing.Contenedores.PanelZ PANEL_nuevopagoempleado;
+    private swing.Contenedores.PanelZ PANEL_nuevopagoinsumo;
+    private swing.Contenedores.PanelZ PANEL_nuevopagomantenimiento;
     private swing.Contenedores.PanelZ Panel;
+    private swing.Controles.SpinnerZ SPINNER_fecha;
     private swing.Controles.TableZ TABLE_depositos;
+    private swing.Controles.TableZ TABLE_nuevodeposito;
+    private swing.Controles.TableZ TABLE_nuevopagoempleado;
+    private swing.Controles.TableZ TABLE_nuevopagoinsumo;
+    private swing.Controles.TableZ TABLE_nuevopagomantenimiento;
+    private swing.Controles.TableZ TABLE_pagos;
+    private swing.Controles.TextFieldZ TEXTFIELD_banco;
+    private swing.Controles.TextFieldZ TEXTFIELD_buscardeposito;
+    private swing.Controles.TextFieldZ TEXTFIELD_buscarpagoempleado;
+    private swing.Controles.TextFieldZ TEXTFIELD_buscarpagoinsumo;
+    private swing.Controles.TextFieldZ TEXTFIELD_buscarpagomantenimiento;
     private swing.Controles.TextFieldZ TEXTFIELD_busquedadepositos;
+    private swing.Controles.TextFieldZ TEXTFIELD_busquedapagos;
+    private swing.Controles.TextFieldZ TEXTFIELD_cedulaempleado;
+    private swing.Controles.TextFieldZ TEXTFIELD_comprobante;
+    private swing.Controles.TextFieldZ TEXTFIELD_descripcion;
+    private swing.Controles.TextFieldZ TEXTFIELD_monto;
+    private swing.Controles.TextFieldZ TEXTFIELD_numerocomprobante;
+    private swing.Controles.TextFieldZ TEXTFIELD_numerocomprobante2;
+    private swing.Controles.TextFieldZ TEXTFIELD_numerocomprobante3;
+    private swing.Controles.TextFieldZ TEXTFIELD_numerofactura;
+    private swing.Controles.TextFieldZ TEXTFIELD_numerofactura2;
+    private swing.Controles.TextFieldZ TEXTFIELD_planilla;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private swing.Controles.LabelZ labelZ1;
+    private swing.Controles.LabelZ labelZ10;
+    private swing.Controles.LabelZ labelZ11;
+    private swing.Controles.LabelZ labelZ12;
+    private swing.Controles.LabelZ labelZ13;
+    private swing.Controles.LabelZ labelZ14;
+    private swing.Controles.LabelZ labelZ15;
+    private swing.Controles.LabelZ labelZ16;
+    private swing.Controles.LabelZ labelZ17;
+    private swing.Controles.LabelZ labelZ18;
+    private swing.Controles.LabelZ labelZ2;
+    private swing.Controles.LabelZ labelZ20;
+    private swing.Controles.LabelZ labelZ21;
+    private swing.Controles.LabelZ labelZ3;
+    private swing.Controles.LabelZ labelZ4;
+    private swing.Controles.LabelZ labelZ5;
+    private swing.Controles.LabelZ labelZ6;
+    private swing.Controles.LabelZ labelZ7;
+    private swing.Controles.LabelZ labelZ8;
+    private swing.Controles.LabelZ labelZ9;
     // End of variables declaration//GEN-END:variables
     
     private void  ReiniciarPANEL_consultardepositos(){
         this.TEXTFIELD_busquedadepositos.setText(null);
+    }
+    
+    private void ReiniciarPANEL_consultarpagos(){
+        this.TEXTFIELD_busquedapagos.setText(null);
+    }
+    
+    private void ActualizarPanel(){
+        this.Panel.revalidate();
+        this.Panel.repaint();
+    }
+    
+    private void EstadoPANEL_nuevopagomantenimiento(String CMD){
+        this.TEXTFIELD_numerocomprobante3.setText(null);
+        this.TEXTFIELD_numerofactura2.setText(null);
+        this.TEXTFIELD_buscarpagomantenimiento.setText(null);
+        this.EstadoBotononesNuevoEdit(BTN_nuevopagomantenimiento,BTN_editarpagomantenimiento, BTN_guardarpagomantenimiento, BTN_cancelarpagomantenimiento, BTN_eliminarpagomantenimiento,CMD);
+        if(CMD.equals("RESET")){
+
+            this.TEXTFIELD_numerocomprobante3.setEnabled(false);
+            this.TEXTFIELD_numerofactura2.setEnabled(false);
+        }
+        if(CMD.equals("NEW")||CMD.equals("EDIT")){
+
+            this.TEXTFIELD_numerocomprobante3.setEnabled(true);
+            this.TEXTFIELD_numerofactura2.setEnabled(true);
+        }
+    }
+    
+    private void EstadoPANEL_nuevopagoinsumo(String CMD){
+        this.TEXTFIELD_numerocomprobante2.setText(null);
+        this.TEXTFIELD_numerofactura.setText(null);
+        this.TEXTFIELD_buscarpagoinsumo.setText(null);
+        this.EstadoBotononesNuevoEdit(BTN_nuevopagoinsumo,BTN_editarpagoinsumo, BTN_guardarpagoinsumo, BTN_cancelarpagoinsumo, BTN_eliminarpagoinsumo,CMD);
+        if(CMD.equals("RESET")){
+
+            this.TEXTFIELD_numerocomprobante2.setEnabled(false);
+            this.TEXTFIELD_numerofactura.setEnabled(false);
+        }
+        if(CMD.equals("NEW")||CMD.equals("EDIT")){
+
+            this.TEXTFIELD_numerocomprobante2.setEnabled(true);
+            this.TEXTFIELD_numerofactura.setEnabled(true);
+        }
+    }
+    
+    private void EstadoPANEL_nuevopagoempleado(String CMD){
+        this.TEXTFIELD_cedulaempleado.setText(null);
+        this.TEXTFIELD_planilla.setText(null);
+        this.TEXTFIELD_numerocomprobante.setText(null);
+        this.TEXTFIELD_descripcion.setText(null);
+        this.TEXTFIELD_buscarpagoempleado.setText(null);
+        this.EstadoBotononesNuevoEdit(BTN_nuevopagoempleado,BTN_editarpagoempleado, BTN_guardarpagoempleado, BTN_cancelarpagoempleado, BTN_eliminarpagoempleado,CMD);
+        if(CMD.equals("RESET")){
+
+            this.TEXTFIELD_cedulaempleado.setEnabled(false);
+            this.TEXTFIELD_planilla.setEnabled(false);
+            this.TEXTFIELD_numerocomprobante.setEnabled(false);
+            this.TEXTFIELD_descripcion.setEnabled(false);
+            this.COMBOBOX_mododepago.setEnabled(false);
+        }
+        if(CMD.equals("NEW")||CMD.equals("EDIT")){
+
+            this.TEXTFIELD_cedulaempleado.setEnabled(true);
+            this.TEXTFIELD_planilla.setEnabled(true);
+            this.TEXTFIELD_numerocomprobante.setEnabled(true);
+            this.TEXTFIELD_descripcion.setEnabled(true);
+            this.COMBOBOX_mododepago.setEnabled(true);
+        }
+    }
+    
+    private void EstadoPANEL_nuevodeposito(String CMD){
+        this.TEXTFIELD_comprobante.setText(null);
+        this.TEXTFIELD_banco.setText(null);
+        this.TEXTFIELD_monto.setText(null);
+        this.TEXTFIELD_buscardeposito.setText(null);
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+	Date date = new Date();
+        ((DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setText(dateFormat.format(date));
+        this.EstadoBotononesNuevoEdit(BTN_nuevodeposito,BTN_editardeposito, BTN_guardardeposito, BTN_cancelardeposito, BTN_eliminardeposito,CMD);
+        if(CMD.equals("RESET")){
+
+            this.TEXTFIELD_comprobante.setEnabled(false);
+            this.TEXTFIELD_banco.setEnabled(false);
+            this.TEXTFIELD_monto.setEnabled(false);
+            this.COMBOBOX_moneda.setEnabled(false);
+            this.SPINNER_fecha.setEnabled(false);
+            
+        }
+        if(CMD.equals("NEW")||CMD.equals("EDIT")){
+            this.TEXTFIELD_comprobante.setEnabled(true);
+            this.TEXTFIELD_banco.setEnabled(true);
+            this.TEXTFIELD_monto.setEnabled(true);
+            this.COMBOBOX_moneda.setEnabled(true);
+            this.SPINNER_fecha.setEnabled(true);
+            
+        }
+    }
+    
+    private void EstadoBotononesNuevoEdit(ButtonZ nuevo,ButtonZ editar,ButtonZ guardar,ButtonZ cancelar,ButtonZ eliminar,String CMD){
+        if(CMD.equals("RESET")){
+            nuevo.setEnabled(true);
+            editar.setEnabled(false);
+            guardar.setEnabled(false);
+            cancelar.setEnabled(false);
+            eliminar.setEnabled(false);
+        }
+        if(CMD.equals("NEW")||CMD.equals("EDIT")){
+            nuevo.setEnabled(false);
+            editar.setEnabled(false);
+            guardar.setEnabled(true);
+            cancelar.setEnabled(true);
+            eliminar.setEnabled(false);
+        }
     }
     
     @Override
