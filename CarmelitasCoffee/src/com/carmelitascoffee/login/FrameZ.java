@@ -13,6 +13,7 @@ import com.carmelitascoffee.inventario.Productos;
 import com.carmelitascoffee.inventario.Servicios;
 import com.carmelitascoffee.personal.AgregarEmpleado;
 import com.carmelitascoffee.personal.ModificarEmpleado;
+import com.carmelitascoffee.personal.Planillas;
 import com.carmelitascoffee.ventas.NuevaOrden;
 import com.carmelitascoffee.ventas.NuevaPersonaContacto;
 import com.carmelitascoffee.ventas.NuevoCliente;
@@ -210,6 +211,11 @@ public class FrameZ extends JFrame {
         pPersonal.add(bModificarEmpleado, gridBagConstraints);
 
         bPlanillas.setText("Administrar Planillas");
+        bPlanillas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPlanillasActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -533,6 +539,7 @@ public class FrameZ extends JFrame {
     private void bOrdenVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenVistaActionPerformed
         OrdenVista ordenVista = new OrdenVista();
         ordenVista.setVisible(true);
+        ordenVista.pack();  
         dpEscritorio.add(ordenVista);
     }//GEN-LAST:event_bOrdenVistaActionPerformed
 
@@ -572,6 +579,13 @@ public class FrameZ extends JFrame {
         dpEscritorio.add(modificarEmpleado);
         modificarEmpleado.setSize(725, 562);
     }//GEN-LAST:event_bModificarEmpleadoActionPerformed
+
+    private void bPlanillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPlanillasActionPerformed
+        Planillas planillas = new Planillas();
+        planillas.setVisible(true);
+        dpEscritorio.add(planillas);
+        planillas.pack();
+    }//GEN-LAST:event_bPlanillasActionPerformed
 
     public static void main(String[] args) {
         /* Create and display the form */
