@@ -191,6 +191,11 @@ public class FrameZ extends JFrame {
         pPersonal.add(bAgregarEmpleado, gridBagConstraints);
 
         bModificarEmpleado.setText("Modificar Empleado");
+        bModificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bModificarEmpleadoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -200,6 +205,11 @@ public class FrameZ extends JFrame {
         pPersonal.add(bModificarEmpleado, gridBagConstraints);
 
         bPlanillas.setText("Administrar Planillas");
+        bPlanillas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPlanillasActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -468,8 +478,7 @@ public class FrameZ extends JFrame {
         lTitle.setText(title);
         ruta = getClass().getClassLoader().getResource("img//fondo.jpg");
         imagenFondo = new ImageIcon(ruta).getImage();
-        dpEscritorio.setImagenfondo(imagenFondo);
-       // repaint();
+        agregarFondoPantalla(imagenFondo);
     }//GEN-LAST:event_formWindowOpened
 
     private void pToolBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pToolBarMouseClicked
@@ -557,20 +566,19 @@ public class FrameZ extends JFrame {
         dpEscritorio.add(servicios);
     }//GEN-LAST:event_bServiciosActionPerformed
 
-    private void bModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
+    private void bModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarEmpleadoActionPerformed
         ModificarEmpleado modificarEmpleado = new ModificarEmpleado();
         modificarEmpleado.setVisible(true);
         modificarEmpleado.pack();
         dpEscritorio.add(modificarEmpleado);
+    }//GEN-LAST:event_bModificarEmpleadoActionPerformed
 
-    }                                                  
-
-    private void bPlanillasActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    private void bPlanillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPlanillasActionPerformed
         Planillas p = new Planillas();
         p.setVisible(true);
         p.pack();
         dpEscritorio.add(p);
-    }                                          
+    }//GEN-LAST:event_bPlanillasActionPerformed
 
     public static void main(String[] args) {
         /* Create and display the form */
@@ -641,7 +649,7 @@ public class FrameZ extends JFrame {
     }
 
     private void agregarFondoPantalla(Image image) {
-        
+        dpEscritorio.setImagenfondo(imagenFondo);
     }
     
 }
