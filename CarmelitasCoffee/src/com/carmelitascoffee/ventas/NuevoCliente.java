@@ -66,24 +66,24 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lNombres, gridBagConstraints);
 
         tfNombre1.setText("primerNombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfNombre1, gridBagConstraints);
 
         tfNombre2.setText("segundoNombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfNombre2, gridBagConstraints);
 
         lApelildos.setText("Nombre: ");
@@ -92,8 +92,8 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lApelildos, gridBagConstraints);
 
         tfApellido1.setText("primerApellido");
@@ -101,9 +101,9 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfApellido1, gridBagConstraints);
 
         tfApellido2.setText("segundoApellido");
@@ -111,9 +111,9 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfApellido2, gridBagConstraints);
 
         lTelefono.setText("Teléfono: ");
@@ -122,8 +122,8 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lTelefono, gridBagConstraints);
 
         tfTelefono.setText("+50581380937");
@@ -131,9 +131,9 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfTelefono, gridBagConstraints);
 
         lDireccion.setText("Dirección: ");
@@ -142,8 +142,8 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lDireccion, gridBagConstraints);
 
         taDireccion.setColumns(20);
@@ -156,16 +156,20 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.4;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
         lCorreo.setText("Correo: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lCorreo, gridBagConstraints);
 
         tfCorreo.setText("tumail@example.com");
@@ -173,12 +177,19 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfCorreo, gridBagConstraints);
 
         labelZ1.setText("Persona de Contacto: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ1, gridBagConstraints);
 
         comboBoxZ1.setBackground(new java.awt.Color(0, 51, 102));
@@ -187,6 +198,9 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(comboBoxZ1, gridBagConstraints);
 
         bActualizar.setBorder(null);
@@ -234,10 +248,10 @@ public class NuevoCliente extends JInternalFrame {
 
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
         JDesktopPane jdp = getDesktopPane();
-        NuevoCliente cliente = new NuevoCliente();
-        cliente.pack();
-        cliente.setVisible(true);
-        jdp.add(cliente);
+        NuevaPersonaContacto npc = new NuevaPersonaContacto();
+        npc.pack();
+        npc.setVisible(true);
+        jdp.add(npc);
     }//GEN-LAST:event_bNuevoClienteActionPerformed
 
 
@@ -266,6 +280,6 @@ public class NuevoCliente extends JInternalFrame {
         URL ruta = getClass().getClassLoader().getResource("img//update.png");
         iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bActualizar.setIcon(iconoActualizar);
-        
+
     }
 }

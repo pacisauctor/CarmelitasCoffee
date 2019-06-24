@@ -5,17 +5,11 @@
  */
 package com.carmelitascoffee.login;
 
-import com.carmelitascoffee.compras.Compras;
-import com.carmelitascoffee.compras.Proveedores;
-import com.carmelitascoffee.egresos.Egresos;
-import com.carmelitascoffee.inventario.Insumos;
-import com.carmelitascoffee.inventario.Productos;
-import com.carmelitascoffee.inventario.Servicios;
-import com.carmelitascoffee.personal.AgregarEmpleado;
-import com.carmelitascoffee.ventas.NuevaOrden;
-import com.carmelitascoffee.ventas.NuevaPersonaContacto;
-import com.carmelitascoffee.ventas.NuevoCliente;
-import com.carmelitascoffee.ventas.OrdenVista;
+import com.carmelitascoffee.compras.*;
+import com.carmelitascoffee.egresos.*;
+import com.carmelitascoffee.inventario.*;
+import com.carmelitascoffee.personal.*;
+import com.carmelitascoffee.ventas.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -195,6 +189,11 @@ public class FrameZ extends JFrame {
         pPersonal.add(bAgregarEmpleado, gridBagConstraints);
 
         bModificarEmpleado.setText("Modificar Empleado");
+        bModificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bModificarEmpleadoActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -204,6 +203,11 @@ public class FrameZ extends JFrame {
         pPersonal.add(bModificarEmpleado, gridBagConstraints);
 
         bPlanillas.setText("Administrar Planillas");
+        bPlanillas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPlanillasActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -395,11 +399,11 @@ public class FrameZ extends JFrame {
         dpEscritorio.setLayout(dpEscritorioLayout);
         dpEscritorioLayout.setHorizontalGroup(
             dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 325, Short.MAX_VALUE)
+            .addGap(0, 410, Short.MAX_VALUE)
         );
         dpEscritorioLayout.setVerticalGroup(
             dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -424,7 +428,6 @@ public class FrameZ extends JFrame {
     }//GEN-LAST:event_bCerrarMouseExited
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
-        //[0,153,255]
         bCerrar.setBackground(new Color(0, 153, 255));
     }//GEN-LAST:event_bCerrarMouseEntered
 
@@ -496,12 +499,14 @@ public class FrameZ extends JFrame {
     private void bEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEgresosActionPerformed
         Egresos egresos = new Egresos();
         egresos.setVisible(true);
+        egresos.pack();
         dpEscritorio.add(egresos);
     }//GEN-LAST:event_bEgresosActionPerformed
 
     private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
         AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
         agregarEmpleado.setVisible(true);
+        agregarEmpleado.pack();
         dpEscritorio.add(agregarEmpleado);
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
@@ -516,6 +521,7 @@ public class FrameZ extends JFrame {
     private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
         NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto();
         nuevaPersonaContacto.setVisible(true);
+        nuevaPersonaContacto.pack();
         dpEscritorio.add(nuevaPersonaContacto);
     }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
 
@@ -529,23 +535,27 @@ public class FrameZ extends JFrame {
     private void bOrdenVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenVistaActionPerformed
         OrdenVista ordenVista = new OrdenVista();
         ordenVista.setVisible(true);
+        ordenVista.pack();
         dpEscritorio.add(ordenVista);
     }//GEN-LAST:event_bOrdenVistaActionPerformed
 
     private void bComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprasActionPerformed
         Compras compras = new Compras();
         compras.setVisible(true);
+        compras.pack();
         dpEscritorio.add(compras);
     }//GEN-LAST:event_bComprasActionPerformed
 
     private void bProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProveedoresActionPerformed
         Proveedores proveedores = new Proveedores();
         proveedores.setVisible(true);
+        proveedores.pack();
         dpEscritorio.add(proveedores);
     }//GEN-LAST:event_bProveedoresActionPerformed
 
     private void bInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInsumosActionPerformed
         Insumos insumos = new Insumos();
+        insumos.pack();
         insumos.setVisible(true);
         dpEscritorio.add(insumos);
     }//GEN-LAST:event_bInsumosActionPerformed
@@ -553,14 +563,31 @@ public class FrameZ extends JFrame {
     private void bProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProductosActionPerformed
         Productos productos = new Productos();
         productos.setVisible(true);
+        productos.pack();
         dpEscritorio.add(productos);
     }//GEN-LAST:event_bProductosActionPerformed
 
     private void bServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bServiciosActionPerformed
         Servicios servicios = new Servicios();
         servicios.setVisible(true);
+        servicios.pack();
         dpEscritorio.add(servicios);
     }//GEN-LAST:event_bServiciosActionPerformed
+
+    private void bModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarEmpleadoActionPerformed
+        ModificarEmpleado modificarEmpleado = new ModificarEmpleado();
+        modificarEmpleado.setVisible(true);
+        modificarEmpleado.pack();
+        dpEscritorio.add(modificarEmpleado);
+
+    }//GEN-LAST:event_bModificarEmpleadoActionPerformed
+
+    private void bPlanillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPlanillasActionPerformed
+        Planillas p = new Planillas();
+        p.setVisible(true);
+        p.pack();
+        dpEscritorio.add(p);
+    }//GEN-LAST:event_bPlanillasActionPerformed
 
     public static void main(String[] args) {
         /* Create and display the form */
