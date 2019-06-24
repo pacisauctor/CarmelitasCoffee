@@ -62,6 +62,13 @@ public class InicioSesion extends JFrame {
         bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
+        labelZ1 = new swing.Controles.LabelZ();
+        labelZ2 = new swing.Controles.LabelZ();
+        textFieldZ1 = new swing.Controles.TextFieldZ();
+        passwordFieldZ1 = new swing.Controles.PasswordFieldZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textPaneZ1 = new swing.Controles.TextPaneZ();
 
         setBackground(new java.awt.Color(0, 51, 102));
         setUndecorated(true);
@@ -171,25 +178,103 @@ public class InicioSesion extends JFrame {
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
+        pContent.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout pContentLayout = new javax.swing.GroupLayout(pContent);
-        pContent.setLayout(pContentLayout);
-        pContentLayout.setHorizontalGroup(
-            pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
-        );
-        pContentLayout.setVerticalGroup(
-            pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
-        );
+        labelZ1.setText("Nombre de usuario");
+        labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(labelZ1, gridBagConstraints);
 
+        labelZ2.setText("Contraseña");
+        labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(labelZ2, gridBagConstraints);
+
+        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ1.setText("");
+        textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        textFieldZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldZ1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 1, 1, 1);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(textFieldZ1, gridBagConstraints);
+
+        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        passwordFieldZ1.setText("");
+        passwordFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
+        passwordFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(passwordFieldZ1, gridBagConstraints);
+
+        buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
+        buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 4, true));
+        buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
+        buttonZ1.setText("Ingresar");
+        buttonZ1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonZ1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(buttonZ1, gridBagConstraints);
+
+        textPaneZ1.setEditable(false);
+        textPaneZ1.setBackground(new java.awt.Color(0, 51, 102));
+        textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 0, true));
+        textPaneZ1.setForeground(new java.awt.Color(204, 204, 204));
+        textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
+        jScrollPane1.setViewportView(textPaneZ1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(jScrollPane1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.insets = new java.awt.Insets(0, 1, 4, 1);
         getContentPane().add(pContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -267,6 +352,25 @@ public class InicioSesion extends JFrame {
         lTitle.setText(title);
     }//GEN-LAST:event_formWindowOpened
 
+    private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldZ1ActionPerformed
+
+    private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+                int frameWidth = 600;
+                int frameHeight = 600;
+                FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
+                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
+                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
+                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
+                FullResizibleFrame fullResizibleFrame;
+                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
+                frameZ.addPaneles();
+                frameZ.setVisible(true);
+                setVisible(false);
+    }//GEN-LAST:event_buttonZ1ActionPerformed
+
     public static void main(String[] args) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -289,9 +393,16 @@ public class InicioSesion extends JFrame {
     private javax.swing.JButton bCerrar;
     private javax.swing.JButton bMaximizar;
     private javax.swing.JButton bMinimizar;
+    private swing.Controles.ButtonZ buttonZ1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lTitle;
+    private swing.Controles.LabelZ labelZ1;
+    private swing.Controles.LabelZ labelZ2;
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pToolBar;
+    private swing.Controles.PasswordFieldZ passwordFieldZ1;
+    private swing.Controles.TextFieldZ textFieldZ1;
+    private swing.Controles.TextPaneZ textPaneZ1;
     // End of variables declaration//GEN-END:variables
 
     private void restaurarVentana() {

@@ -5,6 +5,10 @@
  */
 package com.carmelitascoffee.ventas;
 
+import java.awt.Image;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
 /**
@@ -18,6 +22,7 @@ public class NuevaOrden extends JInternalFrame {
      */
     public NuevaOrden() {
         initComponents();
+        setImagenes();
     }
 
     /**
@@ -28,15 +33,264 @@ public class NuevaOrden extends JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        lEmpleadoid = new swing.Controles.LabelZ();
+        tfEmpleadoid = new swing.Controles.TextFieldZ();
+        lNumeroFactura = new swing.Controles.LabelZ();
+        tfNumeroFactura = new swing.Controles.TextFieldZ();
+        lTipoOrden = new swing.Controles.LabelZ();
+        cbtipoOrden = new swing.Controles.ComboBoxZ();
+        bNuevoCliente = new swing.Controles.ButtonZ();
+        bActualizar = new swing.Controles.ButtonZ();
+        lFechaRegistro = new swing.Controles.LabelZ();
+        tfFechaRegistro = new swing.Controles.TextFieldZ();
+        lClientes = new swing.Controles.LabelZ();
+        cbClientes1 = new swing.Controles.ComboBoxZ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableZ1 = new swing.Controles.TableZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
+        buttonZ2 = new swing.Controles.ButtonZ();
+        buttonZ3 = new swing.Controles.ButtonZ();
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Nueva Orden");
         setVisible(true);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        lEmpleadoid.setText("Empleado: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(lEmpleadoid, gridBagConstraints);
+
+        tfEmpleadoid.setText("códigoEmpleado");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(tfEmpleadoid, gridBagConstraints);
+
+        lNumeroFactura.setText("Número de Factura: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(lNumeroFactura, gridBagConstraints);
+
+        tfNumeroFactura.setText("númeroFactura");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(tfNumeroFactura, gridBagConstraints);
+
+        lTipoOrden.setText("Tipo de Orden: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(lTipoOrden, gridBagConstraints);
+
+        cbtipoOrden.setBackground(new java.awt.Color(0, 51, 102));
+        cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Orden 1", "Tipo Orden 2", "Tipo Orden 3" }));
+        cbtipoOrden.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(cbtipoOrden, gridBagConstraints);
+
+        bNuevoCliente.setBackground(new java.awt.Color(0, 51, 102));
+        bNuevoCliente.setBorder(null);
+        bNuevoCliente.setText("Nuevo Cliente");
+        bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNuevoClienteActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(bNuevoCliente, gridBagConstraints);
+
+        bActualizar.setBorder(null);
+        bActualizar.setText("");
+        bActualizar.setOpaque(false);
+        bActualizar.setPreferredSize(new java.awt.Dimension(25, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(bActualizar, gridBagConstraints);
+
+        lFechaRegistro.setText("Fecha de registro de la Orden: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(lFechaRegistro, gridBagConstraints);
+
+        tfFechaRegistro.setEditable(false);
+        tfFechaRegistro.setText("01-06-2017");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(tfFechaRegistro, gridBagConstraints);
+
+        lClientes.setText("Cliente: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(lClientes, gridBagConstraints);
+
+        cbClientes1.setBackground(new java.awt.Color(0, 51, 102));
+        cbClientes1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cliente Número uno", "Cliente Número dos", "Cliente Número tres" }));
+        cbClientes1.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(cbClientes1, gridBagConstraints);
+
+        tableZ1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tipo Orden", "Precio", "Cantidad", "Descuento Unit", "SubTotal"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableZ1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        buttonZ1.setText("Registrar Orden");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(buttonZ1, gridBagConstraints);
+
+        buttonZ2.setText("Agregar Producto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(buttonZ2, gridBagConstraints);
+
+        buttonZ3.setText("Agregar Servicio");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        getContentPane().add(buttonZ3, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
+        JDesktopPane jdp = getDesktopPane();
+        NuevoCliente cliente = new NuevoCliente();
+        cliente.pack();
+        cliente.setVisible(true);
+        jdp.add(cliente);
+    }//GEN-LAST:event_bNuevoClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ bActualizar;
+    private swing.Controles.ButtonZ bNuevoCliente;
+    private swing.Controles.ButtonZ buttonZ1;
+    private swing.Controles.ButtonZ buttonZ2;
+    private swing.Controles.ButtonZ buttonZ3;
+    private swing.Controles.ComboBoxZ cbClientes1;
+    private swing.Controles.ComboBoxZ cbtipoOrden;
+    private javax.swing.JScrollPane jScrollPane1;
+    private swing.Controles.LabelZ lClientes;
+    private swing.Controles.LabelZ lEmpleadoid;
+    private swing.Controles.LabelZ lFechaRegistro;
+    private swing.Controles.LabelZ lNumeroFactura;
+    private swing.Controles.LabelZ lTipoOrden;
+    private swing.Controles.TableZ tableZ1;
+    private swing.Controles.TextFieldZ tfEmpleadoid;
+    private swing.Controles.TextFieldZ tfFechaRegistro;
+    private swing.Controles.TextFieldZ tfNumeroFactura;
     // End of variables declaration//GEN-END:variables
+
+    private void setImagenes() {
+        ImageIcon iconoActualizar;
+        URL ruta = getClass().getClassLoader().getResource("img//update.png");
+        iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        bActualizar.setIcon(iconoActualizar);
+        
+    }
 }

@@ -5,6 +5,10 @@
  */
 package com.carmelitascoffee.compras;
 
+import java.awt.Image;
+import java.net.URL;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
 /**
@@ -18,6 +22,7 @@ public class Compras extends JInternalFrame {
      */
     public Compras() {
         initComponents();
+        setImagenes();
     }
 
     /**
@@ -28,15 +33,191 @@ public class Compras extends JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        ltipoCompra = new swing.Controles.LabelZ();
+        cbTipoCompra = new swing.Controles.ComboBoxZ();
+        lCodigoCompra = new swing.Controles.LabelZ();
+        tfCodigoCompra = new swing.Controles.TextFieldZ();
+        lProveedores = new swing.Controles.LabelZ();
+        cbProveedor = new swing.Controles.ComboBoxZ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tCompras = new swing.Controles.TableZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
+        bActualizar = new swing.Controles.ButtonZ();
+        bNuevoProveedor = new swing.Controles.ButtonZ();
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("Compras");
         setVisible(true);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        ltipoCompra.setText("Tipo de Compra: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(ltipoCompra, gridBagConstraints);
+
+        cbTipoCompra.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Servicios", "Insumos" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(cbTipoCompra, gridBagConstraints);
+
+        lCodigoCompra.setText("Código de Compra: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(lCodigoCompra, gridBagConstraints);
+
+        tfCodigoCompra.setEditable(false);
+        tfCodigoCompra.setText("1000-c12222");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(tfCodigoCompra, gridBagConstraints);
+
+        lProveedores.setText("Proveedor: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(lProveedores, gridBagConstraints);
+
+        cbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Proveedor 1", "Proveedor 2", "Proveedor 3" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(cbProveedor, gridBagConstraints);
+
+        tCompras.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tipo de Compra", "Precio", "Descuento", "Proveedor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tCompras);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        buttonZ1.setText("Realizar Compras");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(buttonZ1, gridBagConstraints);
+
+        bActualizar.setBorder(null);
+        bActualizar.setText("");
+        bActualizar.setOpaque(false);
+        bActualizar.setPreferredSize(new java.awt.Dimension(25, 25));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(bActualizar, gridBagConstraints);
+
+        bNuevoProveedor.setBackground(new java.awt.Color(0, 51, 102));
+        bNuevoProveedor.setBorder(null);
+        bNuevoProveedor.setText("Nuevo Proveedor");
+        bNuevoProveedor.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bNuevoProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNuevoProveedorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(bNuevoProveedor, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bNuevoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoProveedorActionPerformed
+        JDesktopPane jdp = getDesktopPane();
+        Proveedores proveedores = new Proveedores();
+        proveedores.pack();
+        proveedores.setVisible(true);
+        jdp.add(proveedores);
+    }//GEN-LAST:event_bNuevoProveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ bActualizar;
+    private swing.Controles.ButtonZ bNuevoProveedor;
+    private swing.Controles.ButtonZ buttonZ1;
+    private swing.Controles.ComboBoxZ cbProveedor;
+    private swing.Controles.ComboBoxZ cbTipoCompra;
+    private javax.swing.JScrollPane jScrollPane1;
+    private swing.Controles.LabelZ lCodigoCompra;
+    private swing.Controles.LabelZ lProveedores;
+    private swing.Controles.LabelZ ltipoCompra;
+    private swing.Controles.TableZ tCompras;
+    private swing.Controles.TextFieldZ tfCodigoCompra;
     // End of variables declaration//GEN-END:variables
+ private void setImagenes() {
+        ImageIcon iconoActualizar;
+        URL ruta = getClass().getClassLoader().getResource("img//update.png");
+        iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        bActualizar.setIcon(iconoActualizar);
+
+    }
 }
