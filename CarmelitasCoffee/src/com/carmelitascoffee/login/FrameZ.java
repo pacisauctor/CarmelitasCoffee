@@ -385,8 +385,8 @@ public class FrameZ extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.4;
         pContent.add(tpMenu, gridBagConstraints);
 
         dpEscritorio.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -395,11 +395,11 @@ public class FrameZ extends JFrame {
         dpEscritorio.setLayout(dpEscritorioLayout);
         dpEscritorioLayout.setHorizontalGroup(
             dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 325, Short.MAX_VALUE)
         );
         dpEscritorioLayout.setVerticalGroup(
             dpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 276, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -508,7 +508,9 @@ public class FrameZ extends JFrame {
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
         NuevaOrden nuevaOrden = new NuevaOrden();
         nuevaOrden.setVisible(true);
+        nuevaOrden.pack();
         dpEscritorio.add(nuevaOrden);
+        
     }//GEN-LAST:event_bNuevaOrdenActionPerformed
 
     private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
@@ -520,6 +522,7 @@ public class FrameZ extends JFrame {
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
         NuevoCliente nuevoCliente = new NuevoCliente();
         nuevoCliente.setVisible(true);
+        nuevoCliente.pack();
         dpEscritorio.add(nuevoCliente);
     }//GEN-LAST:event_bNuevoClienteActionPerformed
 
