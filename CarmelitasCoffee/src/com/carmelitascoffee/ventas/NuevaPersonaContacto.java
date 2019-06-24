@@ -27,21 +27,196 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelZ1 = new swing.Contenedores.PanelZ();
+        labelZ2 = new swing.Controles.LabelZ();
+        labelZ3 = new swing.Controles.LabelZ();
+        labelZ4 = new swing.Controles.LabelZ();
+        labelZ5 = new swing.Controles.LabelZ();
+        labelZ6 = new swing.Controles.LabelZ();
+        textFieldZ1 = new swing.Controles.TextFieldZ();
+        textFieldZ2 = new swing.Controles.TextFieldZ();
+        textFieldZ3 = new swing.Controles.TextFieldZ();
+        textFieldZ4 = new swing.Controles.TextFieldZ();
+        textFieldZ5 = new swing.Controles.TextFieldZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
+        labelZ7 = new swing.Controles.LabelZ();
+
+        labelZ2.setText("Código de producto");
+        labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        labelZ3.setText("Código de producto");
+        labelZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        labelZ4.setText("Código de producto");
+        labelZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        labelZ5.setText("Código de producto");
+        labelZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        labelZ6.setText("Código de producto");
+        labelZ6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ1.setText("");
+        textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ1.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        textFieldZ2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ2.setText("");
+        textFieldZ2.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ2.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        textFieldZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        textFieldZ3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ3.setText("");
+        textFieldZ3.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ3.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        textFieldZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        textFieldZ4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ4.setText("");
+        textFieldZ4.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ4.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        textFieldZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        textFieldZ5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ5.setText("");
+        textFieldZ5.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ5.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        textFieldZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
+        buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 2, true));
+        buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
+        buttonZ1.setText("Guardar");
+        buttonZ1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonZ1ActionPerformed(evt);
+            }
+        });
+
+        labelZ7.setText("Contacto de proveedor");
+        labelZ7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        javax.swing.GroupLayout panelZ1Layout = new javax.swing.GroupLayout(panelZ1);
+        panelZ1.setLayout(panelZ1Layout);
+        panelZ1Layout.setHorizontalGroup(
+            panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelZ1Layout.createSequentialGroup()
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(129, 129, 129)
+                        .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelZ1Layout.createSequentialGroup()
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelZ1Layout.createSequentialGroup()
+                                .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelZ1Layout.createSequentialGroup()
+                                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelZ1Layout.createSequentialGroup()
+                                        .addGap(47, 47, 47)
+                                        .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelZ1Layout.createSequentialGroup()
+                                        .addGap(76, 76, 76)
+                                        .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelZ1Layout.createSequentialGroup()
+                                        .addGap(37, 37, 37)
+                                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 144, Short.MAX_VALUE))
+            .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelZ1Layout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(484, Short.MAX_VALUE)))
+        );
+        panelZ1Layout.setVerticalGroup(
+            panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelZ1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68))
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
+            .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelZ1Layout.createSequentialGroup()
+                    .addGap(116, 116, 116)
+                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(285, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(panelZ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(panelZ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonZ1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ buttonZ1;
+    private swing.Controles.LabelZ labelZ2;
+    private swing.Controles.LabelZ labelZ3;
+    private swing.Controles.LabelZ labelZ4;
+    private swing.Controles.LabelZ labelZ5;
+    private swing.Controles.LabelZ labelZ6;
+    private swing.Controles.LabelZ labelZ7;
+    private swing.Contenedores.PanelZ panelZ1;
+    private swing.Controles.TextFieldZ textFieldZ1;
+    private swing.Controles.TextFieldZ textFieldZ2;
+    private swing.Controles.TextFieldZ textFieldZ3;
+    private swing.Controles.TextFieldZ textFieldZ4;
+    private swing.Controles.TextFieldZ textFieldZ5;
     // End of variables declaration//GEN-END:variables
 }
