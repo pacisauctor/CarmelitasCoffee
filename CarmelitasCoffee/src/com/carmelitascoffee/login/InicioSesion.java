@@ -62,6 +62,13 @@ public class InicioSesion extends JFrame {
         bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
+        labelZ1 = new swing.Controles.LabelZ();
+        labelZ2 = new swing.Controles.LabelZ();
+        textFieldZ1 = new swing.Controles.TextFieldZ();
+        passwordFieldZ1 = new swing.Controles.PasswordFieldZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textPaneZ1 = new swing.Controles.TextPaneZ();
 
         setBackground(new java.awt.Color(0, 51, 102));
         setUndecorated(true);
@@ -172,15 +179,82 @@ public class InicioSesion extends JFrame {
 
         pContent.setBackground(new java.awt.Color(0, 51, 102));
 
+        labelZ1.setText("Nombre de usuario");
+        labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        labelZ2.setText("Contraseña");
+        labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ1.setText("");
+        textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
+        textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        textFieldZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldZ1ActionPerformed(evt);
+            }
+        });
+
+        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        passwordFieldZ1.setText("");
+        passwordFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
+        passwordFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+
+        buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
+        buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 4, true));
+        buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
+        buttonZ1.setText("Ingresar");
+        buttonZ1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+
+        textPaneZ1.setEditable(false);
+        textPaneZ1.setBackground(new java.awt.Color(0, 51, 102));
+        textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 0, true));
+        textPaneZ1.setForeground(new java.awt.Color(204, 204, 204));
+        textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
+        jScrollPane1.setViewportView(textPaneZ1);
+
         javax.swing.GroupLayout pContentLayout = new javax.swing.GroupLayout(pContent);
         pContent.setLayout(pContentLayout);
         pContentLayout.setHorizontalGroup(
             pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGroup(pContentLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
+                .addGap(0, 50, Short.MAX_VALUE)
+                .addGroup(pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
+                        .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
+                        .addGroup(pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(passwordFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(textFieldZ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonZ1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
+                        .addGap(42, 42, 42))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pContentLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         pContentLayout.setVerticalGroup(
             pContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addGroup(pContentLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(passwordFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -188,8 +262,8 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 1, 1, 1);
+        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.insets = new java.awt.Insets(0, 1, 4, 1);
         getContentPane().add(pContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -267,6 +341,10 @@ public class InicioSesion extends JFrame {
         lTitle.setText(title);
     }//GEN-LAST:event_formWindowOpened
 
+    private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldZ1ActionPerformed
+
     public static void main(String[] args) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -289,9 +367,16 @@ public class InicioSesion extends JFrame {
     private javax.swing.JButton bCerrar;
     private javax.swing.JButton bMaximizar;
     private javax.swing.JButton bMinimizar;
+    private swing.Controles.ButtonZ buttonZ1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lTitle;
+    private swing.Controles.LabelZ labelZ1;
+    private swing.Controles.LabelZ labelZ2;
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pToolBar;
+    private swing.Controles.PasswordFieldZ passwordFieldZ1;
+    private swing.Controles.TextFieldZ textFieldZ1;
+    private swing.Controles.TextPaneZ textPaneZ1;
     // End of variables declaration//GEN-END:variables
 
     private void restaurarVentana() {
