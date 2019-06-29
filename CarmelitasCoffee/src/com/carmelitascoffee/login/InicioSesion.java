@@ -70,7 +70,7 @@ public class InicioSesion extends JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textPaneZ1 = new swing.Controles.TextPaneZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(127, 179, 213));
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -79,7 +79,7 @@ public class InicioSesion extends JFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pToolBar.setBackground(new java.awt.Color(0, 51, 102));
+        pToolBar.setBackground(new java.awt.Color(127, 179, 213));
         pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 204)));
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -96,6 +96,7 @@ public class InicioSesion extends JFrame {
         });
         pToolBar.setLayout(new java.awt.GridBagLayout());
 
+        lTitle.setBackground(new java.awt.Color(127, 179, 213));
         lTitle.setForeground(new java.awt.Color(255, 255, 255));
         lTitle.setText("Texto");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -107,7 +108,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         pToolBar.add(lTitle, gridBagConstraints);
 
-        bCerrar.setBackground(new java.awt.Color(0, 51, 102));
+        bCerrar.setBackground(new java.awt.Color(127, 179, 213));
         bCerrar.setToolTipText("");
         bCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -128,7 +129,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMaximizar.setBackground(new java.awt.Color(0, 51, 102));
+        bMaximizar.setBackground(new java.awt.Color(127, 179, 213));
         bMaximizar.setToolTipText("");
         bMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -149,7 +150,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bMaximizar, gridBagConstraints);
 
-        bMinimizar.setBackground(new java.awt.Color(0, 51, 102));
+        bMinimizar.setBackground(new java.awt.Color(127, 179, 213));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -177,7 +178,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 0, 1);
         getContentPane().add(pToolBar, gridBagConstraints);
 
-        pContent.setBackground(new java.awt.Color(0, 51, 102));
+        pContent.setBackground(new java.awt.Color(127, 179, 213));
         pContent.setLayout(new java.awt.GridBagLayout());
 
         labelZ1.setText("Nombre de usuario");
@@ -253,7 +254,6 @@ public class InicioSesion extends JFrame {
         pContent.add(buttonZ1, gridBagConstraints);
 
         textPaneZ1.setEditable(false);
-        textPaneZ1.setBackground(new java.awt.Color(0, 51, 102));
         textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 0, true));
         textPaneZ1.setForeground(new java.awt.Color(204, 204, 204));
         textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");

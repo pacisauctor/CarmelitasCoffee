@@ -53,7 +53,7 @@ public class NuevaOrden extends JInternalFrame {
         buttonZ2 = new swing.Controles.ButtonZ();
         buttonZ3 = new swing.Controles.ButtonZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(127, 179, 213));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);

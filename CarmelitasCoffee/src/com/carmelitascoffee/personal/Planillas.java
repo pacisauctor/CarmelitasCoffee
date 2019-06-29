@@ -68,13 +68,13 @@ public class Planillas extends JInternalFrame implements ActionListener{
             }
         });
 
-        PANEL_planillas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planillas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_planillas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planillas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
 
         jScrollPane1.setViewportView(TABLE_ordenes);
 
         PANEL_planillas.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        PANEL_empleadoplanilla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados de la planilla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_empleadoplanilla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados de la planilla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
 
         jScrollPane2.setViewportView(tableZ1);
 

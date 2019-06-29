@@ -905,7 +905,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         Panel.setMinimumSize(new java.awt.Dimension(715, 509));
         Panel.setName("panel"); // NOI18N
 
-        MENUBAR.setBackground(new java.awt.Color(0, 0, 102));
+        MENUBAR.setBackground(new java.awt.Color(127, 179, 213));
         MENUBAR.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 0, 51)));
         MENUBAR.setForeground(new java.awt.Color(255, 255, 255));
 

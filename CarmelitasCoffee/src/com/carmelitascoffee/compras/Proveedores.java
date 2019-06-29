@@ -44,7 +44,7 @@ public class Proveedores extends JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taDirección = new swing.Controles.TextAreaZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(127, 179, 213));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);

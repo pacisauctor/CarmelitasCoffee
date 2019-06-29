@@ -12,7 +12,6 @@ import com.carmelitascoffee.personal.*;
 import com.carmelitascoffee.ventas.*;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -283,7 +282,7 @@ public class FrameZ extends JFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pToolBar.setBackground(new java.awt.Color(0, 51, 102));
+        pToolBar.setBackground(new java.awt.Color(127, 179, 213));
         pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 204)));
         pToolBar.setForeground(new java.awt.Color(255, 255, 255));
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -301,7 +300,7 @@ public class FrameZ extends JFrame {
         });
         pToolBar.setLayout(new java.awt.GridBagLayout());
 
-        lTitle.setBackground(new java.awt.Color(0, 51, 102));
+        lTitle.setBackground(new java.awt.Color(22, 160, 133));
         lTitle.setForeground(new java.awt.Color(255, 255, 255));
         lTitle.setText("Texto");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -313,7 +312,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         pToolBar.add(lTitle, gridBagConstraints);
 
-        bCerrar.setBackground(new java.awt.Color(0, 51, 102));
+        bCerrar.setBackground(new java.awt.Color(127, 179, 213));
         bCerrar.setToolTipText("");
         bCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -334,7 +333,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMaximizar.setBackground(new java.awt.Color(0, 51, 102));
+        bMaximizar.setBackground(new java.awt.Color(127, 179, 213));
         bMaximizar.setToolTipText("");
         bMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -355,7 +354,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bMaximizar, gridBagConstraints);
 
-        bMinimizar.setBackground(new java.awt.Color(0, 51, 102));
+        bMinimizar.setBackground(new java.awt.Color(127, 179, 213));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -383,9 +382,10 @@ public class FrameZ extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 0, 3);
         getContentPane().add(pToolBar, gridBagConstraints);
 
-        pContent.setBackground(new java.awt.Color(0, 51, 102));
+        pContent.setBackground(new java.awt.Color(22, 160, 133));
         pContent.setLayout(new java.awt.GridBagLayout());
 
+        tpMenu.setBackground(new java.awt.Color(127, 179, 213));
         tpMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -394,6 +394,8 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.4;
         pContent.add(tpMenu, gridBagConstraints);
+
+        dpEscritorio.setBackground(new java.awt.Color(127, 179, 213));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
