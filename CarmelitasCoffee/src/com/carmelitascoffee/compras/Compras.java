@@ -47,7 +47,7 @@ public class Compras extends JInternalFrame {
         bActualizar = new swing.Controles.ButtonZ();
         bNuevoProveedor = new swing.Controles.ButtonZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(127, 179, 213));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -154,7 +154,7 @@ public class Compras extends JInternalFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(buttonZ1, gridBagConstraints);
 

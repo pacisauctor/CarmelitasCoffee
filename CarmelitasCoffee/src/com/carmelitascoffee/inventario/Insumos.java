@@ -45,7 +45,7 @@ public class Insumos extends JInternalFrame {
         buttonZ1 = new swing.Controles.ButtonZ();
         labelZ3 = new swing.Controles.LabelZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(127, 179, 213));
         setClosable(true);
         setIconifiable(true);
         setTitle("Insumos");

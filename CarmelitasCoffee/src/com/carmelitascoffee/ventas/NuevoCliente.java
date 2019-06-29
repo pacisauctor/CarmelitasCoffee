@@ -54,7 +54,7 @@ public class NuevoCliente extends JInternalFrame {
         bNuevoCliente = new swing.Controles.ButtonZ();
         bAgregarCliente = new swing.Controles.ButtonZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(127, 179, 213));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -193,7 +193,6 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ1, gridBagConstraints);
 
-        comboBoxZ1.setBackground(new java.awt.Color(0, 51, 102));
         comboBoxZ1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PersonaContacto 1", "PersonaContacto 2", "PersonaContacto 3" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -218,7 +217,6 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(bActualizar, gridBagConstraints);
 
-        bNuevoCliente.setBackground(new java.awt.Color(0, 51, 102));
         bNuevoCliente.setBorder(null);
         bNuevoCliente.setText("Nueva Persona de Contacto");
         bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
