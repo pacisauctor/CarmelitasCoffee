@@ -54,7 +54,7 @@ public class NuevoCliente extends JInternalFrame {
         bNuevoCliente = new swing.Controles.ButtonZ();
         bAgregarCliente = new swing.Controles.ButtonZ();
 
-        setBackground(new java.awt.Color(127, 179, 213));
+        setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -217,6 +217,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(bActualizar, gridBagConstraints);
 
+        bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
         bNuevoCliente.setBorder(null);
         bNuevoCliente.setText("Nueva Persona de Contacto");
         bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N

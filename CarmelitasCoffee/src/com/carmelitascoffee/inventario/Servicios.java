@@ -40,9 +40,9 @@ public class Servicios extends JInternalFrame {
         textFieldZ6 = new swing.Controles.TextFieldZ();
         textFieldZ7 = new swing.Controles.TextFieldZ();
         textFieldZ8 = new swing.Controles.TextFieldZ();
-        buttonZ2 = new swing.Controles.ButtonZ();
-        buttonZ3 = new swing.Controles.ButtonZ();
-        buttonZ4 = new swing.Controles.ButtonZ();
+        buttonZ5 = new swing.Controles.ButtonZ();
+        buttonZ6 = new swing.Controles.ButtonZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
@@ -101,28 +101,11 @@ public class Servicios extends JInternalFrame {
         textFieldZ8.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         textFieldZ8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        buttonZ2.setBackground(new java.awt.Color(204, 204, 204));
-        buttonZ2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 2, true));
-        buttonZ2.setForeground(new java.awt.Color(0, 51, 102));
-        buttonZ2.setText("Editar");
-        buttonZ2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        buttonZ2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonZ2ActionPerformed(evt);
-            }
-        });
+        buttonZ5.setText("Editar");
 
-        buttonZ3.setBackground(new java.awt.Color(204, 204, 204));
-        buttonZ3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 2, true));
-        buttonZ3.setForeground(new java.awt.Color(0, 51, 102));
-        buttonZ3.setText("Buscar");
-        buttonZ3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        buttonZ6.setText("Buscar");
 
-        buttonZ4.setBackground(new java.awt.Color(204, 204, 204));
-        buttonZ4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 2, true));
-        buttonZ4.setForeground(new java.awt.Color(0, 51, 102));
-        buttonZ4.setText("Guardar");
-        buttonZ4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        buttonZ1.setText("Buscar");
 
         javax.swing.GroupLayout panelZ1Layout = new javax.swing.GroupLayout(panelZ1);
         panelZ1.setLayout(panelZ1Layout);
@@ -131,39 +114,45 @@ public class Servicios extends JInternalFrame {
             .addGroup(panelZ1Layout.createSequentialGroup()
                 .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(164, 164, 164)
-                        .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelZ1Layout.createSequentialGroup()
-                                .addGap(58, 58, 58)
-                                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(textFieldZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
-                                .addComponent(textFieldZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelZ1Layout.createSequentialGroup()
-                                .addGap(122, 122, 122)
-                                .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(57, 57, 57)
-                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE))
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelZ1Layout.createSequentialGroup()
+                                .addGap(135, 135, 135)
+                                .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(164, 164, 164)
+                                .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelZ1Layout.createSequentialGroup()
+                                .addGap(222, 222, 222)
+                                .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(53, 53, 53))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelZ1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(textFieldZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(buttonZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(242, 242, 242))
+                .addGap(65, 65, 65)
+                .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(260, 260, 260))
+            .addGroup(panelZ1Layout.createSequentialGroup()
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textFieldZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addComponent(textFieldZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonZ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(109, 109, 109))
         );
         panelZ1Layout.setVerticalGroup(
             panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,30 +160,30 @@ public class Servicios extends JInternalFrame {
                 .addContainerGap()
                 .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonZ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelZ1Layout.createSequentialGroup()
+                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldZ6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(buttonZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(buttonZ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(buttonZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,15 +202,11 @@ public class Servicios extends JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldZ6ActionPerformed
 
-    private void buttonZ2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonZ2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ buttonZ2;
-    private swing.Controles.ButtonZ buttonZ3;
-    private swing.Controles.ButtonZ buttonZ4;
+    private swing.Controles.ButtonZ buttonZ1;
+    private swing.Controles.ButtonZ buttonZ5;
+    private swing.Controles.ButtonZ buttonZ6;
     private javax.swing.JScrollPane jScrollPane1;
     private swing.Controles.LabelZ labelZ2;
     private swing.Controles.LabelZ labelZ3;

@@ -53,7 +53,7 @@ public class NuevaOrden extends JInternalFrame {
         buttonZ2 = new swing.Controles.ButtonZ();
         buttonZ3 = new swing.Controles.ButtonZ();
 
-        setBackground(new java.awt.Color(127, 179, 213));
+        setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -108,7 +108,6 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(lTipoOrden, gridBagConstraints);
 
-        cbtipoOrden.setBackground(new java.awt.Color(0, 51, 102));
         cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Orden 1", "Tipo Orden 2", "Tipo Orden 3" }));
         cbtipoOrden.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -121,7 +120,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(cbtipoOrden, gridBagConstraints);
 
-        bNuevoCliente.setBackground(new java.awt.Color(0, 51, 102));
+        bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
         bNuevoCliente.setBorder(null);
         bNuevoCliente.setText("Nuevo Cliente");
         bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
@@ -184,7 +183,6 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(lClientes, gridBagConstraints);
 
-        cbClientes1.setBackground(new java.awt.Color(0, 51, 102));
         cbClientes1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cliente Número uno", "Cliente Número dos", "Cliente Número tres" }));
         cbClientes1.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();

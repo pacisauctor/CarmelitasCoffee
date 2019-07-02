@@ -26,11 +26,13 @@ public class InicioSesion extends JFrame {
 
     public InicioSesion() {
         initComponents();
+        bMaximizar.setEnabled(false);
     }
 
     public InicioSesion(String title) {
         this.title = title;
         initComponents();
+        bMaximizar.setEnabled(false);
     }
 
     @Override
@@ -66,11 +68,11 @@ public class InicioSesion extends JFrame {
         labelZ2 = new swing.Controles.LabelZ();
         textFieldZ1 = new swing.Controles.TextFieldZ();
         passwordFieldZ1 = new swing.Controles.PasswordFieldZ();
-        buttonZ1 = new swing.Controles.ButtonZ();
         jScrollPane1 = new javax.swing.JScrollPane();
         textPaneZ1 = new swing.Controles.TextPaneZ();
+        buttonZ1 = new swing.Controles.ButtonZ();
 
-        setBackground(new java.awt.Color(127, 179, 213));
+        setBackground(new java.awt.Color(97, 53, 1));
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -79,8 +81,8 @@ public class InicioSesion extends JFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pToolBar.setBackground(new java.awt.Color(127, 179, 213));
-        pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 204)));
+        pToolBar.setBackground(new java.awt.Color(178, 122, 57));
+        pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(141, 88, 24)));
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pToolBarMouseDragged(evt);
@@ -96,7 +98,7 @@ public class InicioSesion extends JFrame {
         });
         pToolBar.setLayout(new java.awt.GridBagLayout());
 
-        lTitle.setBackground(new java.awt.Color(127, 179, 213));
+        lTitle.setBackground(new java.awt.Color(178, 122, 57));
         lTitle.setForeground(new java.awt.Color(255, 255, 255));
         lTitle.setText("Texto");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -108,7 +110,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         pToolBar.add(lTitle, gridBagConstraints);
 
-        bCerrar.setBackground(new java.awt.Color(127, 179, 213));
+        bCerrar.setBackground(new java.awt.Color(178, 122, 57));
         bCerrar.setToolTipText("");
         bCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -129,7 +131,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMaximizar.setBackground(new java.awt.Color(127, 179, 213));
+        bMaximizar.setBackground(new java.awt.Color(178, 122, 57));
         bMaximizar.setToolTipText("");
         bMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -150,7 +152,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bMaximizar, gridBagConstraints);
 
-        bMinimizar.setBackground(new java.awt.Color(127, 179, 213));
+        bMinimizar.setBackground(new java.awt.Color(178, 122, 57));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -175,10 +177,10 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 0, 1);
         getContentPane().add(pToolBar, gridBagConstraints);
 
-        pContent.setBackground(new java.awt.Color(127, 179, 213));
+        pContent.setBackground(new java.awt.Color(255, 247, 162));
+        pContent.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(141, 88, 24)));
         pContent.setLayout(new java.awt.GridBagLayout());
 
         labelZ1.setText("Nombre de usuario");
@@ -187,9 +189,9 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(labelZ1, gridBagConstraints);
 
         labelZ2.setText("Contraseña");
@@ -198,12 +200,12 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(labelZ2, gridBagConstraints);
 
-        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(29, 32, 98), 2, true));
         textFieldZ1.setText("");
         textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
         textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -215,47 +217,27 @@ public class InicioSesion extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(textFieldZ1, gridBagConstraints);
 
-        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(29, 32, 98), 2, true));
         passwordFieldZ1.setText("");
         passwordFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
         passwordFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(passwordFieldZ1, gridBagConstraints);
-
-        buttonZ1.setBackground(new java.awt.Color(204, 204, 204));
-        buttonZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 4, true));
-        buttonZ1.setForeground(new java.awt.Color(0, 51, 102));
-        buttonZ1.setText("Ingresar");
-        buttonZ1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonZ1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(buttonZ1, gridBagConstraints);
 
         textPaneZ1.setEditable(false);
         textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 0, true));
-        textPaneZ1.setForeground(new java.awt.Color(204, 204, 204));
         textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
         jScrollPane1.setViewportView(textPaneZ1);
 
@@ -263,10 +245,24 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(jScrollPane1, gridBagConstraints);
+
+        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonZ1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pContent.add(buttonZ1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -274,17 +270,16 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.6;
-        gridBagConstraints.insets = new java.awt.Insets(0, 1, 4, 1);
         getContentPane().add(pContent, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseExited
-        bCerrar.setBackground(new Color(0, 51, 102));
+        bCerrar.setBackground(new Color(178, 122, 57));
     }//GEN-LAST:event_bCerrarMouseExited
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
         //[0,153,255]
-        bCerrar.setBackground(new Color(0, 153, 255));
+        bCerrar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bCerrarMouseEntered
 
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
@@ -292,11 +287,11 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_bCerrarActionPerformed
 
     private void bMaximizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseEntered
-        bMaximizar.setBackground(new Color(0, 153, 255));
+        bMaximizar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bMaximizarMouseEntered
 
     private void bMaximizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseExited
-        bMaximizar.setBackground(new Color(0, 51, 102));
+        bMaximizar.setBackground(new Color(178, 122, 57));
     }//GEN-LAST:event_bMaximizarMouseExited
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
@@ -304,11 +299,11 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_bMaximizarActionPerformed
 
     private void bMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseEntered
-        bMinimizar.setBackground(new Color(0, 153, 255));
+        bMinimizar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bMinimizarMouseEntered
 
     private void bMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseExited
-        bMinimizar.setBackground(new Color(0, 51, 102));
+        bMinimizar.setBackground(new Color(178, 122, 57));
     }//GEN-LAST:event_bMinimizarMouseExited
 
     private void bMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMinimizarActionPerformed
@@ -353,39 +348,32 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
-       
+
     }//GEN-LAST:event_textFieldZ1ActionPerformed
 
     private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-                int frameWidth = 600;
-                int frameHeight = 600;
-                FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
-                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
-                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
-                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
-                FullResizibleFrame fullResizibleFrame;
-                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
-                frameZ.addPaneles();
-                frameZ.setVisible(true);
-                setVisible(false);
+        int frameWidth = 1000;
+        int frameHeight = 700;
+        FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
+        Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
+                (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
+        Dimension initialDimension = new Dimension(frameWidth, frameHeight);
+        FullResizibleFrame fullResizibleFrame;
+        fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
+        frameZ.addPaneles();
+        this.setVisible(false);
+        frameZ.setVisible(true);
     }//GEN-LAST:event_buttonZ1ActionPerformed
 
     public static void main(String[] args) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //configurando para resizable sin undecorated
-                Toolkit toolkit = Toolkit.getDefaultToolkit();
-                int frameWidth = 400;
-                int frameHeight = 400;
                 InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión");
-                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
-                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
-                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
-                FullResizibleFrame fullResizibleFrame;
-                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, inicioSesion);
+                inicioSesion.setSize(280, 350);
                 inicioSesion.setVisible(true);
+                inicioSesion.setLocationRelativeTo(null);
             }
         });
     }
