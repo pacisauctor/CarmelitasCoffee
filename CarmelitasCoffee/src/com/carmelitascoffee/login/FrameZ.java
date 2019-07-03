@@ -458,9 +458,9 @@ public class FrameZ extends JFrame {
     private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
         AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
         agregarEmpleado.setVisible(true);
+        agregarEmpleado.setSize(dpEscritorio.getSize());
         agregarEmpleado.pack();
         dpEscritorio.add(agregarEmpleado);
-        agregarEmpleado.setSize(725, 562);
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
@@ -468,6 +468,7 @@ public class FrameZ extends JFrame {
         nuevaOrden.setVisible(true);
         nuevaOrden.pack();
         dpEscritorio.add(nuevaOrden);
+        nuevaOrden.setSize(dpEscritorio.getSize());
 
     }//GEN-LAST:event_bNuevaOrdenActionPerformed
 
@@ -475,6 +476,7 @@ public class FrameZ extends JFrame {
         NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto();
         nuevaPersonaContacto.setVisible(true);
         nuevaPersonaContacto.pack();
+        nuevaPersonaContacto.setSize(dpEscritorio.getSize());
         dpEscritorio.add(nuevaPersonaContacto);
     }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
 
@@ -482,6 +484,7 @@ public class FrameZ extends JFrame {
         NuevoCliente nuevoCliente = new NuevoCliente();
         nuevoCliente.setVisible(true);
         nuevoCliente.pack();
+        nuevoCliente.setSize(dpEscritorio.getSize());
         dpEscritorio.add(nuevoCliente);
     }//GEN-LAST:event_bNuevoClienteActionPerformed
 

@@ -5,6 +5,7 @@
  */
 package com.carmelitascoffee.ventas;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -53,18 +54,20 @@ public class NuevoCliente extends JInternalFrame {
         bActualizar = new swing.Controles.ButtonZ();
         bNuevoCliente = new swing.Controles.ButtonZ();
         bAgregarCliente = new swing.Controles.ButtonZ();
+        pImagen = new swing.Contenedores.PanelZ();
 
         setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Nuevo Cliente");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         lNombres.setText("Nombre: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
@@ -73,6 +76,8 @@ public class NuevoCliente extends JInternalFrame {
 
         tfNombre1.setText("primerNombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -81,6 +86,9 @@ public class NuevoCliente extends JInternalFrame {
 
         tfNombre2.setText("segundoNombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -89,8 +97,8 @@ public class NuevoCliente extends JInternalFrame {
 
         lApelildos.setText("Nombre: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
@@ -99,8 +107,8 @@ public class NuevoCliente extends JInternalFrame {
 
         tfApellido1.setText("primerApellido");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -109,8 +117,8 @@ public class NuevoCliente extends JInternalFrame {
 
         tfApellido2.setText("segundoApellido");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -120,7 +128,7 @@ public class NuevoCliente extends JInternalFrame {
         lTelefono.setText("Teléfono: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
@@ -130,7 +138,7 @@ public class NuevoCliente extends JInternalFrame {
         tfTelefono.setText("+50581380937");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -140,7 +148,8 @@ public class NuevoCliente extends JInternalFrame {
         lDireccion.setText("Dirección: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
@@ -153,8 +162,8 @@ public class NuevoCliente extends JInternalFrame {
         jScrollPane1.setViewportView(taDireccion);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -166,7 +175,7 @@ public class NuevoCliente extends JInternalFrame {
         lCorreo.setText("Correo: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
@@ -176,7 +185,7 @@ public class NuevoCliente extends JInternalFrame {
         tfCorreo.setText("tumail@example.com");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -186,7 +195,7 @@ public class NuevoCliente extends JInternalFrame {
         labelZ1.setText("Persona de Contacto: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
@@ -196,7 +205,7 @@ public class NuevoCliente extends JInternalFrame {
         comboBoxZ1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PersonaContacto 1", "PersonaContacto 2", "PersonaContacto 3" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -210,9 +219,8 @@ public class NuevoCliente extends JInternalFrame {
         bActualizar.setPreferredSize(new java.awt.Dimension(25, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(bActualizar, gridBagConstraints);
@@ -227,8 +235,8 @@ public class NuevoCliente extends JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.2;
@@ -237,14 +245,22 @@ public class NuevoCliente extends JInternalFrame {
         bAgregarCliente.setText("Agregar Cliente");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.4;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(bAgregarCliente, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.9;
+        gridBagConstraints.weighty = 0.9;
+        getContentPane().add(pImagen, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
@@ -268,6 +284,7 @@ public class NuevoCliente extends JInternalFrame {
     private swing.Controles.LabelZ lNombres;
     private swing.Controles.LabelZ lTelefono;
     private swing.Controles.LabelZ labelZ1;
+    private swing.Contenedores.PanelZ pImagen;
     private swing.Controles.TextAreaZ taDireccion;
     private swing.Controles.TextFieldZ tfApellido1;
     private swing.Controles.TextFieldZ tfApellido2;
@@ -277,10 +294,12 @@ public class NuevoCliente extends JInternalFrame {
     private swing.Controles.TextFieldZ tfTelefono;
     // End of variables declaration//GEN-END:variables
  private void setImagenes() {
-        ImageIcon iconoActualizar;
+        ImageIcon iconoActualizar, imageIntro;
         URL ruta = getClass().getClassLoader().getResource("img//update.png");
         iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bActualizar.setIcon(iconoActualizar);
-
+        ruta = getClass().getClassLoader().getResource("img//nuevoCliente.jpg");
+        pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
+                
     }
 }
