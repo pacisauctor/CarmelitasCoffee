@@ -336,15 +336,7 @@ public class InicioSesion extends JFrame {
         frameZ.setVisible(true);
     }//GEN-LAST:event_buttonZ1ActionPerformed
 
-    public static void main(String[] args) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión");
-            inicioSesion.setSize(280, 350);
-            inicioSesion.setVisible(true);
-            inicioSesion.setLocationRelativeTo(null);
-        });
-    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
     private javax.swing.JButton bMinimizar;

@@ -96,7 +96,7 @@ public class FrameZ extends JFrame {
         pMenu = new swing.Contenedores.PanelZ();
         dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
-        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pCompras.setName("Compras"); // NOI18N
         pCompras.setLayout(new java.awt.GridBagLayout());
 
@@ -127,7 +127,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pCompras.add(bProveedores, gridBagConstraints);
 
-        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pEgresos.setName("Egresos"); // NOI18N
         pEgresos.setLayout(new java.awt.GridBagLayout());
 
@@ -143,7 +143,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pEgresos.add(bEgresos, gridBagConstraints);
 
-        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pInventario.setName("Inventario"); // NOI18N
         pInventario.setLayout(new java.awt.GridBagLayout());
 
@@ -187,7 +187,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bServicios, gridBagConstraints);
 
-        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pPersonal.setName("Personal"); // NOI18N
         pPersonal.setLayout(new java.awt.GridBagLayout());
 
@@ -289,7 +289,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bOrdenVista, gridBagConstraints);
 
-        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pAjustes.setName("Compras"); // NOI18N
         pAjustes.setLayout(new java.awt.GridBagLayout());
 
@@ -437,7 +437,7 @@ public class FrameZ extends JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 1.0;
         pContent.add(scrollPaneZ1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -487,6 +487,8 @@ public class FrameZ extends JFrame {
         ruta = getClass().getClassLoader().getResource("img//fondo.jpg");
         imagenFondo = new ImageIcon(ruta).getImage();
         agregarFondoPantalla(imagenFondo);
+        ruta = getClass().getClassLoader().getResource("img//coffee.png");
+        lTitle.setIcon(new ImageIcon(ruta));
     }//GEN-LAST:event_formWindowOpened
 
     private void pToolBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pToolBarMouseClicked
@@ -636,29 +638,8 @@ public class FrameZ extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
-    public static void main(String[] args) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
 
-            public void run() {
-                //configurando para resizable sin undecorated
-                Toolkit toolkit = Toolkit.getDefaultToolkit();
-                int frameWidth = 400;
-                int frameHeight = 400;
-                FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
-                Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
-                        (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
-                Dimension initialDimension = new Dimension(frameWidth, frameHeight);
-                FullResizibleFrame fullResizibleFrame;
-                fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
-                frameZ.addPaneles();
-                frameZ.setVisible(true);
-            }
-
-        });
-    }
-
-    void addPaneles() {
+    public void addPaneles() {
         if ("Maestro".equals(rol)) {
             pMenu.add(pVentas, "Ventas");
             setIconosMenu(pVentas);
