@@ -54,7 +54,6 @@ public class Compras extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Compras");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());

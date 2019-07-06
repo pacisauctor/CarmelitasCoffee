@@ -52,7 +52,6 @@ public class Proveedores extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Proveedores");
         setName(""); // NOI18N
         setVisible(true);

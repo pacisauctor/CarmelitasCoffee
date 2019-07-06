@@ -57,7 +57,6 @@ public class NuevaOrden extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("Nueva Orden");
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());

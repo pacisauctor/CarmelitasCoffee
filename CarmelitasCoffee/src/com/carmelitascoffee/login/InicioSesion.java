@@ -12,6 +12,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.net.URL;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -26,13 +27,11 @@ public class InicioSesion extends JFrame {
 
     public InicioSesion() {
         initComponents();
-        bMaximizar.setEnabled(false);
     }
 
     public InicioSesion(String title) {
         this.title = title;
         initComponents();
-        bMaximizar.setEnabled(false);
     }
 
     @Override
@@ -61,7 +60,6 @@ public class InicioSesion extends JFrame {
         pToolBar = new javax.swing.JPanel();
         lTitle = new javax.swing.JLabel();
         bCerrar = new javax.swing.JButton();
-        bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
         labelZ1 = new swing.Controles.LabelZ();
@@ -82,7 +80,7 @@ public class InicioSesion extends JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         pToolBar.setBackground(new java.awt.Color(178, 122, 57));
-        pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(141, 88, 24)));
+        pToolBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pToolBarMouseDragged(evt);
@@ -131,27 +129,6 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMaximizar.setBackground(new java.awt.Color(178, 122, 57));
-        bMaximizar.setToolTipText("");
-        bMaximizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bMaximizarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bMaximizarMouseExited(evt);
-            }
-        });
-        bMaximizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bMaximizarActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        pToolBar.add(bMaximizar, gridBagConstraints);
-
         bMinimizar.setBackground(new java.awt.Color(178, 122, 57));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -180,7 +157,7 @@ public class InicioSesion extends JFrame {
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(255, 247, 162));
-        pContent.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(141, 88, 24)));
+        pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pContent.setLayout(new java.awt.GridBagLayout());
 
         labelZ1.setText("Nombre de usuario");
@@ -205,7 +182,8 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(labelZ2, gridBagConstraints);
 
-        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(29, 32, 98), 2, true));
+        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
+        textFieldZ1.setForeground(new java.awt.Color(28, 40, 51));
         textFieldZ1.setText("");
         textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
         textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -223,7 +201,8 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(textFieldZ1, gridBagConstraints);
 
-        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(29, 32, 98), 2, true));
+        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
+        passwordFieldZ1.setForeground(new java.awt.Color(28, 40, 51));
         passwordFieldZ1.setText("");
         passwordFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
         passwordFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -237,7 +216,8 @@ public class InicioSesion extends JFrame {
         pContent.add(passwordFieldZ1, gridBagConstraints);
 
         textPaneZ1.setEditable(false);
-        textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 102), 0, true));
+        textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 0, true));
+        textPaneZ1.setForeground(new java.awt.Color(28, 40, 51));
         textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
         jScrollPane1.setViewportView(textPaneZ1);
 
@@ -250,6 +230,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(jScrollPane1, gridBagConstraints);
 
+        buttonZ1.setText("Iniciar");
         buttonZ1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonZ1ActionPerformed(evt);
@@ -285,18 +266,6 @@ public class InicioSesion extends JFrame {
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
         System.exit(0);
     }//GEN-LAST:event_bCerrarActionPerformed
-
-    private void bMaximizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseEntered
-        bMaximizar.setBackground(new Color(215, 163, 100));
-    }//GEN-LAST:event_bMaximizarMouseEntered
-
-    private void bMaximizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseExited
-        bMaximizar.setBackground(new Color(178, 122, 57));
-    }//GEN-LAST:event_bMaximizarMouseExited
-
-    private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
-        restaurarVentana();
-    }//GEN-LAST:event_bMaximizarActionPerformed
 
     private void bMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseEntered
         bMinimizar.setBackground(new Color(215, 163, 100));
@@ -337,14 +306,15 @@ public class InicioSesion extends JFrame {
         ruta = getClass().getClassLoader().getResource("img//minimize.png");
         iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMinimizar.setIcon(iconoMinimizar);
-        ruta = getClass().getClassLoader().getResource("img//maximizar.png");
-        iconoMaximizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
-        bMaximizar.setIcon(iconoMaximizar);
         //escribiendo título
         if ("".equals(title)) {
             title = "Nueva Ventana";
         }
         lTitle.setText(title);
+        ruta = getClass().getClassLoader().getResource("img//user.jpg");
+        this.setIconImage(new ImageIcon(ruta).getImage());
+        lTitle.setIcon(new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
+
     }//GEN-LAST:event_formWindowOpened
 
     private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
@@ -368,18 +338,15 @@ public class InicioSesion extends JFrame {
 
     public static void main(String[] args) {
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión");
-                inicioSesion.setSize(280, 350);
-                inicioSesion.setVisible(true);
-                inicioSesion.setLocationRelativeTo(null);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión");
+            inicioSesion.setSize(280, 350);
+            inicioSesion.setVisible(true);
+            inicioSesion.setLocationRelativeTo(null);
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
-    private javax.swing.JButton bMaximizar;
     private javax.swing.JButton bMinimizar;
     private swing.Controles.ButtonZ buttonZ1;
     private javax.swing.JScrollPane jScrollPane1;

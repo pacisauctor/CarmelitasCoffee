@@ -19,6 +19,7 @@ import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import swing.Contenedores.PanelZ;
 
 /**
  *
@@ -82,25 +83,32 @@ public class FrameZ extends JFrame {
         bNuevaPersonaContacto = new swing.Controles.ButtonZ();
         bNuevoCliente = new swing.Controles.ButtonZ();
         bOrdenVista = new swing.Controles.ButtonZ();
+        pAjustes = new swing.Contenedores.PanelZ();
+        bAdminUser = new swing.Controles.ButtonZ();
+        bCerrarSesion = new swing.Controles.ButtonZ();
         pToolBar = new javax.swing.JPanel();
         lTitle = new javax.swing.JLabel();
         bCerrar = new javax.swing.JButton();
         bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
-        tpMenu = new swing.Contenedores.TabbedPaneZ();
+        scrollPaneZ1 = new swing.Contenedores.ScrollPaneZ();
+        pMenu = new swing.Contenedores.PanelZ();
         dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
+        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pCompras.setName("Compras"); // NOI18N
         pCompras.setLayout(new java.awt.GridBagLayout());
 
         bCompras.setText("Administrar Compras");
+        bCompras.setName("Compras"); // NOI18N
         bCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bComprasActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pCompras.add(bCompras, gridBagConstraints);
@@ -114,11 +122,13 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pCompras.add(bProveedores, gridBagConstraints);
 
+        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pEgresos.setName("Egresos"); // NOI18N
         pEgresos.setLayout(new java.awt.GridBagLayout());
 
         bEgresos.setText("Administrar Egresos");
@@ -128,11 +138,13 @@ public class FrameZ extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pEgresos.add(bEgresos, gridBagConstraints);
 
+        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pInventario.setName("Inventario"); // NOI18N
         pInventario.setLayout(new java.awt.GridBagLayout());
 
         bInsumos.setText("Administrar Insumos");
@@ -142,7 +154,7 @@ public class FrameZ extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bInsumos, gridBagConstraints);
@@ -156,7 +168,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bProductos, gridBagConstraints);
@@ -170,11 +182,13 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bServicios, gridBagConstraints);
 
+        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pPersonal.setName("Personal"); // NOI18N
         pPersonal.setLayout(new java.awt.GridBagLayout());
 
         bAgregarEmpleado.setText("Agregar Empleado");
@@ -184,7 +198,7 @@ public class FrameZ extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pPersonal.add(bAgregarEmpleado, gridBagConstraints);
@@ -198,7 +212,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pPersonal.add(bModificarEmpleado, gridBagConstraints);
@@ -212,11 +226,13 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pPersonal.add(bPlanillas, gridBagConstraints);
 
+        pVentas.setBorder(javax.swing.BorderFactory.createTitledBorder("Ventas"));
+        pVentas.setName("Ventas"); // NOI18N
         pVentas.setLayout(new java.awt.GridBagLayout());
 
         bNuevaOrden.setText("Nueva Orden");
@@ -226,7 +242,7 @@ public class FrameZ extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bNuevaOrden, gridBagConstraints);
@@ -240,7 +256,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bNuevaPersonaContacto, gridBagConstraints);
@@ -254,7 +270,7 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bNuevoCliente, gridBagConstraints);
@@ -268,10 +284,41 @@ public class FrameZ extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bOrdenVista, gridBagConstraints);
+
+        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        pAjustes.setName("Compras"); // NOI18N
+        pAjustes.setLayout(new java.awt.GridBagLayout());
+
+        bAdminUser.setText("Administrar Usuarios");
+        bAdminUser.setName("Compras"); // NOI18N
+        bAdminUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAdminUserActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pAjustes.add(bAdminUser, gridBagConstraints);
+
+        bCerrarSesion.setText("Cerrar Sesión");
+        bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCerrarSesionActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pAjustes.add(bCerrarSesion, gridBagConstraints);
 
         setBackground(new java.awt.Color(97, 53, 1));
         setUndecorated(true);
@@ -283,7 +330,7 @@ public class FrameZ extends JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         pToolBar.setBackground(new java.awt.Color(178, 122, 57));
-        pToolBar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(141, 88, 24)));
+        pToolBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pToolBar.setForeground(new java.awt.Color(255, 255, 255));
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -382,17 +429,17 @@ public class FrameZ extends JFrame {
         getContentPane().add(pToolBar, gridBagConstraints);
 
         pContent.setBackground(new java.awt.Color(255, 213, 162));
-        pContent.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(141, 88, 24)));
+        pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pContent.setLayout(new java.awt.GridBagLayout());
 
-        tpMenu.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.Y_AXIS));
+        scrollPaneZ1.setViewportView(pMenu);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.2;
-        gridBagConstraints.weighty = 0.2;
-        pContent.add(tpMenu, gridBagConstraints);
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 1.0;
+        pContent.add(scrollPaneZ1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -546,11 +593,11 @@ public class FrameZ extends JFrame {
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
         //[0,153,255]
-        bCerrar.setBackground(new Color(215,163,100));
+        bCerrar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bCerrarMouseEntered
 
     private void bCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseExited
-        bCerrar.setBackground(new Color(178,122,57));
+        bCerrar.setBackground(new Color(178, 122, 57));
     }//GEN-LAST:event_bCerrarMouseExited
 
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
@@ -558,11 +605,11 @@ public class FrameZ extends JFrame {
     }//GEN-LAST:event_bCerrarActionPerformed
 
     private void bMaximizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseEntered
-        bMaximizar.setBackground(new Color(215,163,100));
+        bMaximizar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bMaximizarMouseEntered
 
     private void bMaximizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMaximizarMouseExited
-        bMaximizar.setBackground(new Color(178,122,57));
+        bMaximizar.setBackground(new Color(178, 122, 57));
     }//GEN-LAST:event_bMaximizarMouseExited
 
     private void bMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMaximizarActionPerformed
@@ -570,16 +617,24 @@ public class FrameZ extends JFrame {
     }//GEN-LAST:event_bMaximizarActionPerformed
 
     private void bMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseEntered
-        bMinimizar.setBackground(new Color(215,163,100));
+        bMinimizar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bMinimizarMouseEntered
 
     private void bMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseExited
-        bMinimizar.setBackground(new Color(178,122,57));
+        bMinimizar.setBackground(new Color(178, 122, 57));
     }//GEN-LAST:event_bMinimizarMouseExited
 
     private void bMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMinimizarActionPerformed
         this.setExtendedState(ICONIFIED);
     }//GEN-LAST:event_bMinimizarActionPerformed
+
+    private void bAdminUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdminUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAdminUserActionPerformed
+
+    private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     public static void main(String[] args) {
         /* Create and display the form */
@@ -605,16 +660,24 @@ public class FrameZ extends JFrame {
 
     void addPaneles() {
         if ("Maestro".equals(rol)) {
-            tpMenu.add(pVentas, "Ventas");
-            tpMenu.add(pCompras, "Compras");
-            tpMenu.add(pEgresos, "Egresos");
-            tpMenu.add(pInventario, "Inventario");
-            tpMenu.add(pPersonal, "Personal");
+            pMenu.add(pVentas, "Ventas");
+            setIconosMenu(pVentas);
+            pMenu.add(pCompras, "Compras");
+            setIconosMenu(pCompras);
+            pMenu.add(pEgresos, "Egresos");
+            setIconosMenu(pEgresos);
+            pMenu.add(pInventario, "Inventario");
+            setIconosMenu(pInventario);
+            pMenu.add(pPersonal, "Personal");
+            setIconosMenu(pPersonal);
+            pMenu.add(pAjustes,"Ajustes");
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ bAdminUser;
     private swing.Controles.ButtonZ bAgregarEmpleado;
     private javax.swing.JButton bCerrar;
+    private swing.Controles.ButtonZ bCerrarSesion;
     private swing.Controles.ButtonZ bCompras;
     private swing.Controles.ButtonZ bEgresos;
     private swing.Controles.ButtonZ bInsumos;
@@ -631,14 +694,16 @@ public class FrameZ extends JFrame {
     private swing.Controles.ButtonZ bServicios;
     private swing.Contenedores.DesktopPaneZ dpEscritorio;
     private javax.swing.JLabel lTitle;
+    private swing.Contenedores.PanelZ pAjustes;
     private swing.Contenedores.PanelZ pCompras;
     private javax.swing.JPanel pContent;
     private swing.Contenedores.PanelZ pEgresos;
     private swing.Contenedores.PanelZ pInventario;
+    private swing.Contenedores.PanelZ pMenu;
     private swing.Contenedores.PanelZ pPersonal;
     private javax.swing.JPanel pToolBar;
     private swing.Contenedores.PanelZ pVentas;
-    private swing.Contenedores.TabbedPaneZ tpMenu;
+    private swing.Contenedores.ScrollPaneZ scrollPaneZ1;
     // End of variables declaration//GEN-END:variables
 
     private void restaurarVentana() {
@@ -652,5 +717,23 @@ public class FrameZ extends JFrame {
     private void agregarFondoPantalla(Image image) {
         dpEscritorio.setImagenfondo(imagenFondo);
     }
-    
+
+    private void setIconosMenu(PanelZ panelZ) {
+        URL ruta;
+
+        switch (panelZ.getName()) {
+            case "Ventas":
+                break;
+            case "Egresos":
+                break;
+            case "Personal":
+                break;
+            case "Compras":
+                break;
+            case "Inventario":
+                break;
+
+        }
+    }
+
 }
