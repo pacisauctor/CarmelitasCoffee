@@ -25,18 +25,18 @@ import swing.Contenedores.PanelZ;
  *
  * @author darce
  */
-public class FrameZ extends JFrame {
+public class Escritorio extends JFrame {
 
     private String title = "";
     private String rol;
     private Image imagenFondo;
     int x = 0, y = 0;
 
-    public FrameZ() {
+    public Escritorio() {
         initComponents();
     }
 
-    public FrameZ(String title, String rol) {
+    public Escritorio(String title, String rol) {
         this.title = title;
         this.rol = rol;
         initComponents();

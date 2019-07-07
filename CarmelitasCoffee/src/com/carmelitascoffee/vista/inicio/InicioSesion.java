@@ -325,7 +325,7 @@ public class InicioSesion extends JFrame {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         int frameWidth = 1000;
         int frameHeight = 700;
-        FrameZ frameZ = new FrameZ("Carmelitas Coffeee", "Maestro");
+        Escritorio frameZ = new Escritorio("Carmelitas Coffeee", "Maestro");
         Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
                 (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
         Dimension initialDimension = new Dimension(frameWidth, frameHeight);
