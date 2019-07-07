@@ -507,9 +507,9 @@ public class Escritorio extends JFrame {
     private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
         AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
         agregarEmpleado.setVisible(true);
-        agregarEmpleado.setSize(dpEscritorio.getSize());
         agregarEmpleado.pack();
         dpEscritorio.add(agregarEmpleado);
+        agregarEmpleado.setSize(dpEscritorio.getSize());
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
@@ -525,16 +525,16 @@ public class Escritorio extends JFrame {
         NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto();
         nuevaPersonaContacto.setVisible(true);
         nuevaPersonaContacto.pack();
-        nuevaPersonaContacto.setSize(dpEscritorio.getSize());
         dpEscritorio.add(nuevaPersonaContacto);
+        nuevaPersonaContacto.setSize(dpEscritorio.getSize());
     }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
 
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
         NuevoCliente nuevoCliente = new NuevoCliente();
         nuevoCliente.setVisible(true);
         nuevoCliente.pack();
-        nuevoCliente.setSize(dpEscritorio.getSize());
         dpEscritorio.add(nuevoCliente);
+        nuevoCliente.setSize(dpEscritorio.getSize());
     }//GEN-LAST:event_bNuevoClienteActionPerformed
 
     private void bOrdenVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenVistaActionPerformed
