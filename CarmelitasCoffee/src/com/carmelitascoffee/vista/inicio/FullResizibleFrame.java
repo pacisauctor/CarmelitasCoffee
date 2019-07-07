@@ -1,4 +1,4 @@
-package com.carmelitascoffee.login;
+package com.carmelitascoffee.vista.inicio;
 
 import java.awt.Cursor;
 import java.awt.Dimension;

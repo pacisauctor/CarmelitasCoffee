@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.carmelitascoffee.login;
+package com.carmelitascoffee.vista.inicio;
 
 import java.awt.Color;
 import java.awt.Dimension;

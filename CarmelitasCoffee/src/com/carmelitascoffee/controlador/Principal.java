@@ -5,7 +5,7 @@
  */
 package com.carmelitascoffee.controlador;
 
-import com.carmelitascoffee.login.*;
+import com.carmelitascoffee.vista.inicio.InicioSesion;
 
 /**
  *
