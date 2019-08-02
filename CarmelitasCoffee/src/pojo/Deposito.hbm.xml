@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-02-2019 12:56:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Deposito" table="deposito" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idDeposito" type="java.lang.Integer">
+            <column name="id_deposito" />
+            <generator class="identity" />
+        </id>
+        <property name="numeroComprobante" type="string">
+            <column name="numero_comprobante" length="20" />
+        </property>
+        <property name="banco" type="string">
+            <column name="banco" length="30" />
+        </property>
+        <property name="monto" type="big_decimal">
+            <column name="monto" precision="11" scale="4" />
+        </property>
+        <property name="moneda" type="string">
+            <column name="moneda" length="30" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <set name="pagoMantenimientos" table="pago_mantenimiento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_deposito" not-null="true" />
+            </key>
+            <one-to-many class="pojo.PagoMantenimiento" />
+        </set>
+        <set name="pagoEmpleados" table="pago_empleado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_deposito" not-null="true" />
+            </key>
+            <one-to-many class="pojo.PagoEmpleado" />
+        </set>
+        <set name="pagoInsumos" table="pago_insumo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_deposito" not-null="true" />
+            </key>
+            <one-to-many class="pojo.PagoInsumo" />
+        </set>
+    </class>
+</hibernate-mapping>

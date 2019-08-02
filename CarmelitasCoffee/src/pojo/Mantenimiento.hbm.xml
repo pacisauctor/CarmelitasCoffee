@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-02-2019 12:56:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Mantenimiento" table="mantenimiento" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idMantenimiento" type="java.lang.Integer">
+            <column name="id_mantenimiento" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empleado" class="pojo.Empleado" fetch="select">
+            <column name="id_empleado" not-null="true" />
+        </many-to-one>
+        <many-to-one name="proveedor" class="pojo.Proveedor" fetch="select">
+            <column name="id_proveedor" not-null="true" />
+        </many-to-one>
+        <property name="numeroFactura" type="string">
+            <column name="numero_factura" length="5" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="70" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="50" />
+        </property>
+        <property name="costo" type="big_decimal">
+            <column name="costo" precision="11" scale="4" />
+        </property>
+        <set name="pagoMantenimientos" table="pago_mantenimiento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_mantenimiento" not-null="true" />
+            </key>
+            <one-to-many class="pojo.PagoMantenimiento" />
+        </set>
+    </class>
+</hibernate-mapping>

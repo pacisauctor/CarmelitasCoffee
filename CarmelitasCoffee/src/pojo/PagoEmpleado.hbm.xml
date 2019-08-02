@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-02-2019 12:56:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.PagoEmpleado" table="pago_empleado" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idPagoEmpleado" type="java.lang.Integer">
+            <column name="id_pago_empleado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="deposito" class="pojo.Deposito" fetch="select">
+            <column name="id_deposito" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleadoPlanilla" class="pojo.EmpleadoPlanilla" fetch="select">
+            <column name="id_empleado_planilla" not-null="true" />
+        </many-to-one>
+        <property name="modoPago" type="string">
+            <column name="modo_pago" length="20" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

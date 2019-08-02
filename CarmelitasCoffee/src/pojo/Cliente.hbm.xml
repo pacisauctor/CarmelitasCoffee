@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-02-2019 12:56:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Cliente" table="cliente" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="personaContacto" class="pojo.PersonaContacto" fetch="select">
+            <column name="id_persona_contacto" not-null="true" />
+        </many-to-one>
+        <property name="numeroRuc" type="string">
+            <column name="numero_RUC" length="20" not-null="true" />
+        </property>
+        <property name="nombres" type="string">
+            <column name="nombres" length="45" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="45" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="60" />
+        </property>
+        <set name="ordens" table="orden" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Orden" />
+        </set>
+    </class>
+</hibernate-mapping>

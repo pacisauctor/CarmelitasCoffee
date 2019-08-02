@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-02-2019 12:56:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojo.Orden" table="orden" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idOrden" type="java.lang.Integer">
+            <column name="id_orden" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="pojo.Cliente" fetch="select">
+            <column name="id_cliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleado" class="pojo.Empleado" fetch="select">
+            <column name="id_empleado" not-null="true" />
+        </many-to-one>
+        <property name="numeroFactura" type="string">
+            <column name="numero_factura" length="5" />
+        </property>
+        <property name="fechaOrden" type="date">
+            <column name="fecha_orden" length="10" />
+        </property>
+        <property name="fechaEntrega" type="date">
+            <column name="fecha_entrega" length="10" />
+        </property>
+        <property name="fechaRequerida" type="date">
+            <column name="fecha_requerida" length="10" />
+        </property>
+        <property name="tipoOrden" type="string">
+            <column name="tipo_orden" length="30" />
+        </property>
+        <set name="detalleOrdenProductos" table="detalle_orden_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_orden" not-null="true" />
+            </key>
+            <one-to-many class="pojo.DetalleOrdenProducto" />
+        </set>
+        <set name="detalleOrdenServicios" table="detalle_orden_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_orden" not-null="true" />
+            </key>
+            <one-to-many class="pojo.DetalleOrdenServicio" />
+        </set>
+    </class>
+</hibernate-mapping>
