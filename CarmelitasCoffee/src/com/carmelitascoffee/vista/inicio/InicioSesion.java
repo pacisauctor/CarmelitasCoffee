@@ -68,7 +68,7 @@ public class InicioSesion extends JFrame {
         passwordFieldZ1 = new swing.Controles.PasswordFieldZ();
         jScrollPane1 = new javax.swing.JScrollPane();
         textPaneZ1 = new swing.Controles.TextPaneZ();
-        buttonZ1 = new swing.Controles.ButtonZ();
+        bIniciarSesion = new swing.Controles.ButtonZ();
 
         setBackground(new java.awt.Color(97, 53, 1));
         setUndecorated(true);
@@ -230,10 +230,10 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(jScrollPane1, gridBagConstraints);
 
-        buttonZ1.setText("Iniciar");
-        buttonZ1.addActionListener(new java.awt.event.ActionListener() {
+        bIniciarSesion.setText("Iniciar");
+        bIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonZ1ActionPerformed(evt);
+                bIniciarSesionActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -243,7 +243,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        pContent.add(buttonZ1, gridBagConstraints);
+        pContent.add(bIniciarSesion, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -321,10 +321,11 @@ public class InicioSesion extends JFrame {
 
     }//GEN-LAST:event_textFieldZ1ActionPerformed
 
-    private void buttonZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonZ1ActionPerformed
+    private void bIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIniciarSesionActionPerformed
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         int frameWidth = 1000;
         int frameHeight = 700;
+                
         Escritorio frameZ = new Escritorio("Carmelitas Coffeee", "Maestro");
         Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
                 (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
@@ -334,13 +335,13 @@ public class InicioSesion extends JFrame {
         frameZ.addPaneles();
         this.setVisible(false);
         frameZ.setVisible(true);
-    }//GEN-LAST:event_buttonZ1ActionPerformed
+    }//GEN-LAST:event_bIniciarSesionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
+    private swing.Controles.ButtonZ bIniciarSesion;
     private javax.swing.JButton bMinimizar;
-    private swing.Controles.ButtonZ buttonZ1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lTitle;
     private swing.Controles.LabelZ labelZ1;

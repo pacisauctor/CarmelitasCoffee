@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-05-2019 01:35:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.carmelitascoffee.pojo.Insumo" table="insumo" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idInsumo" type="int">
+            <column name="id_insumo" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+        <property name="cantidadInventario" type="java.lang.Integer">
+            <column name="cantidad_inventario" />
+        </property>
+        <set name="detalleFacturaInsumos" table="detalle_factura_insumo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_insumo" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.DetalleFacturaInsumo" />
+        </set>
+    </class>
+</hibernate-mapping>
