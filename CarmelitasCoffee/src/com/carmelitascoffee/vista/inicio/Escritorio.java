@@ -5,12 +5,8 @@
  */
 package com.carmelitascoffee.vista.inicio;
 
-import com.carmelitascoffee.compras.*;
 import com.carmelitascoffee.controlador.inicio.CEscritorio;
 import com.carmelitascoffee.egresos.*;
-import com.carmelitascoffee.inventario.*;
-import com.carmelitascoffee.personal.*;
-import com.carmelitascoffee.ventas.*;
 import com.carmelitascoffee.vista.compras.Compras;
 import com.carmelitascoffee.vista.compras.Proveedores;
 import com.carmelitascoffee.vista.inventario.Insumos;
@@ -110,7 +106,6 @@ public class Escritorio extends JFrame {
         bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
-        scrollPaneZ1 = new swing.Contenedores.ScrollPaneZ();
         pMenu = new swing.Contenedores.PanelZ();
         dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
@@ -120,20 +115,30 @@ public class Escritorio extends JFrame {
 
         bCompras.setText("");
         bCompras.setToolTipText("Administrar Compras");
+        bCompras.setMaximumSize(new java.awt.Dimension(50, 50));
+        bCompras.setMinimumSize(new java.awt.Dimension(50, 50));
         bCompras.setName("Compras"); // NOI18N
+        bCompras.setPreferredSize(new java.awt.Dimension(50, 50));
         bCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bComprasActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
         pCompras.add(bCompras, gridBagConstraints);
 
         bProveedores.setText("");
         bProveedores.setToolTipText("Administrar Proveedores");
+        bProveedores.setMaximumSize(new java.awt.Dimension(50, 50));
+        bProveedores.setMinimumSize(new java.awt.Dimension(50, 50));
+        bProveedores.setPreferredSize(new java.awt.Dimension(50, 50));
         bProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bProveedoresActionPerformed(evt);
@@ -143,8 +148,10 @@ public class Escritorio extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
         pCompras.add(bProveedores, gridBagConstraints);
 
         pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
@@ -465,13 +472,11 @@ public class Escritorio extends JFrame {
         pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pContent.setLayout(new java.awt.GridBagLayout());
 
-        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.Y_AXIS));
-        scrollPaneZ1.setViewportView(pMenu);
-
+        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.PAGE_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.weighty = 1.0;
-        pContent.add(scrollPaneZ1, gridBagConstraints);
+        pContent.add(pMenu, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -699,7 +704,6 @@ public class Escritorio extends JFrame {
     private swing.Contenedores.PanelZ pPersonal;
     private javax.swing.JPanel pToolBar;
     private swing.Contenedores.PanelZ pVentas;
-    private swing.Contenedores.ScrollPaneZ scrollPaneZ1;
     // End of variables declaration//GEN-END:variables
 
     private void restaurarVentana() {
@@ -721,61 +725,57 @@ public class Escritorio extends JFrame {
         switch (panelZ.getName()) {
             case "Personal":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//agregarEmpleado.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bAgregarEmpleado.setIcon(icono);
+                bAgregarEmpleado.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//administrarEmpleado.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bModificarEmpleado.setIcon(icono);
+                bModificarEmpleado.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//planilla.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bPlanillas.setIcon(icono);
-
+                bPlanillas.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Egresos":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//egresos//egresos3.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bEgresos.setIcon(icono);
+                
+                bEgresos.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ventas":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoCliente.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bNuevoCliente.setIcon(icono);
+                
+                bNuevoCliente.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoContacto.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bNuevaPersonaContacto.setIcon(icono);
+                
+                bNuevaPersonaContacto.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenNueva.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bNuevaOrden.setIcon(icono);
+                
+                bNuevaOrden.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenVista.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bOrdenVista.setIcon(icono);
+                
+                bOrdenVista.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Compras":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//compras2.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bCompras.setIcon(icono);
+                
+                bCompras.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//proveedor.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bProveedores.setIcon(icono);
+                
+                bProveedores.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Inventario":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//insumo.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bInsumos.setIcon(icono);
+                
+                bInsumos.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//producto2.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bProductos.setIcon(icono);
+                
+                bProductos.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//servicio4.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bServicios.setIcon(icono);
+                
+                bServicios.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ajustes":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//administrarUsuario.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bAdminUser.setIcon(icono);
+                
+                bAdminUser.setFondo(new ImageIcon(ruta).getImage());
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//cerrarSesion2.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
-                bCerrarSesion.setIcon(icono);
+                
+                bCerrarSesion.setFondo(new ImageIcon(ruta).getImage());
                 break;
 
         }
