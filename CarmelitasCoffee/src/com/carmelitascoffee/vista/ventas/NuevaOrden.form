@@ -124,7 +124,6 @@
           <Border info="null"/>
         </Property>
         <Property name="text" type="java.lang.String" value=""/>
-        <Property name="opaque" type="boolean" value="false"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[25, 25]"/>
         </Property>

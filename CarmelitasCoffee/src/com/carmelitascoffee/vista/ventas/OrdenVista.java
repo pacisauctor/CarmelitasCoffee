@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.carmelitascoffee.ventas;
+package com.carmelitascoffee.vista.ventas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,30 +52,30 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
         });
 
-        PANEL_ordenes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_ordenes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jScrollPane1.setViewportView(TABLE_ordenes);
 
         PANEL_ordenes.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        PANEL_detallesdeorden.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de orden", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_detallesdeorden.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de orden", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jScrollPane2.setViewportView(tableZ1);
 
@@ -101,7 +101,7 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
         PANEL_imagen.setBorder(null);
 
         LABEL_imagen.setBackground(new java.awt.Color(0, 0, 51));
-        LABEL_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ordenes.png"))); // NOI18N
+        LABEL_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/carmelitascoffee/img/ordenes.png")));
         LABEL_imagen.setText("");
         PANEL_imagen.add(LABEL_imagen, java.awt.BorderLayout.CENTER);
 

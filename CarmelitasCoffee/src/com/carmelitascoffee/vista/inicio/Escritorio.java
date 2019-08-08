@@ -11,12 +11,22 @@ import com.carmelitascoffee.egresos.*;
 import com.carmelitascoffee.inventario.*;
 import com.carmelitascoffee.personal.*;
 import com.carmelitascoffee.ventas.*;
+import com.carmelitascoffee.vista.compras.Compras;
+import com.carmelitascoffee.vista.compras.Proveedores;
+import com.carmelitascoffee.vista.inventario.Insumos;
+import com.carmelitascoffee.vista.inventario.Productos;
+import com.carmelitascoffee.vista.inventario.Servicios;
+import com.carmelitascoffee.vista.personal.AgregarEmpleado;
+import com.carmelitascoffee.vista.personal.ModificarEmpleado;
+import com.carmelitascoffee.vista.personal.Planillas;
+import com.carmelitascoffee.vista.ventas.NuevaOrden;
+import com.carmelitascoffee.vista.ventas.NuevaPersonaContacto;
+import com.carmelitascoffee.vista.ventas.NuevoCliente;
+import com.carmelitascoffee.vista.ventas.OrdenVista;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -460,7 +470,6 @@ public class Escritorio extends JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 1.0;
         pContent.add(scrollPaneZ1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -707,65 +716,65 @@ public class Escritorio extends JFrame {
 
     private void setIconosMenu(PanelZ panelZ) {
         URL ruta;
-        int x = 50, y = 50;
+        int largo = 50, ancho = 50;
         ImageIcon icono;
         switch (panelZ.getName()) {
             case "Personal":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//agregarEmpleado.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bAgregarEmpleado.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//administrarEmpleado.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bModificarEmpleado.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//planilla.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bPlanillas.setIcon(icono);
 
                 break;
             case "Egresos":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//egresos//egresos3.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bEgresos.setIcon(icono);
                 break;
             case "Ventas":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoCliente.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bNuevoCliente.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoContacto.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bNuevaPersonaContacto.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenNueva.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bNuevaOrden.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenVista.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bOrdenVista.setIcon(icono);
                 break;
             case "Compras":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//compras2.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bCompras.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//proveedor.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bProveedores.setIcon(icono);
                 break;
             case "Inventario":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//insumo.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bInsumos.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//producto2.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bProductos.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//servicio4.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bServicios.setIcon(icono);
                 break;
             case "Ajustes":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//administrarUsuario.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bAdminUser.setIcon(icono);
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//cerrarSesion2.png");
-                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(largo, ancho, Image.SCALE_DEFAULT));
                 bCerrarSesion.setIcon(icono);
                 break;
 

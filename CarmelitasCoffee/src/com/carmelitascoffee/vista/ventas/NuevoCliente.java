@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.carmelitascoffee.ventas;
+package com.carmelitascoffee.vista.ventas;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
@@ -295,10 +294,10 @@ public class NuevoCliente extends JInternalFrame {
     // End of variables declaration//GEN-END:variables
  private void setImagenes() {
         ImageIcon iconoActualizar, imageIntro;
-        URL ruta = getClass().getClassLoader().getResource("img//update.png");
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//update.png");
         iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bActualizar.setIcon(iconoActualizar);
-        ruta = getClass().getClassLoader().getResource("img//nuevoCliente.jpg");
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//nuevoCliente.jpg");
         pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
                 
     }

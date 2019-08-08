@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.carmelitascoffee.ventas;
+package com.carmelitascoffee.vista.ventas;
 
 import java.awt.Image;
 import java.net.URL;
@@ -285,7 +285,7 @@ public class NuevaOrden extends JInternalFrame {
 
     private void setImagenes() {
         ImageIcon iconoActualizar;
-        URL ruta = getClass().getClassLoader().getResource("img//update.png");
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//update.png");
         iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bActualizar.setIcon(iconoActualizar);
         
