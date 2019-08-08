@@ -8,7 +8,6 @@ package com.carmelitascoffee.vista.personal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JInternalFrame;
-import javax.swing.JSpinner;
 
 /**
  *
@@ -51,30 +50,30 @@ public class Planillas extends JInternalFrame implements ActionListener{
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
             }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
         });
 
-        PANEL_planillas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planillas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        PANEL_planillas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planillas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
 
         jScrollPane1.setViewportView(TABLE_ordenes);
 
         PANEL_planillas.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        PANEL_empleadoplanilla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados de la planilla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
+        PANEL_empleadoplanilla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados de la planilla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
 
         jScrollPane2.setViewportView(tableZ1);
 
@@ -92,7 +91,7 @@ public class Planillas extends JInternalFrame implements ActionListener{
             .addGroup(PANEL_mainLayout.createSequentialGroup()
                 .addComponent(PANEL_planillas, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PANEL_empleadoplanilla, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
+                .addComponent(PANEL_empleadoplanilla, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
         );
 
         getContentPane().add(PANEL_main, java.awt.BorderLayout.CENTER);
@@ -100,7 +99,7 @@ public class Planillas extends JInternalFrame implements ActionListener{
         PANEL_imagen.setBorder(null);
 
         LABEL_imagen.setBackground(new java.awt.Color(0, 0, 51));
-        LABEL_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/planillas.png"))); // NOI18N
+        LABEL_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/carmelitascoffee/img/planillas.png"))); // NOI18N
         LABEL_imagen.setText("");
         PANEL_imagen.add(LABEL_imagen, java.awt.BorderLayout.CENTER);
 

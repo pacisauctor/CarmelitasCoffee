@@ -249,10 +249,10 @@ public class Compras extends JInternalFrame {
     // End of variables declaration//GEN-END:variables
  private void setImagenes() {
         ImageIcon iconoActualizar;
-        URL ruta = getClass().getClassLoader().getResource("img//update.png");
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//update.png");
         iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bActualizar.setIcon(iconoActualizar);
-        ruta = getClass().getClassLoader().getResource("img//compras.jpg");
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//compras.jpg");
         pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
     }
 }

@@ -229,7 +229,7 @@ public class Proveedores extends JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setImagenes() {
-        URL ruta = getClass().getClassLoader().getResource("img//proveedores.jpg");
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//proveedores.jpg");
         pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
     }
 }
