@@ -151,7 +151,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="swing.Controles.TextFieldZ" name="textFieldZ1">
+        <Component class="swing.Controles.TextFieldZ" name="tfUsuario">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -172,7 +172,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldZ1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfUsuarioActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -180,7 +180,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="swing.Controles.PasswordFieldZ" name="passwordFieldZ1">
+        <Component class="swing.Controles.PasswordFieldZ" name="pfClave">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">

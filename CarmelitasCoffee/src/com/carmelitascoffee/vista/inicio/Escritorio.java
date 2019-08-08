@@ -6,6 +6,7 @@
 package com.carmelitascoffee.vista.inicio;
 
 import com.carmelitascoffee.compras.*;
+import com.carmelitascoffee.controlador.inicio.CEscritorio;
 import com.carmelitascoffee.egresos.*;
 import com.carmelitascoffee.inventario.*;
 import com.carmelitascoffee.personal.*;
@@ -19,6 +20,7 @@ import java.awt.Toolkit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import org.hibernate.Session;
 import swing.Contenedores.PanelZ;
 
 /**
@@ -31,14 +33,20 @@ public class Escritorio extends JFrame {
     private String rol;
     private Image imagenFondo;
     int x = 0, y = 0;
+    private int idEmpleado;
+    private Session s;
+    private CEscritorio controlador;
 
     public Escritorio() {
         initComponents();
     }
 
-    public Escritorio(String title, String rol) {
+    public Escritorio(String title, String rol, int idEmpleado, Session s) {
         this.title = title;
         this.rol = rol;
+        this.idEmpleado = idEmpleado;
+        this.s = s;
+        controlador = new CEscritorio(s);
         initComponents();
     }
 
@@ -96,11 +104,12 @@ public class Escritorio extends JFrame {
         pMenu = new swing.Contenedores.PanelZ();
         dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
-        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pCompras.setName("Compras"); // NOI18N
         pCompras.setLayout(new java.awt.GridBagLayout());
 
-        bCompras.setText("Administrar Compras");
+        bCompras.setText("");
+        bCompras.setToolTipText("Administrar Compras");
         bCompras.setName("Compras"); // NOI18N
         bCompras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +122,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pCompras.add(bCompras, gridBagConstraints);
 
-        bProveedores.setText("Administrar Proveedores");
+        bProveedores.setText("");
+        bProveedores.setToolTipText("Administrar Proveedores");
         bProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bProveedoresActionPerformed(evt);
@@ -127,11 +137,12 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pCompras.add(bProveedores, gridBagConstraints);
 
-        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pEgresos.setName("Egresos"); // NOI18N
         pEgresos.setLayout(new java.awt.GridBagLayout());
 
-        bEgresos.setText("Administrar Egresos");
+        bEgresos.setText("");
+        bEgresos.setToolTipText("Administrar Egresos");
         bEgresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bEgresosActionPerformed(evt);
@@ -143,11 +154,12 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pEgresos.add(bEgresos, gridBagConstraints);
 
-        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pInventario.setName("Inventario"); // NOI18N
         pInventario.setLayout(new java.awt.GridBagLayout());
 
-        bInsumos.setText("Administrar Insumos");
+        bInsumos.setText("");
+        bInsumos.setToolTipText("Administrar Insumos");
         bInsumos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bInsumosActionPerformed(evt);
@@ -159,7 +171,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bInsumos, gridBagConstraints);
 
-        bProductos.setText("Administrar Productos");
+        bProductos.setText("");
+        bProductos.setToolTipText("Administrar Productos");
         bProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bProductosActionPerformed(evt);
@@ -173,7 +186,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bProductos, gridBagConstraints);
 
-        bServicios.setText("Administrar Servicios");
+        bServicios.setText("");
+        bServicios.setToolTipText("Administrar Servicios");
         bServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bServiciosActionPerformed(evt);
@@ -187,11 +201,12 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pInventario.add(bServicios, gridBagConstraints);
 
-        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pPersonal.setName("Personal"); // NOI18N
         pPersonal.setLayout(new java.awt.GridBagLayout());
 
-        bAgregarEmpleado.setText("Agregar Empleado");
+        bAgregarEmpleado.setText("");
+        bAgregarEmpleado.setToolTipText("Agregar Empleado");
         bAgregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAgregarEmpleadoActionPerformed(evt);
@@ -203,7 +218,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pPersonal.add(bAgregarEmpleado, gridBagConstraints);
 
-        bModificarEmpleado.setText("Modificar Empleado");
+        bModificarEmpleado.setText("");
+        bModificarEmpleado.setToolTipText("Modificar Empleado");
         bModificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bModificarEmpleadoActionPerformed(evt);
@@ -217,7 +233,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pPersonal.add(bModificarEmpleado, gridBagConstraints);
 
-        bPlanillas.setText("Administrar Planillas");
+        bPlanillas.setText("");
+        bPlanillas.setToolTipText("Administrar Planillas");
         bPlanillas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPlanillasActionPerformed(evt);
@@ -235,7 +252,8 @@ public class Escritorio extends JFrame {
         pVentas.setName("Ventas"); // NOI18N
         pVentas.setLayout(new java.awt.GridBagLayout());
 
-        bNuevaOrden.setText("Nueva Orden");
+        bNuevaOrden.setText("");
+        bNuevaOrden.setToolTipText("Nueva Orden");
         bNuevaOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNuevaOrdenActionPerformed(evt);
@@ -247,7 +265,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bNuevaOrden, gridBagConstraints);
 
-        bNuevaPersonaContacto.setText("Nueva Persona Contacto");
+        bNuevaPersonaContacto.setText("");
+        bNuevaPersonaContacto.setToolTipText("Nueva Persona Contacto");
         bNuevaPersonaContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNuevaPersonaContactoActionPerformed(evt);
@@ -261,7 +280,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bNuevaPersonaContacto, gridBagConstraints);
 
-        bNuevoCliente.setText("Nuevo Cliente");
+        bNuevoCliente.setText("");
+        bNuevoCliente.setToolTipText("Nuevo Cliente");
         bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNuevoClienteActionPerformed(evt);
@@ -275,7 +295,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bNuevoCliente, gridBagConstraints);
 
-        bOrdenVista.setText("Orden Vista");
+        bOrdenVista.setText("");
+        bOrdenVista.setToolTipText("Orden Vista");
         bOrdenVista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bOrdenVistaActionPerformed(evt);
@@ -289,11 +310,12 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pVentas.add(bOrdenVista, gridBagConstraints);
 
-        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
-        pAjustes.setName("Compras"); // NOI18N
+        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pAjustes.setName("Ajustes"); // NOI18N
         pAjustes.setLayout(new java.awt.GridBagLayout());
 
-        bAdminUser.setText("Administrar Usuarios");
+        bAdminUser.setText("");
+        bAdminUser.setToolTipText("Administrar Usuarios");
         bAdminUser.setName("Compras"); // NOI18N
         bAdminUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -306,7 +328,8 @@ public class Escritorio extends JFrame {
         gridBagConstraints.weighty = 0.5;
         pAjustes.add(bAdminUser, gridBagConstraints);
 
-        bCerrarSesion.setText("Cerrar Sesión");
+        bCerrarSesion.setText("");
+        bCerrarSesion.setToolTipText("Cerrar Sesión");
         bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCerrarSesionActionPerformed(evt);
@@ -437,7 +460,7 @@ public class Escritorio extends JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 1.0;
         pContent.add(scrollPaneZ1, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -469,26 +492,9 @@ public class Escritorio extends JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         getContentPane().setBackground(new Color(0, 0, 204));
         //creando iconos 
-        ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
-        URL ruta = getClass().getClassLoader().getResource("img//close.png");
-        iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
-        bCerrar.setIcon(iconoCerrar);
-        ruta = getClass().getClassLoader().getResource("img//minimize.png");
-        iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
-        bMinimizar.setIcon(iconoMinimizar);
-        ruta = getClass().getClassLoader().getResource("img//maximizar.png");
-        iconoMaximizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
-        bMaximizar.setIcon(iconoMaximizar);
-        //escribiendo título
-        if ("".equals(title)) {
-            title = "Nueva Ventana";
-        }
-        lTitle.setText(title);
-        ruta = getClass().getClassLoader().getResource("img//fondo.jpg");
-        imagenFondo = new ImageIcon(ruta).getImage();
-        agregarFondoPantalla(imagenFondo);
-        ruta = getClass().getClassLoader().getResource("img//coffee.png");
-        lTitle.setIcon(new ImageIcon(ruta));
+        setIconosVentana();
+        setIconosBotones();
+
     }//GEN-LAST:event_formWindowOpened
 
     private void pToolBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pToolBarMouseClicked
@@ -638,9 +644,8 @@ public class Escritorio extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
-
     public void addPaneles() {
-        if ("Maestro".equals(rol)) {
+        if ("maestro".equals(rol)) {
             pMenu.add(pVentas, "Ventas");
             setIconosMenu(pVentas);
             pMenu.add(pCompras, "Compras");
@@ -651,7 +656,8 @@ public class Escritorio extends JFrame {
             setIconosMenu(pInventario);
             pMenu.add(pPersonal, "Personal");
             setIconosMenu(pPersonal);
-            pMenu.add(pAjustes,"Ajustes");
+            pMenu.add(pAjustes, "Ajustes");
+            setIconosMenu(pAjustes);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -701,20 +707,96 @@ public class Escritorio extends JFrame {
 
     private void setIconosMenu(PanelZ panelZ) {
         URL ruta;
-
+        int x = 50, y = 50;
+        ImageIcon icono;
         switch (panelZ.getName()) {
-            case "Ventas":
+            case "Personal":
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//agregarEmpleado.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bAgregarEmpleado.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//administrarEmpleado.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bModificarEmpleado.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//planilla.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bPlanillas.setIcon(icono);
+
                 break;
             case "Egresos":
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//egresos//egresos3.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bEgresos.setIcon(icono);
                 break;
-            case "Personal":
+            case "Ventas":
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoCliente.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bNuevoCliente.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoContacto.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bNuevaPersonaContacto.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenNueva.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bNuevaOrden.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenVista.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bOrdenVista.setIcon(icono);
                 break;
             case "Compras":
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//compras2.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bCompras.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//proveedor.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bProveedores.setIcon(icono);
                 break;
             case "Inventario":
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//insumo.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bInsumos.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//producto2.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bProductos.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//servicio4.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bServicios.setIcon(icono);
+                break;
+            case "Ajustes":
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//administrarUsuario.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bAdminUser.setIcon(icono);
+                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//cerrarSesion2.png");
+                icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(x, y, Image.SCALE_DEFAULT));
+                bCerrarSesion.setIcon(icono);
                 break;
 
         }
+    }
+
+    private void setIconosBotones() {
+
+    }
+
+    private void setIconosVentana() {
+        ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
+        iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        bCerrar.setIcon(iconoCerrar);
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//minimize.png");
+        iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        bMinimizar.setIcon(iconoMinimizar);
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//maximizar.png");
+        iconoMaximizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        bMaximizar.setIcon(iconoMaximizar);
+        //escribiendo título
+        if ("".equals(title)) {
+            title = "Nueva Ventana";
+        }
+        lTitle.setText(title);
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//fondo.jpg");
+        imagenFondo = new ImageIcon(ruta).getImage();
+        agregarFondoPantalla(imagenFondo);
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//coffee.png");
+        lTitle.setIcon(new ImageIcon(ruta));
     }
 
 }

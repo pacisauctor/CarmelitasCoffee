@@ -5,10 +5,18 @@
  */
 package com.carmelitascoffee.controlador.inicio;
 
+import org.hibernate.Session;
+
 /**
  *
  * @author darce
  */
 public class CEscritorio {
-    
+
+    Session s;
+
+    public CEscritorio(Session s) {
+        this.s = s;
+    }
+
 }

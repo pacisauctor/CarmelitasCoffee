@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.hibernate.Session;
 
 /**
  *
@@ -19,13 +20,11 @@ public class Principal {
 
     public static void main(String[] args) {
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            
-            InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión");
-            inicioSesion.setSize(280, 350);
-            inicioSesion.setVisible(true);
-            inicioSesion.setLocationRelativeTo(null);
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        InicioSesion inicioSesion = new InicioSesion("Inicio de Sesión", s);
+        inicioSesion.setSize(280, 350);
+        inicioSesion.setVisible(true);
+        inicioSesion.setLocationRelativeTo(null);
 
-        });
     }
 }

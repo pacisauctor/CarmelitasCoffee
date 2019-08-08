@@ -5,6 +5,7 @@
  */
 package com.carmelitascoffee.vista.inicio;
 
+import com.carmelitascoffee.controlador.inicio.CInicioSesion;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -15,6 +16,8 @@ import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
 
 /**
  *
@@ -24,14 +27,18 @@ public class InicioSesion extends JFrame {
 
     private String title = "";
     int x = 0, y = 0;
-
+    private CInicioSesion controlador;
+    private Session s;
     public InicioSesion() {
         initComponents();
+        controlador = new CInicioSesion(s);
     }
 
-    public InicioSesion(String title) {
+    public InicioSesion(String title, Session s) {
         this.title = title;
+        this.s = s;
         initComponents();
+        controlador = new CInicioSesion(s);
     }
 
     @Override
@@ -64,8 +71,8 @@ public class InicioSesion extends JFrame {
         pContent = new javax.swing.JPanel();
         labelZ1 = new swing.Controles.LabelZ();
         labelZ2 = new swing.Controles.LabelZ();
-        textFieldZ1 = new swing.Controles.TextFieldZ();
-        passwordFieldZ1 = new swing.Controles.PasswordFieldZ();
+        tfUsuario = new swing.Controles.TextFieldZ();
+        pfClave = new swing.Controles.PasswordFieldZ();
         jScrollPane1 = new javax.swing.JScrollPane();
         textPaneZ1 = new swing.Controles.TextPaneZ();
         bIniciarSesion = new swing.Controles.ButtonZ();
@@ -182,14 +189,14 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(labelZ2, gridBagConstraints);
 
-        textFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
-        textFieldZ1.setForeground(new java.awt.Color(28, 40, 51));
-        textFieldZ1.setText("");
-        textFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        textFieldZ1.addActionListener(new java.awt.event.ActionListener() {
+        tfUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
+        tfUsuario.setForeground(new java.awt.Color(28, 40, 51));
+        tfUsuario.setText("");
+        tfUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        tfUsuario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldZ1ActionPerformed(evt);
+                tfUsuarioActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -199,13 +206,13 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        pContent.add(textFieldZ1, gridBagConstraints);
+        pContent.add(tfUsuario, gridBagConstraints);
 
-        passwordFieldZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
-        passwordFieldZ1.setForeground(new java.awt.Color(28, 40, 51));
-        passwordFieldZ1.setText("");
-        passwordFieldZ1.setCaretColor(new java.awt.Color(255, 255, 255));
-        passwordFieldZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        pfClave.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
+        pfClave.setForeground(new java.awt.Color(28, 40, 51));
+        pfClave.setText("");
+        pfClave.setCaretColor(new java.awt.Color(255, 255, 255));
+        pfClave.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -213,7 +220,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        pContent.add(passwordFieldZ1, gridBagConstraints);
+        pContent.add(pfClave, gridBagConstraints);
 
         textPaneZ1.setEditable(false);
         textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 0, true));
@@ -300,10 +307,10 @@ public class InicioSesion extends JFrame {
         getContentPane().setBackground(new Color(0, 0, 204));
         //creando iconos 
         ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
-        URL ruta = getClass().getClassLoader().getResource("img//close.png");
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
         iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bCerrar.setIcon(iconoCerrar);
-        ruta = getClass().getClassLoader().getResource("img//minimize.png");
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//minimize.png");
         iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMinimizar.setIcon(iconoMinimizar);
         //escribiendo título
@@ -311,30 +318,23 @@ public class InicioSesion extends JFrame {
             title = "Nueva Ventana";
         }
         lTitle.setText(title);
-        ruta = getClass().getClassLoader().getResource("img//user.jpg");
+        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//user.jpg");
         this.setIconImage(new ImageIcon(ruta).getImage());
         lTitle.setIcon(new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
 
     }//GEN-LAST:event_formWindowOpened
 
-    private void textFieldZ1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldZ1ActionPerformed
+    private void tfUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioActionPerformed
 
-    }//GEN-LAST:event_textFieldZ1ActionPerformed
+    }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void bIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIniciarSesionActionPerformed
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        int frameWidth = 1000;
-        int frameHeight = 700;
-                
-        Escritorio frameZ = new Escritorio("Carmelitas Coffeee", "Maestro");
-        Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
-                (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
-        Dimension initialDimension = new Dimension(frameWidth, frameHeight);
-        FullResizibleFrame fullResizibleFrame;
-        fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
-        frameZ.addPaneles();
-        this.setVisible(false);
-        frameZ.setVisible(true);
+        if(controlador.validarUsuario(tfUsuario.getText(), new String(pfClave.getPassword())))
+        {
+            iniciarAplicacion(controlador.getRol(tfUsuario.getText()), controlador.getIdUsuario(tfUsuario.getText()));
+        }else{
+            JOptionPane.showMessageDialog(this, "Contraseña o Usuario incorrecto");
+        }
     }//GEN-LAST:event_bIniciarSesionActionPerformed
 
 
@@ -348,9 +348,9 @@ public class InicioSesion extends JFrame {
     private swing.Controles.LabelZ labelZ2;
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pToolBar;
-    private swing.Controles.PasswordFieldZ passwordFieldZ1;
-    private swing.Controles.TextFieldZ textFieldZ1;
+    private swing.Controles.PasswordFieldZ pfClave;
     private swing.Controles.TextPaneZ textPaneZ1;
+    private swing.Controles.TextFieldZ tfUsuario;
     // End of variables declaration//GEN-END:variables
 
     private void restaurarVentana() {
@@ -359,5 +359,21 @@ public class InicioSesion extends JFrame {
         } else {
             this.setExtendedState(MAXIMIZED_BOTH);
         }
+    }
+
+    private void iniciarAplicacion(String rol, int idEmpleado) {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        int frameWidth = 1000;
+        int frameHeight = 700;
+
+        Escritorio frameZ = new Escritorio("Carmelitas Coffeee", rol, idEmpleado, s);
+        Point initialLocation = new Point((int) toolkit.getScreenSize().getWidth() / 2 - frameWidth / 2,
+                (int) toolkit.getScreenSize().getHeight() / 2 - frameHeight / 2);
+        Dimension initialDimension = new Dimension(frameWidth, frameHeight);
+        FullResizibleFrame fullResizibleFrame;
+        fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
+        frameZ.addPaneles();
+        this.setVisible(false);
+        frameZ.setVisible(true);
     }
 }
