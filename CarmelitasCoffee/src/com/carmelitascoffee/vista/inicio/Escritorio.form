@@ -480,7 +480,7 @@
           </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout">
-            <Property name="axis" type="int" value="3"/>
+            <Property name="axis" type="int" value="1"/>
           </Layout>
         </Container>
         <Container class="swing.Contenedores.DesktopPaneZ" name="dpEscritorio">

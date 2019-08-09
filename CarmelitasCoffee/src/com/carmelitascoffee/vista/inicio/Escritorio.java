@@ -472,7 +472,7 @@ public class Escritorio extends JFrame {
         pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pContent.setLayout(new java.awt.GridBagLayout());
 
-        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.PAGE_AXIS));
+        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.Y_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.weighty = 1.0;
@@ -720,61 +720,56 @@ public class Escritorio extends JFrame {
 
     private void setIconosMenu(PanelZ panelZ) {
         URL ruta;
-        int largo = 50, ancho = 50;
-        ImageIcon icono;
         switch (panelZ.getName()) {
             case "Personal":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//agregarEmpleado.png");
                 bAgregarEmpleado.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//administrarEmpleado.png");
                 bModificarEmpleado.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//planilla.png");
                 bPlanillas.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Egresos":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//egresos//egresos3.png");
-                
                 bEgresos.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ventas":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoCliente.png");
-                
                 bNuevoCliente.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoContacto.png");
-                
                 bNuevaPersonaContacto.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenNueva.png");
-                
                 bNuevaOrden.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenVista.png");
-                
                 bOrdenVista.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Compras":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//compras2.png");
-                
                 bCompras.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//proveedor.png");
-                
                 bProveedores.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Inventario":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//insumo.png");
-                
                 bInsumos.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//producto2.png");
-                
                 bProductos.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//servicio4.png");
-                
                 bServicios.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ajustes":
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//administrarUsuario.png");
-                
                 bAdminUser.setFondo(new ImageIcon(ruta).getImage());
+
                 ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//cerrarSesion2.png");
-                
                 bCerrarSesion.setFondo(new ImageIcon(ruta).getImage());
                 break;
 

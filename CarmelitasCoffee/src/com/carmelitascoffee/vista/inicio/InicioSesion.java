@@ -12,6 +12,7 @@ import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,6 +30,7 @@ public class InicioSesion extends JFrame {
     int x = 0, y = 0;
     private CInicioSesion controlador;
     private Session s;
+
     public InicioSesion() {
         initComponents();
         controlador = new CInicioSesion(s);
@@ -213,6 +215,11 @@ public class InicioSesion extends JFrame {
         pfClave.setText("");
         pfClave.setCaretColor(new java.awt.Color(255, 255, 255));
         pfClave.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        pfClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pfClaveKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -329,13 +336,22 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void bIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIniciarSesionActionPerformed
-        if(controlador.validarUsuario(tfUsuario.getText(), new String(pfClave.getPassword())))
-        {
+        if (controlador.validarUsuario(tfUsuario.getText(), new String(pfClave.getPassword()))) {
             iniciarAplicacion(controlador.getRol(tfUsuario.getText()), controlador.getIdUsuario(tfUsuario.getText()));
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Contraseña o Usuario incorrecto");
         }
     }//GEN-LAST:event_bIniciarSesionActionPerformed
+
+    private void pfClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfClaveKeyPressed
+        if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
+            if (controlador.validarUsuario(tfUsuario.getText(), new String(pfClave.getPassword()))) {
+                iniciarAplicacion(controlador.getRol(tfUsuario.getText()), controlador.getIdUsuario(tfUsuario.getText()));
+            } else {
+                JOptionPane.showMessageDialog(this, "Contraseña o Usuario incorrecto");
+            }
+        }
+    }//GEN-LAST:event_pfClaveKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
