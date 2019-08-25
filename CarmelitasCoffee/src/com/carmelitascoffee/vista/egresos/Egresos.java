@@ -3,15 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.carmelitascoffee.egresos;
+package com.carmelitascoffee.vista.egresos;
 
+import com.carmelitascoffee.controlador.egresos.CEgresos;
+import com.carmelitascoffee.pojo.Deposito;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner.DefaultEditor;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.hibernate.Session;
 import swing.Controles.ButtonZ;
+import swing.Controles.TableZ;
 
 /**
  *
@@ -22,10 +33,23 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     /**
      * Creates new form Egresos
      */
+    private CEgresos controlador;
+    private Session s;
+    
     public Egresos() {
         initComponents();
         ((DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setEditable(false);
     }
+    
+    public Egresos(Session s) {
+        this.s = s;
+        controlador = new CEgresos(s);
+        initComponents();
+        CargarDepositos();
+        ((DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setEditable(false);
+        
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,6 +167,29 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
         PANEL_consultardepositos.setPreferredSize(new java.awt.Dimension(715, 509));
 
+        TABLE_depositos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "null", "null", "null", "null", "null"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TABLE_depositos);
 
         labelZ1.setText("Busqueda personalizada:");
@@ -156,6 +203,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
         BTN_actualizardepositos.setText("Actualizar");
         BTN_actualizardepositos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_actualizardepositos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_actualizardepositosActionPerformed(evt);
+            }
+        });
 
         BTN_salirdepositos.setBackground(new java.awt.Color(102, 0, 0));
         BTN_salirdepositos.setText("Salir");
@@ -1129,6 +1181,32 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.EstadoPANEL_nuevopagomantenimiento("EDIT");
     }//GEN-LAST:event_BTN_editarpagomantenimientoActionPerformed
 
+    private void BTN_actualizardepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_actualizardepositosActionPerformed
+
+    }//GEN-LAST:event_BTN_actualizardepositosActionPerformed
+
+    void CargarDepositos(){
+        List<Deposito> depositos = controlador.MostrarDepositos();
+        if(depositos.size()>0){
+            Iterator consulta = depositos.iterator();
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_depositos.getModel();
+            while(consulta.hasNext()){              
+                Vector datos = new Vector();
+                Deposito fila = (Deposito) consulta.next();
+                datos.add(fila.getNumeroComprobante());
+                datos.add(fila.getBanco());
+                datos.add(fila.getMonto());
+                datos.add(fila.getMoneda());
+                datos.add(fila.getFecha());
+                modelo.addRow(datos);
+            }
+            this.TABLE_depositos.setModel(modelo);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No hay registros");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

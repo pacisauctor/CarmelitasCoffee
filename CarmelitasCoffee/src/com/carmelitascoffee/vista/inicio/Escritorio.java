@@ -6,9 +6,9 @@
 package com.carmelitascoffee.vista.inicio;
 
 import com.carmelitascoffee.controlador.inicio.CEscritorio;
-import com.carmelitascoffee.egresos.*;
 import com.carmelitascoffee.vista.compras.Compras;
 import com.carmelitascoffee.vista.compras.Proveedores;
+import com.carmelitascoffee.vista.egresos.Egresos;
 import com.carmelitascoffee.vista.inventario.Insumos;
 import com.carmelitascoffee.vista.inventario.Productos;
 import com.carmelitascoffee.vista.inventario.Servicios;
@@ -518,7 +518,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_pToolBarMouseClicked
 
     private void bEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEgresosActionPerformed
-        Egresos egresos = new Egresos();
+        Egresos egresos = new Egresos(s);
         egresos.setVisible(true);
         egresos.pack();
         dpEscritorio.add(egresos);
