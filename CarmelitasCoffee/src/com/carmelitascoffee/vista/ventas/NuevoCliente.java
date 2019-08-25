@@ -5,11 +5,15 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
+import com.carmelitascoffee.controlador.ventas.CNuevoCliente;
+import com.carmelitascoffee.pojo.Cliente;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
 
 /**
  *
@@ -17,12 +21,21 @@ import javax.swing.JInternalFrame;
  */
 public class NuevoCliente extends JInternalFrame {
 
+    Session s;
+    CNuevoCliente controlador;
     /**
      * Creates new form InternalFrameZ
      */
+    
     public NuevoCliente() {
         initComponents();
         setImagenes();
+    }
+
+    public NuevoCliente(Session s, int idEmpleado) {
+        initComponents();
+        setImagenes();
+        controlador = new CNuevoCliente(s);
     }
 
     /**
@@ -214,7 +227,6 @@ public class NuevoCliente extends JInternalFrame {
         bActualizar.setBorder(null);
         bActualizar.setText("");
         bActualizar.setMaximumSize(new java.awt.Dimension(25, 25));
-        bActualizar.setOpaque(false);
         bActualizar.setPreferredSize(new java.awt.Dimension(25, 25));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -242,6 +254,11 @@ public class NuevoCliente extends JInternalFrame {
         getContentPane().add(bNuevoCliente, gridBagConstraints);
 
         bAgregarCliente.setText("Agregar Cliente");
+        bAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarClienteActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -269,6 +286,18 @@ public class NuevoCliente extends JInternalFrame {
         npc.setVisible(true);
         jdp.add(npc);
     }//GEN-LAST:event_bNuevoClienteActionPerformed
+
+    private void bAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarClienteActionPerformed
+        Cliente c = new Cliente();
+        c.setNombres(tfNombre1.getText() + " " + tfNombre2.getText());
+        
+        
+        if(controlador.agregarCliente(c)){
+            JOptionPane.showMessageDialog(null,"Registro hecho");
+        }else{
+            JOptionPane.showMessageDialog(null,"error");
+        }
+    }//GEN-LAST:event_bAgregarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -299,6 +328,6 @@ public class NuevoCliente extends JInternalFrame {
         bActualizar.setIcon(iconoActualizar);
         ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//nuevoCliente.jpg");
         pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
-                
+
     }
 }

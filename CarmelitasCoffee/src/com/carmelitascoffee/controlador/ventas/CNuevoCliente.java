@@ -5,10 +5,26 @@
  */
 package com.carmelitascoffee.controlador.ventas;
 
+import com.carmelitascoffee.pojo.Cliente;
+import org.hibernate.Session;
+
 /**
  *
  * @author darce
  */
 public class CNuevoCliente {
-    
+
+    Session s;
+    public CNuevoCliente(Session s) {
+        this.s = s;
+    }
+    public boolean agregarCliente(Cliente cliente){
+        /*
+        alboroto
+        
+        */
+        
+        return false;
+    }
+
 }

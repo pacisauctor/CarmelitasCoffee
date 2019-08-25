@@ -5,7 +5,6 @@
  */
 package com.carmelitascoffee.controlador.inicio;
 
-import com.carmelitascoffee.controlador.HibernateUtil;
 import com.carmelitascoffee.pojo.Empleado;
 import com.carmelitascoffee.pojo.Usuario;
 import org.hibernate.Criteria;

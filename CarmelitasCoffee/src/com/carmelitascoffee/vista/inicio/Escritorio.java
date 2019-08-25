@@ -550,7 +550,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
 
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
-        NuevoCliente nuevoCliente = new NuevoCliente();
+        NuevoCliente nuevoCliente = new NuevoCliente(s, idEmpleado);
         nuevoCliente.setVisible(true);
         nuevoCliente.pack();
         dpEscritorio.add(nuevoCliente);
@@ -614,7 +614,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bPlanillasActionPerformed
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
-        //[0,153,255]
+        
         bCerrar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bCerrarMouseEntered
 
