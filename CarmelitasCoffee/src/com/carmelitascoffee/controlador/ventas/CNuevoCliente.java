@@ -6,7 +6,11 @@
 package com.carmelitascoffee.controlador.ventas;
 
 import com.carmelitascoffee.pojo.Cliente;
+import com.carmelitascoffee.pojo.PersonaContacto;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -15,16 +19,33 @@ import org.hibernate.Session;
 public class CNuevoCliente {
 
     Session s;
+
     public CNuevoCliente(Session s) {
         this.s = s;
     }
-    public boolean agregarCliente(Cliente cliente){
-        /*
-        alboroto
-        
-        */
-        
-        return false;
+
+    public boolean agregarCliente(Cliente cliente) {
+        try {
+            Transaction transaction = s.beginTransaction();
+            s.save(cliente);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public PersonaContacto getPersonaContacto(int idPersonaContacto) {
+        PersonaContacto pc = (PersonaContacto) s.get(PersonaContacto.class, idPersonaContacto);
+        return pc;
+    }
+
+    public int siguienteIdCliente() {
+        Query q = s.createSQLQuery("SELECT AUTO_INCREMENT FROM information_schema.TABLES\n"
+                + "WHERE TABLE_SCHEMA = 'carmelitas_coffee' \n"
+                + "AND TABLE_NAME = 'persona_contacto';");
+        List l = q.list();
+        return (int) l.get(0);
     }
 
 }
