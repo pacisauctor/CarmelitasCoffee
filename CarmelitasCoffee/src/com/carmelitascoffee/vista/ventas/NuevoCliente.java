@@ -207,8 +207,8 @@ public class NuevoCliente extends JInternalFrame {
 
         bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
         bNuevoCliente.setBorder(null);
-        bNuevoCliente.setForeground(new java.awt.Color(28, 40, 51));
-        bNuevoCliente.setText("Nueva Persona de Contacto");
+        bNuevoCliente.setForeground(new java.awt.Color(10, 13, 67));
+        bNuevoCliente.setText("Ver personas de contacto registradas");
         bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         bNuevoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -224,8 +224,9 @@ public class NuevoCliente extends JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.2;
@@ -311,7 +312,7 @@ public class NuevoCliente extends JInternalFrame {
             c.setNumeroRuc(tfRUC.getText());
             c.setPersonaContacto(controlador.getPersonaContacto(Integer.parseInt(tfIdPersonaContacto.getText())));
             if (controlador.agregarCliente(c)) {
-                
+                vaciarCampos();
                 JOptionPane.showMessageDialog(null, "Registro hecho");
             } else {
                 JOptionPane.showMessageDialog(null, "error");
@@ -365,7 +366,7 @@ public class NuevoCliente extends JInternalFrame {
         String mensaje = "";
 
         try {
-            if (tfRUC.getText().length() != 14 || !Character.isAlphabetic(tfRUC.getText().charAt(0))) {
+            if (tfRUC.getText().length() != 14) {
                 mensaje += "Formato de número RUC incorrecto!\n";
             }
             String nombre = tfNombre1.getText();
@@ -380,22 +381,32 @@ public class NuevoCliente extends JInternalFrame {
             if (tfCorreo.getText().length() <= 50) {
                 Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
                 Matcher mather = pattern.matcher(tfCorreo.getText());
-                if (mather.find() == true) {
-                    mensaje += "El email ingresado es válido.";
-                } else {
+                if (mather.find() == false) {
+
                     mensaje += "El email ingresado es inválido.";
                 }
             } else {
                 mensaje += "El email es demasiado largo";
             }
             PersonaContacto pc = controlador.getPersonaContacto(Integer.parseInt(tfIdPersonaContacto.getText()));
-            if(pc == null){
+            if (pc == null) {
                 mensaje += "Persona de Contacto no registrado";
             }
 
         } catch (NumberFormatException e) {
-            mensaje += "Campos vaciós c:";
+            mensaje += "Campos vacios c:";
         }
         return mensaje;
+    }
+
+    private void vaciarCampos() {
+        tfNombre1.setText("");
+        tfApellido1.setText("");
+        tfCorreo.setText("");
+        tfIdPersonaContacto.setText("");
+        tfTelefono.setText("");
+        tfRUC.setText("");
+        taDireccion.setText("");
+        tfCorreo.setText("");
     }
 }

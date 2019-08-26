@@ -41,11 +41,9 @@ public class CNuevoCliente {
     }
 
     public int siguienteIdCliente() {
-        Query q = s.createSQLQuery("SELECT AUTO_INCREMENT FROM information_schema.TABLES\n"
-                + "WHERE TABLE_SCHEMA = 'carmelitas_coffee' \n"
-                + "AND TABLE_NAME = 'persona_contacto';");
+        Query q = s.createSQLQuery("SELECT count(*) from cliente;");
         List l = q.list();
-        return (int) l.get(0);
+        return 1 + Integer.parseInt(l.get(0) + "");
     }
 
 }
