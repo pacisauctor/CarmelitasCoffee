@@ -43,7 +43,7 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/carmelitas_coffee?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/carmelitas_coffee?serverTimezone=UTC</property>
     <property name="hibernate.connection.username">coffee</property>
     <property name="hibernate.connection.password">CarmelitasCoffee100!</property>
     <mapping resource="com/carmelitascoffee/pojo/DetalleFacturaInsumo.hbm.xml"/>
