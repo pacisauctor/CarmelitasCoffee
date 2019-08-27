@@ -201,18 +201,22 @@
                               </Group>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="RADIOBTN_hombre" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="RADIOBTN_mujer" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-                                  </Group>
                                   <Component id="TEXTFIELD_cedula" max="32767" attributes="0"/>
                                   <Component id="TEXTFIELD_pnombre" max="32767" attributes="0"/>
                                   <Component id="TEXTFIELD_snombre" alignment="0" max="32767" attributes="0"/>
                                   <Component id="TEXTFIELD_papellido" alignment="0" max="32767" attributes="0"/>
                                   <Component id="TEXTFIELD_sapellido" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="SPINNER_edad" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="RADIOBTN_hombre" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="RADIOBTN_mujer" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="SPINNER_edad" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -558,7 +562,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="213" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="bLimpiar" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace pref="101" max="32767" attributes="0"/>
                   <Component id="BTN_back" min="-2" pref="212" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BTN_next" min="-2" pref="212" max="-2" attributes="0"/>
@@ -570,9 +576,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="BTN_next" alignment="3" pref="36" max="32767" attributes="0"/>
-                      <Component id="BTN_back" alignment="3" pref="36" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="bLimpiar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="BTN_next" alignment="3" pref="36" max="32767" attributes="0"/>
+                          <Component id="BTN_back" alignment="3" pref="36" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -601,6 +613,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_backActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="swing.Controles.ButtonZ" name="bLimpiar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpiar Campos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bLimpiarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
