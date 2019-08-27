@@ -29,6 +29,11 @@ public class Insumo  implements java.io.Serializable {
        this.cantidadInventario = cantidadInventario;
        this.detalleFacturaInsumos = detalleFacturaInsumos;
     }
+
+    public Insumo(String descripcion, int cantidadInventario) {
+       this.descripcion = descripcion;
+       this.cantidadInventario = cantidadInventario;
+    }
    
     public int getIdInsumo() {
         return this.idInsumo;
@@ -57,6 +62,10 @@ public class Insumo  implements java.io.Serializable {
     
     public void setDetalleFacturaInsumos(Set detalleFacturaInsumos) {
         this.detalleFacturaInsumos = detalleFacturaInsumos;
+    }
+
+    public void setInsumo(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

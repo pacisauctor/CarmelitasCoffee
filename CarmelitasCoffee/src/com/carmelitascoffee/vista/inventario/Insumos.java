@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package com.carmelitascoffee.vista.inventario;
-
+import com.carmelitascoffee.controlador.inventario.CInsumos;
+import com.carmelitascoffee.controlador.inventario.CInsumos;
+import com.carmelitascoffee.pojo.Insumo;
 import javax.swing.JInternalFrame;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -13,13 +17,22 @@ import javax.swing.JInternalFrame;
  */
 public class Insumos extends JInternalFrame {
 
+   private CInsumos controlador;
+    private Session se;
+    private DefaultTableModel modelo;
     /**
      * Creates new form InternalFrameZ
      */
-    public Insumos() {
+    public Insumos(Session s) {
         initComponents();
+        se = s;
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Cantidad");;
+        controlador = new CInsumos(se,modelo);
+        controlador.LlenarTabla(tableZ1);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,16 +47,14 @@ public class Insumos extends JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableZ1 = new swing.Controles.TableZ();
         labelZ1 = new swing.Controles.LabelZ();
-        textFieldZ5 = new swing.Controles.TextFieldZ();
-        textFieldZ2 = new swing.Controles.TextFieldZ();
+        cod = new swing.Controles.TextFieldZ();
+        nom = new swing.Controles.TextFieldZ();
         labelZ5 = new swing.Controles.LabelZ();
-        labelZ4 = new swing.Controles.LabelZ();
-        textFieldZ4 = new swing.Controles.TextFieldZ();
-        textFieldZ3 = new swing.Controles.TextFieldZ();
+        cant = new swing.Controles.TextFieldZ();
         labelZ3 = new swing.Controles.LabelZ();
-        buttonZ2 = new swing.Controles.ButtonZ();
-        buttonZ5 = new swing.Controles.ButtonZ();
-        buttonZ6 = new swing.Controles.ButtonZ();
+        btnBuscar = new swing.Controles.ButtonZ();
+        btnEditar = new swing.Controles.ButtonZ();
+        btnAñadir = new swing.Controles.ButtonZ();
 
         setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
@@ -65,52 +76,58 @@ public class Insumos extends JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombre", "Cantidad", "Precio"
+                "Código", "Nombre", "Cantidad"
             }
         ));
+        tableZ1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableZ1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableZ1);
 
         labelZ1.setText("Código");
         labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        textFieldZ5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ5.setText("");
-        textFieldZ5.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ5.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cod.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        cod.setText("");
+        cod.setCaretColor(new java.awt.Color(255, 255, 255));
+        cod.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        cod.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        textFieldZ2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ2.setText("");
-        textFieldZ2.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ2.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nom.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        nom.setText("");
+        nom.setCaretColor(new java.awt.Color(255, 255, 255));
+        nom.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        nom.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         labelZ5.setText("Nombre");
         labelZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        labelZ4.setText("Precio");
-        labelZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        textFieldZ4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ4.setText("");
-        textFieldZ4.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ4.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        textFieldZ3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        textFieldZ3.setText("");
-        textFieldZ3.setCaretColor(new java.awt.Color(255, 255, 255));
-        textFieldZ3.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        textFieldZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        cant.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
+        cant.setText("");
+        cant.setCaretColor(new java.awt.Color(255, 255, 255));
+        cant.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        cant.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         labelZ3.setText("Cantidad");
         labelZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
-        buttonZ2.setText("Buscar");
+        btnBuscar.setText("Buscar");
 
-        buttonZ5.setText("Editar");
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        buttonZ6.setText("Buscar");
+        btnAñadir.setText("Añadir");
+        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,32 +136,19 @@ public class Insumos extends JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(316, 316, 316))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(textFieldZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(143, 143, 143))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(33, 33, 33)
-                                    .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(cant, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(254, 254, 254)
                                 .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,16 +156,19 @@ public class Insumos extends JInternalFrame {
                                 .addGap(73, 73, 73)
                                 .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(157, 157, 157)
-                                .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                                .addComponent(buttonZ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(132, 132, 132))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(buttonZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,47 +178,71 @@ public class Insumos extends JInternalFrame {
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonZ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(21, 21, 21)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonZ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cant, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableZ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableZ1MouseClicked
+       int Selec = tableZ1.rowAtPoint(evt.getPoint());
+        cod.setText(String.valueOf(tableZ1.getValueAt(Selec, 0)));
+        nom.setText(String.valueOf(tableZ1.getValueAt(Selec, 1)));
+        cant.setText(String.valueOf(tableZ1.getValueAt(Selec, 2)));
+    }//GEN-LAST:event_tableZ1MouseClicked
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+     Insumo insumo = new Insumo(nom.getText(),Integer.parseInt(cant.getText()));
+        insumo.setInsumo(Integer.parseInt(cod.getText()));
+        controlador.setInsumo(insumo);
+        
+        controlador.LlenarTabla(tableZ1);
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        String descripcion;
+        int cantidadInventario;
+
+        descripcion = nom.getText();
+        cantidadInventario = Integer.parseInt(cant.getText());
+        
+        Insumo insumo = new Insumo(descripcion,cantidadInventario);
+        controlador.AgregarInsumo(insumo);
+    }//GEN-LAST:event_btnAñadirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ buttonZ2;
-    private swing.Controles.ButtonZ buttonZ5;
-    private swing.Controles.ButtonZ buttonZ6;
+    private swing.Controles.ButtonZ btnAñadir;
+    private swing.Controles.ButtonZ btnBuscar;
+    private swing.Controles.ButtonZ btnEditar;
+    private swing.Controles.TextFieldZ cant;
+    private swing.Controles.TextFieldZ cod;
     private javax.swing.JScrollPane jScrollPane1;
     private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ2;
     private swing.Controles.LabelZ labelZ3;
-    private swing.Controles.LabelZ labelZ4;
     private swing.Controles.LabelZ labelZ5;
+    private swing.Controles.TextFieldZ nom;
     private swing.Controles.TableZ tableZ1;
-    private swing.Controles.TextFieldZ textFieldZ2;
-    private swing.Controles.TextFieldZ textFieldZ3;
-    private swing.Controles.TextFieldZ textFieldZ4;
-    private swing.Controles.TextFieldZ textFieldZ5;
     private swing.Controles.TextFieldZ textFieldZ8;
     // End of variables declaration//GEN-END:variables
 }

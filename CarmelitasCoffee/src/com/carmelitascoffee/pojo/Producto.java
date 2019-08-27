@@ -32,6 +32,12 @@ public class Producto  implements java.io.Serializable {
        this.cantidadEnInventario = cantidadEnInventario;
        this.detalleOrdenProductos = detalleOrdenProductos;
     }
+
+    public Producto(BigDecimal precio, String descripcion, int cantidadEnInventario) {
+       this.precio = precio;
+        this.descripcion = descripcion;
+        this.cantidadEnInventario = cantidadEnInventario;
+    }
    
     public int getIdProducto() {
         return this.idProducto;

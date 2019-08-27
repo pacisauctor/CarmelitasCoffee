@@ -579,21 +579,21 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bProveedoresActionPerformed
 
     private void bInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInsumosActionPerformed
-        Insumos insumos = new Insumos();
+        Insumos insumos = new Insumos(s);
         insumos.pack();
         insumos.setVisible(true);
         dpEscritorio.add(insumos);
     }//GEN-LAST:event_bInsumosActionPerformed
 
     private void bProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProductosActionPerformed
-        Productos productos = new Productos();
+        Productos productos = new Productos(s);
         productos.setVisible(true);
         productos.pack();
         dpEscritorio.add(productos);
     }//GEN-LAST:event_bProductosActionPerformed
 
     private void bServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bServiciosActionPerformed
-        Servicios servicios = new Servicios();
+        Servicios servicios = new Servicios(s);
         servicios.setVisible(true);
         servicios.pack();
         dpEscritorio.add(servicios);
