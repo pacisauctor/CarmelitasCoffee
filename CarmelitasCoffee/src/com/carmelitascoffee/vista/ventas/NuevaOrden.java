@@ -10,18 +10,30 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import org.hibernate.Session;
 
 /**
  *
  * @author admin
  */
 public class NuevaOrden extends JInternalFrame {
-
+    Session s;
+    int idEmpleado;
     /**
      * Creates new form InternalFrameZ
      */
     public NuevaOrden() {
         initComponents();
+    }
+
+    public NuevaOrden(Session s) {
+        initComponents();
+    }
+
+    public NuevaOrden(Session s, int idEmpleado) {
+        initComponents();
+        this.s = s;
+        this.idEmpleado = idEmpleado;
     }
 
     /**
@@ -307,6 +319,7 @@ public class NuevaOrden extends JInternalFrame {
 
     private void bAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarProductoActionPerformed
         lTitulo2.setText("Productos");
+        
     }//GEN-LAST:event_bAgregarProductoActionPerformed
 
     private void bAgregarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarServicioActionPerformed
@@ -336,6 +349,5 @@ public class NuevaOrden extends JInternalFrame {
     private swing.Controles.TextFieldZ tfIdCliente;
     private swing.Controles.TextFieldZ tfNumeroFactura;
     // End of variables declaration//GEN-END:variables
-
 
 }

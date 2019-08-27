@@ -313,7 +313,7 @@ public class InicioSesion extends JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         getContentPane().setBackground(new Color(0, 0, 204));
         //creando iconos 
-        ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
+        ImageIcon iconoCerrar, iconoMinimizar;
         URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
         iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bCerrar.setIcon(iconoCerrar);

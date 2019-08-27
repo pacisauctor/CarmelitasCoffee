@@ -525,15 +525,14 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bEgresosActionPerformed
 
     private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
-        AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
+        AgregarEmpleado agregarEmpleado = new AgregarEmpleado(s);
         agregarEmpleado.setVisible(true);
         agregarEmpleado.pack();
         dpEscritorio.add(agregarEmpleado);
-        agregarEmpleado.setSize(dpEscritorio.getSize());
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
-        NuevaOrden nuevaOrden = new NuevaOrden();
+        NuevaOrden nuevaOrden = new NuevaOrden(s, idEmpleado);
         nuevaOrden.setVisible(true);
         nuevaOrden.pack();
         dpEscritorio.add(nuevaOrden);
@@ -550,7 +549,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
 
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
-        NuevoCliente nuevoCliente = new NuevoCliente();
+        NuevoCliente nuevoCliente = new NuevoCliente(s, idEmpleado);
         nuevoCliente.setVisible(true);
         nuevoCliente.pack();
         dpEscritorio.add(nuevoCliente);
@@ -614,7 +613,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bPlanillasActionPerformed
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
-        //[0,153,255]
+        
         bCerrar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bCerrarMouseEntered
 

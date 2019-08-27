@@ -5,11 +5,18 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
-import java.awt.Image;
+import com.carmelitascoffee.controlador.ventas.CNuevoCliente;
+import com.carmelitascoffee.pojo.Cliente;
+import com.carmelitascoffee.pojo.PersonaContacto;
+import java.awt.Color;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
 
 /**
  *
@@ -17,12 +24,22 @@ import javax.swing.JInternalFrame;
  */
 public class NuevoCliente extends JInternalFrame {
 
+    Session s;
+    CNuevoCliente controlador;
+
     /**
      * Creates new form InternalFrameZ
      */
     public NuevoCliente() {
         initComponents();
         setImagenes();
+    }
+
+    public NuevoCliente(Session s, int idEmpleado) {
+        initComponents();
+        setImagenes();
+        this.s = s;
+        controlador = new CNuevoCliente(s);
     }
 
     /**
@@ -37,10 +54,8 @@ public class NuevoCliente extends JInternalFrame {
 
         lNombres = new swing.Controles.LabelZ();
         tfNombre1 = new swing.Controles.TextFieldZ();
-        tfNombre2 = new swing.Controles.TextFieldZ();
         lApelildos = new swing.Controles.LabelZ();
         tfApellido1 = new swing.Controles.TextFieldZ();
-        tfApellido2 = new swing.Controles.TextFieldZ();
         lTelefono = new swing.Controles.LabelZ();
         tfTelefono = new swing.Controles.TextFieldZ();
         lDireccion = new swing.Controles.LabelZ();
@@ -49,11 +64,12 @@ public class NuevoCliente extends JInternalFrame {
         lCorreo = new swing.Controles.LabelZ();
         tfCorreo = new swing.Controles.TextFieldZ();
         labelZ1 = new swing.Controles.LabelZ();
-        comboBoxZ1 = new swing.Controles.ComboBoxZ();
-        bActualizar = new swing.Controles.ButtonZ();
-        bNuevoCliente = new swing.Controles.ButtonZ();
+        bPersonasContactoVista = new swing.Controles.ButtonZ();
         bAgregarCliente = new swing.Controles.ButtonZ();
         pImagen = new swing.Contenedores.PanelZ();
+        tfIdPersonaContacto = new swing.Controles.TextFieldZ();
+        lRUC = new swing.Controles.LabelZ();
+        tfRUC = new swing.Controles.TextFieldZ();
 
         setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
@@ -73,7 +89,13 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lNombres, gridBagConstraints);
 
-        tfNombre1.setText("primerNombre");
+        tfNombre1.setText("");
+        tfNombre1.setToolTipText("primerNombre");
+        tfNombre1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfNombre1FocusGained(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -83,20 +105,9 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfNombre1, gridBagConstraints);
 
-        tfNombre2.setText("segundoNombre");
+        lApelildos.setText("Apellido: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfNombre2, gridBagConstraints);
-
-        lApelildos.setText("Nombre: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
@@ -104,25 +115,16 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lApelildos, gridBagConstraints);
 
-        tfApellido1.setText("primerApellido");
+        tfApellido1.setText("");
+        tfApellido1.setToolTipText("primerApellido");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfApellido1, gridBagConstraints);
-
-        tfApellido2.setText("segundoApellido");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfApellido2, gridBagConstraints);
 
         lTelefono.setText("Teléfono: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -134,7 +136,9 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lTelefono, gridBagConstraints);
 
-        tfTelefono.setText("+50581380937");
+        tfTelefono.setColumns(8);
+        tfTelefono.setText("");
+        tfTelefono.setToolTipText("+50581380937");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -146,25 +150,24 @@ public class NuevoCliente extends JInternalFrame {
 
         lDireccion.setText("Dirección: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lDireccion, gridBagConstraints);
 
+        taDireccion.setEditable(true);
         taDireccion.setColumns(20);
         taDireccion.setRows(5);
-        taDireccion.setText("De por aquí hasta alla\n");
+        taDireccion.setText("");
         jScrollPane1.setViewportView(taDireccion);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.4;
@@ -181,7 +184,8 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lCorreo, gridBagConstraints);
 
-        tfCorreo.setText("tumail@example.com");
+        tfCorreo.setText("");
+        tfCorreo.setToolTipText("tumail@example.com");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -191,7 +195,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(tfCorreo, gridBagConstraints);
 
-        labelZ1.setText("Persona de Contacto: ");
+        labelZ1.setText("Id persona de contacto: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -201,52 +205,43 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ1, gridBagConstraints);
 
-        comboBoxZ1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PersonaContacto 1", "PersonaContacto 2", "PersonaContacto 3" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(comboBoxZ1, gridBagConstraints);
-
-        bActualizar.setBorder(null);
-        bActualizar.setText("");
-        bActualizar.setMaximumSize(new java.awt.Dimension(25, 25));
-        bActualizar.setOpaque(false);
-        bActualizar.setPreferredSize(new java.awt.Dimension(25, 25));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(bActualizar, gridBagConstraints);
-
-        bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
-        bNuevoCliente.setBorder(null);
-        bNuevoCliente.setText("Nueva Persona de Contacto");
-        bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+        bPersonasContactoVista.setBackground(new java.awt.Color(255, 247, 162));
+        bPersonasContactoVista.setBorder(null);
+        bPersonasContactoVista.setForeground(new java.awt.Color(10, 13, 67));
+        bPersonasContactoVista.setText("Ver personas de contacto registradas");
+        bPersonasContactoVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bPersonasContactoVista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bPersonasContactoVistaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bPersonasContactoVistaMouseEntered(evt);
+            }
+        });
+        bPersonasContactoVista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNuevoClienteActionPerformed(evt);
+                bPersonasContactoVistaActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.2;
-        getContentPane().add(bNuevoCliente, gridBagConstraints);
+        getContentPane().add(bPersonasContactoVista, gridBagConstraints);
 
         bAgregarCliente.setText("Agregar Cliente");
+        bAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarClienteActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.gridwidth = 7;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.4;
@@ -255,50 +250,164 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.9;
         getContentPane().add(pImagen, gridBagConstraints);
+
+        tfIdPersonaContacto.setText("");
+        tfIdPersonaContacto.setToolTipText("id de la persona de contacto");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(tfIdPersonaContacto, gridBagConstraints);
+
+        lRUC.setText("RUC:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(lRUC, gridBagConstraints);
+
+        tfRUC.setColumns(14);
+        tfRUC.setText("");
+        tfRUC.setToolTipText("RUC");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(tfRUC, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
+    private void bPersonasContactoVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaActionPerformed
         JDesktopPane jdp = getDesktopPane();
-        NuevaPersonaContacto npc = new NuevaPersonaContacto();
-        npc.pack();
-        npc.setVisible(true);
-        jdp.add(npc);
-    }//GEN-LAST:event_bNuevoClienteActionPerformed
+        PersonaContactoVista contactoVista = new PersonaContactoVista(s);
+        contactoVista.setVisible(true);
+        contactoVista.pack();
+        jdp.add(contactoVista);
+        contactoVista.toFront();
+    }//GEN-LAST:event_bPersonasContactoVistaActionPerformed
+
+    private void bAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarClienteActionPerformed
+        String mensajeError = validarDatos();
+        Cliente c = new Cliente();
+        PersonaContacto pc = new PersonaContacto();
+        if (mensajeError.equals("")) {
+            c.setNombres(tfNombre1.getText());
+            c.setApellidos(tfApellido1.getText());
+            c.setCorreo(tfCorreo.getText());
+            c.setDireccion(taDireccion.getText());
+            c.setIdCliente(controlador.siguienteIdCliente());
+            c.setTelefono(tfTelefono.getText());
+            c.setNumeroRuc(tfRUC.getText());
+            c.setPersonaContacto(controlador.getPersonaContacto(Integer.parseInt(tfIdPersonaContacto.getText())));
+            if (controlador.agregarCliente(c)) {
+                vaciarCampos();
+                JOptionPane.showMessageDialog(null, "Registro hecho");
+            } else {
+                JOptionPane.showMessageDialog(null, "error");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, mensajeError);
+        }
+
+    }//GEN-LAST:event_bAgregarClienteActionPerformed
+
+    private void tfNombre1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNombre1FocusGained
+    }//GEN-LAST:event_tfNombre1FocusGained
+
+    private void bPersonasContactoVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseEntered
+        bPersonasContactoVista.setBackground(new Color(255, 247, 162));
+    }//GEN-LAST:event_bPersonasContactoVistaMouseEntered
+
+    private void bPersonasContactoVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseExited
+        bPersonasContactoVista.setBackground(new Color(255, 247, 162));
+    }//GEN-LAST:event_bPersonasContactoVistaMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ bActualizar;
     private swing.Controles.ButtonZ bAgregarCliente;
-    private swing.Controles.ButtonZ bNuevoCliente;
-    private swing.Controles.ComboBoxZ comboBoxZ1;
+    private swing.Controles.ButtonZ bPersonasContactoVista;
     private javax.swing.JScrollPane jScrollPane1;
     private swing.Controles.LabelZ lApelildos;
     private swing.Controles.LabelZ lCorreo;
     private swing.Controles.LabelZ lDireccion;
     private swing.Controles.LabelZ lNombres;
+    private swing.Controles.LabelZ lRUC;
     private swing.Controles.LabelZ lTelefono;
     private swing.Controles.LabelZ labelZ1;
     private swing.Contenedores.PanelZ pImagen;
     private swing.Controles.TextAreaZ taDireccion;
     private swing.Controles.TextFieldZ tfApellido1;
-    private swing.Controles.TextFieldZ tfApellido2;
     private swing.Controles.TextFieldZ tfCorreo;
+    private swing.Controles.TextFieldZ tfIdPersonaContacto;
     private swing.Controles.TextFieldZ tfNombre1;
-    private swing.Controles.TextFieldZ tfNombre2;
+    private swing.Controles.TextFieldZ tfRUC;
     private swing.Controles.TextFieldZ tfTelefono;
     // End of variables declaration//GEN-END:variables
  private void setImagenes() {
-        ImageIcon iconoActualizar, imageIntro;
-        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//update.png");
-        iconoActualizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
-        bActualizar.setIcon(iconoActualizar);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//nuevoCliente.jpg");
+        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//nuevoCliente.jpg");
         pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
-                
+
+    }
+
+    private String validarDatos() {
+        // se procurará que no ingrese algún dato incorrecto
+        String mensaje = "";
+
+        try {
+            if (tfRUC.getText().length() != 14) {
+                mensaje += "Formato de número RUC incorrecto!\n";
+            }
+            String nombre = tfNombre1.getText();
+            String apellido = tfApellido1.getText();
+
+            if (nombre.length() >= 45) {
+                mensaje += "Nombre demasiado largo(>45)\n";
+            }
+            if (apellido.length() >= 45) {
+                mensaje += "Apellido demasiado largo(>45)\n";
+            }
+            if (tfCorreo.getText().length() <= 50) {
+                Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+                Matcher mather = pattern.matcher(tfCorreo.getText());
+                if (mather.find() == false) {
+
+                    mensaje += "El email ingresado es inválido.";
+                }
+            } else {
+                mensaje += "El email es demasiado largo";
+            }
+            PersonaContacto pc = controlador.getPersonaContacto(Integer.parseInt(tfIdPersonaContacto.getText()));
+            if (pc == null) {
+                mensaje += "Persona de Contacto no registrado";
+            }
+
+        } catch (NumberFormatException e) {
+            mensaje += "Campos vacios c:";
+        }
+        return mensaje;
+    }
+
+    private void vaciarCampos() {
+        tfNombre1.setText("");
+        tfApellido1.setText("");
+        tfCorreo.setText("");
+        tfIdPersonaContacto.setText("");
+        tfTelefono.setText("");
+        tfRUC.setText("");
+        taDireccion.setText("");
+        tfCorreo.setText("");
     }
 }

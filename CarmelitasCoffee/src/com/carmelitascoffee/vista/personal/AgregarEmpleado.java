@@ -5,22 +5,47 @@
  */
 package com.carmelitascoffee.vista.personal;
 
+import com.carmelitascoffee.controlador.personal.CAgregarEmpleado;
+import com.carmelitascoffee.pojo.Contrato;
+import com.carmelitascoffee.pojo.Empleado;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import org.hibernate.Session;
 
 /**
  *
  * @author admin
  */
-public class AgregarEmpleado extends JInternalFrame implements ActionListener{
+public class AgregarEmpleado extends JInternalFrame implements ActionListener {
+
+    Session s;
+    CAgregarEmpleado controlador;
 
     /**
      * Creates new form InternalFrameZ
      */
     public AgregarEmpleado() {
         initComponents();
+        this.PANEL_main.add(this.PANEL_empleado);
+        this.ActualizarPanel();
+        ((JSpinner.DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) SPINNER_edad.getEditor()).getTextField().setEditable(false);
+    }
+
+    public AgregarEmpleado(Session s) {
+        initComponents();
+        this.s = s;
+        controlador = new CAgregarEmpleado(s);
         this.PANEL_main.add(this.PANEL_empleado);
         this.ActualizarPanel();
         ((JSpinner.DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setEditable(false);
@@ -59,7 +84,6 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
         labelZ13 = new swing.Controles.LabelZ();
         labelZ14 = new swing.Controles.LabelZ();
         labelZ15 = new swing.Controles.LabelZ();
-        labelZ16 = new swing.Controles.LabelZ();
         labelZ17 = new swing.Controles.LabelZ();
         TEXTFIELD_cedula = new swing.Controles.TextFieldZ();
         TEXTFIELD_pnombre = new swing.Controles.TextFieldZ();
@@ -72,6 +96,10 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
         TEXTFIELD_direccion = new swing.Controles.TextFieldZ();
         TEXTFIELD_telefono = new swing.Controles.TextFieldZ();
         TEXTFIELD_estadocivil = new swing.Controles.TextFieldZ();
+        labelZ28 = new swing.Controles.LabelZ();
+        TEXTFIELD_correo = new swing.Controles.TextFieldZ();
+        labelZ29 = new swing.Controles.LabelZ();
+        TEXTFIELD_escolaridad = new swing.Controles.TextFieldZ();
         BTNGROUP_sexoempleado = new javax.swing.ButtonGroup();
         PANEL_main = new swing.Contenedores.PanelZ();
         PANEL_imagen = new swing.Contenedores.PanelZ();
@@ -211,6 +239,29 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
         TEXTFIELD_telefono.setText("");
 
         TEXTFIELD_estadocivil.setText("");
+        TEXTFIELD_estadocivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEXTFIELD_estadocivilActionPerformed(evt);
+            }
+        });
+
+        labelZ28.setText("Correo: ");
+
+        TEXTFIELD_correo.setText("");
+        TEXTFIELD_correo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEXTFIELD_correoActionPerformed(evt);
+            }
+        });
+
+        labelZ29.setText("Grado Escolaridad: ");
+
+        TEXTFIELD_escolaridad.setText("");
+        TEXTFIELD_escolaridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEXTFIELD_escolaridadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PANEL_datosempleadoLayout = new javax.swing.GroupLayout(PANEL_datosempleado);
         PANEL_datosempleado.setLayout(PANEL_datosempleadoLayout);
@@ -220,61 +271,60 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
                 .addContainerGap()
                 .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
-                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelZ16, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
-                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(labelZ15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelZ12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelZ13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelZ10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelZ8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelZ7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, Short.MAX_VALUE)
-                            .addComponent(labelZ11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelZ15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelZ11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
-                                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
-                                        .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(RADIOBTN_mujer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(TEXTFIELD_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TEXTFIELD_pnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(labelZ14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelZ17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelZ9, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(TEXTFIELD_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TEXTFIELD_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TEXTFIELD_estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(RADIOBTN_mujer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 12, Short.MAX_VALUE))
+                            .addComponent(TEXTFIELD_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_pnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
                                 .addComponent(SPINNER_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(labelZ14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ28, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelZ29, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TEXTFIELD_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(TEXTFIELD_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TEXTFIELD_escolaridad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         PANEL_datosempleadoLayout.setVerticalGroup(
             PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelZ16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TEXTFIELD_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TEXTFIELD_cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelZ7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +332,25 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelZ9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelZ10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelZ13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelZ12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(RADIOBTN_mujer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelZ15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SPINNER_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,27 +359,16 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TEXTFIELD_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(TEXTFIELD_estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelZ9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TEXTFIELD_estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RADIOBTN_mujer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SPINNER_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TEXTFIELD_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelZ28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TEXTFIELD_escolaridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelZ29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -341,9 +398,6 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -355,6 +409,9 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
             }
         });
         getContentPane().add(PANEL_main, java.awt.BorderLayout.CENTER);
@@ -389,7 +446,7 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
         PANEL_botonesLayout.setHorizontalGroup(
             PANEL_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PANEL_botonesLayout.createSequentialGroup()
-                .addContainerGap(257, Short.MAX_VALUE)
+                .addContainerGap(213, Short.MAX_VALUE)
                 .addComponent(BTN_back, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BTN_next, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -417,21 +474,59 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
     }//GEN-LAST:event_BTN_backActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void BTN_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nextActionPerformed
-        if(this.BTN_back.isEnabled()){
-            
-        }
-        else{
+        if (!this.BTN_back.isEnabled()) {
             this.BTN_back.setEnabled(true);
             this.BTN_next.setText("Finalizar");
             this.PANEL_main.removeAll();
             this.PANEL_main.add(this.PANEL_contrato);
-            this.ActualizarPanel();
+            ActualizarPanel();
+        }
+        if (BTN_next.getText().equals("Finalizar")) {
+            String mensaje = validarDatos();
+            if ("".equals(mensaje)) {
+                Empleado empleado = new Empleado();
+                empleado.setCedulaIdentidad(TEXTFIELD_cedula.getText());
+                empleado.setPrimerNombre(TEXTFIELD_pnombre.getText());
+                empleado.setSegundoNombre(TEXTFIELD_snombre.getText());
+                empleado.setPrimerApellido(TEXTFIELD_papellido.getText());
+                empleado.setSegundoNombre(TEXTFIELD_sapellido.getText());
+                empleado.setSexo(getSexoEmpleado());
+                empleado.setEdad(getEdadEmpleado());
+                empleado.setDireccion(TEXTFIELD_direccion.getText());
+                empleado.setTelefono(TEXTFIELD_telefono.getText());
+                empleado.setCorreo(TEXTFIELD_correo.getText());
+                empleado.setEstadoCivil(TEXTFIELD_estadocivil.getText());
+                empleado.setGradoEscolaridad(TEXTFIELD_escolaridad.getText());
+                Contrato contrato = new Contrato();
+                contrato.setComisiones(new BigDecimal(Double.parseDouble(TEXTFIELD_comisiones.getText())));
+                contrato.setPuesto(TEXTFIELD_puesto.getText());
+                contrato.setSueldo(new BigDecimal(Double.parseDouble(TEXTFIELD_sueldo.getText())));
+                contrato.setFechaContratacion(getFechaEmpleado());
+                contrato.setEstado("ACTIVO");
+                controlador.addEmpleadoYContrato(empleado, contrato);
+                JOptionPane.showMessageDialog(this, "Ingreso Exitoso!!");
+                //vaciarCampos();
+            } else {
+                JOptionPane.showMessageDialog(this, mensaje);
+            }
         }
     }//GEN-LAST:event_BTN_nextActionPerformed
+
+    private void TEXTFIELD_estadocivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_estadocivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEXTFIELD_estadocivilActionPerformed
+
+    private void TEXTFIELD_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_correoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEXTFIELD_correoActionPerformed
+
+    private void TEXTFIELD_escolaridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_escolaridadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEXTFIELD_escolaridadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -452,7 +547,9 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
     private swing.Controles.SpinnerZ SPINNER_fecha;
     private swing.Controles.TextFieldZ TEXTFIELD_cedula;
     private swing.Controles.TextFieldZ TEXTFIELD_comisiones;
+    private swing.Controles.TextFieldZ TEXTFIELD_correo;
     private swing.Controles.TextFieldZ TEXTFIELD_direccion;
+    private swing.Controles.TextFieldZ TEXTFIELD_escolaridad;
     private swing.Controles.TextFieldZ TEXTFIELD_estadocivil;
     private swing.Controles.TextFieldZ TEXTFIELD_papellido;
     private swing.Controles.TextFieldZ TEXTFIELD_pnombre;
@@ -468,9 +565,10 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
     private swing.Controles.LabelZ labelZ13;
     private swing.Controles.LabelZ labelZ14;
     private swing.Controles.LabelZ labelZ15;
-    private swing.Controles.LabelZ labelZ16;
     private swing.Controles.LabelZ labelZ17;
     private swing.Controles.LabelZ labelZ2;
+    private swing.Controles.LabelZ labelZ28;
+    private swing.Controles.LabelZ labelZ29;
     private swing.Controles.LabelZ labelZ3;
     private swing.Controles.LabelZ labelZ4;
     private swing.Controles.LabelZ labelZ5;
@@ -479,15 +577,80 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener{
     private swing.Controles.LabelZ labelZ8;
     private swing.Controles.LabelZ labelZ9;
     // End of variables declaration//GEN-END:variables
-    
-    private void ActualizarPanel(){
+
+    private void ActualizarPanel() {
         this.PANEL_main.revalidate();
         this.PANEL_main.repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+
+    }
+
+    private String validarDatos() {
+        String mensaje = "";
+        if (TEXTFIELD_cedula.getText().length() != 14) {
+            mensaje += "Formato de cedula incorrecto!\n";
+        }
+        if (TEXTFIELD_direccion.getText().length() > 60) {
+            mensaje += "Dirección es demasiado largo\n";
+        }
+        if (TEXTFIELD_estadocivil.getText().length() > 45) {
+            mensaje += "Estado Civil, actualmente\n";
+        }
+        if (TEXTFIELD_pnombre.getText().length() > 45) {
+            mensaje += "Primer nombre es demasiado largo\n";
+        }
+        if (TEXTFIELD_snombre.getText().length() > 45) {
+            mensaje += "Segundo nombre es demasiado largo\n";
+        }
+        if (TEXTFIELD_telefono.getText().length() != 8) {
+            mensaje += "Telefóno incorrecto\n";
+        }
+        if (TEXTFIELD_correo.getText().length() <= 50) {
+            Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+            Matcher mather = pattern.matcher(TEXTFIELD_correo.getText());
+            if (mather.find() == false) {
+                mensaje += "El email ingresado es inválido.\n";
+            }
+        } else {
+            mensaje += "El email es demasiado largo\n";
+        }
+
+        return mensaje;
+
+    }
+
+    private Integer getEdadEmpleado() {
+        return (Integer) SPINNER_edad.getValue();
+    }
+
+    private Character getSexoEmpleado() {
+        if (RADIOBTN_hombre.isSelected()) {
+            return 'H';
+        } else if (RADIOBTN_mujer.isSelected()) {
+            return 'M';
+        } else {
+            return '0';
+        }
+    }
+
+    private Date getFechaEmpleado() {
+        return (Date) SPINNER_fecha.getValue();
+    }
+
+    protected void limpiar(Component component) {
+        if (component instanceof JTextField) {
+            JTextField text = (JTextField) component;
+            text.setText("");
+        } else {
+            if (component instanceof Container) {
+                for (Component c : ((Container) component).getComponents()) {
+                    limpiar(c);
+                }
+            }
+        }
     }
 
 }
