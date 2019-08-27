@@ -5,23 +5,37 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
+import com.carmelitascoffee.controlador.ventas.CPersonaContactoVista;
+import com.carmelitascoffee.pojo.PersonaContacto;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JInternalFrame;
-import javax.swing.JSpinner;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
  * @author admin
  */
-public class PersonaContactoVista extends JInternalFrame implements ActionListener{
+public class PersonaContactoVista extends JInternalFrame {
+
+    Session s;
+    CPersonaContactoVista controlador;
 
     /**
      * Creates new form InternalFrameZ
      */
     public PersonaContactoVista() {
         initComponents();
-     
+    }
+
+    PersonaContactoVista(Session s) {
+        initComponents();
+        this.s = s;
+        controlador = new CPersonaContactoVista(s);
+        cargarTabla(tfFiltroDatos.getText());
     }
 
     /**
@@ -40,18 +54,17 @@ public class PersonaContactoVista extends JInternalFrame implements ActionListen
         tfFiltroDatos = new swing.Controles.TextFieldZ();
         lFiltro = new swing.Controles.LabelZ();
 
-        setBackground(new java.awt.Color(0, 51, 102));
+        setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
         setIconifiable(true);
-        setTitle("Agregar empleado");
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("Búsqueda Avanzada Persona Contacto");
         setMinimumSize(new java.awt.Dimension(725, 562));
         setName("AgregarEmpleadoFRM"); // NOI18N
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -63,6 +76,9 @@ public class PersonaContactoVista extends JInternalFrame implements ActionListen
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
             }
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -110,6 +126,14 @@ public class PersonaContactoVista extends JInternalFrame implements ActionListen
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bAgregarPersonaContacto, gridBagConstraints);
+
+        tfFiltroDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfFiltroDatos.setText("");
+        tfFiltroDatos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfFiltroDatosKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -118,6 +142,9 @@ public class PersonaContactoVista extends JInternalFrame implements ActionListen
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfFiltroDatos, gridBagConstraints);
+
+        lFiltro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lFiltro.setText("Palabra clave: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -129,8 +156,12 @@ public class PersonaContactoVista extends JInternalFrame implements ActionListen
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
+
+    private void tfFiltroDatosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFiltroDatosKeyTyped
+        cargarTabla(tfFiltroDatos.getText());
+    }//GEN-LAST:event_tfFiltroDatosKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -140,14 +171,29 @@ public class PersonaContactoVista extends JInternalFrame implements ActionListen
     private swing.Controles.TableZ tPersonaContactoList;
     private swing.Controles.TextFieldZ tfFiltroDatos;
     // End of variables declaration//GEN-END:variables
-    
-    private void ActualizarPanel(){
-        
+
+    private void ActualizarPanel() {
+
     }
 
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        
+    private void cargarTabla(String textFiltro) {
+        DefaultTableModel dtm = (DefaultTableModel) tPersonaContactoList.getModel();
+        dtm.setRowCount(0);
+        List lista = controlador.cargarFiltros(tfFiltroDatos.getText());
+        Object[] row = new Object[8];
+        for (int i = 0; i < lista.size(); i++) {
+            PersonaContacto pc = (PersonaContacto) lista.get(i);
+            row[0] = pc.getIdPersonaContacto();
+            row[1] = pc.getPrimerNombre();
+            row[2] = pc.getSegundoNombre();
+            row[3] = pc.getPrimerApellido();
+            row[4] = pc.getSegundoApellido();
+            row[5] = pc.getTelefono();
+            row[6] = pc.getCorreo();
+            row[7] = pc.getDireccion();
+            dtm.addRow(row);
+        }
+        tPersonaContactoList.setModel(dtm);
     }
 
 }

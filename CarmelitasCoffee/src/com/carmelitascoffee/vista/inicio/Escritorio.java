@@ -525,15 +525,14 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bEgresosActionPerformed
 
     private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
-        AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
+        AgregarEmpleado agregarEmpleado = new AgregarEmpleado(s);
         agregarEmpleado.setVisible(true);
         agregarEmpleado.pack();
         dpEscritorio.add(agregarEmpleado);
-        agregarEmpleado.setSize(dpEscritorio.getSize());
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
-        NuevaOrden nuevaOrden = new NuevaOrden();
+        NuevaOrden nuevaOrden = new NuevaOrden(s, idEmpleado);
         nuevaOrden.setVisible(true);
         nuevaOrden.pack();
         dpEscritorio.add(nuevaOrden);

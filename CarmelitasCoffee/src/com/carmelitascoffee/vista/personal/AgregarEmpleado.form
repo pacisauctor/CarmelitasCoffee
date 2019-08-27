@@ -186,54 +186,50 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelZ16" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <Component id="labelZ6" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="labelZ6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelZ15" alignment="0" max="32767" attributes="0"/>
                                   <Component id="labelZ12" alignment="0" max="32767" attributes="0"/>
                                   <Component id="labelZ13" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelZ7" min="-2" pref="137" max="-2" attributes="0"/>
+                                  <Component id="labelZ8" min="-2" pref="126" max="-2" attributes="0"/>
+                                  <Component id="labelZ11" alignment="0" max="32767" attributes="0"/>
                                   <Component id="labelZ10" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelZ8" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelZ7" alignment="0" pref="118" max="32767" attributes="0"/>
-                                  <Component id="labelZ11" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="RADIOBTN_hombre" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="RADIOBTN_mujer" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="TEXTFIELD_cedula" max="32767" attributes="0"/>
+                                  <Component id="TEXTFIELD_pnombre" max="32767" attributes="0"/>
+                                  <Component id="TEXTFIELD_snombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TEXTFIELD_papellido" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="TEXTFIELD_sapellido" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="SPINNER_edad" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="labelZ14" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelZ17" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelZ9" max="32767" attributes="0"/>
+                                  <Component id="labelZ28" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="labelZ29" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="RADIOBTN_hombre" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="RADIOBTN_mujer" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="TEXTFIELD_cedula" max="32767" attributes="0"/>
-                                          <Component id="TEXTFIELD_pnombre" max="32767" attributes="0"/>
-                                          <Component id="TEXTFIELD_snombre" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TEXTFIELD_papellido" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="TEXTFIELD_sapellido" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="labelZ14" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="labelZ17" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="labelZ9" pref="83" max="32767" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="TEXTFIELD_direccion" min="-2" pref="203" max="-2" attributes="0"/>
-                                          <Component id="TEXTFIELD_telefono" min="-2" pref="203" max="-2" attributes="0"/>
-                                          <Component id="TEXTFIELD_estadocivil" min="-2" pref="203" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="SPINNER_edad" min="-2" pref="144" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="TEXTFIELD_direccion" min="-2" pref="203" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_telefono" min="-2" pref="203" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_estadocivil" min="-2" pref="203" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="TEXTFIELD_correo" alignment="0" min="-2" pref="203" max="-2" attributes="0"/>
+                                      <Component id="TEXTFIELD_escolaridad" alignment="1" min="-2" pref="203" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -246,16 +242,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelZ6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelZ16" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="labelZ6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelZ7" min="-2" max="-2" attributes="0"/>
                                   <Component id="TEXTFIELD_cedula" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelZ7" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -266,9 +259,31 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelZ11" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="TEXTFIELD_snombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelZ9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelZ10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_papellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelZ13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_sapellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelZ12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RADIOBTN_hombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="RADIOBTN_mujer" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelZ15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPINNER_edad" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelZ17" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="TEXTFIELD_direccion" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -278,33 +293,19 @@
                                   <Component id="labelZ14" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="TEXTFIELD_telefono" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="TEXTFIELD_estadocivil" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="labelZ9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TEXTFIELD_estadocivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_correo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelZ28" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="TEXTFIELD_escolaridad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelZ29" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelZ10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TEXTFIELD_papellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelZ13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TEXTFIELD_sapellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelZ12" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RADIOBTN_hombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="RADIOBTN_mujer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelZ15" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="SPINNER_edad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -361,8 +362,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edad:"/>
               </Properties>
-            </Component>
-            <Component class="swing.Controles.LabelZ" name="labelZ16">
             </Component>
             <Component class="swing.Controles.LabelZ" name="labelZ17">
               <Properties>
@@ -436,6 +435,35 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TEXTFIELD_estadocivilActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="swing.Controles.LabelZ" name="labelZ28">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Correo: "/>
+              </Properties>
+            </Component>
+            <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_correo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=""/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TEXTFIELD_correoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="swing.Controles.LabelZ" name="labelZ29">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Grado Escolaridad: "/>
+              </Properties>
+            </Component>
+            <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_escolaridad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=""/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TEXTFIELD_escolaridadActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -476,7 +504,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,50,0,0,2,-43"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-30,0,0,2,-86"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -530,7 +558,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="257" max="32767" attributes="0"/>
+                  <EmptySpace pref="213" max="32767" attributes="0"/>
                   <Component id="BTN_back" min="-2" pref="212" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="BTN_next" min="-2" pref="212" max="-2" attributes="0"/>

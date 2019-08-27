@@ -9,7 +9,6 @@ import com.carmelitascoffee.controlador.ventas.CNuevoCliente;
 import com.carmelitascoffee.pojo.Cliente;
 import com.carmelitascoffee.pojo.PersonaContacto;
 import java.awt.Color;
-import java.awt.Image;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +38,7 @@ public class NuevoCliente extends JInternalFrame {
     public NuevoCliente(Session s, int idEmpleado) {
         initComponents();
         setImagenes();
+        this.s = s;
         controlador = new CNuevoCliente(s);
     }
 
@@ -64,7 +64,7 @@ public class NuevoCliente extends JInternalFrame {
         lCorreo = new swing.Controles.LabelZ();
         tfCorreo = new swing.Controles.TextFieldZ();
         labelZ1 = new swing.Controles.LabelZ();
-        bNuevoCliente = new swing.Controles.ButtonZ();
+        bPersonasContactoVista = new swing.Controles.ButtonZ();
         bAgregarCliente = new swing.Controles.ButtonZ();
         pImagen = new swing.Contenedores.PanelZ();
         tfIdPersonaContacto = new swing.Controles.TextFieldZ();
@@ -205,22 +205,22 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ1, gridBagConstraints);
 
-        bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
-        bNuevoCliente.setBorder(null);
-        bNuevoCliente.setForeground(new java.awt.Color(10, 13, 67));
-        bNuevoCliente.setText("Ver personas de contacto registradas");
-        bNuevoCliente.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-        bNuevoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+        bPersonasContactoVista.setBackground(new java.awt.Color(255, 247, 162));
+        bPersonasContactoVista.setBorder(null);
+        bPersonasContactoVista.setForeground(new java.awt.Color(10, 13, 67));
+        bPersonasContactoVista.setText("Ver personas de contacto registradas");
+        bPersonasContactoVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bPersonasContactoVista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                bNuevoClienteMouseExited(evt);
+                bPersonasContactoVistaMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bNuevoClienteMouseEntered(evt);
+                bPersonasContactoVistaMouseEntered(evt);
             }
         });
-        bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
+        bPersonasContactoVista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNuevoClienteActionPerformed(evt);
+                bPersonasContactoVistaActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -230,7 +230,7 @@ public class NuevoCliente extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.2;
-        getContentPane().add(bNuevoCliente, gridBagConstraints);
+        getContentPane().add(bPersonasContactoVista, gridBagConstraints);
 
         bAgregarCliente.setText("Agregar Cliente");
         bAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -290,13 +290,14 @@ public class NuevoCliente extends JInternalFrame {
         getContentPane().add(tfRUC, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
+    private void bPersonasContactoVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaActionPerformed
         JDesktopPane jdp = getDesktopPane();
-        NuevaPersonaContacto npc = new NuevaPersonaContacto();
-        npc.pack();
-        npc.setVisible(true);
-        jdp.add(npc);
-    }//GEN-LAST:event_bNuevoClienteActionPerformed
+        PersonaContactoVista contactoVista = new PersonaContactoVista(s);
+        contactoVista.setVisible(true);
+        contactoVista.pack();
+        jdp.add(contactoVista);
+        contactoVista.toFront();
+    }//GEN-LAST:event_bPersonasContactoVistaActionPerformed
 
     private void bAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarClienteActionPerformed
         String mensajeError = validarDatos();
@@ -326,18 +327,18 @@ public class NuevoCliente extends JInternalFrame {
     private void tfNombre1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNombre1FocusGained
     }//GEN-LAST:event_tfNombre1FocusGained
 
-    private void bNuevoClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevoClienteMouseEntered
-        bNuevoCliente.setBackground(new Color(255, 247, 162));
-    }//GEN-LAST:event_bNuevoClienteMouseEntered
+    private void bPersonasContactoVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseEntered
+        bPersonasContactoVista.setBackground(new Color(255, 247, 162));
+    }//GEN-LAST:event_bPersonasContactoVistaMouseEntered
 
-    private void bNuevoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevoClienteMouseExited
-        bNuevoCliente.setBackground(new Color(255, 247, 162));
-    }//GEN-LAST:event_bNuevoClienteMouseExited
+    private void bPersonasContactoVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseExited
+        bPersonasContactoVista.setBackground(new Color(255, 247, 162));
+    }//GEN-LAST:event_bPersonasContactoVistaMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.ButtonZ bAgregarCliente;
-    private swing.Controles.ButtonZ bNuevoCliente;
+    private swing.Controles.ButtonZ bPersonasContactoVista;
     private javax.swing.JScrollPane jScrollPane1;
     private swing.Controles.LabelZ lApelildos;
     private swing.Controles.LabelZ lCorreo;
