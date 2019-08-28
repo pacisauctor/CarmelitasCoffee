@@ -15,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -81,5 +84,21 @@ public class CServicios {
         serbd.setUnidad(servicio.getUnidad());
         s.update(serbd);
         terminarSesion();
+    }
+    
+     public List cargarFiltros(String filtro) {
+        if (!filtro.equals("")) {
+            Criterion descripcion;
+
+            descripcion = Restrictions.like("descripcion", "%" + filtro + "%");
+         
+
+            Disjunction disjunction = Restrictions.or(descripcion);
+            Criteria crit = s.createCriteria(Servicio.class).add(disjunction);
+
+            return crit.list();
+        } else {
+            return s.createCriteria(Servicio.class).list();
+        }
     }
 }

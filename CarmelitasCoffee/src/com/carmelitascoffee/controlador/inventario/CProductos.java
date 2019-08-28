@@ -14,9 +14,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
@@ -82,6 +85,22 @@ public class CProductos {
         s.update(probd);
         terminarSesion();
     }
+    
+     public List cargarFiltros(String filtro) {
+        if (!filtro.equals("")) {
+            Criterion descripcion;
+
+            descripcion = Restrictions.like("descripcion", "%" + filtro + "%");
+         
+
+            Disjunction disjunction = Restrictions.or(descripcion);
+            Criteria crit = s.createCriteria(Producto.class).add(disjunction);
+
+            return crit.list();
+        } else {
+            return s.createCriteria(Producto.class).list();
+        }
+    }
         
        /* public void ModificarProducto(JTable tabla, Productos panel){
             modelo.setRowCount(0);
@@ -108,6 +127,8 @@ public class CProductos {
             }
             LlenarTabla(tabla);
         }*/
+
+    
         
         
 }

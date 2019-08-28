@@ -39,6 +39,16 @@ public class PersonaContacto  implements java.io.Serializable {
        this.direccion = direccion;
        this.clientes = clientes;
     }
+
+    public PersonaContacto(String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido, String telefono, String correo, String direccion) {
+       this.primerNombre = primer_nombre;
+       this.segundoNombre = segundo_nombre;
+       this.primerApellido = primer_apellido;
+       this.segundoApellido = segundo_apellido;
+       this.telefono = telefono;
+       this.correo = correo;
+       this.direccion = direccion;
+    }
    
     public int getIdPersonaContacto() {
         return this.idPersonaContacto;

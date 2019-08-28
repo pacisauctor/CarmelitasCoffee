@@ -65,17 +65,17 @@ public class PersonaContactoVista extends JInternalFrame {
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
@@ -129,6 +129,11 @@ public class PersonaContactoVista extends JInternalFrame {
 
         tfFiltroDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfFiltroDatos.setText("");
+        tfFiltroDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfFiltroDatosActionPerformed(evt);
+            }
+        });
         tfFiltroDatos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfFiltroDatosKeyTyped(evt);
@@ -162,6 +167,10 @@ public class PersonaContactoVista extends JInternalFrame {
     private void tfFiltroDatosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFiltroDatosKeyTyped
         cargarTabla(tfFiltroDatos.getText());
     }//GEN-LAST:event_tfFiltroDatosKeyTyped
+
+    private void tfFiltroDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfFiltroDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfFiltroDatosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

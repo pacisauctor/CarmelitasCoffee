@@ -541,7 +541,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevaOrdenActionPerformed
 
     private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
-        NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto();
+        NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto(s);
         nuevaPersonaContacto.setVisible(true);
         nuevaPersonaContacto.pack();
         dpEscritorio.add(nuevaPersonaContacto);

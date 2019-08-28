@@ -134,6 +134,7 @@
         <Property name="text" type="java.lang.String" value=""/>
       </Properties>
       <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFiltroDatosActionPerformed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfFiltroDatosKeyTyped"/>
       </Events>
       <Constraints>
