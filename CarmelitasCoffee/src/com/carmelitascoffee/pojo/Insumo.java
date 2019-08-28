@@ -30,7 +30,7 @@ public class Insumo  implements java.io.Serializable {
        this.detalleFacturaInsumos = detalleFacturaInsumos;
     }
 
-    public Insumo(String descripcion, int cantidadInventario) {
+    public Insumo(String descripcion, Integer cantidadInventario) {
        this.descripcion = descripcion;
        this.cantidadInventario = cantidadInventario;
     }

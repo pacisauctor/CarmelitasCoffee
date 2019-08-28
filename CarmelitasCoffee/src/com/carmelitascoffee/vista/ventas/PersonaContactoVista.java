@@ -7,9 +7,6 @@ package com.carmelitascoffee.vista.ventas;
 
 import com.carmelitascoffee.controlador.ventas.CPersonaContactoVista;
 import com.carmelitascoffee.pojo.PersonaContacto;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
@@ -64,23 +61,6 @@ public class PersonaContactoVista extends JInternalFrame {
         setName("AgregarEmpleadoFRM"); // NOI18N
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         tPersonaContactoList.setModel(new javax.swing.table.DefaultTableModel(
@@ -134,6 +114,7 @@ public class PersonaContactoVista extends JInternalFrame {
 
         tfFiltroDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfFiltroDatos.setText("");
+
         tfFiltroDatos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfFiltroDatosKeyTyped(evt);
@@ -160,9 +141,6 @@ public class PersonaContactoVista extends JInternalFrame {
         getContentPane().add(lFiltro, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-
-    }//GEN-LAST:event_formInternalFrameOpened
 
     private void tfFiltroDatosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFiltroDatosKeyTyped
         cargarTabla(tfFiltroDatos.getText());
