@@ -6,6 +6,7 @@
 package com.carmelitascoffee.vista.inicio;
 
 import com.carmelitascoffee.controlador.inicio.CEscritorio;
+import com.carmelitascoffee.vista.ajustes.AdministrarUsuarios;
 import com.carmelitascoffee.vista.compras.Compras;
 import com.carmelitascoffee.vista.compras.Proveedores;
 import com.carmelitascoffee.vista.egresos.Egresos;
@@ -42,6 +43,8 @@ public class Escritorio extends JFrame {
     private int idEmpleado;
     private Session s;
     private CEscritorio controlador;
+    String sSistemaOperativo = System.getProperty("os.name");
+    String division;
 
     public Escritorio() {
         initComponents();
@@ -54,6 +57,11 @@ public class Escritorio extends JFrame {
         this.s = s;
         controlador = new CEscritorio(s);
         initComponents();
+        if (sSistemaOperativo.equals("Linux")) {
+            division = "//";
+        } else {
+            division = "\\\\";
+        }
     }
 
     @Override
@@ -613,7 +621,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bPlanillasActionPerformed
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
-        
+
         bCerrar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bCerrarMouseEntered
 
@@ -650,7 +658,10 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bMinimizarActionPerformed
 
     private void bAdminUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdminUserActionPerformed
-        // TODO add your handling code here:
+        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios(s);
+        administrarUsuarios.setVisible(true);
+        administrarUsuarios.pack();
+        dpEscritorio.add(administrarUsuarios);
     }//GEN-LAST:event_bAdminUserActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
@@ -721,54 +732,54 @@ public class Escritorio extends JFrame {
         URL ruta;
         switch (panelZ.getName()) {
             case "Personal":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//agregarEmpleado.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"personal"+division+"agregarEmpleado.png");
                 bAgregarEmpleado.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//administrarEmpleado.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"personal"+division+"administrarEmpleado.png");
                 bModificarEmpleado.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//planilla.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"personal"+division+"planilla.png");
                 bPlanillas.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Egresos":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//egresos//egresos3.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"egresos"+division+"egresos3.png");
                 bEgresos.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ventas":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoCliente.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"ventas"+division+"nuevoCliente.png");
                 bNuevoCliente.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoContacto.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"ventas"+division+"nuevoContacto.png");
                 bNuevaPersonaContacto.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenNueva.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"ventas"+division+"ordenNueva.png");
                 bNuevaOrden.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenVista.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"ventas"+division+"ordenVista.png");
                 bOrdenVista.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Compras":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//compras2.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"compras"+division+"compras2.png");
                 bCompras.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//proveedor.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"compras"+division+"proveedor.png");
                 bProveedores.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Inventario":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//insumo.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"inventario"+division+"insumo.png");
                 bInsumos.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//producto2.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"inventario"+division+"producto2.png");
                 bProductos.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//servicio4.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"inventario"+division+"servicio4.png");
                 bServicios.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ajustes":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//administrarUsuario.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"ajuste"+division+"administrarUsuario.png");
                 bAdminUser.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//cerrarSesion2.png");
+                ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"menu"+division+"ajuste"+division+"cerrarSesion2.png");
                 bCerrarSesion.setFondo(new ImageIcon(ruta).getImage());
                 break;
 
@@ -781,13 +792,13 @@ public class Escritorio extends JFrame {
 
     private void setIconosVentana() {
         ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
-        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
+        URL ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"close.png");
         iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bCerrar.setIcon(iconoCerrar);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//minimize.png");
+        ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"minimize.png");
         iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMinimizar.setIcon(iconoMinimizar);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//maximizar.png");
+        ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"maximizar.png");
         iconoMaximizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMaximizar.setIcon(iconoMaximizar);
         //escribiendo título
@@ -795,10 +806,10 @@ public class Escritorio extends JFrame {
             title = "Nueva Ventana";
         }
         lTitle.setText(title);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//fondo.jpg");
+        ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"fondo.jpg");
         imagenFondo = new ImageIcon(ruta).getImage();
         agregarFondoPantalla(imagenFondo);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//coffee.png");
+        ruta = getClass().getClassLoader().getResource("com"+division+"carmelitascoffee"+division+"img"+division+"coffee.png");
         lTitle.setIcon(new ImageIcon(ruta));
     }
 

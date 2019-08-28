@@ -256,7 +256,7 @@ public class Productos extends JInternalFrame {
         String descripcion;
         int cantidadEnInventario;
         float precio;
-
+       
         descripcion = nom.getText();
         cantidadEnInventario = Integer.parseInt(cant.getText());
         precio = Float.parseFloat(pre.getText());

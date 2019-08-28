@@ -42,6 +42,13 @@ public class NuevoCliente extends JInternalFrame {
         controlador = new CNuevoCliente(s);
     }
 
+    NuevoCliente(Session s) {
+        initComponents();
+        setImagenes();
+        this.s = s;
+        controlador = new CNuevoCliente(s);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -5,12 +5,11 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
-import com.carmelitascoffee.controlador.ventas.CPersonaContactoVista;
+import com.carmelitascoffee.controlador.ventas.CClienteVista;
+import com.carmelitascoffee.pojo.Cliente;
 import com.carmelitascoffee.pojo.PersonaContacto;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
@@ -19,23 +18,23 @@ import org.hibernate.Session;
  *
  * @author admin
  */
-public class PersonaContactoVista extends JInternalFrame {
+public class ClienteVista extends JInternalFrame {
 
     Session s;
-    CPersonaContactoVista controlador;
+    CClienteVista controlador;
 
     /**
      * Creates new form InternalFrameZ
      */
-    public PersonaContactoVista() {
+    public ClienteVista() {
         initComponents();
     }
 
-    PersonaContactoVista(Session s) {
+    ClienteVista(Session s) {
         initComponents();
         this.s = s;
-        controlador = new CPersonaContactoVista(s);
-        cargarTabla(tfFiltroDatos.getText());
+        controlador = new CClienteVista(s);
+        cargarTabla();
     }
 
     /**
@@ -49,8 +48,8 @@ public class PersonaContactoVista extends JInternalFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        tPersonaContactoList = new swing.Controles.TableZ();
-        bAgregarPersonaContacto = new swing.Controles.ButtonZ();
+        tClienteList = new swing.Controles.TableZ();
+        bAgregarCliente = new swing.Controles.ButtonZ();
         tfFiltroDatos = new swing.Controles.TextFieldZ();
         lFiltro = new swing.Controles.LabelZ();
 
@@ -59,7 +58,7 @@ public class PersonaContactoVista extends JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Búsqueda Avanzada Persona Contacto");
+        setTitle("Búsqueda Avanzada Cliente");
         setMinimumSize(new java.awt.Dimension(725, 562));
         setName("AgregarEmpleadoFRM"); // NOI18N
         setPreferredSize(new java.awt.Dimension(725, 562));
@@ -83,12 +82,12 @@ public class PersonaContactoVista extends JInternalFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        tPersonaContactoList.setModel(new javax.swing.table.DefaultTableModel(
+        tClienteList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "id", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Teléfono", "Correo", "Dirección"
+                "id", "RUC", "Nombre", "Apellido", "Teléfono", "Correo", "Dirección", "PersonaContacto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,13 +98,13 @@ public class PersonaContactoVista extends JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tPersonaContactoList.setColumnSelectionAllowed(true);
-        jScrollPane3.setViewportView(tPersonaContactoList);
-        tPersonaContactoList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tPersonaContactoList.getColumnModel().getColumnCount() > 0) {
-            tPersonaContactoList.getColumnModel().getColumn(0).setMinWidth(40);
-            tPersonaContactoList.getColumnModel().getColumn(0).setPreferredWidth(40);
-            tPersonaContactoList.getColumnModel().getColumn(0).setMaxWidth(40);
+        tClienteList.setColumnSelectionAllowed(true);
+        jScrollPane3.setViewportView(tClienteList);
+        tClienteList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tClienteList.getColumnModel().getColumnCount() > 0) {
+            tClienteList.getColumnModel().getColumn(0).setMinWidth(40);
+            tClienteList.getColumnModel().getColumn(0).setPreferredWidth(40);
+            tClienteList.getColumnModel().getColumn(0).setMaxWidth(40);
         }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -117,10 +116,10 @@ public class PersonaContactoVista extends JInternalFrame {
         gridBagConstraints.weighty = 0.5;
         getContentPane().add(jScrollPane3, gridBagConstraints);
 
-        bAgregarPersonaContacto.setText("Agregar Persona Contacto");
-        bAgregarPersonaContacto.addActionListener(new java.awt.event.ActionListener() {
+        bAgregarCliente.setText("Agregar Cliente");
+        bAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAgregarPersonaContactoActionPerformed(evt);
+                bAgregarClienteActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -130,7 +129,7 @@ public class PersonaContactoVista extends JInternalFrame {
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(bAgregarPersonaContacto, gridBagConstraints);
+        getContentPane().add(bAgregarCliente, gridBagConstraints);
 
         tfFiltroDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfFiltroDatos.setText("");
@@ -165,20 +164,24 @@ public class PersonaContactoVista extends JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void tfFiltroDatosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFiltroDatosKeyTyped
-        cargarTabla(tfFiltroDatos.getText());
+        cargarTabla();
     }//GEN-LAST:event_tfFiltroDatosKeyTyped
 
-    private void bAgregarPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarPersonaContactoActionPerformed
-        //TODO
-
-    }//GEN-LAST:event_bAgregarPersonaContactoActionPerformed
+    private void bAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarClienteActionPerformed
+        JDesktopPane jdp = getDesktopPane();
+        NuevoCliente nuevoCliente = new NuevoCliente(s);
+        nuevoCliente.setVisible(true);
+        nuevoCliente.pack();
+        jdp.add(nuevoCliente);
+        nuevoCliente.toFront();
+    }//GEN-LAST:event_bAgregarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ bAgregarPersonaContacto;
+    private swing.Controles.ButtonZ bAgregarCliente;
     private javax.swing.JScrollPane jScrollPane3;
     private swing.Controles.LabelZ lFiltro;
-    private swing.Controles.TableZ tPersonaContactoList;
+    private swing.Controles.TableZ tClienteList;
     private swing.Controles.TextFieldZ tfFiltroDatos;
     // End of variables declaration//GEN-END:variables
 
@@ -186,24 +189,24 @@ public class PersonaContactoVista extends JInternalFrame {
 
     }
 
-    private void cargarTabla(String textFiltro) {
-        DefaultTableModel dtm = (DefaultTableModel) tPersonaContactoList.getModel();
+    private void cargarTabla() {
+        DefaultTableModel dtm = (DefaultTableModel) tClienteList.getModel();
         dtm.setRowCount(0);
         List lista = controlador.cargarFiltros(tfFiltroDatos.getText());
         Object[] row = new Object[8];
         for (int i = 0; i < lista.size(); i++) {
-            PersonaContacto pc = (PersonaContacto) lista.get(i);
-            row[0] = pc.getIdPersonaContacto();
-            row[1] = pc.getPrimerNombre();
-            row[2] = pc.getSegundoNombre();
-            row[3] = pc.getPrimerApellido();
-            row[4] = pc.getSegundoApellido();
-            row[5] = pc.getTelefono();
-            row[6] = pc.getCorreo();
-            row[7] = pc.getDireccion();
+            Cliente c = (Cliente) lista.get(i);
+            row[0] = c.getIdCliente();
+            row[1] = c.getNumeroRuc();
+            row[2] = c.getNombres();
+            row[3] = c.getApellidos();
+            row[4] = c.getTelefono();
+            row[5] = c.getCorreo();
+            row[6] = c.getDireccion();
+            row[7] = c.getPersonaContacto().getPrimerNombre() + " " + c.getPersonaContacto().getPrimerApellido();
             dtm.addRow(row);
         }
-        tPersonaContactoList.setModel(dtm);
+        tClienteList.setModel(dtm);
     }
 
 }
