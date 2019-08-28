@@ -66,8 +66,6 @@ public class NuevaOrden extends JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tOrden = new swing.Controles.TableZ();
         bRegistrarOrden = new swing.Controles.ButtonZ();
-        bAgregarProducto = new swing.Controles.ButtonZ();
-        bAgregarServicio = new swing.Controles.ButtonZ();
         tfIdCliente = new swing.Controles.TextFieldZ();
         pAgregarPSO = new swing.Contenedores.PanelZ();
         lTitulo2 = new swing.Controles.LabelZ();
@@ -133,7 +131,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(lTipoOrden, gridBagConstraints);
 
-        cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo Orden 1", "Tipo Orden 2", "Tipo Orden 3" }));
+        cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Producto", "Servicio" }));
         cbtipoOrden.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -219,40 +217,6 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(bRegistrarOrden, gridBagConstraints);
 
-        bAgregarProducto.setText("Agregar Producto");
-        bAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAgregarProductoActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(bAgregarProducto, gridBagConstraints);
-
-        bAgregarServicio.setText("Agregar Servicio");
-        bAgregarServicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAgregarServicioActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(bAgregarServicio, gridBagConstraints);
-
         tfIdCliente.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -268,6 +232,14 @@ public class NuevaOrden extends JInternalFrame {
 
         tfId.setText("");
         tfId.setToolTipText("");
+        tfId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfIdKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfIdKeyPressed(evt);
+            }
+        });
         pAgregarPSO.add(tfId, java.awt.BorderLayout.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -305,6 +277,7 @@ public class NuevaOrden extends JInternalFrame {
         getContentPane().add(bPersonasContactoVista, gridBagConstraints);
 
         tfFechaRegistro.setModel(new javax.swing.SpinnerDateModel());
+        tfFechaRegistro.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -372,38 +345,6 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(lTotal, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarProductoActionPerformed
-        try {
-            int idProducto = Integer.parseInt(tfId.getText());
-            if (controlador.existeProducto(idProducto)) {
-                Producto p = controlador.getProducto(idProducto);
-                agregarFila(p);
-            } else {
-                JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los productos\n"
-                        + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los productos identificados\n"
-                    + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
-        }
-    }//GEN-LAST:event_bAgregarProductoActionPerformed
-
-    private void bAgregarServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarServicioActionPerformed
-        try {
-            int idServicio = Integer.parseInt(tfId.getText());
-            if (controlador.existeServicio(idServicio)) {
-                Servicio serv = controlador.getServicios(idServicio);
-                agregarFila(serv);
-            } else {
-                JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los servicios\n"
-                        + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los servicios identificados\n"
-                    + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
-        }
-    }//GEN-LAST:event_bAgregarServicioActionPerformed
 
     private void bPersonasContactoVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseExited
         bPersonasContactoVista.setBackground(new Color(255, 247, 162));
@@ -492,10 +433,48 @@ public class NuevaOrden extends JInternalFrame {
         }
     }//GEN-LAST:event_tOrdenKeyReleased
 
+    private void tfIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdKeyTyped
+
+    }//GEN-LAST:event_tfIdKeyTyped
+
+    private void tfIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            //agregar detalle orden producto
+            if (cbtipoOrden.getSelectedIndex() == 0) {
+                try {
+                    int idProducto = Integer.parseInt(tfId.getText());
+                    if (controlador.existeProducto(idProducto)) {
+                        Producto p = controlador.getProducto(idProducto);
+                        agregarFila(p);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los productos\n"
+                                + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los productos identificados\n"
+                            + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
+                }
+            } else if (cbtipoOrden.getSelectedIndex() == 1) { // agregar detalle orden servicio
+                try {
+                    int idServicio = Integer.parseInt(tfId.getText());
+                    if (controlador.existeServicio(idServicio)) {
+                        Servicio serv = controlador.getServicios(idServicio);
+                        agregarFila(serv);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los servicios\n"
+                                + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los servicios identificados\n"
+                            + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
+                }
+            }
+        }
+    }//GEN-LAST:event_tfIdKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ bAgregarProducto;
-    private swing.Controles.ButtonZ bAgregarServicio;
     private swing.Controles.ButtonZ bPersonasContactoVista;
     private swing.Controles.ButtonZ bProductosVista;
     private swing.Controles.ButtonZ bRegistrarOrden;

@@ -5,6 +5,7 @@
  */
 package com.carmelitascoffee.vista.ajustes;
 
+import com.carmelitascoffee.controlador.ajustes.CAdministrarUsuarios;
 import org.hibernate.Session;
 
 /**
@@ -13,6 +14,8 @@ import org.hibernate.Session;
  */
 public class AdministrarUsuarios extends javax.swing.JInternalFrame {
 
+    Session s;
+    CAdministrarUsuarios controlador;
     /**
      * Creates new form AdministrarUsuarios
      */
@@ -21,7 +24,9 @@ public class AdministrarUsuarios extends javax.swing.JInternalFrame {
     }
 
     public AdministrarUsuarios(Session s) {
+        this.s = s;
         initComponents();
+        controlador = new CAdministrarUsuarios(s);
     }
 
     /**

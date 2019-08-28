@@ -83,10 +83,9 @@
     <Component class="swing.Controles.ComboBoxZ" name="cbtipoOrden">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Tipo Orden 1"/>
-            <StringItem index="1" value="Tipo Orden 2"/>
-            <StringItem index="2" value="Tipo Orden 3"/>
+          <StringArray count="2">
+            <StringItem index="0" value="Producto"/>
+            <StringItem index="1" value="Servicio"/>
           </StringArray>
         </Property>
         <Property name="opaque" type="boolean" value="false"/>
@@ -203,32 +202,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="swing.Controles.ButtonZ" name="bAgregarProducto">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Producto"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAgregarProductoActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="3" gridY="5" gridWidth="1" gridHeight="1" fill="2" ipadX="10" ipadY="10" insetsTop="1" insetsLeft="1" insetsBottom="1" insetsRight="1" anchor="10" weightX="0.3" weightY="0.1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="swing.Controles.ButtonZ" name="bAgregarServicio">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar Servicio"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAgregarServicioActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="3" gridY="7" gridWidth="1" gridHeight="1" fill="2" ipadX="10" ipadY="10" insetsTop="1" insetsLeft="1" insetsBottom="1" insetsRight="1" anchor="10" weightX="0.3" weightY="0.1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="swing.Controles.TextFieldZ" name="tfIdCliente">
       <Properties>
         <Property name="text" type="java.lang.String" value=""/>
@@ -264,6 +237,10 @@
             <Property name="text" type="java.lang.String" value=""/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdKeyTyped"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfIdKeyPressed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
               <BorderConstraints direction="Center"/>
@@ -304,6 +281,7 @@
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
           <SpinnerModel initial="now" stepSize="5" type="date"/>
         </Property>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
