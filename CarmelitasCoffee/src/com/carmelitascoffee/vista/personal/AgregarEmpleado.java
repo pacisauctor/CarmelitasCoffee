@@ -107,6 +107,7 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
         PANEL_botones = new swing.Contenedores.PanelZ();
         BTN_next = new swing.Controles.ButtonZ();
         BTN_back = new swing.Controles.ButtonZ();
+        bLimpiar = new swing.Controles.ButtonZ();
 
         PANEL_datoscontrato.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo contrato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -284,19 +285,19 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
                             .addComponent(labelZ10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
-                                .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(RADIOBTN_mujer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 12, Short.MAX_VALUE))
                             .addComponent(TEXTFIELD_cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TEXTFIELD_pnombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
-                                .addComponent(SPINNER_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PANEL_datosempleadoLayout.createSequentialGroup()
+                                        .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(RADIOBTN_mujer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(SPINNER_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 12, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(PANEL_datosempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(labelZ14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -398,6 +399,9 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
@@ -409,9 +413,6 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
             }
         });
         getContentPane().add(PANEL_main, java.awt.BorderLayout.CENTER);
@@ -441,12 +442,21 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
             }
         });
 
+        bLimpiar.setText("Limpiar Campos");
+        bLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PANEL_botonesLayout = new javax.swing.GroupLayout(PANEL_botones);
         PANEL_botones.setLayout(PANEL_botonesLayout);
         PANEL_botonesLayout.setHorizontalGroup(
             PANEL_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PANEL_botonesLayout.createSequentialGroup()
-                .addContainerGap(213, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(bLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(BTN_back, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BTN_next, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,9 +466,13 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
             PANEL_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PANEL_botonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PANEL_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BTN_next, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(BTN_back, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addGroup(PANEL_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PANEL_botonesLayout.createSequentialGroup()
+                        .addComponent(bLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(PANEL_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BTN_next, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                        .addComponent(BTN_back, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -478,15 +492,21 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void BTN_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nextActionPerformed
-        if (!this.BTN_back.isEnabled()) {
+        String mensaje = validarDatos(1);
+        if (!this.BTN_back.isEnabled() && mensaje.isEmpty()) {
             this.BTN_back.setEnabled(true);
             this.BTN_next.setText("Finalizar");
             this.PANEL_main.removeAll();
             this.PANEL_main.add(this.PANEL_contrato);
             ActualizarPanel();
+            return;
+        } else if (!mensaje.isEmpty()) {
+            JOptionPane.showMessageDialog(this, mensaje);
+            return;
         }
+        mensaje = validarDatos(2);
         if (BTN_next.getText().equals("Finalizar")) {
-            String mensaje = validarDatos();
+
             if ("".equals(mensaje)) {
                 Empleado empleado = new Empleado();
                 empleado.setCedulaIdentidad(TEXTFIELD_cedula.getText());
@@ -509,7 +529,8 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
                 contrato.setEstado("ACTIVO");
                 controlador.addEmpleadoYContrato(empleado, contrato);
                 JOptionPane.showMessageDialog(this, "Ingreso Exitoso!!");
-                //vaciarCampos();
+                limpiar(this);
+                
             } else {
                 JOptionPane.showMessageDialog(this, mensaje);
             }
@@ -527,6 +548,10 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
     private void TEXTFIELD_escolaridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_escolaridadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TEXTFIELD_escolaridadActionPerformed
+
+    private void bLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLimpiarActionPerformed
+        limpiar(this);
+    }//GEN-LAST:event_bLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -558,6 +583,7 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
     private swing.Controles.TextFieldZ TEXTFIELD_snombre;
     private swing.Controles.TextFieldZ TEXTFIELD_sueldo;
     private swing.Controles.TextFieldZ TEXTFIELD_telefono;
+    private swing.Controles.ButtonZ bLimpiar;
     private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ10;
     private swing.Controles.LabelZ labelZ11;
@@ -588,36 +614,54 @@ public class AgregarEmpleado extends JInternalFrame implements ActionListener {
 
     }
 
-    private String validarDatos() {
+    private String validarDatos(int parte) {
         String mensaje = "";
-        if (TEXTFIELD_cedula.getText().length() != 14) {
-            mensaje += "Formato de cedula incorrecto!\n";
-        }
-        if (TEXTFIELD_direccion.getText().length() > 60) {
-            mensaje += "Dirección es demasiado largo\n";
-        }
-        if (TEXTFIELD_estadocivil.getText().length() > 45) {
-            mensaje += "Estado Civil, actualmente\n";
-        }
-        if (TEXTFIELD_pnombre.getText().length() > 45) {
-            mensaje += "Primer nombre es demasiado largo\n";
-        }
-        if (TEXTFIELD_snombre.getText().length() > 45) {
-            mensaje += "Segundo nombre es demasiado largo\n";
-        }
-        if (TEXTFIELD_telefono.getText().length() != 8) {
-            mensaje += "Telefóno incorrecto\n";
-        }
-        if (TEXTFIELD_correo.getText().length() <= 50) {
-            Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
-            Matcher mather = pattern.matcher(TEXTFIELD_correo.getText());
-            if (mather.find() == false) {
-                mensaje += "El email ingresado es inválido.\n";
+        if (parte == 1) {
+            if (TEXTFIELD_cedula.getText().length() != 14) {
+                mensaje += "Formato de cedula incorrecto!\n";
             }
-        } else {
-            mensaje += "El email es demasiado largo\n";
+            if (TEXTFIELD_direccion.getText().length() > 60) {
+                mensaje += "Dirección es demasiado largo\n";
+            }
+            if (TEXTFIELD_estadocivil.getText().length() > 45) {
+                mensaje += "Estado Civil, actualmente\n";
+            }
+            if (TEXTFIELD_pnombre.getText().length() > 45) {
+                mensaje += "Primer nombre es demasiado largo\n";
+            }
+            if (TEXTFIELD_snombre.getText().length() > 45) {
+                mensaje += "Segundo nombre es demasiado largo\n";
+            }
+            if (TEXTFIELD_telefono.getText().length() != 8) {
+                mensaje += "Telefóno incorrecto\n";
+            }
+            if (TEXTFIELD_correo.getText().length() <= 50) {
+                Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+                Matcher mather = pattern.matcher(TEXTFIELD_correo.getText());
+                if (mather.find() == false) {
+                    mensaje += "El email ingresado es inválido.\n";
+                }
+            } else {
+                mensaje += "El email es demasiado largo\n";
+            }
+        } else if (parte == 2) {
+            try {
+                double comisiones = Double.parseDouble(TEXTFIELD_comisiones.getText());
+                if (comisiones < 0 || comisiones > 1) {
+                    mensaje += "Comisiones debe de ser un número entre 0 y 1!\n";
+                }
+            } catch (NumberFormatException e) {
+                mensaje += "Comisiones debe de ser un número!\n";
+            }
+            try {
+                double sueldo = Double.parseDouble(TEXTFIELD_sueldo.getText());
+                if (sueldo <= 0) {
+                    mensaje += "El sueldo debe de ser mayor que cero!\n";
+                }
+            } catch (NumberFormatException e) {
+                mensaje += "Sueldo debe de ser un número!\n";
+            }
         }
-
         return mensaje;
 
     }
