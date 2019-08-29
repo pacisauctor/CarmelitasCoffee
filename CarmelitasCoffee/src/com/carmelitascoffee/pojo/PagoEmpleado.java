@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 

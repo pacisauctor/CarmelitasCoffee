@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class DetalleFacturaInsumo  implements java.io.Serializable {
 
 
-     private int idDetalleFacturaInsumo;
+     private Integer idDetalleFacturaInsumo;
      private FacturaInsumo facturaInsumo;
      private Insumo insumo;
      private Integer cantidad;
@@ -20,24 +20,22 @@ public class DetalleFacturaInsumo  implements java.io.Serializable {
     }
 
 	
-    public DetalleFacturaInsumo(int idDetalleFacturaInsumo, FacturaInsumo facturaInsumo, Insumo insumo) {
-        this.idDetalleFacturaInsumo = idDetalleFacturaInsumo;
+    public DetalleFacturaInsumo(FacturaInsumo facturaInsumo, Insumo insumo) {
         this.facturaInsumo = facturaInsumo;
         this.insumo = insumo;
     }
-    public DetalleFacturaInsumo(int idDetalleFacturaInsumo, FacturaInsumo facturaInsumo, Insumo insumo, Integer cantidad, BigDecimal descuento) {
-       this.idDetalleFacturaInsumo = idDetalleFacturaInsumo;
+    public DetalleFacturaInsumo(FacturaInsumo facturaInsumo, Insumo insumo, Integer cantidad, BigDecimal descuento) {
        this.facturaInsumo = facturaInsumo;
        this.insumo = insumo;
        this.cantidad = cantidad;
        this.descuento = descuento;
     }
    
-    public int getIdDetalleFacturaInsumo() {
+    public Integer getIdDetalleFacturaInsumo() {
         return this.idDetalleFacturaInsumo;
     }
     
-    public void setIdDetalleFacturaInsumo(int idDetalleFacturaInsumo) {
+    public void setIdDetalleFacturaInsumo(Integer idDetalleFacturaInsumo) {
         this.idDetalleFacturaInsumo = idDetalleFacturaInsumo;
     }
     public FacturaInsumo getFacturaInsumo() {

@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,23 @@ package com.carmelitascoffee.pojo;
 public class PagoMantenimiento  implements java.io.Serializable {
 
 
-     private int idPagoMantenimiento;
+     private Integer idPagoMantenimiento;
      private Deposito deposito;
      private Mantenimiento mantenimiento;
 
     public PagoMantenimiento() {
     }
 
-    public PagoMantenimiento(int idPagoMantenimiento, Deposito deposito, Mantenimiento mantenimiento) {
-       this.idPagoMantenimiento = idPagoMantenimiento;
+    public PagoMantenimiento(Deposito deposito, Mantenimiento mantenimiento) {
        this.deposito = deposito;
        this.mantenimiento = mantenimiento;
     }
    
-    public int getIdPagoMantenimiento() {
+    public Integer getIdPagoMantenimiento() {
         return this.idPagoMantenimiento;
     }
     
-    public void setIdPagoMantenimiento(int idPagoMantenimiento) {
+    public void setIdPagoMantenimiento(Integer idPagoMantenimiento) {
         this.idPagoMantenimiento = idPagoMantenimiento;
     }
     public Deposito getDeposito() {

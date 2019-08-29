@@ -1,84 +1,83 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-05-2019 01:35:42 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.carmelitascoffee.pojo.Empleado" table="empleado" catalog="carmelitas_coffee" optimistic-lock="version">
-        <id name="idEmpleado" type="int">
-            <column name="id_empleado" />
-            <generator class="assigned" />
-        </id>
-        <property name="cedulaIdentidad" type="string">
-            <column name="cedula_identidad" length="45" unique="true" />
-        </property>
-        <property name="primerNombre" type="string">
-            <column name="primer_nombre" length="45" />
-        </property>
-        <property name="segundoNombre" type="string">
-            <column name="segundo_nombre" length="45" />
-        </property>
-        <property name="primerApellido" type="string">
-            <column name="primer_apellido" length="45" />
-        </property>
-        <property name="segundoApellido" type="string">
-            <column name="segundo_apellido" length="45" />
-        </property>
-        <property name="sexo" type="java.lang.Character">
-            <column name="sexo" length="1" />
-        </property>
-        <property name="edad" type="java.lang.Integer">
-            <column name="edad" />
-        </property>
-        <property name="direccion" type="string">
-            <column name="direccion" length="60" />
-        </property>
-        <property name="telefono" type="string">
-            <column name="telefono" length="10" />
-        </property>
-        <property name="correo" type="string">
-            <column name="correo" length="50" />
-        </property>
-        <property name="estadoCivil" type="string">
-            <column name="estado_civil" length="45" />
-        </property>
-        <property name="gradoEscolaridad" type="string">
-            <column name="grado_escolaridad" length="45" />
-        </property>
-        <set name="contratos" table="contrato" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_empleado" not-null="true" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.Contrato" />
-        </set>
-        <set name="empleadoPlanillas" table="empleado_planilla" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_empleado" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.EmpleadoPlanilla" />
-        </set>
-        <set name="ordens" table="orden" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_empleado" not-null="true" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.Orden" />
-        </set>
-        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_empleado" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.Usuario" />
-        </set>
-        <set name="mantenimientos" table="mantenimiento" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_empleado" not-null="true" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.Mantenimiento" />
-        </set>
-        <set name="facturaInsumos" table="factura_insumo" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_empleado" not-null="true" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.FacturaInsumo" />
-        </set>
-    </class>
+  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.Empleado" optimistic-lock="version" table="empleado">
+    <id name="idEmpleado" type="java.lang.Integer">
+      <column name="id_empleado"/>
+      <generator class="identity"/>
+    </id>
+    <property name="cedulaIdentidad" type="string">
+      <column length="45" name="cedula_identidad" unique="true"/>
+    </property>
+    <property name="primerNombre" type="string">
+      <column length="45" name="primer_nombre"/>
+    </property>
+    <property name="segundoNombre" type="string">
+      <column length="45" name="segundo_nombre"/>
+    </property>
+    <property name="primerApellido" type="string">
+      <column length="45" name="primer_apellido"/>
+    </property>
+    <property name="segundoApellido" type="string">
+      <column length="45" name="segundo_apellido"/>
+    </property>
+    <property name="sexo" type="java.lang.Character">
+      <column length="1" name="sexo"/>
+    </property>
+    <property name="edad" type="java.lang.Integer">
+      <column name="edad"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="60" name="direccion"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="10" name="telefono"/>
+    </property>
+    <property name="correo" type="string">
+      <column length="50" name="correo"/>
+    </property>
+    <property name="estadoCivil" type="string">
+      <column length="45" name="estado_civil"/>
+    </property>
+    <property name="gradoEscolaridad" type="string">
+      <column length="45" name="grado_escolaridad"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="contratos" table="contrato">
+      <key>
+        <column name="id_empleado" not-null="true"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.Contrato"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="empleadoPlanillas" table="empleado_planilla">
+      <key>
+        <column name="id_empleado"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.EmpleadoPlanilla"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="ordens" table="orden">
+      <key>
+        <column name="id_empleado" not-null="true"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.Orden"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="usuarios" table="usuario">
+      <key>
+        <column name="id_empleado"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.Usuario"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="mantenimientos" table="mantenimiento">
+      <key>
+        <column name="id_empleado" not-null="true"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.Mantenimiento"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="facturaInsumos" table="factura_insumo">
+      <key>
+        <column name="id_empleado" not-null="true"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.FacturaInsumo"/>
+    </set>
+  </class>
 </hibernate-mapping>

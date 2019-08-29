@@ -6,6 +6,9 @@
 package com.carmelitascoffee.vista.ventas;
 
 import com.carmelitascoffee.controlador.ventas.CNuevaOrden;
+import com.carmelitascoffee.pojo.DetalleOrdenProducto;
+import com.carmelitascoffee.pojo.DetalleOrdenServicio;
+import com.carmelitascoffee.pojo.Orden;
 import com.carmelitascoffee.pojo.Producto;
 import com.carmelitascoffee.pojo.Servicio;
 import com.carmelitascoffee.vista.inventario.Productos;
@@ -14,6 +17,8 @@ import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -194,9 +199,9 @@ public class NuevaOrden extends JInternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 6;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.8;
         gridBagConstraints.weighty = 0.8;
@@ -206,15 +211,20 @@ public class NuevaOrden extends JInternalFrame {
         bRegistrarOrden.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         bRegistrarOrden.setText("Registrar Orden");
         bRegistrarOrden.setFont(new java.awt.Font("Dialog", 3, 11)); // NOI18N
+        bRegistrarOrden.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegistrarOrdenActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bRegistrarOrden, gridBagConstraints);
 
         tfIdCliente.setText("");
@@ -243,11 +253,12 @@ public class NuevaOrden extends JInternalFrame {
         pAgregarPSO.add(tfId, java.awt.BorderLayout.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(pAgregarPSO, gridBagConstraints);
 
         bPersonasContactoVista.setBackground(new java.awt.Color(255, 247, 162));
@@ -281,7 +292,6 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
         getContentPane().add(tfFechaRegistro, gridBagConstraints);
 
         bProductosVista.setBackground(new java.awt.Color(255, 247, 162));
@@ -303,8 +313,8 @@ public class NuevaOrden extends JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.1;
@@ -329,8 +339,8 @@ public class NuevaOrden extends JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.1;
@@ -340,9 +350,10 @@ public class NuevaOrden extends JInternalFrame {
         lTotal.setText("Total: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         getContentPane().add(lTotal, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -428,6 +439,13 @@ public class NuevaOrden extends JInternalFrame {
                 tOrden.setValueAt(cantidad * p.getPrecio().floatValue() * (1 - descuento), rowSelect, 5);
                 calcularTotal();
             }
+            if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+                rowSelect = tOrden.getSelectedRow();
+                if (JOptionPane.showConfirmDialog(this, "¿Seguro de eliminar la fila seleccionada?") == 0) {
+                    eliminarFila(rowSelect);
+                    calcularTotal();
+                }
+            }
         } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(this, e);
         }
@@ -472,6 +490,51 @@ public class NuevaOrden extends JInternalFrame {
             }
         }
     }//GEN-LAST:event_tfIdKeyPressed
+
+    private void bRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarOrdenActionPerformed
+        try {
+            int idCliente = Integer.parseInt(tfIdCliente.getText());
+            
+            Orden o = new Orden(controlador.getCliente(idCliente), controlador.getEmpleado(idEmpleado));
+            o.setNumeroFactura(tfNumeroFactura.getText());
+            o.setFechaOrden((Date) tfFechaRegistro.getValue());
+            o.setFechaRequerida((Date) tfFechaRegistro.getValue());
+            o.setFechaEntrega((Date) tfFechaRegistro.getValue());
+            o.setTipoOrden("Productos/Servicios");
+            o = controlador.agregarOrden(o);
+            s.flush();
+            DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String tipoOrden = (String) model.getValueAt(i, 0);
+                int cantidad = Integer.parseInt(tOrden.getValueAt(i, 3) + "");
+                float descuento = Float.parseFloat(tOrden.getValueAt(i, 4) + "");
+                float precio = Float.parseFloat(tOrden.getValueAt(i, 2) + "");
+                String celda1 = (String) tOrden.getValueAt(i, 1);
+                String nombre = celda1.split("-")[1];
+                if ("Servicio".equals(tipoOrden)) {
+                    int idServicio = Integer.parseInt(celda1.split("-")[0]);
+                    Servicio servicio = controlador.getServicios(idServicio);
+                    DetalleOrdenServicio dos = new DetalleOrdenServicio(o, servicio);
+                    dos.setCantidad(cantidad);
+                    dos.setDescuento(new BigDecimal(descuento));
+                    dos.setPrecio(new BigDecimal(precio));
+                    controlador.agregarDetalleOrdenServicio(dos);
+                    s.flush();
+                } else if ("Orden".equals(tipoOrden)) {
+                    int idProducto = Integer.parseInt(celda1.split("-")[0]);
+                    Producto producto = controlador.getProducto(idProducto);
+                    DetalleOrdenProducto dop = new DetalleOrdenProducto(o, producto);
+                    dop.setCantidad(cantidad);
+                    dop.setDescuento(new BigDecimal(descuento));
+                    dop.setPrecio(new BigDecimal(precio));
+                    controlador.agregarDetalleOrdenProducto(dop);
+                    s.flush();
+                }
+            }
+        } catch (Exception e ) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_bRegistrarOrdenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -531,6 +594,12 @@ public class NuevaOrden extends JInternalFrame {
             total += Double.parseDouble(model.getValueAt(i, 5) + "");
         }
         lTotal.setText("Total: " + total);
+    }
+
+    private void eliminarFila(int rowSelect) {
+        DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
+        model.removeRow(rowSelect);
+        tOrden.setModel(model);
     }
 
 }

@@ -267,6 +267,7 @@ public class Servicios extends JInternalFrame {
         
         Servicio servicio = new Servicio(new BigDecimal(precio), descripcion, unidad);
         controlador.AgregarServicio(servicio);
+        controlador.LlenarTabla(tableZ1);
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -304,7 +305,7 @@ public class Servicios extends JInternalFrame {
     private void cargarTabla(String textFiltro) {
         DefaultTableModel dtm = (DefaultTableModel) tableZ1.getModel();
         dtm.setRowCount(0);
-        List lista = controlador.cargarFiltros(Bus.getText());
+        List lista = controlador.cargarFiltros(textFiltro);
         Object[] row = new Object[4];
         for (int i = 0; i < lista.size(); i++) {
             Servicio sr = (Servicio) lista.get(i);

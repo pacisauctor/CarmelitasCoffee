@@ -4,44 +4,33 @@
  * and open the template in the editor.
  */
 package com.carmelitascoffee.vista.ventas;
-import com.carmelitascoffee.controlador.ventas.CNuevaPersonaContacto;
+
 import com.carmelitascoffee.controlador.ventas.CNuevaPersonaContacto;
 import com.carmelitascoffee.pojo.PersonaContacto;
-import java.math.BigDecimal;
-import javax.swing.JInternalFrame;
-import javax.swing.table.DefaultTableModel;
-import org.hibernate.Session;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 /**
  *
  * @author admin
  */
 public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
 
-      
     private CNuevaPersonaContacto controlador;
     private Session s;
-    
-         public NuevaPersonaContacto(Session s) {
+
+    public NuevaPersonaContacto(Session s) {
         initComponents();
-       
+
         this.s = s;
         controlador = new CNuevaPersonaContacto(s);
     }
-    
 
     /**
      * Creates new form NuevaPersonaContacto
      */
-   
-
-    
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,13 +221,13 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-      String primer_nombre;
-      String segundo_nombre;
-      String primer_apellido;
-      String segundo_apellido;
-      String telefono;
-      String correo;
-      String direccion;
+        String primer_nombre;
+        String segundo_nombre;
+        String primer_apellido;
+        String segundo_apellido;
+        String telefono;
+        String correo;
+        String direccion;
 
         primer_nombre = PNom.getText();
         segundo_nombre = SNom.getText();
@@ -247,10 +236,17 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
         telefono = Tel.getText();
         correo = cor.getText();
         direccion = Dir.getText();
-        
-        PersonaContacto personacontacto = new PersonaContacto(primer_nombre, segundo_nombre, primer_apellido,segundo_apellido,telefono,correo,direccion);
-        controlador.AgregarNPersonaContacto(personacontacto);
-       
+
+        String mensaje = validarDatos();
+        if (mensaje.isEmpty()) {
+            PersonaContacto personacontacto = new PersonaContacto(primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, telefono, correo, direccion);
+            controlador.AgregarNPersonaContacto(personacontacto);
+            vaciarCampos();
+            JOptionPane.showMessageDialog(this, "Registro hecho exitosamente!");
+        } else {
+            JOptionPane.showMessageDialog(this, mensaje);
+        }
+
     }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
 
@@ -272,9 +268,7 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
     private swing.Contenedores.PanelZ pContent;
     // End of variables declaration//GEN-END:variables
 
-
-
-  /*private String validarDatos() {
+    private String validarDatos() {
         // se procurará que no ingrese algún dato incorrecto
         String mensaje = "";
 
@@ -285,7 +279,8 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
             String Sapellido = SApe.getText();
             if (Pnombre.length() >= 14) {
                 mensaje += "Primer Nombre demasiado largo(mayor a 14 dígitos)\n";
-            }if (Snombre.length() >= 14) {
+            }
+            if (Snombre.length() >= 14) {
                 mensaje += "Segundo Nombre demasiado largo(mayor a 14 dígitos)\n";
             }
             if (Papellido.length() >= 14) {
@@ -304,7 +299,7 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
             } else {
                 mensaje += "El email es demasiado largo";
             }
-           
+
         } catch (NumberFormatException e) {
             mensaje += "Campos vacios c:";
         }
@@ -319,6 +314,6 @@ public class NuevaPersonaContacto extends javax.swing.JInternalFrame {
         Tel.setText("");
         cor.setText("");
         Dir.setText("");
-        
-    }*/
+
+    }
 }

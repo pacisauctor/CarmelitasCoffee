@@ -4,19 +4,8 @@
  * and open the template in the editor.
  */
 package com.carmelitascoffee.controlador.ventas;
-import com.carmelitascoffee.controlador.HibernateUtil;
 import com.carmelitascoffee.pojo.PersonaContacto;
-import com.carmelitascoffee.pojo.PersonaContacto;
-import com.carmelitascoffee.vista.ventas.NuevaPersonaContacto;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 

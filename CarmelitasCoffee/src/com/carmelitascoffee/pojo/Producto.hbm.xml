@@ -1,27 +1,26 @@
-<?xml version="1.0"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-05-2019 01:35:42 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.carmelitascoffee.pojo.Producto" table="producto" catalog="carmelitas_coffee" optimistic-lock="version">
-        <id name="idProducto" type="int">
-            <column name="id_producto" />
-            <generator class="assigned" />
-        </id>
-        <property name="descripcion" type="string">
-            <column name="descripcion" length="45" />
-        </property>
-        <property name="precio" type="big_decimal">
-            <column name="precio" precision="11" scale="4" />
-        </property>
-        <property name="cantidadEnInventario" type="java.lang.Integer">
-            <column name="cantidad_en_inventario" />
-        </property>
-        <set name="detalleOrdenProductos" table="detalle_orden_producto" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="id_producto" not-null="true" />
-            </key>
-            <one-to-many class="com.carmelitascoffee.pojo.DetalleOrdenProducto" />
-        </set>
-    </class>
+  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.Producto" optimistic-lock="version" table="producto">
+    <id name="idProducto" type="java.lang.Integer">
+      <column name="id_producto"/>
+      <generator class="identity"/>
+    </id>
+    <property name="descripcion" type="string">
+      <column length="45" name="descripcion"/>
+    </property>
+    <property name="precio" type="big_decimal">
+      <column name="precio" precision="11" scale="4"/>
+    </property>
+    <property name="cantidadEnInventario" type="java.lang.Integer">
+      <column name="cantidad_en_inventario"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="detalleOrdenProductos" table="detalle_orden_producto">
+      <key>
+        <column name="id_producto" not-null="true"/>
+      </key>
+      <one-to-many class="com.carmelitascoffee.pojo.DetalleOrdenProducto"/>
+    </set>
+  </class>
 </hibernate-mapping>

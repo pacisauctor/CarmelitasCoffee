@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -10,9 +10,10 @@ import java.math.BigDecimal;
 public class DetalleOrdenProducto  implements java.io.Serializable {
 
 
-     private int idDetalleOrdenProducto;
+     private Integer idDetalleOrdenProducto;
      private Orden orden;
      private Producto producto;
+     private BigDecimal precio;
      private Integer cantidad;
      private BigDecimal descuento;
 
@@ -20,24 +21,23 @@ public class DetalleOrdenProducto  implements java.io.Serializable {
     }
 
 	
-    public DetalleOrdenProducto(int idDetalleOrdenProducto, Orden orden, Producto producto) {
-        this.idDetalleOrdenProducto = idDetalleOrdenProducto;
+    public DetalleOrdenProducto(Orden orden, Producto producto) {
         this.orden = orden;
         this.producto = producto;
     }
-    public DetalleOrdenProducto(int idDetalleOrdenProducto, Orden orden, Producto producto, Integer cantidad, BigDecimal descuento) {
-       this.idDetalleOrdenProducto = idDetalleOrdenProducto;
+    public DetalleOrdenProducto(Orden orden, Producto producto, BigDecimal precio, Integer cantidad, BigDecimal descuento) {
        this.orden = orden;
        this.producto = producto;
+       this.precio = precio;
        this.cantidad = cantidad;
        this.descuento = descuento;
     }
    
-    public int getIdDetalleOrdenProducto() {
+    public Integer getIdDetalleOrdenProducto() {
         return this.idDetalleOrdenProducto;
     }
     
-    public void setIdDetalleOrdenProducto(int idDetalleOrdenProducto) {
+    public void setIdDetalleOrdenProducto(Integer idDetalleOrdenProducto) {
         this.idDetalleOrdenProducto = idDetalleOrdenProducto;
     }
     public Orden getOrden() {
@@ -53,6 +53,13 @@ public class DetalleOrdenProducto  implements java.io.Serializable {
     
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+    public BigDecimal getPrecio() {
+        return this.precio;
+    }
+    
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
     }
     public Integer getCantidad() {
         return this.cantidad;

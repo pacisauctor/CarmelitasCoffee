@@ -35,14 +35,15 @@ public class CServicios {
     }
 
     private void iniciarSesion() {
-        SessionFactory sessionfactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        s = sessionfactory.openSession();
-        s.getTransaction().begin();
+
+        s.beginTransaction();
+
     }
 
     private void terminarSesion() {
+
         s.getTransaction().commit();
-        s.close();
+
     }
 
     public void LlenarTabla(JTable tabla) {
@@ -85,13 +86,12 @@ public class CServicios {
         s.update(serbd);
         terminarSesion();
     }
-    
-     public List cargarFiltros(String filtro) {
+
+    public List cargarFiltros(String filtro) {
         if (!filtro.equals("")) {
             Criterion descripcion;
 
             descripcion = Restrictions.like("descripcion", "%" + filtro + "%");
-         
 
             Disjunction disjunction = Restrictions.or(descripcion);
             Criteria crit = s.createCriteria(Servicio.class).add(disjunction);

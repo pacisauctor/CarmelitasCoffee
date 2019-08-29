@@ -268,6 +268,7 @@ public class Productos extends JInternalFrame {
         
         Producto producto = new Producto(new BigDecimal(precio), descripcion, cantidadEnInventario);
         controlador.AgregarProducto(producto);
+        controlador.LlenarTabla(tableZ1);
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

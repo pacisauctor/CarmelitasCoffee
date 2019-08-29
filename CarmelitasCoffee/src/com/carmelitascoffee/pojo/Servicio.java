@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class Servicio implements java.io.Serializable {
 
-    private int idServicio;
+    private Integer idServicio;
     private BigDecimal precio;
     private String descripcion;
     private String unidad;
@@ -19,12 +19,7 @@ public class Servicio implements java.io.Serializable {
     public Servicio() {
     }
 
-    public Servicio(int idServicio) {
-        this.idServicio = idServicio;
-    }
-
-    public Servicio(int idServicio, BigDecimal precio, String descripcion, String unidad, Set detalleOrdenServicios) {
-        this.idServicio = idServicio;
+    public Servicio(BigDecimal precio, String descripcion, String unidad, Set detalleOrdenServicios) {
         this.precio = precio;
         this.descripcion = descripcion;
         this.unidad = unidad;
@@ -37,11 +32,11 @@ public class Servicio implements java.io.Serializable {
         this.unidad = unidad;
     }
 
-    public int getIdServicio() {
+    public Integer getIdServicio() {
         return this.idServicio;
     }
 
-    public void setIdServicio(int idServicio) {
+    public void setIdServicio(Integer idServicio) {
         this.idServicio = idServicio;
     }
 

@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Cliente  implements java.io.Serializable {
 
 
-     private int idCliente;
+     private Integer idCliente;
      private PersonaContacto personaContacto;
      private String numeroRuc;
      private String nombres;
@@ -25,13 +25,11 @@ public class Cliente  implements java.io.Serializable {
     }
 
 	
-    public Cliente(int idCliente, PersonaContacto personaContacto, String numeroRuc) {
-        this.idCliente = idCliente;
+    public Cliente(PersonaContacto personaContacto, String numeroRuc) {
         this.personaContacto = personaContacto;
         this.numeroRuc = numeroRuc;
     }
-    public Cliente(int idCliente, PersonaContacto personaContacto, String numeroRuc, String nombres, String apellidos, String telefono, String correo, String direccion, Set ordens) {
-       this.idCliente = idCliente;
+    public Cliente(PersonaContacto personaContacto, String numeroRuc, String nombres, String apellidos, String telefono, String correo, String direccion, Set ordens) {
        this.personaContacto = personaContacto;
        this.numeroRuc = numeroRuc;
        this.nombres = nombres;
@@ -42,11 +40,11 @@ public class Cliente  implements java.io.Serializable {
        this.ordens = ordens;
     }
    
-    public int getIdCliente() {
+    public Integer getIdCliente() {
         return this.idCliente;
     }
     
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
     public PersonaContacto getPersonaContacto() {
