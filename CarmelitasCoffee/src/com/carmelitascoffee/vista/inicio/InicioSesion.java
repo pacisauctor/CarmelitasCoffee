@@ -406,7 +406,6 @@ public class InicioSesion extends JFrame {
         Dimension initialDimension = new Dimension(frameWidth, frameHeight);
         FullResizibleFrame fullResizibleFrame;
         fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
-        frameZ.addPaneles();
         this.setVisible(false);
         frameZ.setVisible(true);
     }
