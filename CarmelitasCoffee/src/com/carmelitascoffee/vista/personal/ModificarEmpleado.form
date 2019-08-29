@@ -91,23 +91,24 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="labelZ1" alignment="0" max="32767" attributes="0"/>
                                           <Component id="labelZ2" alignment="0" max="32767" attributes="0"/>
                                           <Component id="labelZ3" alignment="0" max="32767" attributes="0"/>
                                           <Component id="labelZ4" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="textFieldZ1" min="-2" pref="327" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ2" min="-2" pref="327" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ3" min="-2" pref="327" max="-2" attributes="0"/>
-                                          <Component id="SPINNER_fechacontrato" alignment="0" min="-2" pref="154" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="TEXTFIELD_sueldo" min="-2" pref="327" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_comisiones" min="-2" pref="327" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="SPINNER_fechacontrato" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="labelZ8" min="-2" pref="124" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="comboBoxZ1" min="-2" pref="154" max="-2" attributes="0"/>
+                                      <Component id="COMBOBOX_estado" min="-2" pref="154" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="159" max="32767" attributes="0"/>
@@ -117,46 +118,34 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="labelZ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="textFieldZ1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="labelZ2" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="textFieldZ2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelZ2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_sueldo" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="labelZ3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="textFieldZ3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_comisiones" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelZ4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="SPINNER_fechacontrato" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelZ8" min="-2" max="-2" attributes="0"/>
-                                  <Component id="comboBoxZ1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labelZ8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="COMBOBOX_estado" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="73" max="32767" attributes="0"/>
+                              <EmptySpace pref="85" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="swing.Controles.LabelZ" name="labelZ1">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Puesto:"/>
-                      </Properties>
-                    </Component>
                     <Component class="swing.Controles.LabelZ" name="labelZ2">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Sueldo (C&#xf3;rdobas):"/>
@@ -177,29 +166,17 @@
                         <Property name="text" type="java.lang.String" value="Estado:"/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ1">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_sueldo">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ2">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_comisiones">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ3">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
-                      </Properties>
-                    </Component>
-                    <Component class="swing.Controles.SpinnerZ" name="SPINNER_fechacontrato">
-                      <Properties>
-                        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                          <SpinnerModel initial="now" stepSize="5" type="date"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="swing.Controles.ComboBoxZ" name="comboBoxZ1">
+                    <Component class="swing.Controles.ComboBoxZ" name="COMBOBOX_estado">
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -208,9 +185,21 @@
                           <StringArray count="3">
                             <StringItem index="0" value="Activo"/>
                             <StringItem index="1" value="Cancelado"/>
-                            <StringItem index="2" value="Desactivo"/>
+                            <StringItem index="2" value="Inactivo"/>
                           </StringArray>
                         </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="swing.Controles.SpinnerZ" name="SPINNER_fechacontrato">
+                      <Properties>
+                        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                          <SpinnerModel initial="now" stepSize="5" type="date"/>
+                        </Property>
+                        <Property name="editor" type="javax.swing.JComponent" editor="org.netbeans.modules.form.editors.SpinnerEditorEditor">
+                          <SpinnerEditor format="yyyy-MM-dd" type="1"/>
+                        </Property>
+                        <Property name="enabled" type="boolean" value="false"/>
+                        <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -234,23 +223,21 @@
                                   <Component id="labelZ13" alignment="0" max="32767" attributes="0"/>
                                   <Component id="labelZ12" alignment="0" max="32767" attributes="0"/>
                                   <Component id="labelZ10" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelZ9" alignment="0" max="32767" attributes="0"/>
                                   <Component id="labelZ11" alignment="1" min="-2" pref="118" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="textFieldZ4" max="32767" attributes="0"/>
-                                          <Component id="textFieldZ5" pref="107" max="32767" attributes="0"/>
-                                          <Component id="textFieldZ6" alignment="0" pref="107" max="32767" attributes="0"/>
-                                          <Component id="textFieldZ7" alignment="0" pref="107" max="32767" attributes="0"/>
-                                          <Component id="textFieldZ8" alignment="0" pref="107" max="32767" attributes="0"/>
+                                          <Component id="TEXTFIELD_pnombre" pref="107" max="32767" attributes="0"/>
+                                          <Component id="TEXTFIELD_snombre" alignment="0" pref="107" max="32767" attributes="0"/>
+                                          <Component id="TEXTFIELD_papellido" alignment="0" pref="107" max="32767" attributes="0"/>
+                                          <Component id="TEXTFIELD_sapellido" alignment="0" pref="107" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="textFieldZ12" alignment="1" min="-2" pref="277" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ13" alignment="1" min="-2" pref="277" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_telefono" alignment="1" min="-2" pref="277" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_estadocivil" alignment="1" min="-2" pref="277" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="labelZ15" max="32767" attributes="0"/>
@@ -260,7 +247,7 @@
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="textFieldZ11" min="-2" pref="277" max="-2" attributes="0"/>
+                                                  <Component id="TEXTFIELD_direccion" min="-2" pref="277" max="-2" attributes="0"/>
                                                   <Component id="SPINNER_edadempleado" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
@@ -283,49 +270,45 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="labelZ9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="labelZ10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_pnombre" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="labelZ11" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_snombre" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="labelZ18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_direccion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="labelZ17" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ12" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_telefono" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="labelZ16" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="textFieldZ13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TEXTFIELD_estadocivil" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelZ12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldZ7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_papellido" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labelZ15" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="SPINNER_edadempleado" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labelZ13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldZ8" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TEXTFIELD_sapellido" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -339,11 +322,6 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="swing.Controles.LabelZ" name="labelZ9">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="N&#xfa;mero de cedula:"/>
-                      </Properties>
-                    </Component>
                     <Component class="swing.Controles.LabelZ" name="labelZ10">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Primer nombre:"/>
@@ -389,44 +367,39 @@
                         <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ4">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_pnombre">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ5">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_snombre">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ6">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_papellido">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ7">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_sapellido">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ8">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_direccion">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ11">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_telefono">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ12">
+                    <Component class="swing.Controles.TextFieldZ" name="TEXTFIELD_estadocivil">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
-                      </Properties>
-                    </Component>
-                    <Component class="swing.Controles.TextFieldZ" name="textFieldZ13">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="MYSQLDATA"/>
+                        <Property name="text" type="java.lang.String" value=""/>
                       </Properties>
                     </Component>
                     <Component class="swing.Controles.RadioButtonZ" name="RADIOBTN_mujer">
@@ -434,7 +407,7 @@
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                           <ComponentRef name="BTNGROUP_sexoempleado"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Mujer"/>
+                        <Property name="text" type="java.lang.String" value="M"/>
                       </Properties>
                     </Component>
                     <Component class="swing.Controles.RadioButtonZ" name="RADIOBTN_hombre">
@@ -442,7 +415,7 @@
                         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                           <ComponentRef name="BTNGROUP_sexoempleado"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Hombre"/>
+                        <Property name="text" type="java.lang.String" value="H"/>
                       </Properties>
                     </Component>
                     <Component class="swing.Controles.SpinnerZ" name="SPINNER_edadempleado">
@@ -547,6 +520,10 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TEXTFIELD_cedulaActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_cedulaKeyReleased"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
               <AuxValues>
@@ -555,7 +532,11 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="swing.Controles.TableZ" name="tableZ1">
+                <Component class="swing.Controles.TableZ" name="TABLE_buscarempleado">
+                  <Events>
+                    <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLE_buscarempleadoMouseReleased"/>
+                    <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="TABLE_buscarempleadoPropertyChange"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -680,6 +661,7 @@
         <Component class="swing.Controles.ButtonZ" name="BTN_next">
           <Properties>
             <Property name="text" type="java.lang.String" value="Siguiente"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="1"/>
             </Property>

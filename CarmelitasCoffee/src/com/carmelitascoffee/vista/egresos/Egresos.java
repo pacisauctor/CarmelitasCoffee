@@ -7,9 +7,14 @@ package com.carmelitascoffee.vista.egresos;
 
 import com.carmelitascoffee.controlador.egresos.CEgresos;
 import com.carmelitascoffee.pojo.Deposito;
+import com.carmelitascoffee.pojo.EmpleadoPlanilla;
+import com.carmelitascoffee.pojo.FacturaInsumo;
+import com.carmelitascoffee.pojo.Mantenimiento;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -17,12 +22,9 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner.DefaultEditor;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import org.hibernate.Session;
 import swing.Controles.ButtonZ;
-import swing.Controles.TableZ;
 
 /**
  *
@@ -35,6 +37,18 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
      */
     private CEgresos controlador;
     private Session s;
+    boolean isPagoEmpleado=false;
+    boolean isPagoInsumo=false;
+    boolean isPagoMantenimiento=false;
+    
+    boolean isNuevoDeposito = false;
+    boolean isEditarDeposito = false;
+    boolean isNuevoPagoEmpleado = false;
+    boolean isEditarPagoEmpleado = false;
+    boolean isNuevoPagoInsumo = false;
+    boolean isEditarPagoInsumo = false;
+    boolean isNuevoPagoMantenimiento = false;
+    boolean isEditarPagoMantenimiento = false;
     
     public Egresos() {
         initComponents();
@@ -45,9 +59,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.s = s;
         controlador = new CEgresos(s);
         initComponents();
-        CargarDepositos();
         ((DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setEditable(false);
-        
     }
 
 
@@ -72,7 +84,6 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TABLE_pagos = new swing.Controles.TableZ();
         labelZ2 = new swing.Controles.LabelZ();
         TEXTFIELD_busquedapagos = new swing.Controles.TextFieldZ();
-        BTN_actualizarpagos = new swing.Controles.ButtonZ();
         BTN_salirpagos = new swing.Controles.ButtonZ();
         BTN_verpagomantenimiento = new swing.Controles.ButtonZ();
         BTN_verpagoempleado = new swing.Controles.ButtonZ();
@@ -86,19 +97,17 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         BTN_nuevodeposito = new swing.Controles.ButtonZ();
         BTN_guardardeposito = new swing.Controles.ButtonZ();
         BTN_cancelardeposito = new swing.Controles.ButtonZ();
-        BTN_eliminardeposito = new swing.Controles.ButtonZ();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TABLE_nuevodeposito = new swing.Controles.TableZ();
         labelZ8 = new swing.Controles.LabelZ();
         TEXTFIELD_comprobante = new swing.Controles.TextFieldZ();
         TEXTFIELD_banco = new swing.Controles.TextFieldZ();
         TEXTFIELD_monto = new swing.Controles.TextFieldZ();
         TEXTFIELD_buscardeposito = new swing.Controles.TextFieldZ();
-        BTN_actualizardeposito = new swing.Controles.ButtonZ();
         BTN_salirnuevodeposito = new swing.Controles.ButtonZ();
         SPINNER_fecha = new swing.Controles.SpinnerZ();
         COMBOBOX_moneda = new swing.Controles.ComboBoxZ();
         BTN_editardeposito = new swing.Controles.ButtonZ();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        TABLE_nuevodeposito = new swing.Controles.TableZ();
         PANEL_nuevopagoempleado = new swing.Contenedores.PanelZ();
         labelZ9 = new swing.Controles.LabelZ();
         labelZ10 = new swing.Controles.LabelZ();
@@ -108,33 +117,29 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         BTN_nuevopagoempleado = new swing.Controles.ButtonZ();
         BTN_guardarpagoempleado = new swing.Controles.ButtonZ();
         BTN_cancelarpagoempleado = new swing.Controles.ButtonZ();
-        BTN_eliminarpagoempleado = new swing.Controles.ButtonZ();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        TABLE_nuevopagoempleado = new swing.Controles.TableZ();
         labelZ14 = new swing.Controles.LabelZ();
         TEXTFIELD_cedulaempleado = new swing.Controles.TextFieldZ();
         TEXTFIELD_planilla = new swing.Controles.TextFieldZ();
         TEXTFIELD_numerocomprobante = new swing.Controles.TextFieldZ();
         TEXTFIELD_buscarpagoempleado = new swing.Controles.TextFieldZ();
-        BTN_actualizarpagoempleado = new swing.Controles.ButtonZ();
         BTN_salirnuevopagoempleado = new swing.Controles.ButtonZ();
         COMBOBOX_mododepago = new swing.Controles.ComboBoxZ();
         BTN_editarpagoempleado = new swing.Controles.ButtonZ();
         TEXTFIELD_descripcion = new swing.Controles.TextFieldZ();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        TABLE_nuevopagoempleado = new swing.Controles.TableZ();
         PANEL_nuevopagoinsumo = new swing.Contenedores.PanelZ();
         labelZ15 = new swing.Controles.LabelZ();
         labelZ16 = new swing.Controles.LabelZ();
         BTN_nuevopagoinsumo = new swing.Controles.ButtonZ();
         BTN_guardarpagoinsumo = new swing.Controles.ButtonZ();
         BTN_cancelarpagoinsumo = new swing.Controles.ButtonZ();
-        BTN_eliminarpagoinsumo = new swing.Controles.ButtonZ();
         jScrollPane5 = new javax.swing.JScrollPane();
         TABLE_nuevopagoinsumo = new swing.Controles.TableZ();
         labelZ20 = new swing.Controles.LabelZ();
         TEXTFIELD_numerocomprobante2 = new swing.Controles.TextFieldZ();
         TEXTFIELD_numerofactura = new swing.Controles.TextFieldZ();
         TEXTFIELD_buscarpagoinsumo = new swing.Controles.TextFieldZ();
-        BTN_actualizarpagoinsumo = new swing.Controles.ButtonZ();
         BTN_salirnuevopagoinsumo = new swing.Controles.ButtonZ();
         BTN_editarpagoinsumo = new swing.Controles.ButtonZ();
         PANEL_nuevopagomantenimiento = new swing.Contenedores.PanelZ();
@@ -143,14 +148,12 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         BTN_nuevopagomantenimiento = new swing.Controles.ButtonZ();
         BTN_guardarpagomantenimiento = new swing.Controles.ButtonZ();
         BTN_cancelarpagomantenimiento = new swing.Controles.ButtonZ();
-        BTN_eliminarpagomantenimiento = new swing.Controles.ButtonZ();
         jScrollPane6 = new javax.swing.JScrollPane();
         TABLE_nuevopagomantenimiento = new swing.Controles.TableZ();
         labelZ21 = new swing.Controles.LabelZ();
         TEXTFIELD_numerocomprobante3 = new swing.Controles.TextFieldZ();
         TEXTFIELD_numerofactura2 = new swing.Controles.TextFieldZ();
         TEXTFIELD_buscarpagomantenimiento = new swing.Controles.TextFieldZ();
-        BTN_actualizarpagomantenimiento = new swing.Controles.ButtonZ();
         BTN_salirnuevopagomantenimiento = new swing.Controles.ButtonZ();
         BTN_editarpagomantenimiento = new swing.Controles.ButtonZ();
         Panel = new swing.Contenedores.PanelZ();
@@ -172,32 +175,26 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
             },
             new String [] {
-                "null", "null", "null", "null", "null"
+                "Comprobante", "Banco", "Monto", "Moneda", "Fecha"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        TABLE_depositos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(TABLE_depositos);
 
         labelZ1.setText("Busqueda personalizada:");
 
         TEXTFIELD_busquedadepositos.setText("");
-        TEXTFIELD_busquedadepositos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TEXTFIELD_busquedadepositosActionPerformed(evt);
+        TEXTFIELD_busquedadepositos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_busquedadepositosKeyReleased(evt);
             }
         });
 
@@ -249,19 +246,25 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                 .addGap(25, 25, 25))
         );
 
+        TABLE_pagos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        TABLE_pagos.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(TABLE_pagos);
 
         labelZ2.setText("Busqueda personalizada:");
 
         TEXTFIELD_busquedapagos.setText("");
-        TEXTFIELD_busquedapagos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TEXTFIELD_busquedapagosActionPerformed(evt);
+        TEXTFIELD_busquedapagos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_busquedapagosKeyReleased(evt);
             }
         });
-
-        BTN_actualizarpagos.setText("Actualizar");
-        BTN_actualizarpagos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
         BTN_salirpagos.setBackground(new java.awt.Color(102, 0, 0));
         BTN_salirpagos.setText("Salir");
@@ -273,6 +276,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
         BTN_verpagomantenimiento.setText("De mantenimiento");
         BTN_verpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_verpagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_verpagomantenimientoActionPerformed(evt);
+            }
+        });
 
         BTN_verpagoempleado.setText("De empleados");
         BTN_verpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -284,6 +292,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
         BTN_verpagoinsumo.setText("De insumos");
         BTN_verpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_verpagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_verpagoinsumoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout PANEL_consultarpagosLayout = new javax.swing.GroupLayout(PANEL_consultarpagos);
         PANEL_consultarpagos.setLayout(PANEL_consultarpagosLayout);
@@ -305,8 +318,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                         .addComponent(BTN_verpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BTN_verpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BTN_actualizarpagos, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         PANEL_consultarpagosLayout.setVerticalGroup(
@@ -323,8 +335,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                 .addGroup(PANEL_consultarpagosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTN_verpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BTN_verpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTN_verpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BTN_actualizarpagos, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BTN_verpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -364,13 +375,6 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
             }
         });
 
-        BTN_eliminardeposito.setText("Eliminar");
-        BTN_eliminardeposito.setEnabled(false);
-        BTN_eliminardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        TABLE_nuevodeposito.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
-        jScrollPane3.setViewportView(TABLE_nuevodeposito);
-
         labelZ8.setText("Buscar:");
 
         TEXTFIELD_comprobante.setText("");
@@ -383,9 +387,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TEXTFIELD_monto.setEnabled(false);
 
         TEXTFIELD_buscardeposito.setText("");
-
-        BTN_actualizardeposito.setText("Actualizar");
-        BTN_actualizardeposito.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TEXTFIELD_buscardeposito.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_buscardepositoKeyReleased(evt);
+            }
+        });
 
         BTN_salirnuevodeposito.setBackground(new java.awt.Color(102, 0, 0));
         BTN_salirnuevodeposito.setText("Salir");
@@ -396,6 +402,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         });
 
         SPINNER_fecha.setModel(new javax.swing.SpinnerDateModel());
+        SPINNER_fecha.setEditor(new javax.swing.JSpinner.DateEditor(SPINNER_fecha, "yyyy-MM-dd"));
         SPINNER_fecha.setEnabled(false);
         SPINNER_fecha.setFocusable(false);
 
@@ -411,6 +418,30 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
             }
         });
 
+        TABLE_nuevodeposito.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Comprobante", "Banco", "Monto", "Moneda", "Fecha"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TABLE_nuevodeposito.getTableHeader().setReorderingAllowed(false);
+        TABLE_nuevodeposito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_nuevodepositoMouseReleased(evt);
+            }
+        });
+        jScrollPane7.setViewportView(TABLE_nuevodeposito);
+
         javax.swing.GroupLayout PANEL_nuevodepositoLayout = new javax.swing.GroupLayout(PANEL_nuevodeposito);
         PANEL_nuevodeposito.setLayout(PANEL_nuevodepositoLayout);
         PANEL_nuevodepositoLayout.setHorizontalGroup(
@@ -421,14 +452,12 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                     .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
                         .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(BTN_nuevodeposito, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                     .addComponent(BTN_guardardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_cancelardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_eliminardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_actualizardeposito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_editardeposito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
                                 .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -462,7 +491,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
             .addGroup(PANEL_nuevodepositoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BTN_salirnuevodeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGap(13, 13, 13)
                 .addGroup(PANEL_nuevodepositoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TEXTFIELD_comprobante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -496,11 +525,8 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                         .addComponent(BTN_guardardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BTN_cancelardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTN_eliminardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(BTN_actualizardeposito, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 120, Short.MAX_VALUE))
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -525,6 +551,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         BTN_guardarpagoempleado.setText("Guardar");
         BTN_guardarpagoempleado.setEnabled(false);
         BTN_guardarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_guardarpagoempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_guardarpagoempleadoActionPerformed(evt);
+            }
+        });
 
         BTN_cancelarpagoempleado.setText("Cancelar");
         BTN_cancelarpagoempleado.setEnabled(false);
@@ -534,13 +565,6 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                 BTN_cancelarpagoempleadoActionPerformed(evt);
             }
         });
-
-        BTN_eliminarpagoempleado.setText("Eliminar");
-        BTN_eliminarpagoempleado.setEnabled(false);
-        BTN_eliminarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        TABLE_nuevopagoempleado.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
-        jScrollPane4.setViewportView(TABLE_nuevopagoempleado);
 
         labelZ14.setText("Buscar:");
 
@@ -554,9 +578,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TEXTFIELD_numerocomprobante.setEnabled(false);
 
         TEXTFIELD_buscarpagoempleado.setText("");
-
-        BTN_actualizarpagoempleado.setText("Actualizar");
-        BTN_actualizarpagoempleado.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TEXTFIELD_buscarpagoempleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_buscarpagoempleadoKeyReleased(evt);
+            }
+        });
 
         BTN_salirnuevopagoempleado.setBackground(new java.awt.Color(102, 0, 0));
         BTN_salirnuevopagoempleado.setText("Salir");
@@ -581,6 +607,22 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TEXTFIELD_descripcion.setText("");
         TEXTFIELD_descripcion.setEnabled(false);
 
+        TABLE_nuevopagoempleado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        TABLE_nuevopagoempleado.getTableHeader().setReorderingAllowed(false);
+        TABLE_nuevopagoempleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_nuevopagoempleadoMouseReleased(evt);
+            }
+        });
+        jScrollPane8.setViewportView(TABLE_nuevopagoempleado);
+
         javax.swing.GroupLayout PANEL_nuevopagoempleadoLayout = new javax.swing.GroupLayout(PANEL_nuevopagoempleado);
         PANEL_nuevopagoempleado.setLayout(PANEL_nuevopagoempleadoLayout);
         PANEL_nuevopagoempleadoLayout.setHorizontalGroup(
@@ -591,14 +633,12 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                     .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
                         .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(PANEL_nuevopagoempleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(BTN_nuevopagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                     .addComponent(BTN_guardarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_cancelarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_eliminarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_actualizarpagoempleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_editarpagoempleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(PANEL_nuevopagoempleadoLayout.createSequentialGroup()
                                 .addComponent(labelZ9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -666,11 +706,8 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                         .addComponent(BTN_guardarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BTN_cancelarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTN_eliminarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addComponent(BTN_actualizarpagoempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(0, 119, Short.MAX_VALUE))
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -689,6 +726,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         BTN_guardarpagoinsumo.setText("Guardar");
         BTN_guardarpagoinsumo.setEnabled(false);
         BTN_guardarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_guardarpagoinsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_guardarpagoinsumoActionPerformed(evt);
+            }
+        });
 
         BTN_cancelarpagoinsumo.setText("Cancelar");
         BTN_cancelarpagoinsumo.setEnabled(false);
@@ -699,11 +741,21 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
             }
         });
 
-        BTN_eliminarpagoinsumo.setText("Eliminar");
-        BTN_eliminarpagoinsumo.setEnabled(false);
-        BTN_eliminarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
         TABLE_nuevopagoinsumo.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
+        TABLE_nuevopagoinsumo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        TABLE_nuevopagoinsumo.getTableHeader().setReorderingAllowed(false);
+        TABLE_nuevopagoinsumo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_nuevopagoinsumoMouseReleased(evt);
+            }
+        });
         jScrollPane5.setViewportView(TABLE_nuevopagoinsumo);
 
         labelZ20.setText("Buscar:");
@@ -715,9 +767,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TEXTFIELD_numerofactura.setEnabled(false);
 
         TEXTFIELD_buscarpagoinsumo.setText("");
-
-        BTN_actualizarpagoinsumo.setText("Actualizar");
-        BTN_actualizarpagoinsumo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TEXTFIELD_buscarpagoinsumo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_buscarpagoinsumoKeyReleased(evt);
+            }
+        });
 
         BTN_salirnuevopagoinsumo.setBackground(new java.awt.Color(102, 0, 0));
         BTN_salirnuevopagoinsumo.setText("Salir");
@@ -752,8 +806,6 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                                     .addComponent(BTN_nuevopagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_guardarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_cancelarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_eliminarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_actualizarpagoinsumo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_editarpagoinsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(PANEL_nuevopagoinsumoLayout.createSequentialGroup()
                                 .addComponent(labelZ15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -802,10 +854,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                         .addComponent(BTN_guardarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BTN_cancelarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTN_eliminarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(BTN_actualizarpagoinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 120, Short.MAX_VALUE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -825,6 +874,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         BTN_guardarpagomantenimiento.setText("Guardar");
         BTN_guardarpagomantenimiento.setEnabled(false);
         BTN_guardarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BTN_guardarpagomantenimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_guardarpagomantenimientoActionPerformed(evt);
+            }
+        });
 
         BTN_cancelarpagomantenimiento.setText("Cancelar");
         BTN_cancelarpagomantenimiento.setEnabled(false);
@@ -835,11 +889,21 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
             }
         });
 
-        BTN_eliminarpagomantenimiento.setText("Eliminar");
-        BTN_eliminarpagomantenimiento.setEnabled(false);
-        BTN_eliminarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
         TABLE_nuevopagomantenimiento.setBorder(javax.swing.BorderFactory.createTitledBorder("Depositos"));
+        TABLE_nuevopagomantenimiento.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        TABLE_nuevopagomantenimiento.getTableHeader().setReorderingAllowed(false);
+        TABLE_nuevopagomantenimiento.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_nuevopagomantenimientoMouseReleased(evt);
+            }
+        });
         jScrollPane6.setViewportView(TABLE_nuevopagomantenimiento);
 
         labelZ21.setText("Buscar:");
@@ -851,9 +915,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         TEXTFIELD_numerofactura2.setEnabled(false);
 
         TEXTFIELD_buscarpagomantenimiento.setText("");
-
-        BTN_actualizarpagomantenimiento.setText("Actualizar");
-        BTN_actualizarpagomantenimiento.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        TEXTFIELD_buscarpagomantenimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_buscarpagomantenimientoKeyReleased(evt);
+            }
+        });
 
         BTN_salirnuevopagomantenimiento.setBackground(new java.awt.Color(102, 0, 0));
         BTN_salirnuevopagomantenimiento.setText("Salir");
@@ -888,8 +954,6 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                                     .addComponent(BTN_nuevopagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_guardarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_cancelarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_eliminarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(BTN_actualizarpagomantenimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(BTN_editarpagomantenimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(PANEL_nuevopagomantenimientoLayout.createSequentialGroup()
                                 .addComponent(labelZ17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -919,8 +983,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TEXTFIELD_numerocomprobante3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelZ17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelZ17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PANEL_nuevopagomantenimientoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelZ18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -939,10 +1002,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
                         .addComponent(BTN_guardarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(BTN_cancelarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(BTN_eliminarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                        .addComponent(BTN_actualizarpagomantenimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 120, Short.MAX_VALUE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1047,19 +1107,11 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.ActualizarPanel();
     }//GEN-LAST:event_MENUITEM_consultardepositosActionPerformed
 
-    private void TEXTFIELD_busquedadepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_busquedadepositosActionPerformed
-
-    }//GEN-LAST:event_TEXTFIELD_busquedadepositosActionPerformed
-
     private void BTN_salirdepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirdepositosActionPerformed
         this.ReiniciarPANEL_consultardepositos();
         this.Panel.removeAll();
         this.ActualizarPanel();
     }//GEN-LAST:event_BTN_salirdepositosActionPerformed
-
-    private void TEXTFIELD_busquedapagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_busquedapagosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TEXTFIELD_busquedapagosActionPerformed
 
     private void BTN_salirpagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirpagosActionPerformed
         this.ReiniciarPANEL_consultarpagos();
@@ -1068,7 +1120,10 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     }//GEN-LAST:event_BTN_salirpagosActionPerformed
 
     private void BTN_verpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_verpagoempleadoActionPerformed
-        // TODO add your handling code here:
+        this.isPagoEmpleado=true;
+        this.isPagoInsumo=false;
+        this.isPagoMantenimiento=false;
+        this.BuscarPagosEmpleado(this.TEXTFIELD_busquedapagos.getText());
     }//GEN-LAST:event_BTN_verpagoempleadoActionPerformed
 
     private void MENUITEM_consultarpagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_consultarpagosActionPerformed
@@ -1086,16 +1141,21 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
     private void BTN_salirnuevodepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevodepositoActionPerformed
         this.EstadoPANEL_nuevodeposito("RESET");
+        ((DefaultTableModel)this.TABLE_nuevodeposito.getModel()).setRowCount(0);
         this.Panel.removeAll();
         this.ActualizarPanel();
     }//GEN-LAST:event_BTN_salirnuevodepositoActionPerformed
 
     private void BTN_nuevodepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevodepositoActionPerformed
         this.EstadoPANEL_nuevodeposito("NEW");
+        this.isNuevoDeposito=true;
+        this.isEditarDeposito=false;
     }//GEN-LAST:event_BTN_nuevodepositoActionPerformed
 
     private void BTN_cancelardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelardepositoActionPerformed
         this.EstadoPANEL_nuevodeposito("RESET");
+        this.isNuevoDeposito=false;
+        this.isEditarDeposito=false;
     }//GEN-LAST:event_BTN_cancelardepositoActionPerformed
 
     private void MENUITEM_nuevopagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevopagoempleadoActionPerformed
@@ -1106,15 +1166,32 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     }//GEN-LAST:event_MENUITEM_nuevopagoempleadoActionPerformed
 
     private void BTN_editardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editardepositoActionPerformed
-       this.EstadoPANEL_nuevodeposito("EDIT");
+        this.EstadoPANEL_nuevodeposito("EDIT");
+        this.isNuevoDeposito=false;
+        this.isEditarDeposito=true;
+        DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevodeposito.getModel();
+        int fila = TABLE_nuevodeposito.getSelectedRow();
+        this.TEXTFIELD_comprobante.setText(modelo.getValueAt(fila, 0).toString());
+        this.TEXTFIELD_banco.setText(modelo.getValueAt(fila, 1).toString());
+        this.TEXTFIELD_monto.setText(modelo.getValueAt(fila, 2).toString());
+        this.COMBOBOX_moneda.setSelectedItem(modelo.getValueAt(fila, 3).toString());
+        try {
+            this.SPINNER_fecha.setValue(new SimpleDateFormat("yyyy-MM-dd").parse(modelo.getValueAt(fila, 4).toString()));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
     }//GEN-LAST:event_BTN_editardepositoActionPerformed
 
     private void BTN_nuevopagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevopagoempleadoActionPerformed
         this.EstadoPANEL_nuevopagoempleado("NEW");
+        this.isNuevoPagoEmpleado=true;
+        this.isEditarPagoEmpleado=false;
     }//GEN-LAST:event_BTN_nuevopagoempleadoActionPerformed
 
     private void BTN_cancelarpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelarpagoempleadoActionPerformed
         this.EstadoPANEL_nuevopagoempleado("RESET");
+        this.isNuevoPagoEmpleado=false;
+        this.isEditarPagoEmpleado=false;
     }//GEN-LAST:event_BTN_cancelarpagoempleadoActionPerformed
 
     private void BTN_salirnuevopagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevopagoempleadoActionPerformed
@@ -1125,11 +1202,16 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
     private void BTN_editarpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editarpagoempleadoActionPerformed
         this.EstadoPANEL_nuevopagoempleado("EDIT");
+        this.isNuevoPagoEmpleado=false;
+        this.isEditarPagoEmpleado=true;
+        DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevopagoempleado.getModel();
+        int fila = TABLE_nuevopagoempleado.getSelectedRow();
+        this.TEXTFIELD_cedulaempleado.setText(modelo.getValueAt(fila, 0).toString());
+        this.TEXTFIELD_planilla.setText(modelo.getValueAt(fila, 1).toString());
+        this.TEXTFIELD_numerocomprobante.setText(modelo.getValueAt(fila, 2).toString());
+        this.COMBOBOX_mododepago.setSelectedItem(modelo.getValueAt(fila, 3).toString());
+        this.TEXTFIELD_descripcion.setText(modelo.getValueAt(fila, 4).toString());
     }//GEN-LAST:event_BTN_editarpagoempleadoActionPerformed
-
-    private void BTN_guardardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_guardardepositoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BTN_guardardepositoActionPerformed
 
     private void MENUITEM_nuevopagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevopagoinsumoActionPerformed
         this.Panel.removeAll();
@@ -1140,10 +1222,14 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
     private void BTN_nuevopagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevopagoinsumoActionPerformed
         this.EstadoPANEL_nuevopagoinsumo("NEW");
+        this.isNuevoPagoInsumo=true;
+        this.isEditarPagoInsumo=false;
     }//GEN-LAST:event_BTN_nuevopagoinsumoActionPerformed
 
     private void BTN_cancelarpagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelarpagoinsumoActionPerformed
         this.EstadoPANEL_nuevopagoinsumo("RESET");
+        this.isNuevoPagoInsumo=false;
+        this.isEditarPagoInsumo=false;
     }//GEN-LAST:event_BTN_cancelarpagoinsumoActionPerformed
 
     private void BTN_salirnuevopagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevopagoinsumoActionPerformed
@@ -1154,6 +1240,12 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
     private void BTN_editarpagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editarpagoinsumoActionPerformed
         this.EstadoPANEL_nuevopagoinsumo("EDIT");
+        this.isNuevoPagoInsumo=false;
+        this.isEditarPagoInsumo=true;
+        DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevopagoinsumo.getModel();
+        int fila = TABLE_nuevopagoinsumo.getSelectedRow();       
+        this.TEXTFIELD_numerocomprobante2.setText(modelo.getValueAt(fila, 0).toString());
+        this.TEXTFIELD_numerofactura.setText(modelo.getValueAt(fila, 1).toString());
     }//GEN-LAST:event_BTN_editarpagoinsumoActionPerformed
 
     private void MENUITEM_nuevopagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MENUITEM_nuevopagomantenimientoActionPerformed
@@ -1165,10 +1257,14 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
     private void BTN_nuevopagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nuevopagomantenimientoActionPerformed
         this.EstadoPANEL_nuevopagomantenimiento("NEW");
+        this.isNuevoPagoMantenimiento=true;
+        this.isEditarPagoMantenimiento=false;
     }//GEN-LAST:event_BTN_nuevopagomantenimientoActionPerformed
 
     private void BTN_cancelarpagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_cancelarpagomantenimientoActionPerformed
         this.EstadoPANEL_nuevopagomantenimiento("RESET");
+        this.isNuevoPagoMantenimiento=false;
+        this.isEditarPagoMantenimiento=false;
     }//GEN-LAST:event_BTN_cancelarpagomantenimientoActionPerformed
 
     private void BTN_salirnuevopagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_salirnuevopagomantenimientoActionPerformed
@@ -1179,13 +1275,479 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 
     private void BTN_editarpagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_editarpagomantenimientoActionPerformed
         this.EstadoPANEL_nuevopagomantenimiento("EDIT");
+        this.isNuevoPagoMantenimiento=false;
+        this.isEditarPagoMantenimiento=true;
+        DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevopagomantenimiento.getModel();
+        int fila = TABLE_nuevopagomantenimiento.getSelectedRow();       
+        this.TEXTFIELD_numerocomprobante3.setText(modelo.getValueAt(fila, 0).toString());
+        this.TEXTFIELD_numerofactura2.setText(modelo.getValueAt(fila, 1).toString());
     }//GEN-LAST:event_BTN_editarpagomantenimientoActionPerformed
 
     private void BTN_actualizardepositosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_actualizardepositosActionPerformed
-
+        CargarDepositos();
     }//GEN-LAST:event_BTN_actualizardepositosActionPerformed
 
+    private void TEXTFIELD_busquedadepositosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_busquedadepositosKeyReleased
+        if(TEXTFIELD_busquedadepositos.getText().isEmpty()){
+            ((DefaultTableModel)this.TABLE_depositos.getModel()).setRowCount(0);
+        }
+        else{
+            BuscarDepositos(this.TEXTFIELD_busquedadepositos.getText());
+        }
+    }//GEN-LAST:event_TEXTFIELD_busquedadepositosKeyReleased
+
+    private void BTN_verpagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_verpagoinsumoActionPerformed
+        this.isPagoEmpleado=false;
+        this.isPagoInsumo=true;
+        this.isPagoMantenimiento=false;
+        this.BuscarPagosInsumo(this.TEXTFIELD_busquedapagos.getText());
+    }//GEN-LAST:event_BTN_verpagoinsumoActionPerformed
+
+    private void BTN_verpagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_verpagomantenimientoActionPerformed
+        this.isPagoEmpleado=false;
+        this.isPagoInsumo=false;
+        this.isPagoMantenimiento=true;
+        this.BuscarPagosMantenimiento(this.TEXTFIELD_busquedapagos.getText());
+    }//GEN-LAST:event_BTN_verpagomantenimientoActionPerformed
+
+    private void TEXTFIELD_busquedapagosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_busquedapagosKeyReleased
+        if(this.isPagoEmpleado){
+            BuscarPagosEmpleado(this.TEXTFIELD_busquedapagos.getText());
+        }
+        else if(this.isPagoInsumo){
+            BuscarPagosInsumo(this.TEXTFIELD_busquedapagos.getText());
+        }
+        else if(this.isPagoMantenimiento){
+            BuscarPagosMantenimiento(this.TEXTFIELD_busquedapagos.getText());
+        }
+    }//GEN-LAST:event_TEXTFIELD_busquedapagosKeyReleased
+
+    private void TEXTFIELD_buscardepositoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_buscardepositoKeyReleased
+        BuscarDepositos(this.TEXTFIELD_buscardeposito.getText());
+    }//GEN-LAST:event_TEXTFIELD_buscardepositoKeyReleased
+
+    private void BTN_guardardepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_guardardepositoActionPerformed
+        if(this.isNuevoDeposito){
+            try {
+                GuardarDeposito(
+                        this.TEXTFIELD_comprobante.getText(),
+                        this.TEXTFIELD_banco.getText(),
+                        (BigDecimal.valueOf(Double.parseDouble(this.TEXTFIELD_monto.getText()))),
+                        this.COMBOBOX_moneda.getSelectedItem().toString(),
+                        (Date)this.SPINNER_fecha.getValue()
+                );
+                this.EstadoPANEL_nuevodeposito("RESET");
+                this.isNuevoDeposito=false;
+                this.isEditarDeposito=false;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"vacio ?"+ex.getMessage());
+            }    
+        }
+        else if(this.isEditarDeposito){
+            DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevodeposito.getModel();
+            
+            int fila = TABLE_nuevodeposito.getSelectedRow();
+           if(fila>=0){
+            ActualizarDeposito(
+                controlador.getIdDeposito(modelo.getValueAt(fila, 0).toString()),
+                this.TEXTFIELD_comprobante.getText(),
+                this.TEXTFIELD_banco.getText(),
+                (BigDecimal.valueOf(Double.parseDouble(this.TEXTFIELD_monto.getText()))),
+                this.COMBOBOX_moneda.getSelectedItem().toString(),
+                (Date)this.SPINNER_fecha.getValue() 
+                );
+                this.EstadoPANEL_nuevodeposito("RESET");
+                this.isNuevoDeposito=false;
+                this.isEditarDeposito=false;
+           }
+           else{
+               JOptionPane.showMessageDialog(null,"Seleccione un registro para modificarlo");
+           }          
+        }       
+    }//GEN-LAST:event_BTN_guardardepositoActionPerformed
+
+    private void TABLE_nuevodepositoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_nuevodepositoMouseReleased
+        if(this.TABLE_nuevodeposito.getSelectedRowCount()>0){
+            this.BTN_editardeposito.setEnabled(true);
+        }
+    }//GEN-LAST:event_TABLE_nuevodepositoMouseReleased
+
+    private void TABLE_nuevopagoempleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_nuevopagoempleadoMouseReleased
+        if(this.TABLE_nuevopagoempleado.getSelectedRowCount()>0){
+            this.BTN_editarpagoempleado.setEnabled(true);
+        }
+    }//GEN-LAST:event_TABLE_nuevopagoempleadoMouseReleased
+
+    private void BTN_guardarpagoempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_guardarpagoempleadoActionPerformed
+        if(this.isNuevoPagoEmpleado){
+            try {
+                GuardarPagoEmpleado(
+                        controlador.getDeposito(this.TEXTFIELD_numerocomprobante.getText()),
+                        controlador.getEmpleadoPlanilla(this.TEXTFIELD_cedulaempleado.getText(), this.TEXTFIELD_planilla.getText()),
+                        this.COMBOBOX_mododepago.getSelectedItem().toString(),
+                        this.TEXTFIELD_descripcion.getText()
+                );
+                this.EstadoPANEL_nuevopagoempleado("RESET");
+                this.isNuevoPagoEmpleado=false;
+                this.isEditarPagoEmpleado=false;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"BTNguardar\n"+ex.getMessage());
+            }    
+        }
+        else if(this.isEditarPagoEmpleado){
+            DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevopagoempleado.getModel();
+            int fila = TABLE_nuevopagoempleado.getSelectedRow();
+           if(fila>=0){
+                try{
+                    ActualizarPagoEmpleado(
+                            controlador.getPagoEmpleado(modelo.getValueAt(fila, 0).toString(), modelo.getValueAt(fila, 1).toString()).getIdPagoEmpleado(),
+                            controlador.getDeposito(this.TEXTFIELD_numerocomprobante.getText()),
+                            controlador.getEmpleadoPlanilla(this.TEXTFIELD_cedulaempleado.getText(), this.TEXTFIELD_planilla.getText()),
+                            this.COMBOBOX_mododepago.getSelectedItem().toString(),
+                            this.TEXTFIELD_descripcion.getText()
+                    );
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,"Error de campos insertados"+e.getMessage());
+                }
+                this.EstadoPANEL_nuevopagoempleado("RESET");
+                this.isNuevoPagoEmpleado=false;
+                this.isEditarPagoEmpleado=false;
+                ((DefaultTableModel)this.TABLE_nuevopagoempleado.getModel()).setRowCount(0);
+           }
+           else{
+               JOptionPane.showMessageDialog(null,"Seleccione un registro para modificarlo");
+           }          
+        }       
+    }//GEN-LAST:event_BTN_guardarpagoempleadoActionPerformed
+
+    private void TEXTFIELD_buscarpagoempleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_buscarpagoempleadoKeyReleased
+        if(TEXTFIELD_buscarpagoempleado.getText().isEmpty()){
+            ((DefaultTableModel)this.TABLE_nuevopagoempleado.getModel()).setRowCount(0);
+        }
+        else{
+            BuscarNuevosPagosEmpleado(this.TEXTFIELD_buscarpagoempleado.getText());
+        }
+    }//GEN-LAST:event_TEXTFIELD_buscarpagoempleadoKeyReleased
+
+    private void BTN_guardarpagoinsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_guardarpagoinsumoActionPerformed
+        if(this.isNuevoPagoInsumo){
+            try {
+                GuardarPagoInsumo(
+                        controlador.getDeposito(this.TEXTFIELD_numerocomprobante2.getText()),
+                        controlador.getFacturaInsumo(this.TEXTFIELD_numerofactura.getText())
+                );
+                this.EstadoPANEL_nuevopagoinsumo("RESET");
+                this.isNuevoPagoInsumo=false;
+                this.isEditarPagoInsumo=false;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"BTNguardar\n"+ex.getMessage());
+            }    
+        }
+        else if(this.isEditarPagoInsumo){
+            DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevopagoinsumo.getModel();
+            int fila = TABLE_nuevopagoinsumo.getSelectedRow();
+           if(fila>=0){
+                try{
+                    ActualizarPagoInsumo(
+                            controlador.getPagoInsumo(controlador.getDeposito(modelo.getValueAt(fila, 0).toString())).getIdPagoInsumo(),
+                            controlador.getDeposito(this.TEXTFIELD_numerocomprobante2.getText()),
+                            controlador.getFacturaInsumo(this.TEXTFIELD_numerofactura.getText())
+                    );
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,"Error de campos insertados"+e.getMessage());
+                }
+                this.EstadoPANEL_nuevopagoinsumo("RESET");
+                this.isNuevoPagoInsumo=false;
+                this.isEditarPagoInsumo=false;
+                ((DefaultTableModel)this.TABLE_nuevopagoinsumo.getModel()).setRowCount(0);
+           }
+           else{
+               JOptionPane.showMessageDialog(null,"Seleccione un registro para modificarlo");
+           }          
+        }       
+    }//GEN-LAST:event_BTN_guardarpagoinsumoActionPerformed
+
+    private void TEXTFIELD_buscarpagoinsumoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_buscarpagoinsumoKeyReleased
+        if(TEXTFIELD_buscarpagoinsumo.getText().isEmpty()){
+            ((DefaultTableModel)this.TABLE_nuevopagoinsumo.getModel()).setRowCount(0);
+        }
+        else{
+            BuscarNuevosPagosInsumo(this.TEXTFIELD_buscarpagoinsumo.getText());
+        }
+    }//GEN-LAST:event_TEXTFIELD_buscarpagoinsumoKeyReleased
+
+    private void TABLE_nuevopagoinsumoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_nuevopagoinsumoMouseReleased
+        if(this.TABLE_nuevopagoinsumo.getSelectedRowCount()>0){
+            this.BTN_editarpagoinsumo.setEnabled(true);
+        }
+    }//GEN-LAST:event_TABLE_nuevopagoinsumoMouseReleased
+
+    private void TABLE_nuevopagomantenimientoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_nuevopagomantenimientoMouseReleased
+        if(this.TABLE_nuevopagomantenimiento.getSelectedRowCount()>0){
+            this.BTN_editarpagomantenimiento.setEnabled(true);
+        }
+    }//GEN-LAST:event_TABLE_nuevopagomantenimientoMouseReleased
+
+    private void TEXTFIELD_buscarpagomantenimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_buscarpagomantenimientoKeyReleased
+        if(TEXTFIELD_buscarpagomantenimiento.getText().isEmpty()){
+            ((DefaultTableModel)this.TABLE_nuevopagomantenimiento.getModel()).setRowCount(0);
+        }
+        else{
+            BuscarNuevosPagosMantenimiento(this.TEXTFIELD_buscarpagomantenimiento.getText());
+        }
+    }//GEN-LAST:event_TEXTFIELD_buscarpagomantenimientoKeyReleased
+
+    private void BTN_guardarpagomantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_guardarpagomantenimientoActionPerformed
+        if(this.isNuevoPagoMantenimiento){
+            try {
+                GuardarPagoMantenimiento(
+                        controlador.getDeposito(this.TEXTFIELD_numerocomprobante3.getText()),
+                        controlador.getMantenimiento(this.TEXTFIELD_numerofactura2.getText())
+                );
+                this.EstadoPANEL_nuevopagomantenimiento("RESET");
+                this.isNuevoPagoMantenimiento=false;
+                this.isEditarPagoMantenimiento=false;
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,"BTNguardar\n"+ex.getMessage());
+            }    
+        }
+        else if(this.isEditarPagoMantenimiento){
+            DefaultTableModel modelo = (DefaultTableModel) TABLE_nuevopagomantenimiento.getModel();
+            int fila = TABLE_nuevopagomantenimiento.getSelectedRow();
+           if(fila>=0){
+                try{
+                    ActualizarPagoMantenimiento(
+                            controlador.getPagoMantenimiento(controlador.getDeposito(modelo.getValueAt(fila, 0).toString()),controlador.getMantenimiento(modelo.getValueAt(fila, 1).toString())).getIdPagoMantenimiento(),
+                            controlador.getDeposito(this.TEXTFIELD_numerocomprobante3.getText()),
+                            controlador.getMantenimiento(this.TEXTFIELD_numerofactura2.getText())
+                    );
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null,"Error de campos insertados"+e.getMessage());
+                }
+                this.EstadoPANEL_nuevopagomantenimiento("RESET");
+                this.isNuevoPagoMantenimiento=false;
+                this.isEditarPagoMantenimiento=false;
+                ((DefaultTableModel)this.TABLE_nuevopagomantenimiento.getModel()).setRowCount(0);
+           }
+           else{
+               JOptionPane.showMessageDialog(null,"Seleccione un registro para modificarlo");
+           }          
+        } 
+    }//GEN-LAST:event_BTN_guardarpagomantenimientoActionPerformed
+
+    void setTABLE_pagos(String txt){
+        ((DefaultTableModel)this.TABLE_pagos.getModel()).setRowCount(0);
+        ((DefaultTableModel)this.TABLE_pagos.getModel()).setColumnCount(7);
+        if(txt.equals("EMPLEADO")){             
+            ((DefaultTableModel)this.TABLE_pagos.getModel()).setColumnIdentifiers(new String[]{"Nombre","Apellido","Planilla","Monto","Moneda","Modo de pago","Descripción"});
+        }
+        else if(txt.equals("INSUMO")||txt.equals("MANTENIMIENTO")){
+            ((DefaultTableModel)this.TABLE_pagos.getModel()).setColumnIdentifiers(new String[]{"Proveedor","Descripcion","Factura","Deposito","Monto","Moneda","Fecha"});
+        }
+    }
+    
+    void GuardarPagoMantenimiento(Deposito deposito,Mantenimiento factura){
+        controlador.InsertarPagoMantenimiento(deposito,factura);
+    }
+    
+    void GuardarPagoInsumo(Deposito deposito,FacturaInsumo factura){
+        controlador.InsertarPagoInsumo(deposito,factura);
+    }
+    
+    void GuardarPagoEmpleado(Deposito deposito, EmpleadoPlanilla empleadoPlanilla, String modoPago, String descripcion){
+        controlador.InsertarPagoEmpleado(deposito, empleadoPlanilla, modoPago, descripcion);
+    }
+    
+    void GuardarDeposito(String numeroComprobante, String banco, BigDecimal monto, String moneda, Date fecha){
+        controlador.InsertarDeposito(numeroComprobante, banco, monto, moneda, fecha);
+    }
+    
+    void ActualizarPagoMantenimiento(int idPagoMantenimiento, Deposito deposito,Mantenimiento factura){
+        controlador.ModificarPagoMantenimiento(idPagoMantenimiento, deposito, factura);
+    }
+    
+    void ActualizarPagoInsumo(int idPagoInsumo, Deposito deposito,FacturaInsumo factura){
+        controlador.ModificarPagoInsumo(idPagoInsumo, deposito, factura);
+    }
+    
+    void ActualizarPagoEmpleado(int idPagoEmpleado,Deposito deposito, EmpleadoPlanilla empleadoPlanilla, String modoPago, String descripcion){
+        controlador.ModificarPagoEmpleado(idPagoEmpleado,deposito, empleadoPlanilla, modoPago, descripcion);
+    }
+    
+    void ActualizarDeposito(int idDeposito,String numeroComprobante, String banco, BigDecimal monto, String moneda, Date fecha){
+        controlador.ModificarDeposito(idDeposito,numeroComprobante, banco, monto, moneda, fecha);
+    }
+    
+    void BuscarNuevosPagosMantenimiento(String txt_busqueda){
+        if(!txt_busqueda.isEmpty()){
+            ((DefaultTableModel)this.TABLE_nuevopagomantenimiento.getModel()).setRowCount(0);
+            ((DefaultTableModel)this.TABLE_nuevopagomantenimiento.getModel()).setColumnCount(4);
+            ((DefaultTableModel)this.TABLE_nuevopagomantenimiento.getModel()).setColumnIdentifiers(new String[]{"Comprobante","Factura de mantenimiento","Cedula de empleado","Proveedor",});
+            List pagos_mantenimiento = controlador.BuscarNuevosPagosMantenimiento(txt_busqueda);
+            if(pagos_mantenimiento.size()>0){   
+                DefaultTableModel modelo = (DefaultTableModel) this.TABLE_nuevopagomantenimiento.getModel();
+                for(int i=0; i<pagos_mantenimiento.size(); i++){              
+                    Vector datos = new Vector();
+                    Object[] fila = (Object[]) pagos_mantenimiento.get(i);
+                    datos.add(fila[0]);
+                    datos.add(fila[1]);
+                    datos.add(fila[2]);
+                    datos.add(fila[3]);
+                    modelo.addRow(datos);
+                }
+                this.TABLE_nuevopagomantenimiento.setModel(modelo);
+            }
+        }
+        else{
+            ((DefaultTableModel)this.TABLE_nuevopagomantenimiento.getModel()).setRowCount(0);
+        }
+    }
+    
+    void BuscarNuevosPagosInsumo(String txt_busqueda){
+        if(!txt_busqueda.isEmpty()){
+            ((DefaultTableModel)this.TABLE_nuevopagoinsumo.getModel()).setRowCount(0);
+            ((DefaultTableModel)this.TABLE_nuevopagoinsumo.getModel()).setColumnCount(4);
+            ((DefaultTableModel)this.TABLE_nuevopagoinsumo.getModel()).setColumnIdentifiers(new String[]{"Comprobante","Factura de insumo","Cedula de empleado","Proveedor",});
+            List pagos_insumo = controlador.BuscarNuevosPagosInsumo(txt_busqueda);
+            if(pagos_insumo.size()>0){   
+                DefaultTableModel modelo = (DefaultTableModel) this.TABLE_nuevopagoinsumo.getModel();
+                for(int i=0; i<pagos_insumo.size(); i++){              
+                    Vector datos = new Vector();
+                    Object[] fila = (Object[]) pagos_insumo.get(i);
+                    datos.add(fila[0]);
+                    datos.add(fila[1]);
+                    datos.add(fila[2]);
+                    datos.add(fila[3]);
+                    modelo.addRow(datos);
+                }
+                this.TABLE_nuevopagoinsumo.setModel(modelo);
+            }
+        }
+        else{
+            ((DefaultTableModel)this.TABLE_nuevopagoinsumo.getModel()).setRowCount(0);
+        }
+    }
+    
+    void BuscarNuevosPagosEmpleado(String txt_busqueda){
+        if(!txt_busqueda.isEmpty()){
+            ((DefaultTableModel)this.TABLE_nuevopagoempleado.getModel()).setRowCount(0);
+            ((DefaultTableModel)this.TABLE_nuevopagoempleado.getModel()).setColumnCount(5);
+            ((DefaultTableModel)this.TABLE_nuevopagoempleado.getModel()).setColumnIdentifiers(new String[]{"Cédula de empleado","Planilla","Comprobante","Modo de pago","Descripción"});
+            List pagos_empleado = controlador.BuscarNuevosPagosEmpleado(txt_busqueda);
+            if(pagos_empleado.size()>0){   
+                DefaultTableModel modelo = (DefaultTableModel) this.TABLE_nuevopagoempleado.getModel();
+                for(int i=0; i<pagos_empleado.size(); i++){              
+                    Vector datos = new Vector();
+                    Object[] fila = (Object[]) pagos_empleado.get(i);
+                    datos.add(fila[0]);
+                    datos.add(fila[1]);
+                    datos.add(fila[2]);
+                    datos.add(fila[3]);
+                    datos.add(fila[4]);
+                    modelo.addRow(datos);
+                }
+                this.TABLE_nuevopagoempleado.setModel(modelo);
+            }
+        }
+        else{
+            ((DefaultTableModel)this.TABLE_nuevopagoempleado.getModel()).setRowCount(0);
+        }
+    }
+    
+    void BuscarPagosMantenimiento(String txt_busqueda){
+        setTABLE_pagos("MANTENIMIENTO");
+        List pagos_mantenimiento = controlador.BuscarPagosMantenimiento(txt_busqueda);
+        if(pagos_mantenimiento.size()>0){   
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_pagos.getModel();
+            for(int i=0; i<pagos_mantenimiento.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) pagos_mantenimiento.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                datos.add(fila[3]);
+                datos.add(fila[4]);
+                datos.add(fila[5]);
+                datos.add(fila[6]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_pagos.setModel(modelo);
+        }
+    }
+    
+    void BuscarPagosInsumo(String txt_busqueda){
+        setTABLE_pagos("INSUMO");
+        List pagos_insumo = controlador.BuscarPagosInsumo(txt_busqueda);
+        if(pagos_insumo.size()>0){   
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_pagos.getModel();
+            for(int i=0; i<pagos_insumo.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) pagos_insumo.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                datos.add(fila[3]);
+                datos.add(fila[4]);
+                datos.add(fila[5]);
+                datos.add(fila[6]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_pagos.setModel(modelo);
+        }
+    }
+    
+    void BuscarPagosEmpleado(String txt_busqueda){
+        setTABLE_pagos("EMPLEADO");
+        List pagos_empleado = controlador.BuscarPagosEmpleado(txt_busqueda);
+        if(pagos_empleado.size()>0){   
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_pagos.getModel();
+            for(int i=0; i<pagos_empleado.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) pagos_empleado.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                datos.add(fila[3]);
+                datos.add(fila[4]);
+                datos.add(fila[5]);
+                datos.add(fila[6]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_pagos.setModel(modelo);
+        }
+    }
+    
+    void BuscarDepositos(String txt_busqueda){
+        if(!txt_busqueda.isEmpty()){
+            this.BTN_editardeposito.setEnabled(false);
+            ((DefaultTableModel)this.TABLE_depositos.getModel()).setRowCount(0);
+            ((DefaultTableModel)this.TABLE_nuevodeposito.getModel()).setRowCount(0);
+            List<Deposito> depositos = controlador.BuscarDepositos(txt_busqueda);
+            if(depositos.size()>0){
+                Iterator consulta = depositos.iterator();
+                DefaultTableModel modelo = (DefaultTableModel) this.TABLE_depositos.getModel();
+                while(consulta.hasNext()){              
+                    Vector datos = new Vector();
+                    Deposito fila = (Deposito) consulta.next();
+                    datos.add(fila.getNumeroComprobante());
+                    datos.add(fila.getBanco());
+                    datos.add(fila.getMonto());
+                    datos.add(fila.getMoneda());
+                    datos.add(fila.getFecha());
+                    modelo.addRow(datos);
+                }
+                this.TABLE_depositos.setModel(modelo);
+                this.TABLE_nuevodeposito.setModel(modelo);
+            }
+        }
+        else{
+            ((DefaultTableModel)this.TABLE_depositos.getModel()).setRowCount(0);
+            ((DefaultTableModel)this.TABLE_nuevodeposito.getModel()).setRowCount(0);
+        }
+    }
+    
     void CargarDepositos(){
+        ((DefaultTableModel)this.TABLE_depositos.getModel()).setRowCount(0);
         List<Deposito> depositos = controlador.MostrarDepositos();
         if(depositos.size()>0){
             Iterator consulta = depositos.iterator();
@@ -1246,12 +1808,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ BTN_actualizardeposito;
     private swing.Controles.ButtonZ BTN_actualizardepositos;
-    private swing.Controles.ButtonZ BTN_actualizarpagoempleado;
-    private swing.Controles.ButtonZ BTN_actualizarpagoinsumo;
-    private swing.Controles.ButtonZ BTN_actualizarpagomantenimiento;
-    private swing.Controles.ButtonZ BTN_actualizarpagos;
     private swing.Controles.ButtonZ BTN_cancelardeposito;
     private swing.Controles.ButtonZ BTN_cancelarpagoempleado;
     private swing.Controles.ButtonZ BTN_cancelarpagoinsumo;
@@ -1260,10 +1817,6 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     private swing.Controles.ButtonZ BTN_editarpagoempleado;
     private swing.Controles.ButtonZ BTN_editarpagoinsumo;
     private swing.Controles.ButtonZ BTN_editarpagomantenimiento;
-    private swing.Controles.ButtonZ BTN_eliminardeposito;
-    private swing.Controles.ButtonZ BTN_eliminarpagoempleado;
-    private swing.Controles.ButtonZ BTN_eliminarpagoinsumo;
-    private swing.Controles.ButtonZ BTN_eliminarpagomantenimiento;
     private swing.Controles.ButtonZ BTN_guardardeposito;
     private swing.Controles.ButtonZ BTN_guardarpagoempleado;
     private swing.Controles.ButtonZ BTN_guardarpagoinsumo;
@@ -1326,10 +1879,10 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
     private swing.Controles.TextFieldZ TEXTFIELD_planilla;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ10;
     private swing.Controles.LabelZ labelZ11;
@@ -1369,7 +1922,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.TEXTFIELD_numerocomprobante3.setText(null);
         this.TEXTFIELD_numerofactura2.setText(null);
         this.TEXTFIELD_buscarpagomantenimiento.setText(null);
-        this.EstadoBotononesNuevoEdit(BTN_nuevopagomantenimiento,BTN_editarpagomantenimiento, BTN_guardarpagomantenimiento, BTN_cancelarpagomantenimiento, BTN_eliminarpagomantenimiento,CMD);
+        this.EstadoBotononesNuevoEdit(BTN_nuevopagomantenimiento,BTN_editarpagomantenimiento, BTN_guardarpagomantenimiento, BTN_cancelarpagomantenimiento,CMD);
         if(CMD.equals("RESET")){
 
             this.TEXTFIELD_numerocomprobante3.setEnabled(false);
@@ -1386,7 +1939,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.TEXTFIELD_numerocomprobante2.setText(null);
         this.TEXTFIELD_numerofactura.setText(null);
         this.TEXTFIELD_buscarpagoinsumo.setText(null);
-        this.EstadoBotononesNuevoEdit(BTN_nuevopagoinsumo,BTN_editarpagoinsumo, BTN_guardarpagoinsumo, BTN_cancelarpagoinsumo, BTN_eliminarpagoinsumo,CMD);
+        this.EstadoBotononesNuevoEdit(BTN_nuevopagoinsumo,BTN_editarpagoinsumo, BTN_guardarpagoinsumo, BTN_cancelarpagoinsumo,CMD);
         if(CMD.equals("RESET")){
 
             this.TEXTFIELD_numerocomprobante2.setEnabled(false);
@@ -1405,7 +1958,7 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.TEXTFIELD_numerocomprobante.setText(null);
         this.TEXTFIELD_descripcion.setText(null);
         this.TEXTFIELD_buscarpagoempleado.setText(null);
-        this.EstadoBotononesNuevoEdit(BTN_nuevopagoempleado,BTN_editarpagoempleado, BTN_guardarpagoempleado, BTN_cancelarpagoempleado, BTN_eliminarpagoempleado,CMD);
+        this.EstadoBotononesNuevoEdit(BTN_nuevopagoempleado,BTN_editarpagoempleado, BTN_guardarpagoempleado, BTN_cancelarpagoempleado,CMD);
         if(CMD.equals("RESET")){
 
             this.TEXTFIELD_cedulaempleado.setEnabled(false);
@@ -1429,10 +1982,10 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         this.TEXTFIELD_banco.setText(null);
         this.TEXTFIELD_monto.setText(null);
         this.TEXTFIELD_buscardeposito.setText(null);
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	Date date = new Date();
         ((DefaultEditor) SPINNER_fecha.getEditor()).getTextField().setText(dateFormat.format(date));
-        this.EstadoBotononesNuevoEdit(BTN_nuevodeposito,BTN_editardeposito, BTN_guardardeposito, BTN_cancelardeposito, BTN_eliminardeposito,CMD);
+        this.EstadoBotononesNuevoEdit(BTN_nuevodeposito,BTN_editardeposito, BTN_guardardeposito, BTN_cancelardeposito,CMD);
         if(CMD.equals("RESET")){
 
             this.TEXTFIELD_comprobante.setEnabled(false);
@@ -1452,20 +2005,18 @@ public class Egresos extends javax.swing.JInternalFrame implements ActionListene
         }
     }
     
-    private void EstadoBotononesNuevoEdit(ButtonZ nuevo,ButtonZ editar,ButtonZ guardar,ButtonZ cancelar,ButtonZ eliminar,String CMD){
+    private void EstadoBotononesNuevoEdit(ButtonZ nuevo,ButtonZ editar,ButtonZ guardar,ButtonZ cancelar,String CMD){
         if(CMD.equals("RESET")){
             nuevo.setEnabled(true);
             editar.setEnabled(false);
             guardar.setEnabled(false);
             cancelar.setEnabled(false);
-            eliminar.setEnabled(false);
         }
         if(CMD.equals("NEW")||CMD.equals("EDIT")){
             nuevo.setEnabled(false);
             editar.setEnabled(false);
             guardar.setEnabled(true);
             cancelar.setEnabled(true);
-            eliminar.setEnabled(false);
         }
     }
     

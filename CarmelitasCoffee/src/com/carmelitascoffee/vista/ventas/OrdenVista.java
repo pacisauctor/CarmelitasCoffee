@@ -5,10 +5,17 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
+import com.carmelitascoffee.controlador.ventas.COrdenVista;
+import com.carmelitascoffee.pojo.Orden;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JInternalFrame;
-import javax.swing.JSpinner;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -19,9 +26,18 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
     /**
      * Creates new form InternalFrameZ
      */
+    private COrdenVista controlador;
+    private Session s;
+    
     public OrdenVista() {
         initComponents();
-     
+    }
+    
+    public OrdenVista(Session s) {
+        this.s = s;
+        controlador = new COrdenVista(s);
+        initComponents();
+        CargarOrdenes();
     }
 
     /**
@@ -39,47 +55,110 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
         TABLE_ordenes = new swing.Controles.TableZ();
         PANEL_detallesdeorden = new swing.Contenedores.PanelZ();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableZ1 = new swing.Controles.TableZ();
+        TABLE_ordenproducto = new swing.Controles.TableZ();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        TABLE_ordenservicio = new swing.Controles.TableZ();
         PANEL_imagen = new swing.Contenedores.PanelZ();
         LABEL_imagen = new swing.Controles.LabelZ();
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
         setIconifiable(true);
-        setTitle("Agregar empleado");
+        setTitle("Vista de ordenes");
         setMinimumSize(new java.awt.Dimension(725, 562));
         setName("AgregarEmpleadoFRM"); // NOI18N
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
         });
 
-        PANEL_ordenes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_ordenes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
+        TABLE_ordenes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cliente", "Cedula de empleado", "Factura", "Fecha de orden", "Fecha de entrega", "Fecha requerida", "Tipo de orden"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TABLE_ordenes.getTableHeader().setReorderingAllowed(false);
+        TABLE_ordenes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_ordenesMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(TABLE_ordenes);
 
         PANEL_ordenes.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        PANEL_detallesdeorden.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de orden", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_detallesdeorden.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de orden", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_detallesdeorden.setLayout(new javax.swing.BoxLayout(PANEL_detallesdeorden, javax.swing.BoxLayout.LINE_AXIS));
 
-        jScrollPane2.setViewportView(tableZ1);
+        TABLE_ordenproducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        PANEL_detallesdeorden.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+            },
+            new String [] {
+                "Producto", "Cantidad", "Descuento"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TABLE_ordenproducto.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(TABLE_ordenproducto);
+
+        PANEL_detallesdeorden.add(jScrollPane2);
+
+        TABLE_ordenservicio.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Servicio", "Cantidad", "Descuento"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TABLE_ordenservicio.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(TABLE_ordenservicio);
+
+        PANEL_detallesdeorden.add(jScrollPane3);
 
         javax.swing.GroupLayout PANEL_mainLayout = new javax.swing.GroupLayout(PANEL_main);
         PANEL_main.setLayout(PANEL_mainLayout);
@@ -112,6 +191,73 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
         
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void TABLE_ordenesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_ordenesMouseReleased
+        if(this.TABLE_ordenes.getSelectedRowCount()>0){
+            DefaultTableModel modelo = (DefaultTableModel) TABLE_ordenes.getModel();
+            int fila = TABLE_ordenes.getSelectedRow();
+            String numeroFactura = modelo.getValueAt(fila, 2).toString();
+            CargarOrdenProducto(numeroFactura);
+            CargarOrdenServicio(numeroFactura);
+        }
+    }//GEN-LAST:event_TABLE_ordenesMouseReleased
+
+    void CargarOrdenProducto(String numeroFactura){
+        ((DefaultTableModel)this.TABLE_ordenproducto.getModel()).setRowCount(0);
+        List op = controlador.MostrarOrdenProducto(numeroFactura);
+        if(op.size()>0){
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenproducto.getModel();
+            for(int i=0; i<op.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) op.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_ordenproducto.setModel(modelo);
+        }        
+    }
+    
+    void CargarOrdenServicio(String numeroFactura){
+        ((DefaultTableModel)this.TABLE_ordenservicio.getModel()).setRowCount(0);
+        List os = controlador.MostrarOrdenServicio(numeroFactura);
+        if(os.size()>0){
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenservicio.getModel();
+            for(int i=0; i<os.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) os.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_ordenservicio.setModel(modelo);
+        }
+    }
+    
+    void CargarOrdenes(){
+        ((DefaultTableModel)this.TABLE_ordenes.getModel()).setRowCount(0);
+        List ordenes = controlador.MostrarOrdenes();
+        if(ordenes.size()>0){
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenes.getModel();
+            for(int i=0; i<ordenes.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) ordenes.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                datos.add(fila[3]);
+                datos.add(fila[4]);
+                datos.add(fila[5]);
+                datos.add(fila[6]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_ordenes.setModel(modelo);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No hay registros");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.LabelZ LABEL_imagen;
@@ -120,9 +266,11 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
     private swing.Contenedores.PanelZ PANEL_main;
     private swing.Contenedores.PanelZ PANEL_ordenes;
     private swing.Controles.TableZ TABLE_ordenes;
+    private swing.Controles.TableZ TABLE_ordenproducto;
+    private swing.Controles.TableZ TABLE_ordenservicio;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private swing.Controles.TableZ tableZ1;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
     
     private void ActualizarPanel(){

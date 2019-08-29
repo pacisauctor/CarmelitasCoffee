@@ -88,6 +88,23 @@ public class Empleado  implements java.io.Serializable {
     public void setSegundoNombre(String segundoNombre) {
         this.segundoNombre = segundoNombre;
     }
+    
+    public String getNombreCompleto(){
+        try{
+        return this.getPrimerNombre() + " " + this.getSegundoNombre() + " " + 
+               this.getPrimerApellido() + " " + this.getSegundoApellido();
+        }catch(NullPointerException ex){
+            if(this.getSegundoNombre().isEmpty()&&this.getSegundoApellido().isEmpty()){
+                return this.getPrimerNombre() + " " + this.getPrimerApellido();
+            }
+            else{
+               return this.getPrimerNombre() + " " + 
+               this.getPrimerApellido() + " " + this.getSegundoApellido();
+            }
+        }
+    } 
+            
+            
     public String getPrimerApellido() {
         return this.primerApellido;
     }

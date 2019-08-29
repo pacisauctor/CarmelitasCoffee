@@ -59,11 +59,11 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="5" rowCount="0">
-                    <Column editable="false" title="null" type="java.lang.String"/>
-                    <Column editable="false" title="null" type="java.lang.String"/>
-                    <Column editable="false" title="null" type="java.lang.Double"/>
-                    <Column editable="false" title="null" type="java.lang.String"/>
-                    <Column editable="false" title="null" type="java.lang.Object"/>
+                    <Column editable="false" title="Comprobante" type="java.lang.Object"/>
+                    <Column editable="false" title="Banco" type="java.lang.Object"/>
+                    <Column editable="false" title="Monto" type="java.lang.Object"/>
+                    <Column editable="false" title="Moneda" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -96,7 +96,7 @@
                   </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
             </Component>
@@ -112,7 +112,7 @@
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TEXTFIELD_busquedadepositosActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_busquedadepositosKeyReleased"/>
           </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_actualizardepositos">
@@ -161,8 +161,7 @@
                           <Component id="BTN_verpagoinsumo" min="-2" pref="171" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="BTN_verpagomantenimiento" min="-2" pref="171" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="BTN_actualizarpagos" min="-2" pref="109" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -185,7 +184,6 @@
                       <Component id="BTN_verpagoempleado" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="BTN_verpagoinsumo" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="BTN_verpagomantenimiento" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="BTN_actualizarpagos" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -201,6 +199,17 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
             <Component class="swing.Controles.TableZ" name="TABLE_pagos">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="0"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -214,16 +223,8 @@
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TEXTFIELD_busquedapagosActionPerformed"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_busquedapagosKeyReleased"/>
           </Events>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_actualizarpagos">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_salirpagos">
           <Properties>
@@ -243,6 +244,9 @@
               <Font name="Dialog" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_verpagomantenimientoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_verpagoempleado">
           <Properties>
@@ -262,6 +266,9 @@
               <Font name="Dialog" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_verpagoinsumoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -276,18 +283,16 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jScrollPane3" min="-2" pref="510" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane7" min="-2" pref="510" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="BTN_nuevodeposito" alignment="0" pref="171" max="32767" attributes="0"/>
                                       <Component id="BTN_guardardeposito" alignment="0" max="32767" attributes="0"/>
                                       <Component id="BTN_cancelardeposito" max="32767" attributes="0"/>
-                                      <Component id="BTN_eliminardeposito" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_actualizardeposito" alignment="1" max="32767" attributes="0"/>
                                       <Component id="BTN_editardeposito" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <Component id="labelZ3" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="TEXTFIELD_comprobante" min="-2" pref="236" max="-2" attributes="0"/>
@@ -331,7 +336,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="BTN_salirnuevodeposito" min="-2" pref="21" max="-2" attributes="0"/>
-                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelZ3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="TEXTFIELD_comprobante" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -371,12 +376,9 @@
                           <Component id="BTN_guardardeposito" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BTN_cancelardeposito" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BTN_eliminardeposito" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace pref="55" max="32767" attributes="0"/>
-                          <Component id="BTN_actualizardeposito" min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane7" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -444,33 +446,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_cancelardepositoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_eliminardeposito">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="swing.Controles.TableZ" name="TABLE_nuevodeposito">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Depositos"/>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="swing.Controles.LabelZ" name="labelZ8">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar:"/>
@@ -498,14 +473,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_actualizardeposito">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_buscardepositoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_salirnuevodeposito">
           <Properties>
@@ -522,6 +492,9 @@
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="now" stepSize="5" type="date"/>
+            </Property>
+            <Property name="editor" type="javax.swing.JComponent" editor="org.netbeans.modules.form.editors.SpinnerEditorEditor">
+              <SpinnerEditor format="yyyy-MM-dd" type="1"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -552,6 +525,63 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_editardepositoActionPerformed"/>
           </Events>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="swing.Controles.TableZ" name="TABLE_nuevodeposito">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="Comprobante" type="java.lang.Object"/>
+                    <Column editable="false" title="Banco" type="java.lang.Object"/>
+                    <Column editable="false" title="Monto" type="java.lang.Object"/>
+                    <Column editable="false" title="Moneda" type="java.lang.Object"/>
+                    <Column editable="false" title="Fecha" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLE_nuevodepositoMouseReleased"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="swing.Contenedores.PanelZ" name="PANEL_nuevopagoempleado">
@@ -565,14 +595,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jScrollPane4" min="-2" pref="510" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane8" min="-2" pref="510" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="BTN_nuevopagoempleado" alignment="0" pref="171" max="32767" attributes="0"/>
                                       <Component id="BTN_guardarpagoempleado" alignment="0" max="32767" attributes="0"/>
                                       <Component id="BTN_cancelarpagoempleado" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_eliminarpagoempleado" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_actualizarpagoempleado" alignment="1" max="32767" attributes="0"/>
                                       <Component id="BTN_editarpagoempleado" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -652,7 +680,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <Component id="BTN_nuevopagoempleado" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BTN_editarpagoempleado" min="-2" pref="26" max="-2" attributes="0"/>
@@ -660,12 +688,9 @@
                           <Component id="BTN_guardarpagoempleado" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BTN_cancelarpagoempleado" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BTN_eliminarpagoempleado" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace pref="55" max="32767" attributes="0"/>
-                          <Component id="BTN_actualizarpagoempleado" min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="119" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane4" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jScrollPane8" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -717,6 +742,9 @@
               <Font name="Dialog" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_guardarpagoempleadoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_cancelarpagoempleado">
           <Properties>
@@ -730,33 +758,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_cancelarpagoempleadoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_eliminarpagoempleado">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="swing.Controles.TableZ" name="TABLE_nuevopagoempleado">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="Depositos"/>
-                  </Border>
-                </Property>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
         <Component class="swing.Controles.LabelZ" name="labelZ14">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar:"/>
@@ -784,14 +785,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_actualizarpagoempleado">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_buscarpagoempleadoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_salirnuevopagoempleado">
           <Properties>
@@ -835,6 +831,31 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="swing.Controles.TableZ" name="TABLE_nuevopagoempleado">
+              <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="0"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLE_nuevopagoempleadoMouseReleased"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Container class="swing.Contenedores.PanelZ" name="PANEL_nuevopagoinsumo">
@@ -854,8 +875,6 @@
                                       <Component id="BTN_nuevopagoinsumo" alignment="0" max="32767" attributes="0"/>
                                       <Component id="BTN_guardarpagoinsumo" alignment="0" max="32767" attributes="0"/>
                                       <Component id="BTN_cancelarpagoinsumo" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_eliminarpagoinsumo" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_actualizarpagoinsumo" alignment="1" max="32767" attributes="0"/>
                                       <Component id="BTN_editarpagoinsumo" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -920,10 +939,7 @@
                           <Component id="BTN_guardarpagoinsumo" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BTN_cancelarpagoinsumo" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BTN_eliminarpagoinsumo" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace pref="56" max="32767" attributes="0"/>
-                          <Component id="BTN_actualizarpagoinsumo" min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane5" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -962,6 +978,9 @@
               <Font name="Dialog" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_guardarpagoinsumoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_cancelarpagoinsumo">
           <Properties>
@@ -974,15 +993,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_cancelarpagoinsumoActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_eliminarpagoinsumo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane5">
           <AuxValues>
@@ -998,7 +1008,19 @@
                     <TitledBorder title="Depositos"/>
                   </Border>
                 </Property>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="0"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLE_nuevopagoinsumoMouseReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1023,14 +1045,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_actualizarpagoinsumo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_buscarpagoinsumoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_salirnuevopagoinsumo">
           <Properties>
@@ -1074,8 +1091,6 @@
                                       <Component id="BTN_nuevopagomantenimiento" alignment="0" max="32767" attributes="0"/>
                                       <Component id="BTN_guardarpagomantenimiento" alignment="0" max="32767" attributes="0"/>
                                       <Component id="BTN_cancelarpagomantenimiento" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_eliminarpagomantenimiento" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="BTN_actualizarpagomantenimiento" alignment="1" max="32767" attributes="0"/>
                                       <Component id="BTN_editarpagomantenimiento" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1118,9 +1133,7 @@
                   <EmptySpace pref="17" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="TEXTFIELD_numerocomprobante3" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelZ17" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="labelZ17" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -1142,10 +1155,7 @@
                           <Component id="BTN_guardarpagomantenimiento" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="BTN_cancelarpagomantenimiento" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="BTN_eliminarpagomantenimiento" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace pref="56" max="32767" attributes="0"/>
-                          <Component id="BTN_actualizarpagomantenimiento" min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="120" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane6" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -1184,6 +1194,9 @@
               <Font name="Dialog" size="14" style="1"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_guardarpagomantenimientoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_cancelarpagomantenimiento">
           <Properties>
@@ -1196,15 +1209,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BTN_cancelarpagomantenimientoActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_eliminarpagomantenimiento">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="enabled" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane6">
           <AuxValues>
@@ -1220,7 +1224,19 @@
                     <TitledBorder title="Depositos"/>
                   </Border>
                 </Property>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="0"/>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0"/>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
+                </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="TABLE_nuevopagomantenimientoMouseReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1245,14 +1261,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value=""/>
           </Properties>
-        </Component>
-        <Component class="swing.Controles.ButtonZ" name="BTN_actualizarpagomantenimiento">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="1"/>
-            </Property>
-          </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TEXTFIELD_buscarpagomantenimientoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="swing.Controles.ButtonZ" name="BTN_salirnuevopagomantenimiento">
           <Properties>

@@ -5,9 +5,17 @@
  */
 package com.carmelitascoffee.vista.personal;
 
+import com.carmelitascoffee.controlador.personal.CPlanillas;
+import com.carmelitascoffee.pojo.Planilla;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -18,8 +26,18 @@ public class Planillas extends JInternalFrame implements ActionListener{
     /**
      * Creates new form InternalFrameZ
      */
+    private CPlanillas controlador;
+    private Session s;
+    
     public Planillas() {
         initComponents();
+    }
+    
+    public Planillas(Session s) {
+        this.s = s;
+        controlador = new CPlanillas(s);
+        initComponents();
+        CargarPlanillas();
     }
 
     /**
@@ -34,10 +52,10 @@ public class Planillas extends JInternalFrame implements ActionListener{
         PANEL_main = new swing.Contenedores.PanelZ();
         PANEL_planillas = new swing.Contenedores.PanelZ();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TABLE_ordenes = new swing.Controles.TableZ();
+        TABLE_planillas = new swing.Controles.TableZ();
         PANEL_empleadoplanilla = new swing.Contenedores.PanelZ();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableZ1 = new swing.Controles.TableZ();
+        TABLE_empleadoplanilla = new swing.Controles.TableZ();
         PANEL_imagen = new swing.Contenedores.PanelZ();
         LABEL_imagen = new swing.Controles.LabelZ();
 
@@ -50,32 +68,85 @@ public class Planillas extends JInternalFrame implements ActionListener{
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
         });
 
-        PANEL_planillas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planillas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        PANEL_planillas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planillas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
 
-        jScrollPane1.setViewportView(TABLE_ordenes);
+        TABLE_planillas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Numero de planilla", "Patronal", "Periodo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TABLE_planillas.getTableHeader().setReorderingAllowed(false);
+        TABLE_planillas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_planillasMouseReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TABLE_planillas);
 
         PANEL_planillas.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        PANEL_empleadoplanilla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados de la planilla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        PANEL_empleadoplanilla.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empleados de la planilla", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
 
-        jScrollPane2.setViewportView(tableZ1);
+        TABLE_empleadoplanilla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cedula de empleado", "Nombre", "Apellido", "Numero de planilla", "Salario", "Fecha de recibido"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TABLE_empleadoplanilla.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(TABLE_empleadoplanilla);
 
         PANEL_empleadoplanilla.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -110,6 +181,59 @@ public class Planillas extends JInternalFrame implements ActionListener{
         
     }//GEN-LAST:event_formInternalFrameOpened
 
+    private void TABLE_planillasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_planillasMouseReleased
+        if(this.TABLE_planillas.getSelectedRowCount()>0){
+            DefaultTableModel modelo = (DefaultTableModel) TABLE_planillas.getModel();
+            int fila = TABLE_planillas.getSelectedRow();
+            String numeroPlanilla = modelo.getValueAt(fila, 0).toString();
+            CargarEmpleadoPlanilla(numeroPlanilla);
+        }
+    }//GEN-LAST:event_TABLE_planillasMouseReleased
+
+    void CargarPlanillas(){
+        ((DefaultTableModel)this.TABLE_planillas.getModel()).setRowCount(0);
+        List<Planilla> planillas = controlador.MostrarPlanillas();
+        if(planillas.size()>0){
+            Iterator consulta = planillas.iterator();
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_planillas.getModel();
+            while(consulta.hasNext()){              
+                Vector datos = new Vector();
+                Planilla fila = (Planilla) consulta.next();
+                datos.add(fila.getNumeroPlanilla());
+                datos.add(fila.getPatronal());
+                datos.add(fila.getPeriodo());
+                modelo.addRow(datos);
+            }
+            this.TABLE_planillas.setModel(modelo);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No hay registros");
+        }
+    }
+    
+    void CargarEmpleadoPlanilla(String numeroPlanilla){
+        ((DefaultTableModel)this.TABLE_empleadoplanilla.getModel()).setRowCount(0);
+        List planillas = controlador.MostrarEmpleadoPlanillas(numeroPlanilla);
+        if(planillas.size()>0){
+            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_empleadoplanilla.getModel();
+            for(int i=0; i<planillas.size(); i++){              
+                Vector datos = new Vector();
+                Object[] fila = (Object[]) planillas.get(i);
+                datos.add(fila[0]);
+                datos.add(fila[1]);
+                datos.add(fila[2]);
+                datos.add(fila[3]);
+                datos.add(fila[4]);
+                datos.add(fila[5]);
+                modelo.addRow(datos);
+            }
+            this.TABLE_empleadoplanilla.setModel(modelo);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"No hay registros");
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.LabelZ LABEL_imagen;
@@ -117,20 +241,19 @@ public class Planillas extends JInternalFrame implements ActionListener{
     private swing.Contenedores.PanelZ PANEL_imagen;
     private swing.Contenedores.PanelZ PANEL_main;
     private swing.Contenedores.PanelZ PANEL_planillas;
-    private swing.Controles.TableZ TABLE_ordenes;
+    private swing.Controles.TableZ TABLE_empleadoplanilla;
+    private swing.Controles.TableZ TABLE_planillas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private swing.Controles.TableZ tableZ1;
     // End of variables declaration//GEN-END:variables
     
-    private void ActualizarPanel(){
+    /*private void ActualizarPanel(){
         this.PANEL_main.revalidate();
         this.PANEL_main.repaint();
-    }
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         
     }
-
 }

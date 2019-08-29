@@ -5,10 +5,24 @@
  */
 package com.carmelitascoffee.vista.personal;
 
+import com.carmelitascoffee.controlador.personal.CModificarEmpleado;
+import com.carmelitascoffee.pojo.Contrato;
+import com.carmelitascoffee.pojo.Empleado;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -19,6 +33,11 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
     /**
      * Creates new form InternalFrameZ
      */
+    
+    private CModificarEmpleado controlador;
+    Empleado empleado_actualizar = null;
+    Contrato contrato_actualizar = null;
+    
     public ModificarEmpleado() {
         initComponents();
         this.PANEL_main.add(this.PANEL_buscar);
@@ -26,6 +45,17 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         ((JSpinner.DefaultEditor) SPINNER_fechacontrato.getEditor()).getTextField().setEditable(false);
         ((JSpinner.DefaultEditor) SPINNER_edadempleado.getEditor()).getTextField().setEditable(false);
     }
+    
+    public ModificarEmpleado(Session s) {
+        controlador = new CModificarEmpleado(s);
+        initComponents();
+        this.PANEL_main.add(this.PANEL_buscar);
+        this.ActualizarPanel();
+        ((JSpinner.DefaultEditor) SPINNER_fechacontrato.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) SPINNER_edadempleado.getEditor()).getTextField().setEditable(false);
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,18 +71,15 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         labelZ5 = new swing.Controles.LabelZ();
         TABPANE_tabs = new swing.Contenedores.TabbedPaneZ();
         PANEL_contrato = new swing.Contenedores.PanelZ();
-        labelZ1 = new swing.Controles.LabelZ();
         labelZ2 = new swing.Controles.LabelZ();
         labelZ3 = new swing.Controles.LabelZ();
         labelZ4 = new swing.Controles.LabelZ();
         labelZ8 = new swing.Controles.LabelZ();
-        textFieldZ1 = new swing.Controles.TextFieldZ();
-        textFieldZ2 = new swing.Controles.TextFieldZ();
-        textFieldZ3 = new swing.Controles.TextFieldZ();
+        TEXTFIELD_sueldo = new swing.Controles.TextFieldZ();
+        TEXTFIELD_comisiones = new swing.Controles.TextFieldZ();
+        COMBOBOX_estado = new swing.Controles.ComboBoxZ();
         SPINNER_fechacontrato = new swing.Controles.SpinnerZ();
-        comboBoxZ1 = new swing.Controles.ComboBoxZ();
         PANEL_empleado = new swing.Contenedores.PanelZ();
-        labelZ9 = new swing.Controles.LabelZ();
         labelZ10 = new swing.Controles.LabelZ();
         labelZ11 = new swing.Controles.LabelZ();
         labelZ12 = new swing.Controles.LabelZ();
@@ -62,14 +89,13 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         labelZ16 = new swing.Controles.LabelZ();
         labelZ17 = new swing.Controles.LabelZ();
         labelZ18 = new swing.Controles.LabelZ();
-        textFieldZ4 = new swing.Controles.TextFieldZ();
-        textFieldZ5 = new swing.Controles.TextFieldZ();
-        textFieldZ6 = new swing.Controles.TextFieldZ();
-        textFieldZ7 = new swing.Controles.TextFieldZ();
-        textFieldZ8 = new swing.Controles.TextFieldZ();
-        textFieldZ11 = new swing.Controles.TextFieldZ();
-        textFieldZ12 = new swing.Controles.TextFieldZ();
-        textFieldZ13 = new swing.Controles.TextFieldZ();
+        TEXTFIELD_pnombre = new swing.Controles.TextFieldZ();
+        TEXTFIELD_snombre = new swing.Controles.TextFieldZ();
+        TEXTFIELD_papellido = new swing.Controles.TextFieldZ();
+        TEXTFIELD_sapellido = new swing.Controles.TextFieldZ();
+        TEXTFIELD_direccion = new swing.Controles.TextFieldZ();
+        TEXTFIELD_telefono = new swing.Controles.TextFieldZ();
+        TEXTFIELD_estadocivil = new swing.Controles.TextFieldZ();
         RADIOBTN_mujer = new swing.Controles.RadioButtonZ();
         RADIOBTN_hombre = new swing.Controles.RadioButtonZ();
         SPINNER_edadempleado = new swing.Controles.SpinnerZ();
@@ -79,7 +105,7 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         labelZ7 = new swing.Controles.LabelZ();
         TEXTFIELD_cedula = new swing.Controles.TextFieldZ();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableZ1 = new swing.Controles.TableZ();
+        TABLE_buscarempleado = new swing.Controles.TableZ();
         BTNGROUP_sexoempleado = new javax.swing.ButtonGroup();
         PANEL_main = new swing.Contenedores.PanelZ();
         PANEL_imagen = new swing.Contenedores.PanelZ();
@@ -88,11 +114,9 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         BTN_next = new swing.Controles.ButtonZ();
         BTN_back = new swing.Controles.ButtonZ();
 
-        PANEL_modificacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_modificacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificación", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         labelZ5.setText("PASO 2: \nActualice los datos referentes al empleado y su respectivo contrato.");
-
-        labelZ1.setText("Puesto:");
 
         labelZ2.setText("Sueldo (Córdobas):");
 
@@ -102,16 +126,17 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
 
         labelZ8.setText("Estado:");
 
-        textFieldZ1.setText("MYSQLDATA");
+        TEXTFIELD_sueldo.setText("");
 
-        textFieldZ2.setText("MYSQLDATA");
+        TEXTFIELD_comisiones.setText("");
 
-        textFieldZ3.setText("MYSQLDATA");
+        COMBOBOX_estado.setBorder(null);
+        COMBOBOX_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Cancelado", "Inactivo" }));
 
         SPINNER_fechacontrato.setModel(new javax.swing.SpinnerDateModel());
-
-        comboBoxZ1.setBorder(null);
-        comboBoxZ1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activo", "Cancelado", "Desactivo" }));
+        SPINNER_fechacontrato.setEditor(new javax.swing.JSpinner.DateEditor(SPINNER_fechacontrato, "yyyy-MM-dd"));
+        SPINNER_fechacontrato.setEnabled(false);
+        SPINNER_fechacontrato.setFocusable(false);
 
         javax.swing.GroupLayout PANEL_contratoLayout = new javax.swing.GroupLayout(PANEL_contrato);
         PANEL_contrato.setLayout(PANEL_contratoLayout);
@@ -122,53 +147,46 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
                 .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PANEL_contratoLayout.createSequentialGroup()
                         .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelZ1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelZ2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelZ3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SPINNER_fechacontrato, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TEXTFIELD_sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_comisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PANEL_contratoLayout.createSequentialGroup()
+                                .addComponent(SPINNER_fechacontrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(173, 173, 173))))
                     .addGroup(PANEL_contratoLayout.createSequentialGroup()
                         .addComponent(labelZ8, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboBoxZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(COMBOBOX_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(159, Short.MAX_VALUE))
         );
         PANEL_contratoLayout.setVerticalGroup(
             PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PANEL_contratoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(35, 35, 35)
                 .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PANEL_contratoLayout.createSequentialGroup()
                         .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PANEL_contratoLayout.createSequentialGroup()
-                                .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldZ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(textFieldZ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(textFieldZ3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(TEXTFIELD_comisiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SPINNER_fechacontrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PANEL_contratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboBoxZ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                    .addComponent(COMBOBOX_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         TABPANE_tabs.addTab("Contrato", PANEL_contrato);
-
-        labelZ9.setText("Número de cedula:");
 
         labelZ10.setText("Primer nombre:");
 
@@ -188,27 +206,25 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
 
         labelZ18.setText("Dirección:");
 
-        textFieldZ4.setText("MYSQLDATA");
+        TEXTFIELD_pnombre.setText("");
 
-        textFieldZ5.setText("MYSQLDATA");
+        TEXTFIELD_snombre.setText("");
 
-        textFieldZ6.setText("MYSQLDATA");
+        TEXTFIELD_papellido.setText("");
 
-        textFieldZ7.setText("MYSQLDATA");
+        TEXTFIELD_sapellido.setText("");
 
-        textFieldZ8.setText("MYSQLDATA");
+        TEXTFIELD_direccion.setText("");
 
-        textFieldZ11.setText("MYSQLDATA");
+        TEXTFIELD_telefono.setText("");
 
-        textFieldZ12.setText("MYSQLDATA");
-
-        textFieldZ13.setText("MYSQLDATA");
+        TEXTFIELD_estadocivil.setText("");
 
         BTNGROUP_sexoempleado.add(RADIOBTN_mujer);
-        RADIOBTN_mujer.setText("Mujer");
+        RADIOBTN_mujer.setText("M");
 
         BTNGROUP_sexoempleado.add(RADIOBTN_hombre);
-        RADIOBTN_hombre.setText("Hombre");
+        RADIOBTN_hombre.setText("H");
 
         SPINNER_edadempleado.setModel(new javax.swing.SpinnerNumberModel(18, 18, null, 1));
 
@@ -223,30 +239,28 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
                     .addComponent(labelZ13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelZ12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelZ10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelZ9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelZ11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PANEL_empleadoLayout.createSequentialGroup()
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldZ4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldZ5, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(textFieldZ6, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(textFieldZ7, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                            .addComponent(textFieldZ8, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                            .addComponent(TEXTFIELD_pnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                            .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldZ12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_telefono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TEXTFIELD_estadocivil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(PANEL_empleadoLayout.createSequentialGroup()
                                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(labelZ15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelZ17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(labelZ18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(labelZ16, javax.swing.GroupLayout.PREFERRED_SIZE, 72, Short.MAX_VALUE))
+                                    .addComponent(labelZ16, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldZ11, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TEXTFIELD_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(SPINNER_edadempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(PANEL_empleadoLayout.createSequentialGroup()
                         .addComponent(RADIOBTN_hombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,39 +275,36 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
                 .addContainerGap()
                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PANEL_empleadoLayout.createSequentialGroup()
-                        .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelZ9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(27, 27, 27)
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TEXTFIELD_pnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TEXTFIELD_snombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PANEL_empleadoLayout.createSequentialGroup()
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TEXTFIELD_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TEXTFIELD_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelZ16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldZ13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TEXTFIELD_estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TEXTFIELD_papellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelZ15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SPINNER_edadempleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldZ8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TEXTFIELD_sapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PANEL_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelZ14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,15 +355,35 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
                 .addContainerGap())
         );
 
-        PANEL_datosempleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_datosempleado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
 
         labelZ6.setText("PASO 1:\nSeleccione el empleado a modificar.");
 
         labelZ7.setText("Buscar:");
 
         TEXTFIELD_cedula.setText("");
+        TEXTFIELD_cedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TEXTFIELD_cedulaActionPerformed(evt);
+            }
+        });
+        TEXTFIELD_cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TEXTFIELD_cedulaKeyReleased(evt);
+            }
+        });
 
-        jScrollPane1.setViewportView(tableZ1);
+        TABLE_buscarempleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                TABLE_buscarempleadoMouseReleased(evt);
+            }
+        });
+        TABLE_buscarempleado.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                TABLE_buscarempleadoPropertyChange(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TABLE_buscarempleado);
 
         javax.swing.GroupLayout PANEL_datosempleadoLayout = new javax.swing.GroupLayout(PANEL_datosempleado);
         PANEL_datosempleado.setLayout(PANEL_datosempleadoLayout);
@@ -411,20 +442,20 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         setPreferredSize(new java.awt.Dimension(725, 562));
         setVisible(true);
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
             }
         });
         getContentPane().add(PANEL_main, java.awt.BorderLayout.CENTER);
@@ -439,6 +470,7 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         getContentPane().add(PANEL_imagen, java.awt.BorderLayout.PAGE_START);
 
         BTN_next.setText("Siguiente");
+        BTN_next.setEnabled(false);
         BTN_next.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         BTN_next.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -492,23 +524,153 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void BTN_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nextActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) TABLE_buscarempleado.getModel();
+        int fila = TABLE_buscarempleado.getSelectedRow();
+        this.empleado_actualizar = controlador.getEmpleado(modelo.getValueAt(fila, 0).toString());
+        this.contrato_actualizar = controlador.getContratoActivo(empleado_actualizar.getCedulaIdentidad());
+        
         if(this.BTN_back.isEnabled()){
-            
+            String sexo=null;
+            if(this.RADIOBTN_hombre.isSelected()){
+                sexo="H";
+            }
+            else if(this.RADIOBTN_mujer.isSelected()){
+                sexo="M";
+            }
+            ActualizarEmpleado(
+                    empleado_actualizar.getCedulaIdentidad(),
+                    this.TEXTFIELD_pnombre.getText(),
+                    this.TEXTFIELD_snombre.getText(),
+                    this.TEXTFIELD_papellido.getText(),
+                    this.TEXTFIELD_sapellido.getText(),
+                    sexo,
+                    this.TEXTFIELD_direccion.getText(),
+                    this.TEXTFIELD_telefono.getText(),
+                    this.TEXTFIELD_estadocivil.getText()
+            );
+            ActualizarContrato(
+                    contrato_actualizar.getPuesto(),
+                    this.TEXTFIELD_sueldo.getText(),
+                    this.TEXTFIELD_comisiones.getText(),
+                    (Date)this.SPINNER_fechacontrato.getValue(),
+                    this.COMBOBOX_estado.getSelectedItem().toString()
+            );
+            this.dispose();
         }
-        else{
+        else if(contrato_actualizar!=null){
             this.BTN_back.setEnabled(true);
             this.BTN_next.setText("Finalizar");
+            
+            this.TEXTFIELD_sueldo.setText(contrato_actualizar.getSueldo().toString());
+            this.TEXTFIELD_comisiones.setText(contrato_actualizar.getComisiones().toString());
+            try {
+                this.SPINNER_fechacontrato.setValue(new SimpleDateFormat("yyyy-MM-dd").parse(contrato_actualizar.getFechaContratacion().toString()));
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null,"Error en fecha: "+ex.getMessage());
+            }
+            this.COMBOBOX_estado.setSelectedItem(contrato_actualizar.getEstado());
+            this.TEXTFIELD_pnombre.setText(empleado_actualizar.getPrimerNombre());
+            this.TEXTFIELD_snombre.setText(empleado_actualizar.getSegundoNombre());
+            this.TEXTFIELD_papellido.setText(empleado_actualizar.getPrimerApellido());
+            this.TEXTFIELD_sapellido.setText(empleado_actualizar.getSegundoApellido());
+            this.BTNGROUP_sexoempleado.clearSelection();
+            if("H".equals(empleado_actualizar.getSexo().toString())){
+                this.RADIOBTN_hombre.setSelected(true);
+            }
+            else if("M".equals(empleado_actualizar.getSexo().toString())){
+                this.RADIOBTN_mujer.setSelected(true);
+            }
+            this.TEXTFIELD_direccion.setText(empleado_actualizar.getDireccion());
+            this.TEXTFIELD_telefono.setText(empleado_actualizar.getTelefono());
+            this.TEXTFIELD_estadocivil.setText(empleado_actualizar.getEstadoCivil());
+            this.SPINNER_edadempleado.setValue(empleado_actualizar.getEdad());
+            
             this.PANEL_main.removeAll();
             this.PANEL_main.add(this.PANEL_modificar);
             this.ActualizarPanel();
         }
+        else{
+            JOptionPane.showMessageDialog(null,"Este empleado no tiene contratos activos");
+        }
     }//GEN-LAST:event_BTN_nextActionPerformed
 
+    private void TEXTFIELD_cedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_cedulaKeyReleased
+        if(TEXTFIELD_cedula.getText().isEmpty()){
+            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setRowCount(0);
+            this.BTN_next.setEnabled(false);
+        }
+        else{
+            BuscarEmpleado(this.TEXTFIELD_cedula.getText());
+        }
+    }//GEN-LAST:event_TEXTFIELD_cedulaKeyReleased
+
+    private void TABLE_buscarempleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_buscarempleadoMouseReleased
+        if(this.TABLE_buscarempleado.getSelectedRowCount()>0){
+            this.BTN_next.setEnabled(true);
+        }
+    }//GEN-LAST:event_TABLE_buscarempleadoMouseReleased
+
+    private void TABLE_buscarempleadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TABLE_buscarempleadoPropertyChange
+        if(this.TABLE_buscarempleado.getSelectedRowCount()>0){
+            this.BTN_next.setEnabled(true);
+        }
+        else{
+            this.BTN_next.setEnabled(false);
+        }
+        if(this.TABLE_buscarempleado.getRowCount()==0){
+            this.BTN_next.setEnabled(false);
+        }
+    }//GEN-LAST:event_TABLE_buscarempleadoPropertyChange
+
+    private void TEXTFIELD_cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TEXTFIELD_cedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TEXTFIELD_cedulaActionPerformed
+
+    void ActualizarContrato(String puesto,String sueldo,String comisiones,Date fechacontrato,String estado){
+        controlador.ModificarContrato(puesto, sueldo, comisiones, fechacontrato, estado);
+    }
+    
+    void ActualizarEmpleado(String cedula, String pnombre,String snombre,String papellido,String sapellido,String sexo,String direccion,String Telefono,String estadocivil){
+        controlador.ModificarEmpleado(cedula, pnombre, snombre, papellido, sapellido, sexo, direccion, Telefono, estadocivil);
+    }
+    
+    void BuscarEmpleado(String txt_busqueda){
+        if(!txt_busqueda.isEmpty()){
+            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setRowCount(0);
+            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setColumnCount(10);
+            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setColumnIdentifiers(new String[]{"Cedula","Nombre","Apellido","Sexo","Edad","Direccion","Telefono","Correo","Estado civil","Escolaridad"});
+            List<Empleado> empleados = controlador.BuscarEmpleados(txt_busqueda);
+            if(empleados.size()>0){
+                Iterator consulta = empleados.iterator();
+                DefaultTableModel modelo = (DefaultTableModel) this.TABLE_buscarempleado.getModel();
+                while(consulta.hasNext()){              
+                    Vector datos = new Vector();
+                    Empleado fila = (Empleado) consulta.next();
+                    datos.add(fila.getCedulaIdentidad());
+                    datos.add(fila.getPrimerNombre());
+                    datos.add(fila.getPrimerApellido());
+                    datos.add(fila.getSexo());
+                    datos.add(fila.getEdad());
+                    datos.add(fila.getDireccion());
+                    datos.add(fila.getTelefono());
+                    datos.add(fila.getCorreo());
+                    datos.add(fila.getEstadoCivil());
+                    datos.add(fila.getGradoEscolaridad());
+                    modelo.addRow(datos);
+                }
+                this.TABLE_buscarempleado.setModel(modelo);
+            }
+        }
+        else{
+            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setRowCount(0);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup BTNGROUP_sexoempleado;
     private swing.Controles.ButtonZ BTN_back;
     private swing.Controles.ButtonZ BTN_next;
+    private swing.Controles.ComboBoxZ COMBOBOX_estado;
     private swing.Controles.LabelZ LABEL_imagen;
     private swing.Contenedores.PanelZ PANEL_botones;
     private swing.Contenedores.PanelZ PANEL_buscar;
@@ -523,11 +685,19 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
     private swing.Controles.RadioButtonZ RADIOBTN_mujer;
     private swing.Controles.SpinnerZ SPINNER_edadempleado;
     private swing.Controles.SpinnerZ SPINNER_fechacontrato;
+    private swing.Controles.TableZ TABLE_buscarempleado;
     private swing.Contenedores.TabbedPaneZ TABPANE_tabs;
     private swing.Controles.TextFieldZ TEXTFIELD_cedula;
-    private swing.Controles.ComboBoxZ comboBoxZ1;
+    private swing.Controles.TextFieldZ TEXTFIELD_comisiones;
+    private swing.Controles.TextFieldZ TEXTFIELD_direccion;
+    private swing.Controles.TextFieldZ TEXTFIELD_estadocivil;
+    private swing.Controles.TextFieldZ TEXTFIELD_papellido;
+    private swing.Controles.TextFieldZ TEXTFIELD_pnombre;
+    private swing.Controles.TextFieldZ TEXTFIELD_sapellido;
+    private swing.Controles.TextFieldZ TEXTFIELD_snombre;
+    private swing.Controles.TextFieldZ TEXTFIELD_sueldo;
+    private swing.Controles.TextFieldZ TEXTFIELD_telefono;
     private javax.swing.JScrollPane jScrollPane1;
-    private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ10;
     private swing.Controles.LabelZ labelZ11;
     private swing.Controles.LabelZ labelZ12;
@@ -544,19 +714,6 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
     private swing.Controles.LabelZ labelZ6;
     private swing.Controles.LabelZ labelZ7;
     private swing.Controles.LabelZ labelZ8;
-    private swing.Controles.LabelZ labelZ9;
-    private swing.Controles.TableZ tableZ1;
-    private swing.Controles.TextFieldZ textFieldZ1;
-    private swing.Controles.TextFieldZ textFieldZ11;
-    private swing.Controles.TextFieldZ textFieldZ12;
-    private swing.Controles.TextFieldZ textFieldZ13;
-    private swing.Controles.TextFieldZ textFieldZ2;
-    private swing.Controles.TextFieldZ textFieldZ3;
-    private swing.Controles.TextFieldZ textFieldZ4;
-    private swing.Controles.TextFieldZ textFieldZ5;
-    private swing.Controles.TextFieldZ textFieldZ6;
-    private swing.Controles.TextFieldZ textFieldZ7;
-    private swing.Controles.TextFieldZ textFieldZ8;
     // End of variables declaration//GEN-END:variables
     
     private void ActualizarPanel(){

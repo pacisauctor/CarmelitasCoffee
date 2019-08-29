@@ -558,7 +558,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevoClienteActionPerformed
 
     private void bOrdenVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenVistaActionPerformed
-        OrdenVista ordenVista = new OrdenVista();
+        OrdenVista ordenVista = new OrdenVista(s);
         ordenVista.setVisible(true);
         ordenVista.pack();
         dpEscritorio.add(ordenVista);
@@ -600,14 +600,14 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bServiciosActionPerformed
 
     private void bModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModificarEmpleadoActionPerformed
-        ModificarEmpleado modificarEmpleado = new ModificarEmpleado();
+        ModificarEmpleado modificarEmpleado = new ModificarEmpleado(s);
         modificarEmpleado.setVisible(true);
         modificarEmpleado.pack();
         dpEscritorio.add(modificarEmpleado);
     }//GEN-LAST:event_bModificarEmpleadoActionPerformed
 
     private void bPlanillasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPlanillasActionPerformed
-        Planillas p = new Planillas();
+        Planillas p = new Planillas(s);
         p.setVisible(true);
         p.pack();
         dpEscritorio.add(p);
