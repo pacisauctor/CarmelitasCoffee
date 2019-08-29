@@ -1116,7 +1116,6 @@ public class Escritorio extends JFrame {
         InicioSesion inicioSesion = new InicioSesion("Inicio de sesión", s);
         inicioSesion.setLocationRelativeTo(null);
         inicioSesion.setVisible(true);
-        inicioSesion.setSize(500, 800);
         System.out.println("Ventana creada");
         this.dispose();
     }//GEN-LAST:event_bCerrarSesionActionPerformed
