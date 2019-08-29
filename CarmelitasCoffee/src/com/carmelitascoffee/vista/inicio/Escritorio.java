@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import static java.lang.System.exit;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -665,7 +666,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bAdminUserActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
-        // TODO add your handling code here:
+        exit(0);
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     public void addPaneles() {

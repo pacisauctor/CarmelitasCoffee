@@ -5,6 +5,9 @@
  */
 package com.carmelitascoffee.controlador.ajustes;
 
+import com.carmelitascoffee.pojo.Usuario;
+import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 /**
@@ -17,6 +20,12 @@ public class CAdministrarUsuarios {
 
     public CAdministrarUsuarios(Session s) {
         this.s = s;
+    }
+    
+    public List getUsuarios()
+    {
+        Criteria crit = s.createCriteria(Usuario.class);
+        return crit.list();
     }
 
 }
