@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Orden  implements java.io.Serializable {
 
 
-     private int idOrden;
+     private Integer idOrden;
      private Cliente cliente;
      private Empleado empleado;
      private String numeroFactura;
@@ -27,13 +27,11 @@ public class Orden  implements java.io.Serializable {
     }
 
 	
-    public Orden(int idOrden, Cliente cliente, Empleado empleado) {
-        this.idOrden = idOrden;
+    public Orden(Cliente cliente, Empleado empleado) {
         this.cliente = cliente;
         this.empleado = empleado;
     }
-    public Orden(int idOrden, Cliente cliente, Empleado empleado, String numeroFactura, Date fechaOrden, Date fechaEntrega, Date fechaRequerida, String tipoOrden, Set detalleOrdenProductos, Set detalleOrdenServicios) {
-       this.idOrden = idOrden;
+    public Orden(Cliente cliente, Empleado empleado, String numeroFactura, Date fechaOrden, Date fechaEntrega, Date fechaRequerida, String tipoOrden, Set detalleOrdenProductos, Set detalleOrdenServicios) {
        this.cliente = cliente;
        this.empleado = empleado;
        this.numeroFactura = numeroFactura;
@@ -45,11 +43,11 @@ public class Orden  implements java.io.Serializable {
        this.detalleOrdenServicios = detalleOrdenServicios;
     }
    
-    public int getIdOrden() {
+    public Integer getIdOrden() {
         return this.idOrden;
     }
     
-    public void setIdOrden(int idOrden) {
+    public void setIdOrden(Integer idOrden) {
         this.idOrden = idOrden;
     }
     public Cliente getCliente() {

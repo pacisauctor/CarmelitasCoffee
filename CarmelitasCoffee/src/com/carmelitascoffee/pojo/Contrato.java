@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import java.util.Date;
 public class Contrato  implements java.io.Serializable {
 
 
-     private int idContrato;
+     private Integer idContrato;
      private Empleado empleado;
      private String puesto;
      private BigDecimal sueldo;
@@ -23,12 +23,10 @@ public class Contrato  implements java.io.Serializable {
     }
 
 	
-    public Contrato(int idContrato, Empleado empleado) {
-        this.idContrato = idContrato;
+    public Contrato(Empleado empleado) {
         this.empleado = empleado;
     }
-    public Contrato(int idContrato, Empleado empleado, String puesto, BigDecimal sueldo, BigDecimal comisiones, Date fechaContratacion, String estado) {
-       this.idContrato = idContrato;
+    public Contrato(Empleado empleado, String puesto, BigDecimal sueldo, BigDecimal comisiones, Date fechaContratacion, String estado) {
        this.empleado = empleado;
        this.puesto = puesto;
        this.sueldo = sueldo;
@@ -37,11 +35,11 @@ public class Contrato  implements java.io.Serializable {
        this.estado = estado;
     }
    
-    public int getIdContrato() {
+    public Integer getIdContrato() {
         return this.idContrato;
     }
     
-    public void setIdContrato(int idContrato) {
+    public void setIdContrato(Integer idContrato) {
         this.idContrato = idContrato;
     }
     public Empleado getEmpleado() {

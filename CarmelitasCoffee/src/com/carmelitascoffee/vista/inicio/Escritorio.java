@@ -6,7 +6,9 @@
 package com.carmelitascoffee.vista.inicio;
 
 import com.carmelitascoffee.controlador.inicio.CEscritorio;
-import com.carmelitascoffee.vista.compras.Compras;
+import com.carmelitascoffee.reportes.OrdEmpl;
+import com.carmelitascoffee.reportes.OrdenesPorEmpleado;
+import com.carmelitascoffee.vista.ajustes.AdministrarUsuarios;
 import com.carmelitascoffee.vista.compras.Proveedores;
 import com.carmelitascoffee.vista.egresos.Egresos;
 import com.carmelitascoffee.vista.inventario.Insumos;
@@ -20,14 +22,26 @@ import com.carmelitascoffee.vista.ventas.NuevaPersonaContacto;
 import com.carmelitascoffee.vista.ventas.NuevoCliente;
 import com.carmelitascoffee.vista.ventas.OrdenVista;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.InputStream;
+import static java.lang.System.exit;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 import org.hibernate.Session;
 import swing.Contenedores.PanelZ;
+import swing.Controles.ButtonZ;
 
 /**
  *
@@ -42,6 +56,8 @@ public class Escritorio extends JFrame {
     private int idEmpleado;
     private Session s;
     private CEscritorio controlador;
+    String sSistemaOperativo = System.getProperty("os.name");
+    String division;
 
     public Escritorio() {
         initComponents();
@@ -54,6 +70,12 @@ public class Escritorio extends JFrame {
         this.s = s;
         controlador = new CEscritorio(s);
         initComponents();
+        if (sSistemaOperativo.equals("Linux")) {
+            division = "//";
+        } else {
+            division = "\\\\";
+        }
+        addPaneles();
     }
 
     @Override
@@ -80,26 +102,42 @@ public class Escritorio extends JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         pCompras = new swing.Contenedores.PanelZ();
-        bCompras = new swing.Controles.ButtonZ();
         bProveedores = new swing.Controles.ButtonZ();
+        bRegresar = new swing.Controles.ButtonZ();
         pEgresos = new swing.Contenedores.PanelZ();
         bEgresos = new swing.Controles.ButtonZ();
+        bRegresar1 = new swing.Controles.ButtonZ();
         pInventario = new swing.Contenedores.PanelZ();
         bInsumos = new swing.Controles.ButtonZ();
         bProductos = new swing.Controles.ButtonZ();
         bServicios = new swing.Controles.ButtonZ();
+        bRegresar2 = new swing.Controles.ButtonZ();
         pPersonal = new swing.Contenedores.PanelZ();
         bAgregarEmpleado = new swing.Controles.ButtonZ();
         bModificarEmpleado = new swing.Controles.ButtonZ();
         bPlanillas = new swing.Controles.ButtonZ();
+        bRegresar3 = new swing.Controles.ButtonZ();
         pVentas = new swing.Contenedores.PanelZ();
         bNuevaOrden = new swing.Controles.ButtonZ();
         bNuevaPersonaContacto = new swing.Controles.ButtonZ();
         bNuevoCliente = new swing.Controles.ButtonZ();
         bOrdenVista = new swing.Controles.ButtonZ();
+        bRegresar4 = new swing.Controles.ButtonZ();
         pAjustes = new swing.Contenedores.PanelZ();
         bAdminUser = new swing.Controles.ButtonZ();
         bCerrarSesion = new swing.Controles.ButtonZ();
+        bRegresar5 = new swing.Controles.ButtonZ();
+        pPrincipalTb = new swing.Contenedores.PanelZ();
+        bpVentas = new swing.Controles.ButtonZ();
+        bpCompras = new swing.Controles.ButtonZ();
+        bpPersonal = new swing.Controles.ButtonZ();
+        bpEgresos = new swing.Controles.ButtonZ();
+        bpInventario = new swing.Controles.ButtonZ();
+        bpAjustes = new swing.Controles.ButtonZ();
+        bpReportes = new swing.Controles.ButtonZ();
+        pReportes = new swing.Contenedores.PanelZ();
+        bReporteOrdPorEmpleado = new swing.Controles.ButtonZ();
+        bRegresar6 = new swing.Controles.ButtonZ();
         pToolBar = new javax.swing.JPanel();
         lTitle = new javax.swing.JLabel();
         bCerrar = new javax.swing.JButton();
@@ -109,36 +147,25 @@ public class Escritorio extends JFrame {
         pMenu = new swing.Contenedores.PanelZ();
         dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
-        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pCompras.setName("Compras"); // NOI18N
         pCompras.setLayout(new java.awt.GridBagLayout());
 
-        bCompras.setText("");
-        bCompras.setToolTipText("Administrar Compras");
-        bCompras.setMaximumSize(new java.awt.Dimension(50, 50));
-        bCompras.setMinimumSize(new java.awt.Dimension(50, 50));
-        bCompras.setName("Compras"); // NOI18N
-        bCompras.setPreferredSize(new java.awt.Dimension(50, 50));
-        bCompras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bComprasActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
-        pCompras.add(bCompras, gridBagConstraints);
-
+        bProveedores.setBackground(new java.awt.Color(255, 247, 162));
+        bProveedores.setForeground(new java.awt.Color(10, 13, 67));
         bProveedores.setText("");
         bProveedores.setToolTipText("Administrar Proveedores");
         bProveedores.setMaximumSize(new java.awt.Dimension(50, 50));
         bProveedores.setMinimumSize(new java.awt.Dimension(50, 50));
         bProveedores.setPreferredSize(new java.awt.Dimension(50, 50));
+        bProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bProveedoresMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bProveedoresMouseEntered(evt);
+            }
+        });
         bProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bProveedoresActionPerformed(evt);
@@ -147,49 +174,125 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 2, 0);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pCompras.add(bProveedores, gridBagConstraints);
 
-        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        bRegresar.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar.setText("Regresar");
+        bRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresarMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresarMouseEntered(evt);
+            }
+        });
+        bRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        pCompras.add(bRegresar, gridBagConstraints);
+
+        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pEgresos.setName("Egresos"); // NOI18N
         pEgresos.setLayout(new java.awt.GridBagLayout());
 
+        bEgresos.setBackground(new java.awt.Color(255, 247, 162));
+        bEgresos.setForeground(new java.awt.Color(10, 13, 67));
         bEgresos.setText("");
         bEgresos.setToolTipText("Administrar Egresos");
+        bEgresos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bEgresosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bEgresosMouseEntered(evt);
+            }
+        });
         bEgresos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bEgresosActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pEgresos.add(bEgresos, gridBagConstraints);
 
-        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        bRegresar1.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar1.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar1.setText("Regresar");
+        bRegresar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresar1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresar1MouseEntered(evt);
+            }
+        });
+        bRegresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresar1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        pEgresos.add(bRegresar1, gridBagConstraints);
+
+        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pInventario.setName("Inventario"); // NOI18N
         pInventario.setLayout(new java.awt.GridBagLayout());
 
+        bInsumos.setBackground(new java.awt.Color(255, 247, 162));
+        bInsumos.setForeground(new java.awt.Color(10, 13, 67));
         bInsumos.setText("");
         bInsumos.setToolTipText("Administrar Insumos");
+        bInsumos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bInsumosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bInsumosMouseEntered(evt);
+            }
+        });
         bInsumos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bInsumosActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pInventario.add(bInsumos, gridBagConstraints);
 
+        bProductos.setBackground(new java.awt.Color(255, 247, 162));
+        bProductos.setForeground(new java.awt.Color(10, 13, 67));
         bProductos.setText("");
         bProductos.setToolTipText("Administrar Productos");
+        bProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bProductosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bProductosMouseEntered(evt);
+            }
+        });
         bProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bProductosActionPerformed(evt);
@@ -198,13 +301,25 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pInventario.add(bProductos, gridBagConstraints);
 
+        bServicios.setBackground(new java.awt.Color(255, 247, 162));
+        bServicios.setForeground(new java.awt.Color(10, 13, 67));
         bServicios.setText("");
         bServicios.setToolTipText("Administrar Servicios");
+        bServicios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bServiciosMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bServiciosMouseEntered(evt);
+            }
+        });
         bServicios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bServiciosActionPerformed(evt);
@@ -213,30 +328,75 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pInventario.add(bServicios, gridBagConstraints);
 
-        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        bRegresar2.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar2.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar2.setText("Regresar");
+        bRegresar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresar2MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresar2MouseEntered(evt);
+            }
+        });
+        bRegresar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresar2ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        pInventario.add(bRegresar2, gridBagConstraints);
+
+        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pPersonal.setName("Personal"); // NOI18N
         pPersonal.setLayout(new java.awt.GridBagLayout());
 
-        bAgregarEmpleado.setText("");
+        bAgregarEmpleado.setBackground(new java.awt.Color(255, 247, 162));
+        bAgregarEmpleado.setForeground(new java.awt.Color(10, 13, 67));
+        bAgregarEmpleado.setText("Empleado");
         bAgregarEmpleado.setToolTipText("Agregar Empleado");
+        bAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bAgregarEmpleadoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bAgregarEmpleadoMouseEntered(evt);
+            }
+        });
         bAgregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAgregarEmpleadoActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pPersonal.add(bAgregarEmpleado, gridBagConstraints);
 
+        bModificarEmpleado.setBackground(new java.awt.Color(255, 247, 162));
+        bModificarEmpleado.setForeground(new java.awt.Color(10, 13, 67));
         bModificarEmpleado.setText("");
         bModificarEmpleado.setToolTipText("Modificar Empleado");
+        bModificarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bModificarEmpleadoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bModificarEmpleadoMouseEntered(evt);
+            }
+        });
         bModificarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bModificarEmpleadoActionPerformed(evt);
@@ -245,13 +405,25 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pPersonal.add(bModificarEmpleado, gridBagConstraints);
 
+        bPlanillas.setBackground(new java.awt.Color(255, 247, 162));
+        bPlanillas.setForeground(new java.awt.Color(10, 13, 67));
         bPlanillas.setText("");
         bPlanillas.setToolTipText("Administrar Planillas");
+        bPlanillas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bPlanillasMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bPlanillasMouseEntered(evt);
+            }
+        });
         bPlanillas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bPlanillasActionPerformed(evt);
@@ -260,30 +432,75 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pPersonal.add(bPlanillas, gridBagConstraints);
+
+        bRegresar3.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar3.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar3.setText("Regresar");
+        bRegresar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresar3MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresar3MouseEntered(evt);
+            }
+        });
+        bRegresar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresar3ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        pPersonal.add(bRegresar3, gridBagConstraints);
 
         pVentas.setBorder(javax.swing.BorderFactory.createTitledBorder("Ventas"));
         pVentas.setName("Ventas"); // NOI18N
         pVentas.setLayout(new java.awt.GridBagLayout());
 
+        bNuevaOrden.setBackground(new java.awt.Color(255, 247, 162));
+        bNuevaOrden.setForeground(new java.awt.Color(10, 13, 67));
         bNuevaOrden.setText("");
         bNuevaOrden.setToolTipText("Nueva Orden");
+        bNuevaOrden.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bNuevaOrdenMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bNuevaOrdenMouseEntered(evt);
+            }
+        });
         bNuevaOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNuevaOrdenActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pVentas.add(bNuevaOrden, gridBagConstraints);
 
+        bNuevaPersonaContacto.setBackground(new java.awt.Color(255, 247, 162));
+        bNuevaPersonaContacto.setForeground(new java.awt.Color(10, 13, 67));
         bNuevaPersonaContacto.setText("");
         bNuevaPersonaContacto.setToolTipText("Nueva Persona Contacto");
+        bNuevaPersonaContacto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bNuevaPersonaContactoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bNuevaPersonaContactoMouseEntered(evt);
+            }
+        });
         bNuevaPersonaContacto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNuevaPersonaContactoActionPerformed(evt);
@@ -292,13 +509,25 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pVentas.add(bNuevaPersonaContacto, gridBagConstraints);
 
+        bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
+        bNuevoCliente.setForeground(new java.awt.Color(10, 13, 67));
         bNuevoCliente.setText("");
         bNuevoCliente.setToolTipText("Nuevo Cliente");
+        bNuevoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bNuevoClienteMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bNuevoClienteMouseEntered(evt);
+            }
+        });
         bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bNuevoClienteActionPerformed(evt);
@@ -307,13 +536,25 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pVentas.add(bNuevoCliente, gridBagConstraints);
 
+        bOrdenVista.setBackground(new java.awt.Color(255, 247, 162));
+        bOrdenVista.setForeground(new java.awt.Color(10, 13, 67));
         bOrdenVista.setText("");
         bOrdenVista.setToolTipText("Orden Vista");
+        bOrdenVista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bOrdenVistaMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bOrdenVistaMouseEntered(evt);
+            }
+        });
         bOrdenVista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bOrdenVistaActionPerformed(evt);
@@ -322,31 +563,74 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pVentas.add(bOrdenVista, gridBagConstraints);
 
-        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        bRegresar4.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar4.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar4.setText("Regresar");
+        bRegresar4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresar4MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresar4MouseEntered(evt);
+            }
+        });
+        bRegresar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresar4ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        pVentas.add(bRegresar4, gridBagConstraints);
+
+        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pAjustes.setName("Ajustes"); // NOI18N
         pAjustes.setLayout(new java.awt.GridBagLayout());
 
+        bAdminUser.setBackground(new java.awt.Color(255, 247, 162));
         bAdminUser.setText("");
         bAdminUser.setToolTipText("Administrar Usuarios");
         bAdminUser.setName("Compras"); // NOI18N
+        bAdminUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bAdminUserMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bAdminUserMouseEntered(evt);
+            }
+        });
         bAdminUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAdminUserActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 30;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pAjustes.add(bAdminUser, gridBagConstraints);
 
+        bCerrarSesion.setBackground(new java.awt.Color(255, 247, 162));
         bCerrarSesion.setText("");
         bCerrarSesion.setToolTipText("Cerrar Sesión");
+        bCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bCerrarSesionMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bCerrarSesionMouseEntered(evt);
+            }
+        });
         bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCerrarSesionActionPerformed(evt);
@@ -355,10 +639,187 @@ public class Escritorio extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 30;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pAjustes.add(bCerrarSesion, gridBagConstraints);
+
+        bRegresar5.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar5.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar5.setText("Regresar");
+        bRegresar5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresar5MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresar5MouseEntered(evt);
+            }
+        });
+        bRegresar5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresar5ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        pAjustes.add(bRegresar5, gridBagConstraints);
+
+        pPrincipalTb.setLayout(new java.awt.GridBagLayout());
+
+        bpVentas.setText("Ventas");
+        bpVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpVentasActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpVentas, gridBagConstraints);
+
+        bpCompras.setText("Compras");
+        bpCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpComprasActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpCompras, gridBagConstraints);
+
+        bpPersonal.setText("Personal");
+        bpPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpPersonalActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpPersonal, gridBagConstraints);
+
+        bpEgresos.setText("Egresos");
+        bpEgresos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpEgresosActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpEgresos, gridBagConstraints);
+
+        bpInventario.setText("Inventario");
+        bpInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpInventarioActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpInventario, gridBagConstraints);
+
+        bpAjustes.setText("Ajustes");
+        bpAjustes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpAjustesActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpAjustes, gridBagConstraints);
+
+        bpReportes.setText("Reportes");
+        bpReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bpReportesActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pPrincipalTb.add(bpReportes, gridBagConstraints);
+
+        pReportes.setLayout(new java.awt.GridBagLayout());
+
+        bReporteOrdPorEmpleado.setBackground(new java.awt.Color(255, 247, 162));
+        bReporteOrdPorEmpleado.setForeground(new java.awt.Color(10, 13, 67));
+        bReporteOrdPorEmpleado.setText("Cant. de Ord por Emp.");
+        bReporteOrdPorEmpleado.setToolTipText("Agregar Empleado");
+        bReporteOrdPorEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bReporteOrdPorEmpleadoMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bReporteOrdPorEmpleadoMouseEntered(evt);
+            }
+        });
+        bReporteOrdPorEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bReporteOrdPorEmpleadoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 40;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pReportes.add(bReporteOrdPorEmpleado, gridBagConstraints);
+
+        bRegresar6.setBackground(new java.awt.Color(255, 247, 162));
+        bRegresar6.setForeground(new java.awt.Color(10, 13, 67));
+        bRegresar6.setText("Regresar");
+        bRegresar6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegresar6MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegresar6MouseEntered(evt);
+            }
+        });
+        bRegresar6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bRegresar6ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        pReportes.add(bRegresar6, gridBagConstraints);
 
         setBackground(new java.awt.Color(97, 53, 1));
         setUndecorated(true);
@@ -378,11 +839,11 @@ public class Escritorio extends JFrame {
             }
         });
         pToolBar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pToolBarMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pToolBarMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pToolBarMouseClicked(evt);
             }
         });
         pToolBar.setLayout(new java.awt.GridBagLayout());
@@ -474,7 +935,8 @@ public class Escritorio extends JFrame {
 
         pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.Y_AXIS));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 1.0;
         pContent.add(pMenu, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -525,15 +987,14 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bEgresosActionPerformed
 
     private void bAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoActionPerformed
-        AgregarEmpleado agregarEmpleado = new AgregarEmpleado();
+        AgregarEmpleado agregarEmpleado = new AgregarEmpleado(s);
         agregarEmpleado.setVisible(true);
         agregarEmpleado.pack();
         dpEscritorio.add(agregarEmpleado);
-        agregarEmpleado.setSize(dpEscritorio.getSize());
     }//GEN-LAST:event_bAgregarEmpleadoActionPerformed
 
     private void bNuevaOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaOrdenActionPerformed
-        NuevaOrden nuevaOrden = new NuevaOrden();
+        NuevaOrden nuevaOrden = new NuevaOrden(s, idEmpleado);
         nuevaOrden.setVisible(true);
         nuevaOrden.pack();
         dpEscritorio.add(nuevaOrden);
@@ -542,7 +1003,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevaOrdenActionPerformed
 
     private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
-        NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto();
+        NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto(s);
         nuevaPersonaContacto.setVisible(true);
         nuevaPersonaContacto.pack();
         dpEscritorio.add(nuevaPersonaContacto);
@@ -550,7 +1011,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevaPersonaContactoActionPerformed
 
     private void bNuevoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoClienteActionPerformed
-        NuevoCliente nuevoCliente = new NuevoCliente();
+        NuevoCliente nuevoCliente = new NuevoCliente(s, idEmpleado);
         nuevoCliente.setVisible(true);
         nuevoCliente.pack();
         dpEscritorio.add(nuevoCliente);
@@ -564,36 +1025,29 @@ public class Escritorio extends JFrame {
         dpEscritorio.add(ordenVista);
     }//GEN-LAST:event_bOrdenVistaActionPerformed
 
-    private void bComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprasActionPerformed
-        Compras compras = new Compras();
-        compras.setVisible(true);
-        compras.pack();
-        dpEscritorio.add(compras);
-    }//GEN-LAST:event_bComprasActionPerformed
-
     private void bProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProveedoresActionPerformed
-        Proveedores proveedores = new Proveedores();
+        Proveedores proveedores = new Proveedores(s);
         proveedores.setVisible(true);
         proveedores.pack();
         dpEscritorio.add(proveedores);
     }//GEN-LAST:event_bProveedoresActionPerformed
 
     private void bInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bInsumosActionPerformed
-        Insumos insumos = new Insumos();
+        Insumos insumos = new Insumos(s);
         insumos.pack();
         insumos.setVisible(true);
         dpEscritorio.add(insumos);
     }//GEN-LAST:event_bInsumosActionPerformed
 
     private void bProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProductosActionPerformed
-        Productos productos = new Productos();
+        Productos productos = new Productos(s);
         productos.setVisible(true);
         productos.pack();
         dpEscritorio.add(productos);
     }//GEN-LAST:event_bProductosActionPerformed
 
     private void bServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bServiciosActionPerformed
-        Servicios servicios = new Servicios();
+        Servicios servicios = new Servicios(s);
         servicios.setVisible(true);
         servicios.pack();
         dpEscritorio.add(servicios);
@@ -614,7 +1068,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bPlanillasActionPerformed
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
-        //[0,153,255]
+
         bCerrar.setBackground(new Color(215, 163, 100));
     }//GEN-LAST:event_bCerrarMouseEntered
 
@@ -651,27 +1105,330 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bMinimizarActionPerformed
 
     private void bAdminUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAdminUserActionPerformed
-        // TODO add your handling code here:
+        AdministrarUsuarios administrarUsuarios = new AdministrarUsuarios(s);
+        administrarUsuarios.setVisible(true);
+        administrarUsuarios.pack();
+        dpEscritorio.add(administrarUsuarios);
     }//GEN-LAST:event_bAdminUserActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
-        // TODO add your handling code here:
+
+        InicioSesion inicioSesion = new InicioSesion("Inicio de sesión", s);
+        inicioSesion.setLocationRelativeTo(null);
+        inicioSesion.setVisible(true);
+        System.out.println("Ventana creada");
+        this.dispose();
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
+    private void bpVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpVentasActionPerformed
+        pMenu.removeAll();
+
+        pMenu.add(pVentas, "Ventas");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpVentasActionPerformed
+
+    private void bRegresar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresar4ActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresar4ActionPerformed
+
+    private void bpComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpComprasActionPerformed
+        pMenu.removeAll();
+
+        pMenu.add(pCompras, "Compras");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpComprasActionPerformed
+
+    private void bRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresarActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresarActionPerformed
+
+    private void bRegresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresar1ActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresar1ActionPerformed
+
+    private void bRegresar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresar2ActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresar2ActionPerformed
+
+    private void bRegresar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresar3ActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresar3ActionPerformed
+
+    private void bpPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpPersonalActionPerformed
+        pMenu.removeAll();
+
+        pMenu.add(pPersonal, "Personal");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpPersonalActionPerformed
+
+    private void bpEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpEgresosActionPerformed
+        pMenu.removeAll();
+
+        pMenu.add(pEgresos, "Egresos");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpEgresosActionPerformed
+
+    private void bpInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpInventarioActionPerformed
+        pMenu.removeAll();
+
+        pMenu.add(pInventario, "Inventario");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpInventarioActionPerformed
+
+    private void bpAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpAjustesActionPerformed
+        pMenu.removeAll();
+        pMenu.add(pAjustes, "Ajustes");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpAjustesActionPerformed
+
+    private void bRegresar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresar5ActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresar5ActionPerformed
+
+    private void bReporteOrdPorEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReporteOrdPorEmpleadoActionPerformed
+        generarReporteOrdPorEmpleado();
+    }//GEN-LAST:event_bReporteOrdPorEmpleadoActionPerformed
+
+    private void bRegresar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegresar6ActionPerformed
+        regresarMenu();
+    }//GEN-LAST:event_bRegresar6ActionPerformed
+
+    private void bpReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpReportesActionPerformed
+        pMenu.removeAll();
+        pMenu.add(pReportes, "Reportes");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }//GEN-LAST:event_bpReportesActionPerformed
+
+    private void bProveedoresMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bProveedoresMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bProveedoresMouseEntered
+
+    private void bRegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresarMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresarMouseExited
+
+    private void bProveedoresMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bProveedoresMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bProveedoresMouseExited
+
+    private void bRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresarMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresarMouseEntered
+
+    private void bEgresosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bEgresosMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bEgresosMouseEntered
+
+    private void bEgresosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bEgresosMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bEgresosMouseExited
+
+    private void bRegresar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar1MouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar1MouseEntered
+
+    private void bRegresar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar1MouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar1MouseExited
+
+    private void bInsumosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bInsumosMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bInsumosMouseEntered
+
+    private void bInsumosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bInsumosMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bInsumosMouseExited
+
+    private void bProductosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bProductosMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bProductosMouseEntered
+
+    private void bProductosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bProductosMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bProductosMouseExited
+
+    private void bServiciosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bServiciosMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bServiciosMouseEntered
+
+    private void bServiciosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bServiciosMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bServiciosMouseExited
+
+    private void bRegresar2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar2MouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar2MouseEntered
+
+    private void bRegresar2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar2MouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar2MouseExited
+
+    private void bAgregarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bAgregarEmpleadoMouseEntered
+
+    private void bAgregarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarEmpleadoMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bAgregarEmpleadoMouseExited
+
+    private void bModificarEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bModificarEmpleadoMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bModificarEmpleadoMouseEntered
+
+    private void bModificarEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bModificarEmpleadoMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bModificarEmpleadoMouseExited
+
+    private void bPlanillasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPlanillasMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bPlanillasMouseEntered
+
+    private void bPlanillasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPlanillasMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bPlanillasMouseExited
+
+    private void bRegresar3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar3MouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar3MouseEntered
+
+    private void bRegresar3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar3MouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar3MouseExited
+
+    private void bNuevaOrdenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevaOrdenMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bNuevaOrdenMouseEntered
+
+    private void bNuevaOrdenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevaOrdenMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bNuevaOrdenMouseExited
+
+    private void bNuevaPersonaContactoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bNuevaPersonaContactoMouseEntered
+
+    private void bNuevaPersonaContactoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bNuevaPersonaContactoMouseExited
+
+    private void bNuevoClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevoClienteMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bNuevoClienteMouseEntered
+
+    private void bNuevoClienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bNuevoClienteMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bNuevoClienteMouseExited
+
+    private void bOrdenVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bOrdenVistaMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bOrdenVistaMouseEntered
+
+    private void bOrdenVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bOrdenVistaMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bOrdenVistaMouseExited
+
+    private void bRegresar4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar4MouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar4MouseEntered
+
+    private void bRegresar4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar4MouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar4MouseExited
+
+    private void bAdminUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAdminUserMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bAdminUserMouseEntered
+
+    private void bAdminUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAdminUserMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bAdminUserMouseExited
+
+    private void bCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarSesionMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bCerrarSesionMouseEntered
+
+    private void bCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarSesionMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bCerrarSesionMouseExited
+
+    private void bRegresar5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar5MouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar5MouseEntered
+
+    private void bRegresar5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar5MouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar5MouseExited
+
+    private void bReporteOrdPorEmpleadoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bReporteOrdPorEmpleadoMouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bReporteOrdPorEmpleadoMouseEntered
+
+    private void bReporteOrdPorEmpleadoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bReporteOrdPorEmpleadoMouseExited
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bReporteOrdPorEmpleadoMouseExited
+
+    private void bRegresar6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar6MouseEntered
+        cambiarColorBoton(evt);// TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar6MouseEntered
+
+    private void bRegresar6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegresar6MouseExited
+        cambiarColorBoton(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_bRegresar6MouseExited
+
     public void addPaneles() {
-        if ("maestro".equals(rol)) {
-            pMenu.add(pVentas, "Ventas");
-            setIconosMenu(pVentas);
-            pMenu.add(pCompras, "Compras");
-            setIconosMenu(pCompras);
-            pMenu.add(pEgresos, "Egresos");
-            setIconosMenu(pEgresos);
-            pMenu.add(pInventario, "Inventario");
-            setIconosMenu(pInventario);
-            pMenu.add(pPersonal, "Personal");
-            setIconosMenu(pPersonal);
-            pMenu.add(pAjustes, "Ajustes");
-            setIconosMenu(pAjustes);
+
+        pMenu.add(pPrincipalTb, "Principal");
+        setIconosMenu(pVentas);
+        setIconosMenu(pAjustes);
+        setIconosMenu(pCompras);
+        setIconosMenu(pPersonal);
+        setIconosMenu(pEgresos);
+        setIconosMenu(pInventario);
+        if (null != rol) {
+            switch (rol) {
+                case "maestro":
+
+                    break;
+                case "ventas":
+                    bpCompras.setEnabled(false);
+                    bpEgresos.setEnabled(false);
+                    bpInventario.setEnabled(false);
+                    bpPersonal.setEnabled(false);
+                    break;
+                case "compras":
+                    bpVentas.setEnabled(false);
+                    bpEgresos.setEnabled(false);
+                    bpInventario.setEnabled(false);
+                    bpPersonal.setEnabled(false);
+                    break;
+                case "egresos":
+                    bpVentas.setEnabled(false);
+                    bpCompras.setEnabled(false);
+                    bpInventario.setEnabled(false);
+                    bpPersonal.setEnabled(false);
+                    break;
+                case "inventario":
+                    bpVentas.setEnabled(false);
+                    bpCompras.setEnabled(false);
+                    bpEgresos.setEnabled(false);
+                    bpPersonal.setEnabled(false);
+                    break;
+                case "personal":
+                    bpVentas.setEnabled(false);
+                    bpCompras.setEnabled(false);
+                    bpInventario.setEnabled(false);
+                    bpEgresos.setEnabled(false);
+                    break;
+                default:
+                    break;
+            }
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -679,7 +1436,6 @@ public class Escritorio extends JFrame {
     private swing.Controles.ButtonZ bAgregarEmpleado;
     private javax.swing.JButton bCerrar;
     private swing.Controles.ButtonZ bCerrarSesion;
-    private swing.Controles.ButtonZ bCompras;
     private swing.Controles.ButtonZ bEgresos;
     private swing.Controles.ButtonZ bInsumos;
     private javax.swing.JButton bMaximizar;
@@ -692,7 +1448,22 @@ public class Escritorio extends JFrame {
     private swing.Controles.ButtonZ bPlanillas;
     private swing.Controles.ButtonZ bProductos;
     private swing.Controles.ButtonZ bProveedores;
+    private swing.Controles.ButtonZ bRegresar;
+    private swing.Controles.ButtonZ bRegresar1;
+    private swing.Controles.ButtonZ bRegresar2;
+    private swing.Controles.ButtonZ bRegresar3;
+    private swing.Controles.ButtonZ bRegresar4;
+    private swing.Controles.ButtonZ bRegresar5;
+    private swing.Controles.ButtonZ bRegresar6;
+    private swing.Controles.ButtonZ bReporteOrdPorEmpleado;
     private swing.Controles.ButtonZ bServicios;
+    private swing.Controles.ButtonZ bpAjustes;
+    private swing.Controles.ButtonZ bpCompras;
+    private swing.Controles.ButtonZ bpEgresos;
+    private swing.Controles.ButtonZ bpInventario;
+    private swing.Controles.ButtonZ bpPersonal;
+    private swing.Controles.ButtonZ bpReportes;
+    private swing.Controles.ButtonZ bpVentas;
     private swing.Contenedores.DesktopPaneZ dpEscritorio;
     private javax.swing.JLabel lTitle;
     private swing.Contenedores.PanelZ pAjustes;
@@ -702,6 +1473,8 @@ public class Escritorio extends JFrame {
     private swing.Contenedores.PanelZ pInventario;
     private swing.Contenedores.PanelZ pMenu;
     private swing.Contenedores.PanelZ pPersonal;
+    private swing.Contenedores.PanelZ pPrincipalTb;
+    private swing.Contenedores.PanelZ pReportes;
     private javax.swing.JPanel pToolBar;
     private swing.Contenedores.PanelZ pVentas;
     // End of variables declaration//GEN-END:variables
@@ -722,54 +1495,52 @@ public class Escritorio extends JFrame {
         URL ruta;
         switch (panelZ.getName()) {
             case "Personal":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//agregarEmpleado.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "personal" + division + "agregarEmpleado.png");
                 bAgregarEmpleado.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//administrarEmpleado.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "personal" + division + "administrarEmpleado.png");
                 bModificarEmpleado.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//personal//planilla.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "personal" + division + "planilla.png");
                 bPlanillas.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Egresos":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//egresos//egresos3.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "egresos" + division + "egresos3.png");
                 bEgresos.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ventas":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoCliente.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ventas" + division + "nuevoCliente.png");
                 bNuevoCliente.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//nuevoContacto.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ventas" + division + "nuevoContacto.png");
                 bNuevaPersonaContacto.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenNueva.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ventas" + division + "ordenNueva.png");
                 bNuevaOrden.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ventas//ordenVista.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ventas" + division + "ordenVista.png");
                 bOrdenVista.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Compras":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//compras2.png");
-                bCompras.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//compras//proveedor.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "compras" + division + "proveedor.png");
                 bProveedores.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Inventario":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//insumo.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "inventario" + division + "insumo.png");
                 bInsumos.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//producto2.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "inventario" + division + "producto2.png");
                 bProductos.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//inventario//servicio4.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "inventario" + division + "servicio4.png");
                 bServicios.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Ajustes":
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//administrarUsuario.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ajuste" + division + "administrarUsuario.png");
                 bAdminUser.setFondo(new ImageIcon(ruta).getImage());
 
-                ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//menu//ajuste//cerrarSesion2.png");
+                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ajuste" + division + "cerrarSesion2.png");
                 bCerrarSesion.setFondo(new ImageIcon(ruta).getImage());
                 break;
 
@@ -777,18 +1548,41 @@ public class Escritorio extends JFrame {
     }
 
     private void setIconosBotones() {
-
+        URL ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "ventasmenuprincipal.png");
+        ImageIcon icono;
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpVentas.setIcon(icono);
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "comprasmenuprincipal.png");
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpCompras.setIcon(icono);
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "personalmenuprincipal.png");
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpPersonal.setIcon(icono);
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "inventariomenuprincipal.png");
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpInventario.setIcon(icono);
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "reportesmenuprincipal.png");
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpReportes.setIcon(icono);
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "ajustemenuprincipal.png");
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpAjustes.setIcon(icono);
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "egresomenuprincipal.png");
+        icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+        bpEgresos.setIcon(icono);
+        
+        
     }
 
     private void setIconosVentana() {
         ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
-        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
+        URL ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "close.png");
         iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bCerrar.setIcon(iconoCerrar);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//minimize.png");
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "minimize.png");
         iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMinimizar.setIcon(iconoMinimizar);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//maximizar.png");
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "maximizar.png");
         iconoMaximizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMaximizar.setIcon(iconoMaximizar);
         //escribiendo título
@@ -796,11 +1590,42 @@ public class Escritorio extends JFrame {
             title = "Nueva Ventana";
         }
         lTitle.setText(title);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//fondo.jpg");
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "fondo.jpg");
         imagenFondo = new ImageIcon(ruta).getImage();
         agregarFondoPantalla(imagenFondo);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//coffee.png");
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "coffee.png");
         lTitle.setIcon(new ImageIcon(ruta));
     }
+
+    public void regresarMenu() {
+        pMenu.removeAll();
+        pMenu.add(pPrincipalTb, "Principal");
+        pMenu.revalidate();
+        pMenu.repaint();
+    }
+
+    private void generarReporteOrdPorEmpleado() {
+        try {
+            DataSource.Limpiar();
+            URL ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "reportes" + division + "OrdenesPorEmpleado.jasper");
+            InputStream reporte = ruta.openStream();
+            JasperPrint jasperPrint;
+            controlador.cargarReporteOrdPorEmpleado(DataSource);
+
+            jasperPrint = JasperFillManager.fillReport(reporte, null, DataSource);
+            JasperViewer jv = new JasperViewer(jasperPrint, false);
+            jv.setTitle("Cantidad de Ordenes por Empleado");
+            jv.setVisible(true);
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(Escritorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void cambiarColorBoton(MouseEvent evt) {
+        ButtonZ b = (ButtonZ) evt.getComponent();
+        b.setBackground(new Color(255, 247, 162));
+    }
+
+    OrdenesPorEmpleado DataSource = new OrdenesPorEmpleado();
 
 }

@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class FacturaInsumo  implements java.io.Serializable {
 
 
-     private int idFacturaInsumo;
+     private Integer idFacturaInsumo;
      private Empleado empleado;
      private Proveedor proveedor;
      private String numeroFactura;
@@ -25,13 +25,11 @@ public class FacturaInsumo  implements java.io.Serializable {
     }
 
 	
-    public FacturaInsumo(int idFacturaInsumo, Empleado empleado, Proveedor proveedor) {
-        this.idFacturaInsumo = idFacturaInsumo;
+    public FacturaInsumo(Empleado empleado, Proveedor proveedor) {
         this.empleado = empleado;
         this.proveedor = proveedor;
     }
-    public FacturaInsumo(int idFacturaInsumo, Empleado empleado, Proveedor proveedor, String numeroFactura, Date fechaOrden, Date fechaRecibido, Set pagoInsumos, Set detalleFacturaInsumos) {
-       this.idFacturaInsumo = idFacturaInsumo;
+    public FacturaInsumo(Empleado empleado, Proveedor proveedor, String numeroFactura, Date fechaOrden, Date fechaRecibido, Set pagoInsumos, Set detalleFacturaInsumos) {
        this.empleado = empleado;
        this.proveedor = proveedor;
        this.numeroFactura = numeroFactura;
@@ -41,11 +39,11 @@ public class FacturaInsumo  implements java.io.Serializable {
        this.detalleFacturaInsumos = detalleFacturaInsumos;
     }
    
-    public int getIdFacturaInsumo() {
+    public Integer getIdFacturaInsumo() {
         return this.idFacturaInsumo;
     }
     
-    public void setIdFacturaInsumo(int idFacturaInsumo) {
+    public void setIdFacturaInsumo(Integer idFacturaInsumo) {
         this.idFacturaInsumo = idFacturaInsumo;
     }
     public Empleado getEmpleado() {

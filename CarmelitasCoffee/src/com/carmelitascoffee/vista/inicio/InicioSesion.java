@@ -191,11 +191,20 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(labelZ2, gridBagConstraints);
 
-        tfUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
+        tfUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(28, 40, 51)));
         tfUsuario.setForeground(new java.awt.Color(28, 40, 51));
+        tfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfUsuario.setText("");
         tfUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
         tfUsuario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        tfUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfUsuarioFocusLost(evt);
+            }
+        });
         tfUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfUsuarioActionPerformed(evt);
@@ -204,14 +213,15 @@ public class InicioSesion extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 200;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pContent.add(tfUsuario, gridBagConstraints);
 
-        pfClave.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 2, true));
+        pfClave.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(28, 40, 51)));
         pfClave.setForeground(new java.awt.Color(28, 40, 51));
+        pfClave.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pfClave.setText("");
         pfClave.setCaretColor(new java.awt.Color(255, 255, 255));
         pfClave.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -223,7 +233,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 200;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
@@ -313,7 +323,7 @@ public class InicioSesion extends JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         getContentPane().setBackground(new Color(0, 0, 204));
         //creando iconos 
-        ImageIcon iconoCerrar, iconoMinimizar, iconoMaximizar;
+        ImageIcon iconoCerrar, iconoMinimizar;
         URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
         iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bCerrar.setIcon(iconoCerrar);
@@ -353,6 +363,14 @@ public class InicioSesion extends JFrame {
         }
     }//GEN-LAST:event_pfClaveKeyPressed
 
+    private void tfUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusGained
+        System.out.println("foco ganado");
+    }//GEN-LAST:event_tfUsuarioFocusGained
+
+    private void tfUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusLost
+        System.out.println("foco perdido");
+    }//GEN-LAST:event_tfUsuarioFocusLost
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
@@ -388,7 +406,6 @@ public class InicioSesion extends JFrame {
         Dimension initialDimension = new Dimension(frameWidth, frameHeight);
         FullResizibleFrame fullResizibleFrame;
         fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
-        frameZ.addPaneles();
         this.setVisible(false);
         frameZ.setVisible(true);
     }

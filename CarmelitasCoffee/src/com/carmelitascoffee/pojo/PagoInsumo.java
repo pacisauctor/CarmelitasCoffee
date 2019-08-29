@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,24 +9,23 @@ package com.carmelitascoffee.pojo;
 public class PagoInsumo  implements java.io.Serializable {
 
 
-     private int idPagoInsumo;
+     private Integer idPagoInsumo;
      private Deposito deposito;
      private FacturaInsumo facturaInsumo;
 
     public PagoInsumo() {
     }
 
-    public PagoInsumo(int idPagoInsumo, Deposito deposito, FacturaInsumo facturaInsumo) {
-       this.idPagoInsumo = idPagoInsumo;
+    public PagoInsumo(Deposito deposito, FacturaInsumo facturaInsumo) {
        this.deposito = deposito;
        this.facturaInsumo = facturaInsumo;
     }
    
-    public int getIdPagoInsumo() {
+    public Integer getIdPagoInsumo() {
         return this.idPagoInsumo;
     }
     
-    public void setIdPagoInsumo(int idPagoInsumo) {
+    public void setIdPagoInsumo(Integer idPagoInsumo) {
         this.idPagoInsumo = idPagoInsumo;
     }
     public Deposito getDeposito() {

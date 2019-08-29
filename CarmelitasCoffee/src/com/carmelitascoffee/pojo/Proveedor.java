@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Proveedor  implements java.io.Serializable {
 
 
-     private int idProveedor;
+     private Integer idProveedor;
      private String nombreProveedor;
      private String descripcion;
      private String telefono;
@@ -23,12 +23,7 @@ public class Proveedor  implements java.io.Serializable {
     public Proveedor() {
     }
 
-	
-    public Proveedor(int idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-    public Proveedor(int idProveedor, String nombreProveedor, String descripcion, String telefono, String direccion, String correo, Set facturaInsumos, Set mantenimientos) {
-       this.idProveedor = idProveedor;
+    public Proveedor(String nombreProveedor, String descripcion, String telefono, String direccion, String correo, Set facturaInsumos, Set mantenimientos) {
        this.nombreProveedor = nombreProveedor;
        this.descripcion = descripcion;
        this.telefono = telefono;
@@ -38,11 +33,11 @@ public class Proveedor  implements java.io.Serializable {
        this.mantenimientos = mantenimientos;
     }
    
-    public int getIdProveedor() {
+    public Integer getIdProveedor() {
         return this.idProveedor;
     }
     
-    public void setIdProveedor(int idProveedor) {
+    public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
     public String getNombreProveedor() {

@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class Mantenimiento  implements java.io.Serializable {
 
 
-     private int idMantenimiento;
+     private Integer idMantenimiento;
      private Empleado empleado;
      private Proveedor proveedor;
      private String numeroFactura;
@@ -27,13 +27,11 @@ public class Mantenimiento  implements java.io.Serializable {
     }
 
 	
-    public Mantenimiento(int idMantenimiento, Empleado empleado, Proveedor proveedor) {
-        this.idMantenimiento = idMantenimiento;
+    public Mantenimiento(Empleado empleado, Proveedor proveedor) {
         this.empleado = empleado;
         this.proveedor = proveedor;
     }
-    public Mantenimiento(int idMantenimiento, Empleado empleado, Proveedor proveedor, String numeroFactura, Date fecha, String descripcion, String tipo, BigDecimal costo, Set pagoMantenimientos) {
-       this.idMantenimiento = idMantenimiento;
+    public Mantenimiento(Empleado empleado, Proveedor proveedor, String numeroFactura, Date fecha, String descripcion, String tipo, BigDecimal costo, Set pagoMantenimientos) {
        this.empleado = empleado;
        this.proveedor = proveedor;
        this.numeroFactura = numeroFactura;
@@ -44,11 +42,11 @@ public class Mantenimiento  implements java.io.Serializable {
        this.pagoMantenimientos = pagoMantenimientos;
     }
    
-    public int getIdMantenimiento() {
+    public Integer getIdMantenimiento() {
         return this.idMantenimiento;
     }
     
-    public void setIdMantenimiento(int idMantenimiento) {
+    public void setIdMantenimiento(Integer idMantenimiento) {
         this.idMantenimiento = idMantenimiento;
     }
     public Empleado getEmpleado() {

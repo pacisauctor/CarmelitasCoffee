@@ -41,25 +41,25 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="carmelitas_coffee"/>
-  <table-filter match-name="planilla"/>
-  <table-filter match-name="producto"/>
-  <table-filter match-name="pago_empleado"/>
-  <table-filter match-name="persona_contacto"/>
-  <table-filter match-name="pago_insumo"/>
-  <table-filter match-name="usuario"/>
-  <table-filter match-name="insumo"/>
-  <table-filter match-name="empleado_planilla"/>
-  <table-filter match-name="detalle_orden_producto"/>
+  <table-filter match-name="pago_mantenimiento"/>
   <table-filter match-name="empleado"/>
+  <table-filter match-name="proveedor"/>
+  <table-filter match-name="usuario"/>
   <table-filter match-name="detalle_orden_servicio"/>
+  <table-filter match-name="detalle_factura_insumo"/>
+  <table-filter match-name="contrato"/>
+  <table-filter match-name="persona_contacto"/>
+  <table-filter match-name="empleado_planilla"/>
   <table-filter match-name="cliente"/>
+  <table-filter match-name="pago_empleado"/>
+  <table-filter match-name="pago_insumo"/>
+  <table-filter match-name="servicio"/>
+  <table-filter match-name="insumo"/>
+  <table-filter match-name="orden"/>
+  <table-filter match-name="producto"/>
+  <table-filter match-name="factura_insumo"/>
+  <table-filter match-name="planilla"/>
   <table-filter match-name="deposito"/>
   <table-filter match-name="mantenimiento"/>
-  <table-filter match-name="contrato"/>
-  <table-filter match-name="factura_insumo"/>
-  <table-filter match-name="detalle_factura_insumo"/>
-  <table-filter match-name="orden"/>
-  <table-filter match-name="servicio"/>
-  <table-filter match-name="pago_mantenimiento"/>
-  <table-filter match-name="proveedor"/>
+  <table-filter match-name="detalle_orden_producto"/>
 </hibernate-reverse-engineering>

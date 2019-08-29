@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-05-2019 01:35:41 PM by Hibernate Tools 4.3.1
+// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Empleado  implements java.io.Serializable {
 
 
-     private int idEmpleado;
+     private Integer idEmpleado;
      private String cedulaIdentidad;
      private String primerNombre;
      private String segundoNombre;
@@ -34,12 +34,7 @@ public class Empleado  implements java.io.Serializable {
     public Empleado() {
     }
 
-	
-    public Empleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-    public Empleado(int idEmpleado, String cedulaIdentidad, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, Character sexo, Integer edad, String direccion, String telefono, String correo, String estadoCivil, String gradoEscolaridad, Set contratos, Set empleadoPlanillas, Set ordens, Set usuarios, Set mantenimientos, Set facturaInsumos) {
-       this.idEmpleado = idEmpleado;
+    public Empleado(String cedulaIdentidad, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, Character sexo, Integer edad, String direccion, String telefono, String correo, String estadoCivil, String gradoEscolaridad, Set contratos, Set empleadoPlanillas, Set ordens, Set usuarios, Set mantenimientos, Set facturaInsumos) {
        this.cedulaIdentidad = cedulaIdentidad;
        this.primerNombre = primerNombre;
        this.segundoNombre = segundoNombre;
@@ -60,11 +55,11 @@ public class Empleado  implements java.io.Serializable {
        this.facturaInsumos = facturaInsumos;
     }
    
-    public int getIdEmpleado() {
+    public Integer getIdEmpleado() {
         return this.idEmpleado;
     }
     
-    public void setIdEmpleado(int idEmpleado) {
+    public void setIdEmpleado(Integer idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
     public String getCedulaIdentidad() {
