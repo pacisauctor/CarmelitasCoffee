@@ -69,7 +69,15 @@ public class AdministrarUsuarios extends javax.swing.JInternalFrame {
             new String [] {
                 "empleado", "usuario", "rol", "contraseña"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tUsuarios);
 
         panelZ2.add(jScrollPane1, java.awt.BorderLayout.CENTER);

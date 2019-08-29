@@ -5,9 +5,17 @@
  */
 package com.carmelitascoffee.vista.compras;
 
+import com.carmelitascoffee.controlador.compras.CProveedores;
+import com.carmelitascoffee.pojo.Proveedor;
 import java.net.URL;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -18,9 +26,11 @@ public class Proveedores extends JInternalFrame {
     /**
      * Creates new form InternalFrameZ
      */
-    public Proveedores() {
+    Session s;
+    CProveedores controlador;
+    public Proveedores(Session s) {
         initComponents();
-        setImagenes();
+        controlador = new CProveedores(s);
     }
 
     /**
@@ -46,7 +56,7 @@ public class Proveedores extends JInternalFrame {
         labelZ5 = new swing.Controles.LabelZ();
         jScrollPane2 = new javax.swing.JScrollPane();
         taDirección = new swing.Controles.TextAreaZ();
-        pImagen = new swing.Contenedores.PanelZ();
+        bAgregarProveedor = new swing.Controles.ButtonZ();
 
         setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
@@ -79,11 +89,11 @@ public class Proveedores extends JInternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.8;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
@@ -97,7 +107,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lNombre, gridBagConstraints);
 
-        tfNombre.setText("Empresas LOL xd");
+        tfNombre.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -109,18 +119,18 @@ public class Proveedores extends JInternalFrame {
 
         lDescripcion.setText("Descripción: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lDescripcion, gridBagConstraints);
 
-        tfDescripcion.setText("Nunca quedan de acuerdo");
+        tfDescripcion.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
@@ -137,7 +147,7 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ3, gridBagConstraints);
 
-        tfTelefono.setText("+50581380937");
+        tfTelefono.setText("");
         tfTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfTelefonoActionPerformed(evt);
@@ -154,18 +164,18 @@ public class Proveedores extends JInternalFrame {
 
         lCorreo.setText("Correo: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(lCorreo, gridBagConstraints);
 
-        tfCorreo.setText("tamarindo@example.com");
+        tfCorreo.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
@@ -174,44 +184,72 @@ public class Proveedores extends JInternalFrame {
 
         labelZ5.setText("Dirección: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ5, gridBagConstraints);
 
+        taDirección.setEditable(true);
         taDirección.setColumns(20);
         taDirección.setRows(5);
-        taDirección.setText("de aquí más para allá");
+        taDirección.setText("");
         jScrollPane2.setViewportView(taDirección);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane2, gridBagConstraints);
+
+        bAgregarProveedor.setText("Agregar Proveedo");
+        bAgregarProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarProveedorActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.weighty = 0.8;
-        getContentPane().add(pImagen, gridBagConstraints);
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(bAgregarProveedor, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTelefonoActionPerformed
 
+    private void bAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarProveedorActionPerformed
+        String mensaje = validarDatos();
+        if (mensaje.isEmpty()) {
+            Proveedor p = new Proveedor();
+            p.setCorreo(tfCorreo.getText());
+            p.setDescripcion(tfDescripcion.getText());
+            p.setDireccion(taDirección.getText());
+            p.setNombreProveedor(tfNombre.getText());
+            p.setTelefono(tfTelefono.getText());
+            if (controlador.agregarProveedores(p)) {
+                JOptionPane.showMessageDialog(this, "Proveedor agregado con éxito!");
+                cargarTabla();
+            }else{
+                JOptionPane.showMessageDialog(this, "Error al guardar el proveedor");
+            }
+        }
+    }//GEN-LAST:event_bAgregarProveedorActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ bAgregarProveedor;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private swing.Controles.LabelZ lCorreo;
@@ -219,7 +257,6 @@ public class Proveedores extends JInternalFrame {
     private swing.Controles.LabelZ lNombre;
     private swing.Controles.LabelZ labelZ3;
     private swing.Controles.LabelZ labelZ5;
-    private swing.Contenedores.PanelZ pImagen;
     private swing.Controles.TableZ tProveedores;
     private swing.Controles.TextAreaZ taDirección;
     private swing.Controles.TextFieldZ tfCorreo;
@@ -228,8 +265,40 @@ public class Proveedores extends JInternalFrame {
     private swing.Controles.TextFieldZ tfTelefono;
     // End of variables declaration//GEN-END:variables
 
-    private void setImagenes() {
-        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//proveedores.jpg");
-        pImagen.setImagenfondo(new ImageIcon(ruta).getImage());
+    private String validarDatos() {
+        String error = "";
+        if (tfNombre.getText().length() > 50) {
+            error += "Nombre del proveedor muy largo (>50)\n";
+        }
+        if (tfDescripcion.getText().length() > 70) {
+            error += "Descripción demasiado largo (>70)\n";
+        }
+        if (tfCorreo.getText().length() > 30) {
+            error += "Correo demasiado largo (>30)\n";
+        } else {
+            Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+            Matcher mather = pattern.matcher(tfCorreo.getText());
+            if (mather.find() == false) {
+                error += "El email ingresado es inválido.\n";
+            }
+        }
+        return error;
     }
+
+    private void cargarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tProveedores.getModel();
+        model.setRowCount(0);
+        List l = controlador.getProveedores();
+        for (Object object : l) {
+            Proveedor p = (Proveedor) object;
+            Object [] row = new Object[4];
+            row[0]=p.getNombreProveedor();
+            row[1] = p.getDescripcion();
+            row[2] = p.getTelefono();
+            row[3] = p.getCorreo();
+            model.addRow(row);
+        }
+        tProveedores.setModel(model);
+    }
+
 }

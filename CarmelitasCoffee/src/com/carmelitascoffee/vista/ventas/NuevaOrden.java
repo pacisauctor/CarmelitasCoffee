@@ -23,6 +23,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
 /**
@@ -492,48 +493,52 @@ public class NuevaOrden extends JInternalFrame {
     }//GEN-LAST:event_tfIdKeyPressed
 
     private void bRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarOrdenActionPerformed
-        try {
-            int idCliente = Integer.parseInt(tfIdCliente.getText());
-            
-            Orden o = new Orden(controlador.getCliente(idCliente), controlador.getEmpleado(idEmpleado));
-            o.setNumeroFactura(tfNumeroFactura.getText());
-            o.setFechaOrden((Date) tfFechaRegistro.getValue());
-            o.setFechaRequerida((Date) tfFechaRegistro.getValue());
-            o.setFechaEntrega((Date) tfFechaRegistro.getValue());
-            o.setTipoOrden("Productos/Servicios");
-            o = controlador.agregarOrden(o);
-            s.flush();
-            DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
-            for (int i = 0; i < model.getRowCount(); i++) {
-                String tipoOrden = (String) model.getValueAt(i, 0);
-                int cantidad = Integer.parseInt(tOrden.getValueAt(i, 3) + "");
-                float descuento = Float.parseFloat(tOrden.getValueAt(i, 4) + "");
-                float precio = Float.parseFloat(tOrden.getValueAt(i, 2) + "");
-                String celda1 = (String) tOrden.getValueAt(i, 1);
-                String nombre = celda1.split("-")[1];
-                if ("Servicio".equals(tipoOrden)) {
-                    int idServicio = Integer.parseInt(celda1.split("-")[0]);
-                    Servicio servicio = controlador.getServicios(idServicio);
-                    DetalleOrdenServicio dos = new DetalleOrdenServicio(o, servicio);
-                    dos.setCantidad(cantidad);
-                    dos.setDescuento(new BigDecimal(descuento));
-                    dos.setPrecio(new BigDecimal(precio));
-                    controlador.agregarDetalleOrdenServicio(dos);
-                    s.flush();
-                } else if ("Orden".equals(tipoOrden)) {
-                    int idProducto = Integer.parseInt(celda1.split("-")[0]);
-                    Producto producto = controlador.getProducto(idProducto);
-                    DetalleOrdenProducto dop = new DetalleOrdenProducto(o, producto);
-                    dop.setCantidad(cantidad);
-                    dop.setDescuento(new BigDecimal(descuento));
-                    dop.setPrecio(new BigDecimal(precio));
-                    controlador.agregarDetalleOrdenProducto(dop);
-                    s.flush();
+        if (validarDatos().isEmpty()) {
+            try {
+                int idCliente = Integer.parseInt(tfIdCliente.getText());
+
+                Orden o = new Orden(controlador.getCliente(idCliente), controlador.getEmpleado(idEmpleado));
+                o.setNumeroFactura(tfNumeroFactura.getText());
+                o.setFechaOrden((Date) tfFechaRegistro.getValue());
+                o.setFechaRequerida((Date) tfFechaRegistro.getValue());
+                o.setFechaEntrega((Date) tfFechaRegistro.getValue());
+                o.setTipoOrden("Productos/Servicios");
+                o = controlador.agregarOrden(o);
+
+                DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    String tipoOrden = (String) model.getValueAt(i, 0);
+                    int cantidad = Integer.parseInt(tOrden.getValueAt(i, 3) + "");
+                    float descuento = Float.parseFloat(tOrden.getValueAt(i, 4) + "");
+                    float precio = Float.parseFloat(tOrden.getValueAt(i, 2) + "");
+                    String celda1 = (String) tOrden.getValueAt(i, 1);
+                    if ("Servicio".equals(tipoOrden)) {
+                        int idServicio = Integer.parseInt(celda1.split("-")[0]);
+                        Servicio servicio = controlador.getServicios(idServicio);
+                        DetalleOrdenServicio dos = new DetalleOrdenServicio(o, servicio);
+                        dos.setCantidad(cantidad);
+                        dos.setDescuento(new BigDecimal(descuento));
+                        dos.setPrecio(new BigDecimal(precio));
+                        controlador.agregarDetalleOrdenServicio(dos);
+
+                    } else if ("Producto".equals(tipoOrden)) {
+                        int idProducto = Integer.parseInt(celda1.split("-")[0]);
+                        Producto producto = controlador.getProducto(idProducto);
+                        DetalleOrdenProducto dop = new DetalleOrdenProducto(o, producto);
+                        dop.setCantidad(cantidad);
+                        dop.setDescuento(new BigDecimal(descuento));
+                        dop.setPrecio(new BigDecimal(precio));
+                        controlador.agregarDetalleOrdenProducto(dop);
+
+                    }
                 }
+            } catch (NumberFormatException | HibernateException e) {
+                JOptionPane.showMessageDialog(this, e);
             }
-        } catch (Exception e ) {
-            JOptionPane.showMessageDialog(this, e);
+        } else {
+            JOptionPane.showMessageDialog(this, validarDatos());
         }
+
     }//GEN-LAST:event_bRegistrarOrdenActionPerformed
 
 
@@ -602,4 +607,19 @@ public class NuevaOrden extends JInternalFrame {
         tOrden.setModel(model);
     }
 
+    private String validarDatos() {
+        String mensaje = "";
+        try {
+            int idCliente = Integer.parseInt(tfIdCliente.getText());
+            if (controlador.getCliente(idCliente) == null) {
+                mensaje += "No existe un cliente con ese id!!";
+            }
+            if (tfNumeroFactura.getText().length() != 5) {
+                mensaje += "La Factura debe de tener 5 digitos";
+            }
+        } catch (NumberFormatException numberFormatException) {
+        }
+        
+        return mensaje;
+    }
 }

@@ -7,7 +7,6 @@ package com.carmelitascoffee.vista.inicio;
 
 import com.carmelitascoffee.controlador.inicio.CEscritorio;
 import com.carmelitascoffee.vista.ajustes.AdministrarUsuarios;
-import com.carmelitascoffee.vista.compras.Compras;
 import com.carmelitascoffee.vista.compras.Proveedores;
 import com.carmelitascoffee.vista.egresos.Egresos;
 import com.carmelitascoffee.vista.inventario.Insumos;
@@ -91,7 +90,6 @@ public class Escritorio extends JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         pCompras = new swing.Contenedores.PanelZ();
-        bCompras = new swing.Controles.ButtonZ();
         bProveedores = new swing.Controles.ButtonZ();
         bRegresar = new swing.Controles.ButtonZ();
         pEgresos = new swing.Contenedores.PanelZ();
@@ -136,29 +134,6 @@ public class Escritorio extends JFrame {
         pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), new java.awt.Color(28, 40, 51))); // NOI18N
         pCompras.setName("Compras"); // NOI18N
         pCompras.setLayout(new java.awt.GridBagLayout());
-
-        bCompras.setBackground(new java.awt.Color(255, 247, 162));
-        bCompras.setForeground(new java.awt.Color(10, 13, 67));
-        bCompras.setText("");
-        bCompras.setToolTipText("Administrar Compras");
-        bCompras.setMaximumSize(new java.awt.Dimension(50, 50));
-        bCompras.setMinimumSize(new java.awt.Dimension(50, 50));
-        bCompras.setName("Compras"); // NOI18N
-        bCompras.setPreferredSize(new java.awt.Dimension(50, 50));
-        bCompras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bComprasActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 30;
-        gridBagConstraints.ipady = 40;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pCompras.add(bCompras, gridBagConstraints);
 
         bProveedores.setBackground(new java.awt.Color(255, 247, 162));
         bProveedores.setForeground(new java.awt.Color(10, 13, 67));
@@ -809,15 +784,8 @@ public class Escritorio extends JFrame {
         dpEscritorio.add(ordenVista);
     }//GEN-LAST:event_bOrdenVistaActionPerformed
 
-    private void bComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bComprasActionPerformed
-        Compras compras = new Compras();
-        compras.setVisible(true);
-        compras.pack();
-        dpEscritorio.add(compras);
-    }//GEN-LAST:event_bComprasActionPerformed
-
     private void bProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProveedoresActionPerformed
-        Proveedores proveedores = new Proveedores();
+        Proveedores proveedores = new Proveedores(s);
         proveedores.setVisible(true);
         proveedores.pack();
         dpEscritorio.add(proveedores);
@@ -903,7 +871,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bAdminUserActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
-        
+
         InicioSesion inicioSesion = new InicioSesion("Inicio de sesión", s);
         inicioSesion.setLocationRelativeTo(null);
         inicioSesion.setVisible(true);
@@ -1037,7 +1005,6 @@ public class Escritorio extends JFrame {
     private swing.Controles.ButtonZ bAgregarEmpleado;
     private javax.swing.JButton bCerrar;
     private swing.Controles.ButtonZ bCerrarSesion;
-    private swing.Controles.ButtonZ bCompras;
     private swing.Controles.ButtonZ bEgresos;
     private swing.Controles.ButtonZ bInsumos;
     private javax.swing.JButton bMaximizar;
@@ -1120,8 +1087,6 @@ public class Escritorio extends JFrame {
                 bOrdenVista.setFondo(new ImageIcon(ruta).getImage());
                 break;
             case "Compras":
-                ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "compras" + division + "compras2.png");
-                bCompras.setFondo(new ImageIcon(ruta).getImage());
 
                 ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "compras" + division + "proveedor.png");
                 bProveedores.setFondo(new ImageIcon(ruta).getImage());
@@ -1180,5 +1145,5 @@ public class Escritorio extends JFrame {
         pMenu.revalidate();
         pMenu.repaint();
     }
-     
+
 }
