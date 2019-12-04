@@ -1,292 +1,495 @@
-CREATE DATABASE `carmelitas_coffee`;
-CREATE TABLE `cliente` (
-  `id_cliente` int(4) NOT NULL AUTO_INCREMENT,
-  `numero_ruc` varchar(20) NOT NULL,
-  `nombres` varchar(45) DEFAULT NULL,
-  `apellidos` varchar(45) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL,
-  `direccion` varchar(60) DEFAULT NULL,
-  `id_persona_contacto` int(4) NOT NULL,
-  PRIMARY KEY (`id_cliente`),
-  KEY `correo` (`correo`),
-  KEY `id_persona_contacto` (`id_persona_contacto`),
-  FULLTEXT KEY `nombres` (`nombres`),
-  FULLTEXT KEY `apellidos` (`apellidos`),
-  FULLTEXT KEY `direccion` (`direccion`),
-  CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`id_persona_contacto`) REFERENCES `persona_contacto` (`id_persona_contacto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- MySQL Workbench Forward Engineering
 
-CREATE TABLE `contrato` (
-  `id_contrato` int(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` int(4) NOT NULL,
-  `puesto` varchar(70) DEFAULT NULL,
-  `sueldo` decimal(11,4) DEFAULT NULL,
-  `comisiones` decimal(2,2) DEFAULT NULL,
-  `fecha_contratacion` datetime DEFAULT NULL,
-  `estado` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`id_contrato`),
-  KEY `id_empleado` (`id_empleado`),
-  KEY `sueldo` (`sueldo`),
-  KEY `estado` (`estado`),
-  FULLTEXT KEY `puesto` (`puesto`),
-  CONSTRAINT `contrato_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-CREATE TABLE `deposito` (
-  `id_deposito` int(4) NOT NULL AUTO_INCREMENT,
-  `numero_comprobante` varchar(20) DEFAULT NULL,
-  `banco` varchar(30) DEFAULT NULL,
-  `monto` decimal(11,4) DEFAULT NULL,
-  `moneda` varchar(30) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  PRIMARY KEY (`id_deposito`),
-  KEY `numero_comprobante` (`numero_comprobante`),
-  KEY `banco` (`banco`),
-  KEY `moneda` (`moneda`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema carmelitas_coffee
+-- -----------------------------------------------------
 
-CREATE TABLE `detalle_factura_insumo` (
-  `id_detalle_factura_insumo` int(4) NOT NULL AUTO_INCREMENT,
-  `id_factura_insumo` int(4) NOT NULL,
-  `id_insumo` int(4) NOT NULL,
-  `cantidad` int(4) DEFAULT NULL,
-  `descuento` decimal(11,4) DEFAULT NULL,
-  PRIMARY KEY (`id_detalle_factura_insumo`),
-  KEY `id_factura_insumo` (`id_factura_insumo`),
-  KEY `id_insumo` (`id_insumo`),
-  KEY `cantidad` (`cantidad`),
-  CONSTRAINT `detalle_factura_insumo_ibfk_1` FOREIGN KEY (`id_factura_insumo`) REFERENCES `factura_insumo` (`id_factura_insumo`),
-  CONSTRAINT `detalle_factura_insumo_ibfk_2` FOREIGN KEY (`id_insumo`) REFERENCES `insumo` (`id_insumo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- -----------------------------------------------------
+-- Schema carmelitas_coffee
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `carmelitas_coffee` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `carmelitas_coffee` ;
 
-CREATE TABLE `detalle_orden_producto` (
-  `id_detalle_orden_producto` int(4) NOT NULL AUTO_INCREMENT,
-  `id_orden` int(4) NOT NULL,
-  `id_producto` int(4) NOT NULL,
-  `cantidad` int(4) DEFAULT NULL,
-  `descuento` decimal(11,4) DEFAULT NULL,
-  PRIMARY KEY (`id_detalle_orden_producto`),
-  KEY `id_orden` (`id_orden`),
-  KEY `id_producto` (`id_producto`),
-  KEY `cantidad` (`cantidad`),
-  CONSTRAINT `detalle_orden_producto_ibfk_1` FOREIGN KEY (`id_orden`) REFERENCES `orden` (`id_orden`),
-  CONSTRAINT `detalle_orden_producto_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `detalle_orden_servicio` (
-  `id_detalle_orden_servicio` int(4) NOT NULL AUTO_INCREMENT,
-  `id_orden` int(4) NOT NULL,
-  `id_servicio` int(4) NOT NULL,
-  `cantidad` int(4) DEFAULT NULL,
-  `descuento` decimal(11,4) DEFAULT NULL,
-  PRIMARY KEY (`id_detalle_orden_servicio`),
-  KEY `id_orden` (`id_orden`),
-  KEY `id_servicio` (`id_servicio`),
-  KEY `cantidad` (`cantidad`),
-  CONSTRAINT `detalle_orden_servicio_ibfk_1` FOREIGN KEY (`id_orden`) REFERENCES `orden` (`id_orden`),
-  CONSTRAINT `detalle_orden_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `empleado` (
-  `id_empleado` int(11) NOT NULL AUTO_INCREMENT,
-  `cedula_identidad` varchar(45) DEFAULT NULL,
-  `primer_nombre` varchar(45) DEFAULT NULL,
-  `segundo_nombre` varchar(45) DEFAULT NULL,
-  `primer_apellido` varchar(45) DEFAULT NULL,
-  `segundo_apellido` varchar(45) DEFAULT NULL,
-  `sexo` char(1) DEFAULT NULL,
-  `edad` int(3) DEFAULT NULL,
-  `direccion` varchar(60) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL,
-  `estado_civil` varchar(45) DEFAULT NULL,
-  `grado_escolaridad` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_empleado`),
-  UNIQUE KEY `cedula_identidad` (`cedula_identidad`),
-  KEY `primer_nombre` (`primer_nombre`),
-  KEY `primer_apellido` (`primer_apellido`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `empleado_planilla` (
-  `id_empleado_planilla` int(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` int(4) DEFAULT NULL,
-  `id_planilla` int(4) DEFAULT NULL,
-  `salario` decimal(11,4) DEFAULT NULL,
-  `fecha_recibido` date DEFAULT NULL,
-  PRIMARY KEY (`id_empleado_planilla`),
-  KEY `id_empleado` (`id_empleado`),
-  KEY `id_planilla` (`id_planilla`),
-  KEY `fecha_recibido` (`fecha_recibido`),
-  CONSTRAINT `empleado_planilla_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`),
-  CONSTRAINT `empleado_planilla_ibfk_2` FOREIGN KEY (`id_planilla`) REFERENCES `planilla` (`id_planilla`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `factura_insumo` (
-  `id_factura_insumo` int(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` int(4) NOT NULL,
-  `id_proveedor` int(4) NOT NULL,
-  `numero_factura` varchar(5) DEFAULT NULL,
-  `fecha_orden` date DEFAULT NULL,
-  `fecha_recibido` date DEFAULT NULL,
-  PRIMARY KEY (`id_factura_insumo`),
-  KEY `id_empleado` (`id_empleado`),
-  KEY `id_proveedor` (`id_proveedor`),
-  KEY `numero_factura` (`numero_factura`),
-  KEY `fecha_orden` (`fecha_orden`),
-  KEY `fecha_recibido` (`fecha_recibido`),
-  CONSTRAINT `factura_insumo_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`),
-  CONSTRAINT `factura_insumo_ibfk_2` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id_proveedor`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `insumo` (
-  `id_insumo` int(4) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(50) DEFAULT NULL,
-  `cantidad_inventario` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id_insumo`),
-  FULLTEXT KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `mantenimiento` (
-  `id_mantenimiento` int(4) NOT NULL AUTO_INCREMENT,
-  `id_proveedor` int(4) NOT NULL,
-  `id_empleado` int(4) NOT NULL,
-  `numero_factura` varchar(5) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
-  `descripcion` varchar(70) DEFAULT NULL,
-  `tipo` varchar(50) DEFAULT NULL,
-  `costo` decimal(11,4) DEFAULT NULL,
-  PRIMARY KEY (`id_mantenimiento`),
-  KEY `id_proveedor` (`id_proveedor`),
-  KEY `id_empleado` (`id_empleado`),
-  KEY `fecha` (`fecha`),
-  FULLTEXT KEY `descripcion` (`descripcion`),
-  FULLTEXT KEY `tipo` (`tipo`),
-  CONSTRAINT `mantenimiento_ibfk_1` FOREIGN KEY (`id_proveedor`) REFERENCES `proveedor` (`id_proveedor`),
-  CONSTRAINT `mantenimiento_ibfk_2` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `orden` (
-  `id_orden` int(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` int(4) NOT NULL,
-  `id_cliente` int(4) NOT NULL,
-  `numero_factura` varchar(5) DEFAULT NULL,
-  `fecha_orden` date DEFAULT NULL,
-  `fecha_entrega` date DEFAULT NULL,
-  `fecha_requerida` date DEFAULT NULL,
-  `tipo_orden` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id_orden`),
-  KEY `numero_factura` (`numero_factura`),
-  KEY `id_empleado` (`id_empleado`),
-  KEY `id_cliente` (`id_cliente`),
-  FULLTEXT KEY `tipo_orden` (`tipo_orden`),
-  CONSTRAINT `orden_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`),
-  CONSTRAINT `orden_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `pago_empleado` (
-  `id_pago_empleado` int(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado_planilla` int(4) NOT NULL,
-  `id_deposito` int(4) NOT NULL,
-  `modo_pago` varchar(20) DEFAULT NULL,
-  `descripcion` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id_pago_empleado`),
-  KEY `id_empleado_planilla` (`id_empleado_planilla`),
-  KEY `id_deposito` (`id_deposito`),
-  CONSTRAINT `pago_empleado_ibfk_1` FOREIGN KEY (`id_empleado_planilla`) REFERENCES `empleado_planilla` (`id_empleado_planilla`),
-  CONSTRAINT `pago_empleado_ibfk_2` FOREIGN KEY (`id_deposito`) REFERENCES `deposito` (`id_deposito`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `pago_insumo` (
-  `id_pago_insumo` int(4) NOT NULL AUTO_INCREMENT,
-  `id_deposito` int(4) NOT NULL,
-  `id_factura_insumo` int(4) NOT NULL,
-  PRIMARY KEY (`id_pago_insumo`),
-  KEY `id_deposito` (`id_deposito`),
-  KEY `id_factura_insumo` (`id_factura_insumo`),
-  CONSTRAINT `pago_insumo_ibfk_1` FOREIGN KEY (`id_deposito`) REFERENCES `deposito` (`id_deposito`),
-  CONSTRAINT `pago_insumo_ibfk_2` FOREIGN KEY (`id_factura_insumo`) REFERENCES `factura_insumo` (`id_factura_insumo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `pago_mantenimiento` (
-  `id_pago_mantenimiento` int(4) NOT NULL AUTO_INCREMENT,
-  `id_deposito` int(4) NOT NULL,
-  `id_mantenimiento` int(4) NOT NULL,
-  PRIMARY KEY (`id_pago_mantenimiento`),
-  KEY `id_deposito` (`id_deposito`),
-  KEY `id_mantenimiento` (`id_mantenimiento`),
-  CONSTRAINT `pago_mantenimiento_ibfk_1` FOREIGN KEY (`id_deposito`) REFERENCES `deposito` (`id_deposito`),
-  CONSTRAINT `pago_mantenimiento_ibfk_2` FOREIGN KEY (`id_mantenimiento`) REFERENCES `mantenimiento` (`id_mantenimiento`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `persona_contacto` (
-  `id_persona_contacto` int(4) NOT NULL AUTO_INCREMENT,
-  `primer_nombre` varchar(45) DEFAULT NULL,
-  `segundo_nombre` varchar(45) DEFAULT NULL,
-  `primer_apellido` varchar(45) DEFAULT NULL,
-  `segundo_apellido` varchar(45) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL,
-  `correo` varchar(50) DEFAULT NULL,
-  `direccion` varchar(60) DEFAULT NULL,
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`persona_contacto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`persona_contacto` (
+  `id_persona_contacto` INT(4) NOT NULL AUTO_INCREMENT,
+  `primer_nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `segundo_nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `primer_apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `segundo_apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `telefono` VARCHAR(10) NULL DEFAULT NULL,
+  `correo` VARCHAR(50) NULL DEFAULT NULL,
+  `direccion` VARCHAR(60) NULL DEFAULT NULL,
   PRIMARY KEY (`id_persona_contacto`),
-  KEY `primer_nombre` (`primer_nombre`),
-  KEY `primer_apellido` (`primer_apellido`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  INDEX `primer_nombre` (`primer_nombre` ASC) VISIBLE,
+  INDEX `primer_apellido` (`primer_apellido` ASC) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
-CREATE TABLE `planilla` (
-  `id_planilla` int(4) NOT NULL AUTO_INCREMENT,
-  `numero_planilla` varchar(10) DEFAULT NULL,
-  `patronal` decimal(11,4) DEFAULT NULL,
-  `periodo` date DEFAULT NULL,
-  PRIMARY KEY (`id_planilla`),
-  KEY `numero_planilla` (`numero_planilla`),
-  KEY `periodo` (`periodo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `producto` (
-  `id_producto` int(4) NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(45) DEFAULT NULL,
-  `precio` decimal(11,4) DEFAULT NULL,
-  `cantidad_en_inventario` int(4) DEFAULT NULL,
-  PRIMARY KEY (`id_producto`),
-  KEY `precio` (`precio`),
-  FULLTEXT KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`cliente`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`cliente` (
+  `id_cliente` INT(4) NOT NULL AUTO_INCREMENT,
+  `numero_ruc` VARCHAR(20) NOT NULL,
+  `nombres` VARCHAR(45) NULL DEFAULT NULL,
+  `apellidos` VARCHAR(45) NULL DEFAULT NULL,
+  `telefono` VARCHAR(10) NULL DEFAULT NULL,
+  `correo` VARCHAR(50) NULL DEFAULT NULL,
+  `direccion` VARCHAR(60) NULL DEFAULT NULL,
+  `id_persona_contacto` INT(4) NOT NULL,
+  PRIMARY KEY (`id_cliente`),
+  INDEX `correo` (`correo` ASC) VISIBLE,
+  INDEX `id_persona_contacto` (`id_persona_contacto` ASC) VISIBLE,
+  FULLTEXT INDEX `nombres` (`nombres`) VISIBLE,
+  FULLTEXT INDEX `apellidos` (`apellidos`) VISIBLE,
+  FULLTEXT INDEX `direccion` (`direccion`) VISIBLE,
+  CONSTRAINT `cliente_ibfk_1`
+    FOREIGN KEY (`id_persona_contacto`)
+    REFERENCES `carmelitas_coffee`.`persona_contacto` (`id_persona_contacto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
-CREATE TABLE `proveedor` (
-  `id_proveedor` int(4) NOT NULL AUTO_INCREMENT,
-  `nombre_proveedor` varchar(50) DEFAULT NULL,
-  `descripcion` varchar(70) DEFAULT NULL,
-  `telefono` varchar(10) DEFAULT NULL,
-  `direccion` varchar(50) DEFAULT NULL,
-  `correo` varchar(30) DEFAULT NULL,
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`empleado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`empleado` (
+  `id_empleado` INT(11) NOT NULL AUTO_INCREMENT,
+  `cedula_identidad` VARCHAR(45) NULL DEFAULT NULL,
+  `primer_nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `segundo_nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `primer_apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `segundo_apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `sexo` CHAR(1) NULL DEFAULT NULL,
+  `edad` INT(3) NULL DEFAULT NULL,
+  `direccion` VARCHAR(60) NULL DEFAULT NULL,
+  `telefono` VARCHAR(10) NULL DEFAULT NULL,
+  `correo` VARCHAR(50) NULL DEFAULT NULL,
+  `estado_civil` VARCHAR(45) NULL DEFAULT NULL,
+  `grado_escolaridad` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_empleado`),
+  UNIQUE INDEX `cedula_identidad` (`cedula_identidad` ASC) VISIBLE,
+  INDEX `primer_nombre` (`primer_nombre` ASC) VISIBLE,
+  INDEX `primer_apellido` (`primer_apellido` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`contrato`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`contrato` (
+  `id_contrato` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(4) NOT NULL,
+  `puesto` VARCHAR(70) NULL DEFAULT NULL,
+  `sueldo` DECIMAL(11,4) NULL DEFAULT NULL,
+  `comisiones` DECIMAL(2,2) NULL DEFAULT NULL,
+  `fecha_contratacion` DATETIME NULL DEFAULT NULL,
+  `estado` VARCHAR(15) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_contrato`),
+  INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
+  INDEX `sueldo` (`sueldo` ASC) VISIBLE,
+  INDEX `estado` (`estado` ASC) VISIBLE,
+  FULLTEXT INDEX `puesto` (`puesto`) VISIBLE,
+  CONSTRAINT `contrato_ibfk_1`
+    FOREIGN KEY (`id_empleado`)
+    REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`deposito`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`deposito` (
+  `id_deposito` INT(4) NOT NULL AUTO_INCREMENT,
+  `numero_comprobante` VARCHAR(20) NULL DEFAULT NULL,
+  `banco` VARCHAR(30) NULL DEFAULT NULL,
+  `monto` DECIMAL(11,4) NULL DEFAULT NULL,
+  `moneda` VARCHAR(30) NULL DEFAULT NULL,
+  `fecha` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id_deposito`),
+  INDEX `numero_comprobante` (`numero_comprobante` ASC) VISIBLE,
+  INDEX `banco` (`banco` ASC) VISIBLE,
+  INDEX `moneda` (`moneda` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 18
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`proveedor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`proveedor` (
+  `id_proveedor` INT(4) NOT NULL AUTO_INCREMENT,
+  `nombre_proveedor` VARCHAR(50) NULL DEFAULT NULL,
+  `descripcion` VARCHAR(70) NULL DEFAULT NULL,
+  `telefono` VARCHAR(10) NULL DEFAULT NULL,
+  `direccion` VARCHAR(50) NULL DEFAULT NULL,
+  `correo` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`id_proveedor`),
-  KEY `telefono` (`telefono`),
-  KEY `correo` (`correo`),
-  FULLTEXT KEY `nombre_proveedor` (`nombre_proveedor`),
-  FULLTEXT KEY `descripcion` (`descripcion`),
-  FULLTEXT KEY `direccion` (`direccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  INDEX `telefono` (`telefono` ASC) VISIBLE,
+  INDEX `correo` (`correo` ASC) VISIBLE,
+  FULLTEXT INDEX `nombre_proveedor` (`nombre_proveedor`) VISIBLE,
+  FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE,
+  FULLTEXT INDEX `direccion` (`direccion`) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
-CREATE TABLE `servicio` (
-  `id_servicio` int(11) NOT NULL AUTO_INCREMENT,
-  `precio` decimal(11,4) DEFAULT NULL,
-  `descripcion` varchar(50) DEFAULT NULL,
-  `unidad` varchar(20) DEFAULT NULL,
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`factura_insumo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`factura_insumo` (
+  `id_factura_insumo` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(4) NOT NULL,
+  `id_proveedor` INT(4) NOT NULL,
+  `numero_factura` VARCHAR(5) NULL DEFAULT NULL,
+  `fecha_orden` DATE NULL DEFAULT NULL,
+  `fecha_recibido` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id_factura_insumo`),
+  INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
+  INDEX `id_proveedor` (`id_proveedor` ASC) VISIBLE,
+  INDEX `numero_factura` (`numero_factura` ASC) VISIBLE,
+  INDEX `fecha_orden` (`fecha_orden` ASC) VISIBLE,
+  INDEX `fecha_recibido` (`fecha_recibido` ASC) VISIBLE,
+  CONSTRAINT `factura_insumo_ibfk_1`
+    FOREIGN KEY (`id_empleado`)
+    REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`),
+  CONSTRAINT `factura_insumo_ibfk_2`
+    FOREIGN KEY (`id_proveedor`)
+    REFERENCES `carmelitas_coffee`.`proveedor` (`id_proveedor`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`insumo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`insumo` (
+  `id_insumo` INT(4) NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(50) NULL DEFAULT NULL,
+  `cantidad_inventario` INT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_insumo`),
+  FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`detalle_factura_insumo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`detalle_factura_insumo` (
+  `id_detalle_factura_insumo` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_factura_insumo` INT(4) NOT NULL,
+  `id_insumo` INT(4) NOT NULL,
+  `cantidad` INT(4) NULL DEFAULT NULL,
+  `descuento` DECIMAL(11,4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_detalle_factura_insumo`),
+  INDEX `id_factura_insumo` (`id_factura_insumo` ASC) VISIBLE,
+  INDEX `id_insumo` (`id_insumo` ASC) VISIBLE,
+  INDEX `cantidad` (`cantidad` ASC) VISIBLE,
+  CONSTRAINT `detalle_factura_insumo_ibfk_1`
+    FOREIGN KEY (`id_factura_insumo`)
+    REFERENCES `carmelitas_coffee`.`factura_insumo` (`id_factura_insumo`),
+  CONSTRAINT `detalle_factura_insumo_ibfk_2`
+    FOREIGN KEY (`id_insumo`)
+    REFERENCES `carmelitas_coffee`.`insumo` (`id_insumo`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`orden`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`orden` (
+  `id_orden` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(4) NOT NULL,
+  `id_cliente` INT(4) NOT NULL,
+  `numero_factura` VARCHAR(5) NULL DEFAULT NULL,
+  `fecha_orden` DATE NULL DEFAULT NULL,
+  `fecha_entrega` DATE NULL DEFAULT NULL,
+  `fecha_requerida` DATE NULL DEFAULT NULL,
+  `tipo_orden` VARCHAR(30) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_orden`),
+  INDEX `numero_factura` (`numero_factura` ASC) VISIBLE,
+  INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
+  INDEX `id_cliente` (`id_cliente` ASC) VISIBLE,
+  FULLTEXT INDEX `tipo_orden` (`tipo_orden`) VISIBLE,
+  CONSTRAINT `orden_ibfk_1`
+    FOREIGN KEY (`id_empleado`)
+    REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`),
+  CONSTRAINT `orden_ibfk_2`
+    FOREIGN KEY (`id_cliente`)
+    REFERENCES `carmelitas_coffee`.`cliente` (`id_cliente`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`producto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`producto` (
+  `id_producto` INT(4) NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NULL DEFAULT NULL,
+  `precio` DECIMAL(11,4) NULL DEFAULT NULL,
+  `cantidad_en_inventario` INT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_producto`),
+  INDEX `precio` (`precio` ASC) VISIBLE,
+  FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`detalle_orden_producto`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`detalle_orden_producto` (
+  `id_detalle_orden_producto` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_orden` INT(4) NOT NULL,
+  `id_producto` INT(4) NOT NULL,
+  `cantidad` INT(4) NULL DEFAULT NULL,
+  `descuento` DECIMAL(11,4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_detalle_orden_producto`),
+  INDEX `id_orden` (`id_orden` ASC) VISIBLE,
+  INDEX `id_producto` (`id_producto` ASC) VISIBLE,
+  INDEX `cantidad` (`cantidad` ASC) VISIBLE,
+  CONSTRAINT `detalle_orden_producto_ibfk_1`
+    FOREIGN KEY (`id_orden`)
+    REFERENCES `carmelitas_coffee`.`orden` (`id_orden`),
+  CONSTRAINT `detalle_orden_producto_ibfk_2`
+    FOREIGN KEY (`id_producto`)
+    REFERENCES `carmelitas_coffee`.`producto` (`id_producto`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`servicio` (
+  `id_servicio` INT(11) NOT NULL AUTO_INCREMENT,
+  `precio` DECIMAL(11,4) NULL DEFAULT NULL,
+  `descripcion` VARCHAR(50) NULL DEFAULT NULL,
+  `unidad` VARCHAR(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id_servicio`),
-  FULLTEXT KEY `descripcion` (`descripcion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
-CREATE TABLE `usuario` (
-  `nombre` varchar(10) NOT NULL,
-  `id_empleado` int(11) DEFAULT NULL,
-  `clave_acceso` varchar(10) NOT NULL,
-  `rol` varchar(10) NOT NULL,
-  `correo` varchar(50) DEFAULT NULL,
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`detalle_orden_servicio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`detalle_orden_servicio` (
+  `id_detalle_orden_servicio` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_orden` INT(4) NOT NULL,
+  `id_servicio` INT(4) NOT NULL,
+  `cantidad` INT(4) NULL DEFAULT NULL,
+  `descuento` DECIMAL(11,4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_detalle_orden_servicio`),
+  INDEX `id_orden` (`id_orden` ASC) VISIBLE,
+  INDEX `id_servicio` (`id_servicio` ASC) VISIBLE,
+  INDEX `cantidad` (`cantidad` ASC) VISIBLE,
+  CONSTRAINT `detalle_orden_servicio_ibfk_1`
+    FOREIGN KEY (`id_orden`)
+    REFERENCES `carmelitas_coffee`.`orden` (`id_orden`),
+  CONSTRAINT `detalle_orden_servicio_ibfk_2`
+    FOREIGN KEY (`id_servicio`)
+    REFERENCES `carmelitas_coffee`.`servicio` (`id_servicio`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`planilla`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`planilla` (
+  `id_planilla` INT(4) NOT NULL AUTO_INCREMENT,
+  `numero_planilla` VARCHAR(10) NULL DEFAULT NULL,
+  `patronal` DECIMAL(11,4) NULL DEFAULT NULL,
+  `periodo` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id_planilla`),
+  INDEX `numero_planilla` (`numero_planilla` ASC) VISIBLE,
+  INDEX `periodo` (`periodo` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`empleado_planilla`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`empleado_planilla` (
+  `id_empleado_planilla` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(4) NULL DEFAULT NULL,
+  `id_planilla` INT(4) NULL DEFAULT NULL,
+  `salario` DECIMAL(11,4) NULL DEFAULT NULL,
+  `fecha_recibido` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id_empleado_planilla`),
+  INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
+  INDEX `id_planilla` (`id_planilla` ASC) VISIBLE,
+  INDEX `fecha_recibido` (`fecha_recibido` ASC) VISIBLE,
+  CONSTRAINT `empleado_planilla_ibfk_1`
+    FOREIGN KEY (`id_empleado`)
+    REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`),
+  CONSTRAINT `empleado_planilla_ibfk_2`
+    FOREIGN KEY (`id_planilla`)
+    REFERENCES `carmelitas_coffee`.`planilla` (`id_planilla`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`mantenimiento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`mantenimiento` (
+  `id_mantenimiento` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_proveedor` INT(4) NOT NULL,
+  `id_empleado` INT(4) NOT NULL,
+  `numero_factura` VARCHAR(5) NULL DEFAULT NULL,
+  `fecha` DATE NULL DEFAULT NULL,
+  `descripcion` VARCHAR(70) NULL DEFAULT NULL,
+  `tipo` VARCHAR(50) NULL DEFAULT NULL,
+  `costo` DECIMAL(11,4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_mantenimiento`),
+  INDEX `id_proveedor` (`id_proveedor` ASC) VISIBLE,
+  INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
+  INDEX `fecha` (`fecha` ASC) VISIBLE,
+  FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE,
+  FULLTEXT INDEX `tipo` (`tipo`) VISIBLE,
+  CONSTRAINT `mantenimiento_ibfk_1`
+    FOREIGN KEY (`id_proveedor`)
+    REFERENCES `carmelitas_coffee`.`proveedor` (`id_proveedor`),
+  CONSTRAINT `mantenimiento_ibfk_2`
+    FOREIGN KEY (`id_empleado`)
+    REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`pago_empleado`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_empleado` (
+  `id_pago_empleado` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_empleado_planilla` INT(4) NOT NULL,
+  `id_deposito` INT(4) NOT NULL,
+  `modo_pago` VARCHAR(20) NULL DEFAULT NULL,
+  `descripcion` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id_pago_empleado`),
+  INDEX `id_empleado_planilla` (`id_empleado_planilla` ASC) VISIBLE,
+  INDEX `id_deposito` (`id_deposito` ASC) VISIBLE,
+  CONSTRAINT `pago_empleado_ibfk_1`
+    FOREIGN KEY (`id_empleado_planilla`)
+    REFERENCES `carmelitas_coffee`.`empleado_planilla` (`id_empleado_planilla`),
+  CONSTRAINT `pago_empleado_ibfk_2`
+    FOREIGN KEY (`id_deposito`)
+    REFERENCES `carmelitas_coffee`.`deposito` (`id_deposito`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 10
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`pago_insumo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_insumo` (
+  `id_pago_insumo` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_deposito` INT(4) NOT NULL,
+  `id_factura_insumo` INT(4) NOT NULL,
+  PRIMARY KEY (`id_pago_insumo`),
+  INDEX `id_deposito` (`id_deposito` ASC) VISIBLE,
+  INDEX `id_factura_insumo` (`id_factura_insumo` ASC) VISIBLE,
+  CONSTRAINT `pago_insumo_ibfk_1`
+    FOREIGN KEY (`id_deposito`)
+    REFERENCES `carmelitas_coffee`.`deposito` (`id_deposito`),
+  CONSTRAINT `pago_insumo_ibfk_2`
+    FOREIGN KEY (`id_factura_insumo`)
+    REFERENCES `carmelitas_coffee`.`factura_insumo` (`id_factura_insumo`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`pago_mantenimiento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_mantenimiento` (
+  `id_pago_mantenimiento` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_deposito` INT(4) NOT NULL,
+  `id_mantenimiento` INT(4) NOT NULL,
+  PRIMARY KEY (`id_pago_mantenimiento`),
+  INDEX `id_deposito` (`id_deposito` ASC) VISIBLE,
+  INDEX `id_mantenimiento` (`id_mantenimiento` ASC) VISIBLE,
+  CONSTRAINT `pago_mantenimiento_ibfk_1`
+    FOREIGN KEY (`id_deposito`)
+    REFERENCES `carmelitas_coffee`.`deposito` (`id_deposito`),
+  CONSTRAINT `pago_mantenimiento_ibfk_2`
+    FOREIGN KEY (`id_mantenimiento`)
+    REFERENCES `carmelitas_coffee`.`mantenimiento` (`id_mantenimiento`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `carmelitas_coffee`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`usuario` (
+  `nombre` VARCHAR(10) NOT NULL,
+  `id_empleado` INT(11) NULL DEFAULT NULL,
+  `clave_acceso` VARCHAR(10) NOT NULL,
+  `rol` VARCHAR(10) NOT NULL,
+  `correo` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`nombre`),
-  KEY `rol` (`rol`),
-  KEY `id_empleado` (`id_empleado`),
-  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `empleado` (`id_empleado`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  INDEX `rol` (`rol` ASC) VISIBLE,
+  INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
+  CONSTRAINT `usuario_ibfk_1`
+    FOREIGN KEY (`id_empleado`)
+    REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
