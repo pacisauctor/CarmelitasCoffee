@@ -28,6 +28,7 @@ public class Proveedores extends JInternalFrame {
      */
     Session s;
     CProveedores controlador;
+
     public Proveedores(Session s) {
         initComponents();
         controlador = new CProveedores(s);
@@ -50,13 +51,13 @@ public class Proveedores extends JInternalFrame {
         lDescripcion = new swing.Controles.LabelZ();
         tfDescripcion = new swing.Controles.TextFieldZ();
         labelZ3 = new swing.Controles.LabelZ();
-        tfTelefono = new swing.Controles.TextFieldZ();
         lCorreo = new swing.Controles.LabelZ();
         tfCorreo = new swing.Controles.TextFieldZ();
         labelZ5 = new swing.Controles.LabelZ();
         jScrollPane2 = new javax.swing.JScrollPane();
         taDirección = new swing.Controles.TextAreaZ();
         bAgregarProveedor = new swing.Controles.ButtonZ();
+        tfTelefono = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
@@ -147,21 +148,6 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(labelZ3, gridBagConstraints);
 
-        tfTelefono.setText("");
-        tfTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTelefonoActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.2;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfTelefono, gridBagConstraints);
-
         lCorreo.setText("Correo: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -223,11 +209,29 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bAgregarProveedor, gridBagConstraints);
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void tfTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfTelefonoActionPerformed
+        tfTelefono.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
+            public javax.swing.JFormattedTextField.AbstractFormatter
+            getFormatter(javax.swing.JFormattedTextField tf){
+
+                try {
+                    return new javax.swing.text.MaskFormatter("####-####");
+                }
+                catch (java.text.ParseException pe){
+                    pe.printStackTrace();
+                }
+                return null;
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(tfTelefono, gridBagConstraints);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void bAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarProveedorActionPerformed
         String mensaje = validarDatos();
@@ -241,7 +245,7 @@ public class Proveedores extends JInternalFrame {
             if (controlador.agregarProveedores(p)) {
                 JOptionPane.showMessageDialog(this, "Proveedor agregado con éxito!");
                 cargarTabla();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Error al guardar el proveedor");
             }
         }
@@ -262,7 +266,7 @@ public class Proveedores extends JInternalFrame {
     private swing.Controles.TextFieldZ tfCorreo;
     private swing.Controles.TextFieldZ tfDescripcion;
     private swing.Controles.TextFieldZ tfNombre;
-    private swing.Controles.TextFieldZ tfTelefono;
+    private javax.swing.JFormattedTextField tfTelefono;
     // End of variables declaration//GEN-END:variables
 
     private String validarDatos() {
@@ -291,8 +295,8 @@ public class Proveedores extends JInternalFrame {
         List l = controlador.getProveedores();
         for (Object object : l) {
             Proveedor p = (Proveedor) object;
-            Object [] row = new Object[4];
-            row[0]=p.getNombreProveedor();
+            Object[] row = new Object[4];
+            row[0] = p.getNombreProveedor();
             row[1] = p.getDescripcion();
             row[2] = p.getTelefono();
             row[3] = p.getCorreo();

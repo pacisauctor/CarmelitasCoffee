@@ -134,19 +134,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="swing.Controles.TextFieldZ" name="tfTelefono">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=""/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTelefonoActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-          <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.3" weightY="0.2"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="swing.Controles.LabelZ" name="lCorreo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Correo: "/>
@@ -209,6 +196,18 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
           <GridBagConstraints gridX="3" gridY="4" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="5" insetsLeft="5" insetsBottom="5" insetsRight="5" anchor="10" weightX="0.2" weightY="0.2"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JFormattedTextField" name="tfTelefono">
+      <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new javax.swing.JFormattedTextField.AbstractFormatterFactory() {&#xd;&#xa;public javax.swing.JFormattedTextField.AbstractFormatter&#xd;&#xa;    getFormatter(javax.swing.JFormattedTextField tf){&#xd;&#xa;&#xd;&#xa;    try {&#xd;&#xa;    return new javax.swing.text.MaskFormatter(&quot;####-####&quot;);&#xd;&#xa;}&#xd;&#xa;catch (java.text.ParseException pe){&#xd;&#xa;pe.printStackTrace();&#xd;&#xa;}&#xd;&#xa;return null;&#xd;&#xa;}&#xd;&#xa;}" type="code"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+          <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.3" weightY="0.2"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -619,7 +619,7 @@ public class NuevaOrden extends JInternalFrame {
             }
         } catch (NumberFormatException numberFormatException) {
         }
-        
+
         return mensaje;
     }
 }
