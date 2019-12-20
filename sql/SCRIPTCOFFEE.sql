@@ -21,17 +21,15 @@ USE `carmelitas_coffee` ;
 -- Table `carmelitas_coffee`.`persona_contacto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`persona_contacto` (
-  `id_persona_contacto` INT(4) NOT NULL AUTO_INCREMENT,
-  `primer_nombre` VARCHAR(45) NULL DEFAULT NULL,
-  `segundo_nombre` VARCHAR(45) NULL DEFAULT NULL,
-  `primer_apellido` VARCHAR(45) NULL DEFAULT NULL,
-  `segundo_apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `id_persona_contacto` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombres` VARCHAR(45) NULL DEFAULT NULL,
+  `apellidos` VARCHAR(45) NULL DEFAULT NULL,
   `telefono` VARCHAR(10) NULL DEFAULT NULL,
   `correo` VARCHAR(50) NULL DEFAULT NULL,
   `direccion` VARCHAR(60) NULL DEFAULT NULL,
   PRIMARY KEY (`id_persona_contacto`),
-  INDEX `primer_nombre` (`primer_nombre` ASC) VISIBLE,
-  INDEX `primer_apellido` (`primer_apellido` ASC) VISIBLE)
+  INDEX `primer_nombre` (`nombres` ASC) VISIBLE,
+  INDEX `primer_apellido` (`apellidos` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -41,14 +39,14 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`cliente` (
-  `id_cliente` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_cliente` INT(11) NOT NULL AUTO_INCREMENT,
   `numero_ruc` VARCHAR(20) NOT NULL,
   `nombres` VARCHAR(45) NULL DEFAULT NULL,
   `apellidos` VARCHAR(45) NULL DEFAULT NULL,
   `telefono` VARCHAR(10) NULL DEFAULT NULL,
   `correo` VARCHAR(50) NULL DEFAULT NULL,
   `direccion` VARCHAR(60) NULL DEFAULT NULL,
-  `id_persona_contacto` INT(4) NOT NULL,
+  `id_persona_contacto` INT(11) NOT NULL,
   PRIMARY KEY (`id_cliente`),
   INDEX `correo` (`correo` ASC) VISIBLE,
   INDEX `id_persona_contacto` (`id_persona_contacto` ASC) VISIBLE,
@@ -74,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`empleado` (
   `primer_apellido` VARCHAR(45) NULL DEFAULT NULL,
   `segundo_apellido` VARCHAR(45) NULL DEFAULT NULL,
   `sexo` CHAR(1) NULL DEFAULT NULL,
-  `edad` INT(3) NULL DEFAULT NULL,
+  `edad` INT(11) NULL DEFAULT NULL,
   `direccion` VARCHAR(60) NULL DEFAULT NULL,
   `telefono` VARCHAR(10) NULL DEFAULT NULL,
   `correo` VARCHAR(50) NULL DEFAULT NULL,
@@ -85,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`empleado` (
   INDEX `primer_nombre` (`primer_nombre` ASC) VISIBLE,
   INDEX `primer_apellido` (`primer_apellido` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -94,13 +91,14 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`contrato`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`contrato` (
-  `id_contrato` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` INT(4) NOT NULL,
-  `puesto` VARCHAR(70) NULL DEFAULT NULL,
+  `id_contrato` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(11) NOT NULL,
+  `puesto` VARCHAR(70) NOT NULL,
   `sueldo` DECIMAL(11,4) NULL DEFAULT NULL,
   `comisiones` DECIMAL(2,2) NULL DEFAULT NULL,
-  `fecha_contratacion` DATETIME NULL DEFAULT NULL,
-  `estado` VARCHAR(15) NULL DEFAULT NULL,
+  `fecha_contratacion` DATETIME NOT NULL,
+  `fecha_expiracion` DATETIME NULL DEFAULT NULL,
+  `estado` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id_contrato`),
   INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
   INDEX `sueldo` (`sueldo` ASC) VISIBLE,
@@ -110,7 +108,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`contrato` (
     FOREIGN KEY (`id_empleado`)
     REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -119,7 +116,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`deposito`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`deposito` (
-  `id_deposito` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_deposito` INT(11) NOT NULL AUTO_INCREMENT,
   `numero_comprobante` VARCHAR(20) NULL DEFAULT NULL,
   `banco` VARCHAR(30) NULL DEFAULT NULL,
   `monto` DECIMAL(11,4) NULL DEFAULT NULL,
@@ -130,7 +127,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`deposito` (
   INDEX `banco` (`banco` ASC) VISIBLE,
   INDEX `moneda` (`moneda` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 18
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -139,7 +135,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`proveedor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`proveedor` (
-  `id_proveedor` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_proveedor` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre_proveedor` VARCHAR(50) NULL DEFAULT NULL,
   `descripcion` VARCHAR(70) NULL DEFAULT NULL,
   `telefono` VARCHAR(10) NULL DEFAULT NULL,
@@ -152,7 +148,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`proveedor` (
   FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE,
   FULLTEXT INDEX `direccion` (`direccion`) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -161,10 +156,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`factura_insumo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`factura_insumo` (
-  `id_factura_insumo` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` INT(4) NOT NULL,
-  `id_proveedor` INT(4) NOT NULL,
+  `id_factura_insumo` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(11) NOT NULL,
+  `id_proveedor` INT(11) NOT NULL,
   `numero_factura` VARCHAR(5) NULL DEFAULT NULL,
+  `modo_pago` VARCHAR(45) NOT NULL,
   `fecha_orden` DATE NULL DEFAULT NULL,
   `fecha_recibido` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id_factura_insumo`),
@@ -180,7 +176,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`factura_insumo` (
     FOREIGN KEY (`id_proveedor`)
     REFERENCES `carmelitas_coffee`.`proveedor` (`id_proveedor`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -189,9 +184,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`insumo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`insumo` (
-  `id_insumo` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_insumo` INT(11) NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
-  `cantidad_inventario` INT(4) NULL DEFAULT NULL,
+  `cantidad_inventario` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_insumo`),
   FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE)
 ENGINE = InnoDB
@@ -203,10 +198,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`detalle_factura_insumo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`detalle_factura_insumo` (
-  `id_detalle_factura_insumo` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_factura_insumo` INT(4) NOT NULL,
-  `id_insumo` INT(4) NOT NULL,
-  `cantidad` INT(4) NULL DEFAULT NULL,
+  `id_detalle_factura_insumo` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_factura_insumo` INT(11) NOT NULL,
+  `id_insumo` INT(11) NOT NULL,
+  `cantidad` INT(11) NOT NULL,
+  `precio` DECIMAL(11,4) NOT NULL,
   `descuento` DECIMAL(11,4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_detalle_factura_insumo`),
   INDEX `id_factura_insumo` (`id_factura_insumo` ASC) VISIBLE,
@@ -227,19 +223,20 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`orden`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`orden` (
-  `id_orden` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` INT(4) NOT NULL,
-  `id_cliente` INT(4) NOT NULL,
-  `numero_factura` VARCHAR(5) NULL DEFAULT NULL,
-  `fecha_orden` DATE NULL DEFAULT NULL,
-  `fecha_entrega` DATE NULL DEFAULT NULL,
-  `fecha_requerida` DATE NULL DEFAULT NULL,
-  `tipo_orden` VARCHAR(30) NULL DEFAULT NULL,
+  `id_orden` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(11) NOT NULL,
+  `id_cliente` INT(11) NOT NULL,
+  `numero_factura` VARCHAR(5) NOT NULL,
+  `fecha_orden` DATE NOT NULL,
+  `fecha_entrega` DATE NOT NULL,
+  `fecha_requerida` DATE NOT NULL,
+  `sub_total` DECIMAL(11,4) NOT NULL,
+  `iva` DECIMAL(11,4) NOT NULL,
+  `total` DECIMAL(11,4) NOT NULL,
   PRIMARY KEY (`id_orden`),
   INDEX `numero_factura` (`numero_factura` ASC) VISIBLE,
   INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
   INDEX `id_cliente` (`id_cliente` ASC) VISIBLE,
-  FULLTEXT INDEX `tipo_orden` (`tipo_orden`) VISIBLE,
   CONSTRAINT `orden_ibfk_1`
     FOREIGN KEY (`id_empleado`)
     REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`),
@@ -255,10 +252,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`producto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`producto` (
-  `id_producto` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_producto` INT(11) NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(45) NULL DEFAULT NULL,
-  `precio` DECIMAL(11,4) NULL DEFAULT NULL,
-  `cantidad_en_inventario` INT(4) NULL DEFAULT NULL,
+  `precio` DECIMAL(11,4) NOT NULL,
+  `cantidad_en_inventario` INT(11) NOT NULL,
+  `exento_iva` TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_producto`),
   INDEX `precio` (`precio` ASC) VISIBLE,
   FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE)
@@ -271,10 +269,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`detalle_orden_producto`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`detalle_orden_producto` (
-  `id_detalle_orden_producto` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_orden` INT(4) NOT NULL,
-  `id_producto` INT(4) NOT NULL,
-  `cantidad` INT(4) NULL DEFAULT NULL,
+  `id_detalle_orden_producto` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_orden` INT(11) NOT NULL,
+  `id_producto` INT(11) NOT NULL,
+  `cantidad` INT(11) NOT NULL,
+  `precio_unit` DECIMAL(11,4) NOT NULL,
   `descuento` DECIMAL(11,4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_detalle_orden_producto`),
   INDEX `id_orden` (`id_orden` ASC) VISIBLE,
@@ -298,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`servicio` (
   `id_servicio` INT(11) NOT NULL AUTO_INCREMENT,
   `precio` DECIMAL(11,4) NULL DEFAULT NULL,
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
-  `unidad` VARCHAR(20) NULL DEFAULT NULL,
+  `exento_iva` TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_servicio`),
   FULLTEXT INDEX `descripcion` (`descripcion`) VISIBLE)
 ENGINE = InnoDB
@@ -310,10 +309,11 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`detalle_orden_servicio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`detalle_orden_servicio` (
-  `id_detalle_orden_servicio` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_orden` INT(4) NOT NULL,
-  `id_servicio` INT(4) NOT NULL,
-  `cantidad` INT(4) NULL DEFAULT NULL,
+  `id_detalle_orden_servicio` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_orden` INT(11) NOT NULL,
+  `id_servicio` INT(11) NOT NULL,
+  `cantidad` INT(11) NOT NULL,
+  `precio_unit` DECIMAL(11,4) NOT NULL,
   `descuento` DECIMAL(11,4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_detalle_orden_servicio`),
   INDEX `id_orden` (`id_orden` ASC) VISIBLE,
@@ -334,7 +334,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`planilla`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`planilla` (
-  `id_planilla` INT(4) NOT NULL AUTO_INCREMENT,
+  `id_planilla` INT(11) NOT NULL AUTO_INCREMENT,
   `numero_planilla` VARCHAR(10) NULL DEFAULT NULL,
   `patronal` DECIMAL(11,4) NULL DEFAULT NULL,
   `periodo` DATE NULL DEFAULT NULL,
@@ -351,15 +351,18 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`empleado_planilla`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`empleado_planilla` (
-  `id_empleado_planilla` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado` INT(4) NULL DEFAULT NULL,
-  `id_planilla` INT(4) NULL DEFAULT NULL,
-  `salario` DECIMAL(11,4) NULL DEFAULT NULL,
-  `fecha_recibido` DATE NULL DEFAULT NULL,
+  `id_empleado_planilla` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_empleado` INT(11) NULL DEFAULT NULL,
+  `id_planilla` INT(11) NULL DEFAULT NULL,
+  `salario_base` DECIMAL(11,4) NULL DEFAULT NULL,
+  `comisiones` DECIMAL(11,4) NULL DEFAULT NULL,
+  `salario_bruto` DECIMAL(11,4) NULL DEFAULT NULL,
+  `inss_laboral` DECIMAL(11,4) NOT NULL,
+  `ir` DECIMAL(11,4) NOT NULL,
+  `salario_total` DECIMAL(11,4) NOT NULL,
   PRIMARY KEY (`id_empleado_planilla`),
   INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
   INDEX `id_planilla` (`id_planilla` ASC) VISIBLE,
-  INDEX `fecha_recibido` (`fecha_recibido` ASC) VISIBLE,
   CONSTRAINT `empleado_planilla_ibfk_1`
     FOREIGN KEY (`id_empleado`)
     REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`),
@@ -367,7 +370,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`empleado_planilla` (
     FOREIGN KEY (`id_planilla`)
     REFERENCES `carmelitas_coffee`.`planilla` (`id_planilla`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -376,9 +378,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`mantenimiento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`mantenimiento` (
-  `id_mantenimiento` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_proveedor` INT(4) NOT NULL,
-  `id_empleado` INT(4) NOT NULL,
+  `id_mantenimiento` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_proveedor` INT(11) NOT NULL,
+  `id_empleado` INT(11) NOT NULL,
   `numero_factura` VARCHAR(5) NULL DEFAULT NULL,
   `fecha` DATE NULL DEFAULT NULL,
   `descripcion` VARCHAR(70) NULL DEFAULT NULL,
@@ -397,7 +399,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`mantenimiento` (
     FOREIGN KEY (`id_empleado`)
     REFERENCES `carmelitas_coffee`.`empleado` (`id_empleado`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -406,10 +407,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`pago_empleado`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_empleado` (
-  `id_pago_empleado` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_empleado_planilla` INT(4) NOT NULL,
-  `id_deposito` INT(4) NOT NULL,
-  `modo_pago` VARCHAR(20) NULL DEFAULT NULL,
+  `id_pago_empleado` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_empleado_planilla` INT(11) NOT NULL,
+  `id_deposito` INT(11) NOT NULL,
+  `modo_pago` VARCHAR(20) NULL DEFAULT 'DEPOSITO',
   `descripcion` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id_pago_empleado`),
   INDEX `id_empleado_planilla` (`id_empleado_planilla` ASC) VISIBLE,
@@ -421,7 +422,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_empleado` (
     FOREIGN KEY (`id_deposito`)
     REFERENCES `carmelitas_coffee`.`deposito` (`id_deposito`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -430,9 +430,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`pago_insumo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_insumo` (
-  `id_pago_insumo` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_deposito` INT(4) NOT NULL,
-  `id_factura_insumo` INT(4) NOT NULL,
+  `id_pago_insumo` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_deposito` INT(11) NOT NULL,
+  `id_factura_insumo` INT(11) NOT NULL,
   PRIMARY KEY (`id_pago_insumo`),
   INDEX `id_deposito` (`id_deposito` ASC) VISIBLE,
   INDEX `id_factura_insumo` (`id_factura_insumo` ASC) VISIBLE,
@@ -443,7 +443,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_insumo` (
     FOREIGN KEY (`id_factura_insumo`)
     REFERENCES `carmelitas_coffee`.`factura_insumo` (`id_factura_insumo`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -452,9 +451,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `carmelitas_coffee`.`pago_mantenimiento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_mantenimiento` (
-  `id_pago_mantenimiento` INT(4) NOT NULL AUTO_INCREMENT,
-  `id_deposito` INT(4) NOT NULL,
-  `id_mantenimiento` INT(4) NOT NULL,
+  `id_pago_mantenimiento` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_deposito` INT(11) NOT NULL,
+  `id_mantenimiento` INT(11) NOT NULL,
   PRIMARY KEY (`id_pago_mantenimiento`),
   INDEX `id_deposito` (`id_deposito` ASC) VISIBLE,
   INDEX `id_mantenimiento` (`id_mantenimiento` ASC) VISIBLE,
@@ -465,7 +464,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`pago_mantenimiento` (
     FOREIGN KEY (`id_mantenimiento`)
     REFERENCES `carmelitas_coffee`.`mantenimiento` (`id_mantenimiento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -478,7 +476,6 @@ CREATE TABLE IF NOT EXISTS `carmelitas_coffee`.`usuario` (
   `id_empleado` INT(11) NULL DEFAULT NULL,
   `clave_acceso` VARCHAR(10) NOT NULL,
   `rol` VARCHAR(10) NOT NULL,
-  `correo` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`nombre`),
   INDEX `rol` (`rol` ASC) VISIBLE,
   INDEX `id_empleado` (`id_empleado` ASC) VISIBLE,
