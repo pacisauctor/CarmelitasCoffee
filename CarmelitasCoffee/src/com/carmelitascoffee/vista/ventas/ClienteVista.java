@@ -7,7 +7,6 @@ package com.carmelitascoffee.vista.ventas;
 
 import com.carmelitascoffee.controlador.ventas.CClienteVista;
 import com.carmelitascoffee.pojo.Cliente;
-import com.carmelitascoffee.pojo.PersonaContacto;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -203,7 +202,7 @@ public class ClienteVista extends JInternalFrame {
             row[4] = c.getTelefono();
             row[5] = c.getCorreo();
             row[6] = c.getDireccion();
-            row[7] = c.getPersonaContacto().getPrimerNombre() + " " + c.getPersonaContacto().getPrimerApellido();
+            row[7] = c.getPersonaContacto().getNombres() + " " + c.getPersonaContacto().getApellidos();
             dtm.addRow(row);
         }
         tClienteList.setModel(dtm);

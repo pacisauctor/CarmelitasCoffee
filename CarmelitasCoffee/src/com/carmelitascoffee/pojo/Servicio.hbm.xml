@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-19-2019 08:34:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.Servicio" optimistic-lock="version" table="servicio">
-    <id name="idServicio" type="java.lang.Integer">
-      <column name="id_servicio"/>
-      <generator class="identity"/>
-    </id>
-    <property name="precio" type="big_decimal">
-      <column name="precio" precision="11" scale="4"/>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="50" name="descripcion"/>
-    </property>
-    <property name="unidad" type="string">
-      <column length="20" name="unidad"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="detalleOrdenServicios" table="detalle_orden_servicio">
-      <key>
-        <column name="id_servicio" not-null="true"/>
-      </key>
-      <one-to-many class="com.carmelitascoffee.pojo.DetalleOrdenServicio"/>
-    </set>
-  </class>
+    <class name="com.carmelitascoffee.pojo.Servicio" table="servicio" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idServicio" type="java.lang.Integer">
+            <column name="id_servicio" />
+            <generator class="identity" />
+        </id>
+        <property name="precio" type="big_decimal">
+            <column name="precio" precision="11" scale="4" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+        <property name="exentoIva" type="boolean">
+            <column name="exento_iva" not-null="true" />
+        </property>
+        <set name="detalleOrdenServicios" table="detalle_orden_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_servicio" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.DetalleOrdenServicio" />
+        </set>
+    </class>
 </hibernate-mapping>

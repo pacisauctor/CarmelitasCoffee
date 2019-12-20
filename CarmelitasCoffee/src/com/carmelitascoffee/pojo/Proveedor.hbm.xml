@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-19-2019 08:34:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.Proveedor" optimistic-lock="version" table="proveedor">
-    <id name="idProveedor" type="java.lang.Integer">
-      <column name="id_proveedor"/>
-      <generator class="identity"/>
-    </id>
-    <property name="nombreProveedor" type="string">
-      <column length="50" name="nombre_proveedor"/>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="70" name="descripcion"/>
-    </property>
-    <property name="telefono" type="string">
-      <column length="10" name="telefono"/>
-    </property>
-    <property name="direccion" type="string">
-      <column length="50" name="direccion"/>
-    </property>
-    <property name="correo" type="string">
-      <column length="30" name="correo"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="facturaInsumos" table="factura_insumo">
-      <key>
-        <column name="id_proveedor" not-null="true"/>
-      </key>
-      <one-to-many class="com.carmelitascoffee.pojo.FacturaInsumo"/>
-    </set>
-    <set fetch="select" inverse="true" lazy="true" name="mantenimientos" table="mantenimiento">
-      <key>
-        <column name="id_proveedor" not-null="true"/>
-      </key>
-      <one-to-many class="com.carmelitascoffee.pojo.Mantenimiento"/>
-    </set>
-  </class>
+    <class name="com.carmelitascoffee.pojo.Proveedor" table="proveedor" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idProveedor" type="java.lang.Integer">
+            <column name="id_proveedor" />
+            <generator class="identity" />
+        </id>
+        <property name="nombreProveedor" type="string">
+            <column name="nombre_proveedor" length="50" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="70" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="30" />
+        </property>
+        <set name="facturaInsumos" table="factura_insumo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_proveedor" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.FacturaInsumo" />
+        </set>
+        <set name="mantenimientos" table="mantenimiento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_proveedor" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.Mantenimiento" />
+        </set>
+    </class>
 </hibernate-mapping>

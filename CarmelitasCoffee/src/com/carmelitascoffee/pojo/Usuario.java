@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 
@@ -13,7 +13,6 @@ public class Usuario  implements java.io.Serializable {
      private Empleado empleado;
      private String claveAcceso;
      private String rol;
-     private String correo;
 
     public Usuario() {
     }
@@ -24,12 +23,11 @@ public class Usuario  implements java.io.Serializable {
         this.claveAcceso = claveAcceso;
         this.rol = rol;
     }
-    public Usuario(String nombre, Empleado empleado, String claveAcceso, String rol, String correo) {
+    public Usuario(String nombre, Empleado empleado, String claveAcceso, String rol) {
        this.nombre = nombre;
        this.empleado = empleado;
        this.claveAcceso = claveAcceso;
        this.rol = rol;
-       this.correo = correo;
     }
    
     public String getNombre() {
@@ -59,13 +57,6 @@ public class Usuario  implements java.io.Serializable {
     
     public void setRol(String rol) {
         this.rol = rol;
-    }
-    public String getCorreo() {
-        return this.correo;
-    }
-    
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
 

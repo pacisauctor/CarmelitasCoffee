@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -13,21 +13,25 @@ public class DetalleFacturaInsumo  implements java.io.Serializable {
      private Integer idDetalleFacturaInsumo;
      private FacturaInsumo facturaInsumo;
      private Insumo insumo;
-     private Integer cantidad;
+     private int cantidad;
+     private BigDecimal precio;
      private BigDecimal descuento;
 
     public DetalleFacturaInsumo() {
     }
 
 	
-    public DetalleFacturaInsumo(FacturaInsumo facturaInsumo, Insumo insumo) {
+    public DetalleFacturaInsumo(FacturaInsumo facturaInsumo, Insumo insumo, int cantidad, BigDecimal precio) {
         this.facturaInsumo = facturaInsumo;
         this.insumo = insumo;
+        this.cantidad = cantidad;
+        this.precio = precio;
     }
-    public DetalleFacturaInsumo(FacturaInsumo facturaInsumo, Insumo insumo, Integer cantidad, BigDecimal descuento) {
+    public DetalleFacturaInsumo(FacturaInsumo facturaInsumo, Insumo insumo, int cantidad, BigDecimal precio, BigDecimal descuento) {
        this.facturaInsumo = facturaInsumo;
        this.insumo = insumo;
        this.cantidad = cantidad;
+       this.precio = precio;
        this.descuento = descuento;
     }
    
@@ -52,12 +56,19 @@ public class DetalleFacturaInsumo  implements java.io.Serializable {
     public void setInsumo(Insumo insumo) {
         this.insumo = insumo;
     }
-    public Integer getCantidad() {
+    public int getCantidad() {
         return this.cantidad;
     }
     
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+    public BigDecimal getPrecio() {
+        return this.precio;
+    }
+    
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
     }
     public BigDecimal getDescuento() {
         return this.descuento;

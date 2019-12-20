@@ -30,20 +30,12 @@ public class CNuevaOrden {
 
     public boolean existeProducto(int idProducto) {
         Criteria criteria = s.createCriteria(Producto.class).add(Restrictions.eq("idProducto", idProducto));
-        if (criteria.list().isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !criteria.list().isEmpty();
     }
 
     public boolean existeServicio(int idServicio) {
         Criteria criteria = s.createCriteria(Servicio.class).add(Restrictions.eq("idServicio", idServicio));
-        if (criteria.list().isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !criteria.list().isEmpty();
     }
 
     public Producto getProducto(int idProducto) {

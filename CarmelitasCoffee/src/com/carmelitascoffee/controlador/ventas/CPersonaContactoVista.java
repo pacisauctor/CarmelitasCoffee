@@ -27,17 +27,15 @@ public class CPersonaContactoVista {
 
     public List cargarFiltros(String filtro) {
         if (!filtro.equals("")) {
-            Criterion primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, correo, dirección;
+            Criterion nombres, apellidos, telefono, correo, dirección;
 
-            primerNombre = Restrictions.like("primerNombre", "%" + filtro + "%");
-            segundoNombre = Restrictions.like("segundoNombre", "%" + filtro + "%");
-            primerApellido = Restrictions.like("primerApellido", "%" + filtro + "%");
-            segundoApellido = Restrictions.like("segundoApellido", "%" + filtro + "%");
+            nombres = Restrictions.like("nombres", "%" + filtro + "%");
+            apellidos = Restrictions.like("apellidos", "%" + filtro + "%");
             telefono = Restrictions.like("telefono", "%" + filtro + "%");
             correo = Restrictions.like("correo", "%" + filtro + "%");
             dirección = Restrictions.like("direccion", "%" + filtro + "%");
 
-            Disjunction disjunction = Restrictions.or(primerNombre, segundoNombre, primerApellido, segundoApellido, telefono, correo, dirección);
+            Disjunction disjunction = Restrictions.or(nombres, apellidos, telefono, correo, dirección);
             Criteria crit = s.createCriteria(PersonaContacto.class).add(disjunction);
 
             return crit.list();

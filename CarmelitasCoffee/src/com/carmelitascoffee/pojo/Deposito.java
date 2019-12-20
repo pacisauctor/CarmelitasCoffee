@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class Deposito  implements java.io.Serializable {
 
 
-     private int idDeposito;
+     private Integer idDeposito;
      private String numeroComprobante;
      private String banco;
      private BigDecimal monto;
@@ -26,12 +26,7 @@ public class Deposito  implements java.io.Serializable {
     public Deposito() {
     }
 
-	
-    public Deposito(int idDeposito) {
-        this.idDeposito = idDeposito;
-    }
-    public Deposito(int idDeposito, String numeroComprobante, String banco, BigDecimal monto, String moneda, Date fecha, Set pagoMantenimientos, Set pagoEmpleados, Set pagoInsumos) {
-       this.idDeposito = idDeposito;
+    public Deposito(String numeroComprobante, String banco, BigDecimal monto, String moneda, Date fecha, Set pagoMantenimientos, Set pagoEmpleados, Set pagoInsumos) {
        this.numeroComprobante = numeroComprobante;
        this.banco = banco;
        this.monto = monto;
@@ -42,11 +37,11 @@ public class Deposito  implements java.io.Serializable {
        this.pagoInsumos = pagoInsumos;
     }
    
-    public int getIdDeposito() {
+    public Integer getIdDeposito() {
         return this.idDeposito;
     }
     
-    public void setIdDeposito(int idDeposito) {
+    public void setIdDeposito(Integer idDeposito) {
         this.idDeposito = idDeposito;
     }
     public String getNumeroComprobante() {

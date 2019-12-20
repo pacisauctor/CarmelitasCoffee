@@ -1,38 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-19-2019 08:34:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.Cliente" optimistic-lock="version" table="cliente">
-    <id name="idCliente" type="java.lang.Integer">
-      <column name="id_cliente"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="com.carmelitascoffee.pojo.PersonaContacto" fetch="select" name="personaContacto">
-      <column name="id_persona_contacto" not-null="true"/>
-    </many-to-one>
-    <property name="numeroRuc" type="string">
-      <column length="20" name="numero_ruc" not-null="true"/>
-    </property>
-    <property name="nombres" type="string">
-      <column length="45" name="nombres"/>
-    </property>
-    <property name="apellidos" type="string">
-      <column length="45" name="apellidos"/>
-    </property>
-    <property name="telefono" type="string">
-      <column length="10" name="telefono"/>
-    </property>
-    <property name="correo" type="string">
-      <column length="50" name="correo"/>
-    </property>
-    <property name="direccion" type="string">
-      <column length="60" name="direccion"/>
-    </property>
-    <set fetch="select" inverse="true" lazy="true" name="ordens" table="orden">
-      <key>
-        <column name="id_cliente" not-null="true"/>
-      </key>
-      <one-to-many class="com.carmelitascoffee.pojo.Orden"/>
-    </set>
-  </class>
+    <class name="com.carmelitascoffee.pojo.Cliente" table="cliente" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="personaContacto" class="com.carmelitascoffee.pojo.PersonaContacto" fetch="select">
+            <column name="id_persona_contacto" not-null="true" />
+        </many-to-one>
+        <property name="numeroRuc" type="string">
+            <column name="numero_ruc" length="20" not-null="true" />
+        </property>
+        <property name="nombres" type="string">
+            <column name="nombres" length="45" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="45" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="60" />
+        </property>
+        <set name="ordens" table="orden" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cliente" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.Orden" />
+        </set>
+    </class>
 </hibernate-mapping>

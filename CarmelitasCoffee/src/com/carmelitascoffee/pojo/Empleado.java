@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -83,23 +83,6 @@ public class Empleado  implements java.io.Serializable {
     public void setSegundoNombre(String segundoNombre) {
         this.segundoNombre = segundoNombre;
     }
-    
-    public String getNombreCompleto(){
-        try{
-        return this.getPrimerNombre() + " " + this.getSegundoNombre() + " " + 
-               this.getPrimerApellido() + " " + this.getSegundoApellido();
-        }catch(NullPointerException ex){
-            if(this.getSegundoNombre().isEmpty()&&this.getSegundoApellido().isEmpty()){
-                return this.getPrimerNombre() + " " + this.getPrimerApellido();
-            }
-            else{
-               return this.getPrimerNombre() + " " + 
-               this.getPrimerApellido() + " " + this.getSegundoApellido();
-            }
-        }
-    } 
-            
-            
     public String getPrimerApellido() {
         return this.primerApellido;
     }

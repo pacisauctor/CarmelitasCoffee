@@ -1,29 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-19-2019 08:34:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.Contrato" optimistic-lock="version" table="contrato">
-    <id name="idContrato" type="java.lang.Integer">
-      <column name="id_contrato"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="com.carmelitascoffee.pojo.Empleado" fetch="select" name="empleado">
-      <column name="id_empleado" not-null="true"/>
-    </many-to-one>
-    <property name="puesto" type="string">
-      <column length="70" name="puesto"/>
-    </property>
-    <property name="sueldo" type="big_decimal">
-      <column name="sueldo" precision="11" scale="4"/>
-    </property>
-    <property name="comisiones" type="big_decimal">
-      <column name="comisiones" precision="2"/>
-    </property>
-    <property name="fechaContratacion" type="timestamp">
-      <column length="19" name="fecha_contratacion"/>
-    </property>
-    <property name="estado" type="string">
-      <column length="15" name="estado"/>
-    </property>
-  </class>
+    <class name="com.carmelitascoffee.pojo.Contrato" table="contrato" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idContrato" type="java.lang.Integer">
+            <column name="id_contrato" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empleado" class="com.carmelitascoffee.pojo.Empleado" fetch="select">
+            <column name="id_empleado" not-null="true" />
+        </many-to-one>
+        <property name="puesto" type="string">
+            <column name="puesto" length="70" not-null="true" />
+        </property>
+        <property name="sueldo" type="big_decimal">
+            <column name="sueldo" precision="11" scale="4" />
+        </property>
+        <property name="comisiones" type="big_decimal">
+            <column name="comisiones" precision="2" />
+        </property>
+        <property name="fechaContratacion" type="timestamp">
+            <column name="fecha_contratacion" length="19" not-null="true" />
+        </property>
+        <property name="fechaExpiracion" type="timestamp">
+            <column name="fecha_expiracion" length="19" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" not-null="true" />
+        </property>
+    </class>
 </hibernate-mapping>

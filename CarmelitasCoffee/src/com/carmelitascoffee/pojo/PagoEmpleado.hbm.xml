@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-19-2019 08:34:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.PagoEmpleado" optimistic-lock="version" table="pago_empleado">
-    <id name="idPagoEmpleado" type="int">
-      <column name="id_pago_empleado"/>
-      <generator class="assigned"/>
-    </id>
-    <many-to-one class="com.carmelitascoffee.pojo.Deposito" fetch="select" name="deposito">
-      <column name="id_deposito" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="com.carmelitascoffee.pojo.EmpleadoPlanilla" fetch="select" name="empleadoPlanilla">
-      <column name="id_empleado_planilla" not-null="true"/>
-    </many-to-one>
-    <property name="modoPago" type="string">
-      <column length="20" name="modo_pago"/>
-    </property>
-    <property name="descripcion" type="string">
-      <column length="50" name="descripcion"/>
-    </property>
-  </class>
+    <class name="com.carmelitascoffee.pojo.PagoEmpleado" table="pago_empleado" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idPagoEmpleado" type="java.lang.Integer">
+            <column name="id_pago_empleado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="deposito" class="com.carmelitascoffee.pojo.Deposito" fetch="select">
+            <column name="id_deposito" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleadoPlanilla" class="com.carmelitascoffee.pojo.EmpleadoPlanilla" fetch="select">
+            <column name="id_empleado_planilla" not-null="true" />
+        </many-to-one>
+        <property name="modoPago" type="string">
+            <column name="modo_pago" length="20" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="50" />
+        </property>
+    </class>
 </hibernate-mapping>

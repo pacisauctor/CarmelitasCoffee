@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -502,7 +502,6 @@ public class NuevaOrden extends JInternalFrame {
                 o.setFechaOrden((Date) tfFechaRegistro.getValue());
                 o.setFechaRequerida((Date) tfFechaRegistro.getValue());
                 o.setFechaEntrega((Date) tfFechaRegistro.getValue());
-                o.setTipoOrden("Productos/Servicios");
                 o = controlador.agregarOrden(o);
 
                 DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
@@ -518,7 +517,7 @@ public class NuevaOrden extends JInternalFrame {
                         DetalleOrdenServicio dos = new DetalleOrdenServicio(o, servicio);
                         dos.setCantidad(cantidad);
                         dos.setDescuento(new BigDecimal(descuento));
-                        dos.setPrecio(new BigDecimal(precio));
+                        dos.setPrecioUnit(new BigDecimal(precio));
                         controlador.agregarDetalleOrdenServicio(dos);
 
                     } else if ("Producto".equals(tipoOrden)) {
@@ -527,7 +526,7 @@ public class NuevaOrden extends JInternalFrame {
                         DetalleOrdenProducto dop = new DetalleOrdenProducto(o, producto);
                         dop.setCantidad(cantidad);
                         dop.setDescuento(new BigDecimal(descuento));
-                        dop.setPrecio(new BigDecimal(precio));
+                        dop.setPrecioUnit(new BigDecimal(precio));
                         controlador.agregarDetalleOrdenProducto(dop);
 
                     }

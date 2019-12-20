@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,10 +10,8 @@ import java.util.Set;
 public class PersonaContacto implements java.io.Serializable {
 
     private Integer idPersonaContacto;
-    private String primerNombre;
-    private String segundoNombre;
-    private String primerApellido;
-    private String segundoApellido;
+    private String nombres;
+    private String apellidos;
     private String telefono;
     private String correo;
     private String direccion;
@@ -22,22 +20,18 @@ public class PersonaContacto implements java.io.Serializable {
     public PersonaContacto() {
     }
 
-    public PersonaContacto(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String correo, String direccion, Set clientes) {
-        this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
+    public PersonaContacto(String nombres, String apellidos, String telefono, String correo, String direccion, Set clientes) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
         this.clientes = clientes;
     }
 
-    public PersonaContacto(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String telefono, String correo, String direccion) {
-        this.primerNombre = primerNombre;
-        this.segundoNombre = segundoNombre;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
+    public PersonaContacto(String nombres, String apellidos, String telefono, String correo, String direccion) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
@@ -51,36 +45,20 @@ public class PersonaContacto implements java.io.Serializable {
         this.idPersonaContacto = idPersonaContacto;
     }
 
-    public String getPrimerNombre() {
-        return this.primerNombre;
+    public String getNombres() {
+        return this.nombres;
     }
 
-    public void setPrimerNombre(String primerNombre) {
-        this.primerNombre = primerNombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getSegundoNombre() {
-        return this.segundoNombre;
+    public String getApellidos() {
+        return this.apellidos;
     }
 
-    public void setSegundoNombre(String segundoNombre) {
-        this.segundoNombre = segundoNombre;
-    }
-
-    public String getPrimerApellido() {
-        return this.primerApellido;
-    }
-
-    public void setPrimerApellido(String primerApellido) {
-        this.primerApellido = primerApellido;
-    }
-
-    public String getSegundoApellido() {
-        return this.segundoApellido;
-    }
-
-    public void setSegundoApellido(String segundoApellido) {
-        this.segundoApellido = segundoApellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getTelefono() {

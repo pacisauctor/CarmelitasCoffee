@@ -1,9 +1,8 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,34 +12,43 @@ import java.util.Set;
 public class EmpleadoPlanilla  implements java.io.Serializable {
 
 
-     private int idEmpleadoPlanilla;
+     private Integer idEmpleadoPlanilla;
      private Empleado empleado;
      private Planilla planilla;
-     private BigDecimal salario;
-     private Date fechaRecibido;
+     private BigDecimal salarioBase;
+     private BigDecimal comisiones;
+     private BigDecimal salarioBruto;
+     private BigDecimal inssLaboral;
+     private BigDecimal ir;
+     private BigDecimal salarioTotal;
      private Set pagoEmpleados = new HashSet(0);
 
     public EmpleadoPlanilla() {
     }
 
 	
-    public EmpleadoPlanilla(int idEmpleadoPlanilla) {
-        this.idEmpleadoPlanilla = idEmpleadoPlanilla;
+    public EmpleadoPlanilla(BigDecimal inssLaboral, BigDecimal ir, BigDecimal salarioTotal) {
+        this.inssLaboral = inssLaboral;
+        this.ir = ir;
+        this.salarioTotal = salarioTotal;
     }
-    public EmpleadoPlanilla(int idEmpleadoPlanilla, Empleado empleado, Planilla planilla, BigDecimal salario, Date fechaRecibido, Set pagoEmpleados) {
-       this.idEmpleadoPlanilla = idEmpleadoPlanilla;
+    public EmpleadoPlanilla(Empleado empleado, Planilla planilla, BigDecimal salarioBase, BigDecimal comisiones, BigDecimal salarioBruto, BigDecimal inssLaboral, BigDecimal ir, BigDecimal salarioTotal, Set pagoEmpleados) {
        this.empleado = empleado;
        this.planilla = planilla;
-       this.salario = salario;
-       this.fechaRecibido = fechaRecibido;
+       this.salarioBase = salarioBase;
+       this.comisiones = comisiones;
+       this.salarioBruto = salarioBruto;
+       this.inssLaboral = inssLaboral;
+       this.ir = ir;
+       this.salarioTotal = salarioTotal;
        this.pagoEmpleados = pagoEmpleados;
     }
    
-    public int getIdEmpleadoPlanilla() {
+    public Integer getIdEmpleadoPlanilla() {
         return this.idEmpleadoPlanilla;
     }
     
-    public void setIdEmpleadoPlanilla(int idEmpleadoPlanilla) {
+    public void setIdEmpleadoPlanilla(Integer idEmpleadoPlanilla) {
         this.idEmpleadoPlanilla = idEmpleadoPlanilla;
     }
     public Empleado getEmpleado() {
@@ -57,19 +65,47 @@ public class EmpleadoPlanilla  implements java.io.Serializable {
     public void setPlanilla(Planilla planilla) {
         this.planilla = planilla;
     }
-    public BigDecimal getSalario() {
-        return this.salario;
+    public BigDecimal getSalarioBase() {
+        return this.salarioBase;
     }
     
-    public void setSalario(BigDecimal salario) {
-        this.salario = salario;
+    public void setSalarioBase(BigDecimal salarioBase) {
+        this.salarioBase = salarioBase;
     }
-    public Date getFechaRecibido() {
-        return this.fechaRecibido;
+    public BigDecimal getComisiones() {
+        return this.comisiones;
     }
     
-    public void setFechaRecibido(Date fechaRecibido) {
-        this.fechaRecibido = fechaRecibido;
+    public void setComisiones(BigDecimal comisiones) {
+        this.comisiones = comisiones;
+    }
+    public BigDecimal getSalarioBruto() {
+        return this.salarioBruto;
+    }
+    
+    public void setSalarioBruto(BigDecimal salarioBruto) {
+        this.salarioBruto = salarioBruto;
+    }
+    public BigDecimal getInssLaboral() {
+        return this.inssLaboral;
+    }
+    
+    public void setInssLaboral(BigDecimal inssLaboral) {
+        this.inssLaboral = inssLaboral;
+    }
+    public BigDecimal getIr() {
+        return this.ir;
+    }
+    
+    public void setIr(BigDecimal ir) {
+        this.ir = ir;
+    }
+    public BigDecimal getSalarioTotal() {
+        return this.salarioTotal;
+    }
+    
+    public void setSalarioTotal(BigDecimal salarioTotal) {
+        this.salarioTotal = salarioTotal;
     }
     public Set getPagoEmpleados() {
         return this.pagoEmpleados;

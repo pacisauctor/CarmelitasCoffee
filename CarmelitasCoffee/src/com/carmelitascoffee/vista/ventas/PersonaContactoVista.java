@@ -68,11 +68,11 @@ public class PersonaContactoVista extends JInternalFrame {
 
             },
             new String [] {
-                "id", "Primer Nombre", "Segundo Nombre", "Primer Apellido", "Segundo Apellido", "Teléfono", "Correo", "Dirección"
+                "id", "Nombres", "Apellidos", "Teléfono", "Correo", "Dirección"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true
+                false, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -114,7 +114,6 @@ public class PersonaContactoVista extends JInternalFrame {
 
         tfFiltroDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfFiltroDatos.setText("");
-
         tfFiltroDatos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfFiltroDatosKeyTyped(evt);
@@ -167,18 +166,16 @@ public class PersonaContactoVista extends JInternalFrame {
     private void cargarTabla(String textFiltro) {
         DefaultTableModel dtm = (DefaultTableModel) tPersonaContactoList.getModel();
         dtm.setRowCount(0);
-        List lista = controlador.cargarFiltros(tfFiltroDatos.getText());
-        Object[] row = new Object[8];
+        List lista = controlador.cargarFiltros(textFiltro);
+        Object[] row = new Object[6];
         for (int i = 0; i < lista.size(); i++) {
             PersonaContacto pc = (PersonaContacto) lista.get(i);
             row[0] = pc.getIdPersonaContacto();
-            row[1] = pc.getPrimerNombre();
-            row[2] = pc.getSegundoNombre();
-            row[3] = pc.getPrimerApellido();
-            row[4] = pc.getSegundoApellido();
-            row[5] = pc.getTelefono();
-            row[6] = pc.getCorreo();
-            row[7] = pc.getDireccion();
+            row[1] = pc.getNombres();
+            row[2] = pc.getApellidos();
+            row[3] = pc.getTelefono();
+            row[4] = pc.getCorreo();
+            row[5] = pc.getDireccion();
             dtm.addRow(row);
         }
         tPersonaContactoList.setModel(dtm);

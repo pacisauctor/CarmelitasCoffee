@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class Planilla  implements java.io.Serializable {
 
 
-     private int idPlanilla;
+     private Integer idPlanilla;
      private String numeroPlanilla;
      private BigDecimal patronal;
      private Date periodo;
@@ -22,23 +22,18 @@ public class Planilla  implements java.io.Serializable {
     public Planilla() {
     }
 
-	
-    public Planilla(int idPlanilla) {
-        this.idPlanilla = idPlanilla;
-    }
-    public Planilla(int idPlanilla, String numeroPlanilla, BigDecimal patronal, Date periodo, Set empleadoPlanillas) {
-       this.idPlanilla = idPlanilla;
+    public Planilla(String numeroPlanilla, BigDecimal patronal, Date periodo, Set empleadoPlanillas) {
        this.numeroPlanilla = numeroPlanilla;
        this.patronal = patronal;
        this.periodo = periodo;
        this.empleadoPlanillas = empleadoPlanillas;
     }
    
-    public int getIdPlanilla() {
+    public Integer getIdPlanilla() {
         return this.idPlanilla;
     }
     
-    public void setIdPlanilla(int idPlanilla) {
+    public void setIdPlanilla(Integer idPlanilla) {
         this.idPlanilla = idPlanilla;
     }
     public String getNumeroPlanilla() {

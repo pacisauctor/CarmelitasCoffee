@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
@@ -57,19 +58,19 @@ public class CServicios {
             for (Object object : lista) {
                 com.carmelitascoffee.pojo.Servicio s = (com.carmelitascoffee.pojo.Servicio) object;
 
-                Object c[] = {s.getIdServicio(), s.getDescripcion(), s.getUnidad(), s.getPrecio()};
+                Object c[] = {s.getIdServicio(), s.getDescripcion(), s.getPrecio()};
 
                 modelo.addRow(c);
             }
             tabla.setModel(modelo);
 
-        } catch (Exception e) {
+        } catch (HibernateException e) {
         }
 
     }
 
     public int AgregarServicio(Servicio servicio) {
-        int id = 0;
+        int id;
         iniciarSesion();
         id = (int) s.save(servicio);
         terminarSesion();
@@ -82,7 +83,6 @@ public class CServicios {
         Servicio serbd = (Servicio) s.get(Servicio.class, servicio.getIdServicio());
         serbd.setDescripcion(servicio.getDescripcion());
         serbd.setPrecio(servicio.getPrecio());
-        serbd.setUnidad(servicio.getUnidad());
         s.update(serbd);
         terminarSesion();
     }

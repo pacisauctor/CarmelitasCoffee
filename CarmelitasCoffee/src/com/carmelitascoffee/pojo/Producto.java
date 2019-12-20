@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -13,20 +13,28 @@ public class Producto implements java.io.Serializable {
     private Integer idProducto;
     private String descripcion;
     private BigDecimal precio;
-    private Integer cantidadEnInventario;
+    private int cantidadEnInventario;
+    private boolean exentoIva;
     private Set detalleOrdenProductos = new HashSet(0);
 
     public Producto() {
     }
 
-    public Producto(String descripcion, BigDecimal precio, Integer cantidadEnInventario, Set detalleOrdenProductos) {
+    public Producto(BigDecimal precio, int cantidadEnInventario, boolean exentoIva) {
+        this.precio = precio;
+        this.cantidadEnInventario = cantidadEnInventario;
+        this.exentoIva = exentoIva;
+    }
+
+    public Producto(String descripcion, BigDecimal precio, int cantidadEnInventario, boolean exentoIva, Set detalleOrdenProductos) {
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidadEnInventario = cantidadEnInventario;
+        this.exentoIva = exentoIva;
         this.detalleOrdenProductos = detalleOrdenProductos;
     }
 
-    public Producto(BigDecimal precio, String descripcion, Integer cantidadEnInventario) {
+    public Producto(BigDecimal precio, String descripcion, int cantidadEnInventario) {
         this.descripcion = descripcion;
         this.precio = precio;
         this.cantidadEnInventario = cantidadEnInventario;
@@ -56,12 +64,20 @@ public class Producto implements java.io.Serializable {
         this.precio = precio;
     }
 
-    public Integer getCantidadEnInventario() {
+    public int getCantidadEnInventario() {
         return this.cantidadEnInventario;
     }
 
-    public void setCantidadEnInventario(Integer cantidadEnInventario) {
+    public void setCantidadEnInventario(int cantidadEnInventario) {
         this.cantidadEnInventario = cantidadEnInventario;
+    }
+
+    public boolean isExentoIva() {
+        return this.exentoIva;
+    }
+
+    public void setExentoIva(boolean exentoIva) {
+        this.exentoIva = exentoIva;
     }
 
     public Set getDetalleOrdenProductos() {

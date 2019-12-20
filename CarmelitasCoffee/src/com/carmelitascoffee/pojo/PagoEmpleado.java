@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 
@@ -9,7 +9,7 @@ package com.carmelitascoffee.pojo;
 public class PagoEmpleado  implements java.io.Serializable {
 
 
-     private int idPagoEmpleado;
+     private Integer idPagoEmpleado;
      private Deposito deposito;
      private EmpleadoPlanilla empleadoPlanilla;
      private String modoPago;
@@ -19,24 +19,22 @@ public class PagoEmpleado  implements java.io.Serializable {
     }
 
 	
-    public PagoEmpleado(int idPagoEmpleado, Deposito deposito, EmpleadoPlanilla empleadoPlanilla) {
-        this.idPagoEmpleado = idPagoEmpleado;
+    public PagoEmpleado(Deposito deposito, EmpleadoPlanilla empleadoPlanilla) {
         this.deposito = deposito;
         this.empleadoPlanilla = empleadoPlanilla;
     }
-    public PagoEmpleado(int idPagoEmpleado, Deposito deposito, EmpleadoPlanilla empleadoPlanilla, String modoPago, String descripcion) {
-       this.idPagoEmpleado = idPagoEmpleado;
+    public PagoEmpleado(Deposito deposito, EmpleadoPlanilla empleadoPlanilla, String modoPago, String descripcion) {
        this.deposito = deposito;
        this.empleadoPlanilla = empleadoPlanilla;
        this.modoPago = modoPago;
        this.descripcion = descripcion;
     }
    
-    public int getIdPagoEmpleado() {
+    public Integer getIdPagoEmpleado() {
         return this.idPagoEmpleado;
     }
     
-    public void setIdPagoEmpleado(int idPagoEmpleado) {
+    public void setIdPagoEmpleado(Integer idPagoEmpleado) {
         this.idPagoEmpleado = idPagoEmpleado;
     }
     public Deposito getDeposito() {

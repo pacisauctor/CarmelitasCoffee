@@ -1,26 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08-28-2019 08:03:02 PM by Hibernate Tools 4.3.1 -->
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 12-19-2019 08:34:22 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="carmelitas_coffee" name="com.carmelitascoffee.pojo.DetalleOrdenProducto" optimistic-lock="version" table="detalle_orden_producto">
-    <id name="idDetalleOrdenProducto" type="java.lang.Integer">
-      <column name="id_detalle_orden_producto"/>
-      <generator class="identity"/>
-    </id>
-    <many-to-one class="com.carmelitascoffee.pojo.Orden" fetch="select" name="orden">
-      <column name="id_orden" not-null="true"/>
-    </many-to-one>
-    <many-to-one class="com.carmelitascoffee.pojo.Producto" fetch="select" name="producto">
-      <column name="id_producto" not-null="true"/>
-    </many-to-one>
-    <property name="precio" type="big_decimal">
-      <column name="precio" precision="11" scale="4"/>
-    </property>
-    <property name="cantidad" type="java.lang.Integer">
-      <column name="cantidad"/>
-    </property>
-    <property name="descuento" type="big_decimal">
-      <column name="descuento" precision="11" scale="4"/>
-    </property>
-  </class>
+    <class name="com.carmelitascoffee.pojo.DetalleOrdenProducto" table="detalle_orden_producto" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idDetalleOrdenProducto" type="java.lang.Integer">
+            <column name="id_detalle_orden_producto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="orden" class="com.carmelitascoffee.pojo.Orden" fetch="select">
+            <column name="id_orden" not-null="true" />
+        </many-to-one>
+        <many-to-one name="producto" class="com.carmelitascoffee.pojo.Producto" fetch="select">
+            <column name="id_producto" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="precioUnit" type="big_decimal">
+            <column name="precio_unit" precision="11" scale="4" not-null="true" />
+        </property>
+        <property name="descuento" type="big_decimal">
+            <column name="descuento" precision="11" scale="4" />
+        </property>
+    </class>
 </hibernate-mapping>

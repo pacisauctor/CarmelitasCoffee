@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,6 +16,7 @@ public class FacturaInsumo  implements java.io.Serializable {
      private Empleado empleado;
      private Proveedor proveedor;
      private String numeroFactura;
+     private String modoPago;
      private Date fechaOrden;
      private Date fechaRecibido;
      private Set pagoInsumos = new HashSet(0);
@@ -25,14 +26,16 @@ public class FacturaInsumo  implements java.io.Serializable {
     }
 
 	
-    public FacturaInsumo(Empleado empleado, Proveedor proveedor) {
+    public FacturaInsumo(Empleado empleado, Proveedor proveedor, String modoPago) {
         this.empleado = empleado;
         this.proveedor = proveedor;
+        this.modoPago = modoPago;
     }
-    public FacturaInsumo(Empleado empleado, Proveedor proveedor, String numeroFactura, Date fechaOrden, Date fechaRecibido, Set pagoInsumos, Set detalleFacturaInsumos) {
+    public FacturaInsumo(Empleado empleado, Proveedor proveedor, String numeroFactura, String modoPago, Date fechaOrden, Date fechaRecibido, Set pagoInsumos, Set detalleFacturaInsumos) {
        this.empleado = empleado;
        this.proveedor = proveedor;
        this.numeroFactura = numeroFactura;
+       this.modoPago = modoPago;
        this.fechaOrden = fechaOrden;
        this.fechaRecibido = fechaRecibido;
        this.pagoInsumos = pagoInsumos;
@@ -66,6 +69,13 @@ public class FacturaInsumo  implements java.io.Serializable {
     
     public void setNumeroFactura(String numeroFactura) {
         this.numeroFactura = numeroFactura;
+    }
+    public String getModoPago() {
+        return this.modoPago;
+    }
+    
+    public void setModoPago(String modoPago) {
+        this.modoPago = modoPago;
     }
     public Date getFechaOrden() {
         return this.fechaOrden;

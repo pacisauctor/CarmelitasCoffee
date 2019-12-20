@@ -43,29 +43,29 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/carmelitas_coffee?serverTimezone=UTC</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/carmelitas_coffee?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
     <property name="hibernate.connection.username">coffee</property>
     <property name="hibernate.connection.password">CarmelitasCoffee100!</property>
-    <mapping resource="com/carmelitascoffee/pojo/Servicio.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Orden.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Cliente.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/PagoMantenimiento.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/DetalleFacturaInsumo.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Empleado.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Usuario.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Planilla.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Orden.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/PersonaContacto.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Mantenimiento.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Insumo.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/PagoEmpleado.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Proveedor.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/DetalleOrdenServicio.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/EmpleadoPlanilla.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Deposito.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Producto.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Servicio.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Empleado.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Contrato.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/DetalleOrdenProducto.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/PagoInsumo.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Insumo.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Deposito.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Planilla.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Proveedor.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/FacturaInsumo.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Contrato.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Producto.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/Mantenimiento.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/PagoEmpleado.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/DetalleFacturaInsumo.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/EmpleadoPlanilla.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/PagoMantenimiento.hbm.xml"/>
+    <mapping resource="com/carmelitascoffee/pojo/DetalleOrdenServicio.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,5 +1,5 @@
 package com.carmelitascoffee.pojo;
-// Generated 08-28-2019 08:03:01 PM by Hibernate Tools 4.3.1
+// Generated 12-19-2019 08:34:19 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -17,21 +17,26 @@ public class Contrato  implements java.io.Serializable {
      private BigDecimal sueldo;
      private BigDecimal comisiones;
      private Date fechaContratacion;
+     private Date fechaExpiracion;
      private String estado;
 
     public Contrato() {
     }
 
 	
-    public Contrato(Empleado empleado) {
+    public Contrato(Empleado empleado, String puesto, Date fechaContratacion, String estado) {
         this.empleado = empleado;
+        this.puesto = puesto;
+        this.fechaContratacion = fechaContratacion;
+        this.estado = estado;
     }
-    public Contrato(Empleado empleado, String puesto, BigDecimal sueldo, BigDecimal comisiones, Date fechaContratacion, String estado) {
+    public Contrato(Empleado empleado, String puesto, BigDecimal sueldo, BigDecimal comisiones, Date fechaContratacion, Date fechaExpiracion, String estado) {
        this.empleado = empleado;
        this.puesto = puesto;
        this.sueldo = sueldo;
        this.comisiones = comisiones;
        this.fechaContratacion = fechaContratacion;
+       this.fechaExpiracion = fechaExpiracion;
        this.estado = estado;
     }
    
@@ -76,6 +81,13 @@ public class Contrato  implements java.io.Serializable {
     
     public void setFechaContratacion(Date fechaContratacion) {
         this.fechaContratacion = fechaContratacion;
+    }
+    public Date getFechaExpiracion() {
+        return this.fechaExpiracion;
+    }
+    
+    public void setFechaExpiracion(Date fechaExpiracion) {
+        this.fechaExpiracion = fechaExpiracion;
     }
     public String getEstado() {
         return this.estado;

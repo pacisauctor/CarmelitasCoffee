@@ -52,19 +52,9 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="swing.Controles.TextFieldZ" name="PNom">
+        <Component class="swing.Controles.TextFieldZ" name="tfNombres">
           <Properties>
-            <Property name="text" type="java.lang.String" value="primerNombre"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.5" weightY="0.5"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="swing.Controles.TextFieldZ" name="SNom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="segundoNombre"/>
+            <Property name="text" type="java.lang.String" value=""/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -82,23 +72,13 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="swing.Controles.TextFieldZ" name="PApe">
+        <Component class="swing.Controles.TextFieldZ" name="tfApellidos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="primerApellido"/>
+            <Property name="text" type="java.lang.String" value=""/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="4" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.5" weightY="0.5"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="swing.Controles.TextFieldZ" name="SApe">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="segundoApellido"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="5" gridY="0" gridWidth="1" gridHeight="1" fill="2" ipadX="0" ipadY="0" insetsTop="3" insetsLeft="3" insetsBottom="3" insetsRight="3" anchor="10" weightX="0.5" weightY="0.5"/>
             </Constraint>
           </Constraints>
         </Component>
