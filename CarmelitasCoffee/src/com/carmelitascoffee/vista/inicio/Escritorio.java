@@ -17,7 +17,7 @@ import com.carmelitascoffee.vista.personal.AgregarEmpleado;
 import com.carmelitascoffee.vista.personal.ModificarEmpleado;
 import com.carmelitascoffee.vista.personal.Planillas;
 import com.carmelitascoffee.vista.ventas.NuevaOrden;
-import com.carmelitascoffee.vista.ventas.NuevaPersonaContacto;
+import com.carmelitascoffee.vista.ventas.PersonaContactoVista;
 import com.carmelitascoffee.vista.ventas.NuevoCliente;
 import com.carmelitascoffee.vista.ventas.OrdenVista;
 import java.awt.Color;
@@ -144,7 +144,7 @@ public class Escritorio extends JFrame {
         pMenu = new swing.Contenedores.PanelZ();
         dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
-        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
         pCompras.setName("Compras"); // NOI18N
         pCompras.setLayout(new java.awt.GridBagLayout());
 
@@ -199,7 +199,7 @@ public class Escritorio extends JFrame {
         gridBagConstraints.gridy = 2;
         pCompras.add(bRegresar, gridBagConstraints);
 
-        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pEgresos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Egresos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
         pEgresos.setName("Egresos"); // NOI18N
         pEgresos.setLayout(new java.awt.GridBagLayout());
 
@@ -249,7 +249,7 @@ public class Escritorio extends JFrame {
         gridBagConstraints.gridy = 2;
         pEgresos.add(bRegresar1, gridBagConstraints);
 
-        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pInventario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Inventario", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
         pInventario.setName("Inventario"); // NOI18N
         pInventario.setLayout(new java.awt.GridBagLayout());
 
@@ -353,13 +353,13 @@ public class Escritorio extends JFrame {
         gridBagConstraints.gridy = 3;
         pInventario.add(bRegresar2, gridBagConstraints);
 
-        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pPersonal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
         pPersonal.setName("Personal"); // NOI18N
         pPersonal.setLayout(new java.awt.GridBagLayout());
 
         bAgregarEmpleado.setBackground(new java.awt.Color(255, 247, 162));
         bAgregarEmpleado.setForeground(new java.awt.Color(10, 13, 67));
-        bAgregarEmpleado.setText("Empleado");
+        bAgregarEmpleado.setText("");
         bAgregarEmpleado.setToolTipText("Agregar Empleado");
         bAgregarEmpleado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -489,7 +489,7 @@ public class Escritorio extends JFrame {
         bNuevaPersonaContacto.setBackground(new java.awt.Color(255, 247, 162));
         bNuevaPersonaContacto.setForeground(new java.awt.Color(10, 13, 67));
         bNuevaPersonaContacto.setText("");
-        bNuevaPersonaContacto.setToolTipText("Nueva Persona Contacto");
+        bNuevaPersonaContacto.setToolTipText("Personas Contacto");
         bNuevaPersonaContacto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 bNuevaPersonaContactoMouseExited(evt);
@@ -516,13 +516,13 @@ public class Escritorio extends JFrame {
         bNuevoCliente.setBackground(new java.awt.Color(255, 247, 162));
         bNuevoCliente.setForeground(new java.awt.Color(10, 13, 67));
         bNuevoCliente.setText("");
-        bNuevoCliente.setToolTipText("Nuevo Cliente");
+        bNuevoCliente.setToolTipText("Clientes");
         bNuevoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bNuevoClienteMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 bNuevoClienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bNuevoClienteMouseExited(evt);
             }
         });
         bNuevoCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -588,7 +588,7 @@ public class Escritorio extends JFrame {
         gridBagConstraints.gridy = 4;
         pVentas.add(bRegresar4, gridBagConstraints);
 
-        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(28, 40, 51))); // NOI18N
+        pAjustes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajustes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
         pAjustes.setName("Ajustes"); // NOI18N
         pAjustes.setLayout(new java.awt.GridBagLayout());
 
@@ -1000,7 +1000,7 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bNuevaOrdenActionPerformed
 
     private void bNuevaPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevaPersonaContactoActionPerformed
-        NuevaPersonaContacto nuevaPersonaContacto = new NuevaPersonaContacto(s);
+        PersonaContactoVista nuevaPersonaContacto = new PersonaContactoVista(s);
         nuevaPersonaContacto.setVisible(true);
         nuevaPersonaContacto.pack();
         dpEscritorio.add(nuevaPersonaContacto);
@@ -1427,6 +1427,7 @@ public class Escritorio extends JFrame {
                     break;
             }
         }
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.ButtonZ bAdminUser;
@@ -1567,8 +1568,7 @@ public class Escritorio extends JFrame {
         ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "egresomenuprincipal.png");
         icono = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
         bpEgresos.setIcon(icono);
-        
-        
+
     }
 
     private void setIconosVentana() {
@@ -1592,6 +1592,9 @@ public class Escritorio extends JFrame {
         agregarFondoPantalla(imagenFondo);
         ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "coffee.png");
         lTitle.setIcon(new ImageIcon(ruta));
+
+        ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "logo.png");
+        this.setIconImage(new ImageIcon(ruta).getImage());
     }
 
     public void regresarMenu() {

@@ -254,7 +254,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="43" green="d" red="a" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Empleado"/>
+            <Property name="text" type="java.lang.String" value=""/>
             <Property name="toolTipText" type="java.lang.String" value="Agregar Empleado"/>
           </Properties>
           <Events>
@@ -378,11 +378,11 @@
               <Color blue="43" green="d" red="a" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value=""/>
-            <Property name="toolTipText" type="java.lang.String" value="Nueva Persona Contacto"/>
+            <Property name="toolTipText" type="java.lang.String" value="Personas Contacto"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bNuevaPersonaContactoMouseExited"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bNuevaPersonaContactoMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bNuevaPersonaContactoMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bNuevaPersonaContactoActionPerformed"/>
           </Events>
           <Constraints>
@@ -400,11 +400,11 @@
               <Color blue="43" green="d" red="a" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value=""/>
-            <Property name="toolTipText" type="java.lang.String" value="Nuevo Cliente"/>
+            <Property name="toolTipText" type="java.lang.String" value="Clientes"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bNuevoClienteMouseExited"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bNuevoClienteMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bNuevoClienteMouseExited"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bNuevoClienteActionPerformed"/>
           </Events>
           <Constraints>

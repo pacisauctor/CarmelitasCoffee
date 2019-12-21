@@ -4,4 +4,14 @@ insert into carmelitas_coffee.empleado (cedula_identidad, primer_nombre, segundo
 insert into carmelitas_coffee.usuario (nombre, id_empleado, clave_acceso, rol)
 	values ("admin",1,"admin","maestro");
     
-select * from empleado
+select * from persona_contacto
+
+/*
+	opciones con la tabla empleado:
+		agregar nuevo empleado (y nuevo contrato por supuesto)
+        cancelar contrato
+        renovar contrato
+
+*/
+
+call empleado_nuevoContrato();

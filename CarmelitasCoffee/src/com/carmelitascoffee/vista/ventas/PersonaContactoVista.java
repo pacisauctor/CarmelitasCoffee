@@ -5,10 +5,12 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
-import com.carmelitascoffee.controlador.ventas.CPersonaContactoVista;
+import com.carmelitascoffee.controlador.ventas.CNuevaPersonaContacto;
 import com.carmelitascoffee.pojo.PersonaContacto;
 import java.util.List;
-import javax.swing.JInternalFrame;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 
@@ -16,25 +18,21 @@ import org.hibernate.Session;
  *
  * @author admin
  */
-public class PersonaContactoVista extends JInternalFrame {
+public class PersonaContactoVista extends javax.swing.JInternalFrame {
 
-    Session s;
-    CPersonaContactoVista controlador;
+    private CNuevaPersonaContacto controlador;
+    private Session s;
+
+    public PersonaContactoVista(Session s) {
+        initComponents();
+
+        this.s = s;
+        controlador = new CNuevaPersonaContacto(s);
+    }
 
     /**
-     * Creates new form InternalFrameZ
+     * Creates new form NuevaPersonaContacto
      */
-    public PersonaContactoVista() {
-        initComponents();
-    }
-
-    PersonaContactoVista(Session s) {
-        initComponents();
-        this.s = s;
-        controlador = new CPersonaContactoVista(s);
-        cargarTabla(tfFiltroDatos.getText());
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,23 +43,166 @@ public class PersonaContactoVista extends JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        pContent = new swing.Contenedores.PanelZ();
+        lNombres = new swing.Controles.LabelZ();
+        tfNombres = new swing.Controles.TextFieldZ();
+        lApelildos = new swing.Controles.LabelZ();
+        tfApellidos = new swing.Controles.TextFieldZ();
+        lTelefono = new swing.Controles.LabelZ();
+        Tel = new swing.Controles.TextFieldZ();
+        lDireccion = new swing.Controles.LabelZ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Dir = new swing.Controles.TextAreaZ();
+        lCorreo = new swing.Controles.LabelZ();
+        cor = new swing.Controles.TextFieldZ();
+        btnAgregarCliente = new swing.Controles.ButtonZ();
+        pBusqueda = new swing.Contenedores.PanelZ();
         jScrollPane3 = new javax.swing.JScrollPane();
         tPersonaContactoList = new swing.Controles.TableZ();
-        bAgregarPersonaContacto = new swing.Controles.ButtonZ();
         tfFiltroDatos = new swing.Controles.TextFieldZ();
         lFiltro = new swing.Controles.LabelZ();
+        lAdvertencia = new swing.Controles.LabelZ();
 
-        setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
-        setTitle("Búsqueda Avanzada Persona Contacto");
-        setMinimumSize(new java.awt.Dimension(725, 562));
-        setName("AgregarEmpleadoFRM"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(725, 562));
-        setVisible(true);
+        setTitle("Nueva Persona Contacto");
         getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        pContent.setLayout(new java.awt.GridBagLayout());
+
+        lNombres.setText("Nombre: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lNombres, gridBagConstraints);
+
+        tfNombres.setText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfNombres, gridBagConstraints);
+
+        lApelildos.setText("Apellidos: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lApelildos, gridBagConstraints);
+
+        tfApellidos.setText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(tfApellidos, gridBagConstraints);
+
+        lTelefono.setText("Teléfono: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lTelefono, gridBagConstraints);
+
+        Tel.setText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(Tel, gridBagConstraints);
+
+        lDireccion.setText("                   Dirección: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lDireccion, gridBagConstraints);
+
+        Dir.setEditable(true);
+        Dir.setColumns(20);
+        Dir.setRows(5);
+        Dir.setText("");
+        jScrollPane1.setViewportView(Dir);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.4;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(jScrollPane1, gridBagConstraints);
+
+        lCorreo.setText("Correo: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(lCorreo, gridBagConstraints);
+
+        cor.setText("");
+        cor.setCaretPosition(0);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(cor, gridBagConstraints);
+        cor.getAccessibleContext().setAccessibleParent(this);
+
+        btnAgregarCliente.setText("Agregar Persona Contacto");
+        btnAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarClienteActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.4;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        pContent.add(btnAgregarCliente, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        getContentPane().add(pContent, gridBagConstraints);
+
+        pBusqueda.setLayout(new java.awt.GridBagLayout());
 
         tPersonaContactoList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,12 +222,6 @@ public class PersonaContactoVista extends JInternalFrame {
         });
         tPersonaContactoList.setColumnSelectionAllowed(true);
         jScrollPane3.setViewportView(tPersonaContactoList);
-        tPersonaContactoList.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tPersonaContactoList.getColumnModel().getColumnCount() > 0) {
-            tPersonaContactoList.getColumnModel().getColumn(0).setMinWidth(40);
-            tPersonaContactoList.getColumnModel().getColumn(0).setPreferredWidth(40);
-            tPersonaContactoList.getColumnModel().getColumn(0).setMaxWidth(40);
-        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -95,22 +230,7 @@ public class PersonaContactoVista extends JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        getContentPane().add(jScrollPane3, gridBagConstraints);
-
-        bAgregarPersonaContacto.setText("Agregar Persona Contacto");
-        bAgregarPersonaContacto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bAgregarPersonaContactoActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.4;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(bAgregarPersonaContacto, gridBagConstraints);
+        pBusqueda.add(jScrollPane3, gridBagConstraints);
 
         tfFiltroDatos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfFiltroDatos.setText("");
@@ -126,10 +246,10 @@ public class PersonaContactoVista extends JInternalFrame {
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(tfFiltroDatos, gridBagConstraints);
+        pBusqueda.add(tfFiltroDatos, gridBagConstraints);
 
         lFiltro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lFiltro.setText("Palabra clave: ");
+        lFiltro.setText("Búsqueda Avanzada: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -137,29 +257,121 @@ public class PersonaContactoVista extends JInternalFrame {
         gridBagConstraints.weightx = 0.4;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(lFiltro, gridBagConstraints);
+        pBusqueda.add(lFiltro, gridBagConstraints);
+
+        lAdvertencia.setForeground(new java.awt.Color(255, 0, 51));
+        lAdvertencia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lAdvertencia.setText("");
+        lAdvertencia.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pBusqueda.add(lAdvertencia, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        getContentPane().add(pBusqueda, gridBagConstraints);
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+        String nombres;
+        String apellidos;
+        String telefono;
+        String correo;
+        String direccion;
+
+        nombres = tfNombres.getText();
+        apellidos = tfApellidos.getText();
+        telefono = Tel.getText();
+        correo = cor.getText();
+        direccion = Dir.getText();
+
+        String mensaje = validarDatos();
+        if (mensaje.isEmpty()) {
+            PersonaContacto personacontacto = new PersonaContacto(nombres, apellidos, telefono, correo, direccion);
+            controlador.AgregarNPersonaContacto(personacontacto);
+            vaciarCampos();
+            JOptionPane.showMessageDialog(this, "Registro hecho exitosamente!");
+        } else {
+            JOptionPane.showMessageDialog(this, mensaje);
+        }
+
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
 
     private void tfFiltroDatosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfFiltroDatosKeyTyped
         cargarTabla(tfFiltroDatos.getText());
     }//GEN-LAST:event_tfFiltroDatosKeyTyped
 
-    private void bAgregarPersonaContactoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarPersonaContactoActionPerformed
-        //TODO
-
-    }//GEN-LAST:event_bAgregarPersonaContactoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Controles.ButtonZ bAgregarPersonaContacto;
+    private swing.Controles.TextAreaZ Dir;
+    private swing.Controles.TextFieldZ Tel;
+    private swing.Controles.ButtonZ btnAgregarCliente;
+    private swing.Controles.TextFieldZ cor;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private swing.Controles.LabelZ lAdvertencia;
+    private swing.Controles.LabelZ lApelildos;
+    private swing.Controles.LabelZ lCorreo;
+    private swing.Controles.LabelZ lDireccion;
     private swing.Controles.LabelZ lFiltro;
+    private swing.Controles.LabelZ lNombres;
+    private swing.Controles.LabelZ lTelefono;
+    private swing.Contenedores.PanelZ pBusqueda;
+    private swing.Contenedores.PanelZ pContent;
     private swing.Controles.TableZ tPersonaContactoList;
+    private swing.Controles.TextFieldZ tfApellidos;
     private swing.Controles.TextFieldZ tfFiltroDatos;
+    private swing.Controles.TextFieldZ tfNombres;
     // End of variables declaration//GEN-END:variables
 
-    private void ActualizarPanel() {
+    private String validarDatos() {
+        // se procurará que no ingrese algún dato incorrecto
+        String mensaje = "";
+
+        try {
+            String nombres = tfNombres.getText();
+            String apellidos = tfApellidos.getText();
+            if (nombres.length() >= 45) {
+                mensaje += "Primer Nombre demasiado largo(mayor a 14 dígitos)\n";
+            }
+            if (apellidos.length() >= 45) {
+                mensaje += "Primer Apellido demasiado largo(mayor a 14 dígitos)\n";
+            }
+            if (cor.getText().length() <= 50) {
+                Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+                Matcher mather = pattern.matcher(cor.getText());
+                if (mather.find() == false) {
+
+                    mensaje += "El email ingresado es inválido.";
+                }
+            } else {
+                mensaje += "El email es demasiado largo";
+            }
+
+        } catch (NumberFormatException e) {
+            mensaje += "Campos vacios c:";
+        }
+        return mensaje;
+    }
+
+    private void vaciarCampos() {
+        tfNombres.setText("");
+        tfApellidos.setText("");
+        Tel.setText("");
+        cor.setText("");
+        Dir.setText("");
 
     }
 
@@ -168,17 +380,21 @@ public class PersonaContactoVista extends JInternalFrame {
         dtm.setRowCount(0);
         List lista = controlador.cargarFiltros(textFiltro);
         Object[] row = new Object[6];
-        for (int i = 0; i < lista.size(); i++) {
-            PersonaContacto pc = (PersonaContacto) lista.get(i);
-            row[0] = pc.getIdPersonaContacto();
-            row[1] = pc.getNombres();
-            row[2] = pc.getApellidos();
-            row[3] = pc.getTelefono();
-            row[4] = pc.getCorreo();
-            row[5] = pc.getDireccion();
-            dtm.addRow(row);
+        if (lista != null) {
+            for (int i = 0; i < lista.size(); i++) {
+                PersonaContacto pc = (PersonaContacto) lista.get(i);
+                row[0] = pc.getIdPersonaContacto();
+                row[1] = pc.getNombres();
+                row[2] = pc.getApellidos();
+                row[3] = pc.getTelefono();
+                row[4] = pc.getCorreo();
+                row[5] = pc.getDireccion();
+                dtm.addRow(row);
+            }
+            tPersonaContactoList.setModel(dtm);
+            lAdvertencia.setText("");
+        } else {
+            lAdvertencia.setText("Busque la persona contacto en el campo superior.");
         }
-        tPersonaContactoList.setModel(dtm);
     }
-
 }

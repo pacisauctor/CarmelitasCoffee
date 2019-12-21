@@ -21,17 +21,18 @@ import org.hibernate.criterion.Restrictions;
  * @author darce
  */
 public class CPlanillas {
+
     private final Session s;
-    
+
     public CPlanillas(Session s) {
         this.s = s;
     }
-    
-    public List MostrarEmpleadoPlanillas(String numeroPlanilla){
+
+    public List MostrarEmpleadoPlanillas(String numeroPlanilla) {
         s.flush();
         s.clear();
-        try{
-            Criteria crit = s.createCriteria(EmpleadoPlanilla.class,"ep");
+        try {
+            Criteria crit = s.createCriteria(EmpleadoPlanilla.class, "ep");
             crit.createAlias("ep.planilla", "p");
             crit.createAlias("ep.empleado", "e");
             ProjectionList projs = Projections.projectionList();
@@ -42,16 +43,17 @@ public class CPlanillas {
             projs.add(Projections.property("ep.salario"));
             projs.add(Projections.property("ep.fechaRecibido"));
             crit.setProjection(projs);
-            Criterion planilla = Restrictions.eq("p.numeroPlanilla",numeroPlanilla);
+            Criterion planilla = Restrictions.eq("p.numeroPlanilla", numeroPlanilla);
             List ep = crit.add(planilla).list();
+            
             return ep;
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             return null;
         }
     }
-    
-    public List<Planilla> MostrarPlanillas(){
+
+    public List<Planilla> MostrarPlanillas() {
         s.flush();
         s.clear();
         Criteria crit = s.createCriteria(Planilla.class);

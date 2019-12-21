@@ -40,7 +40,7 @@ public class CPersonaContactoVista {
 
             return crit.list();
         } else {
-            return s.createCriteria(PersonaContacto.class).list();
+            return null;
         }
     }
 
