@@ -6,7 +6,6 @@
 package com.carmelitascoffee.vista.inicio;
 
 import com.carmelitascoffee.controlador.inicio.CEscritorio;
-import com.carmelitascoffee.reportes.OrdEmpl;
 import com.carmelitascoffee.reportes.OrdenesPorEmpleado;
 import com.carmelitascoffee.vista.ajustes.AdministrarUsuarios;
 import com.carmelitascoffee.vista.compras.Proveedores;
@@ -22,14 +21,12 @@ import com.carmelitascoffee.vista.ventas.NuevaPersonaContacto;
 import com.carmelitascoffee.vista.ventas.NuevoCliente;
 import com.carmelitascoffee.vista.ventas.OrdenVista;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
-import static java.lang.System.exit;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;

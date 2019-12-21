@@ -17,7 +17,6 @@ import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -48,6 +47,7 @@ public class NuevaOrden extends JInternalFrame {
         this.idEmpleado = idEmpleado;
         tfEmpleadoid.setText("" + idEmpleado);
         controlador = new CNuevaOrden(s);
+        tfNumeroFactura.setText(controlador.getNuevoCodigoFactura());
 
     }
 
@@ -117,6 +117,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(lNumeroFactura, gridBagConstraints);
 
+        tfNumeroFactura.setEditable(false);
         tfNumeroFactura.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -531,6 +532,11 @@ public class NuevaOrden extends JInternalFrame {
 
                     }
                 }
+                JOptionPane.showMessageDialog(this,"Orden registrada exitosamente!");
+                model.setRowCount(0);
+                tOrden.setModel(model);
+                tfIdCliente.setText("");
+                tfNumeroFactura.setText(controlador.getNuevoCodigoFactura());
             } catch (NumberFormatException | HibernateException e) {
                 JOptionPane.showMessageDialog(this, e);
             }
@@ -612,9 +618,6 @@ public class NuevaOrden extends JInternalFrame {
             int idCliente = Integer.parseInt(tfIdCliente.getText());
             if (controlador.getCliente(idCliente) == null) {
                 mensaje += "No existe un cliente con ese id!!";
-            }
-            if (tfNumeroFactura.getText().length() != 5) {
-                mensaje += "La Factura debe de tener 5 digitos";
             }
         } catch (NumberFormatException numberFormatException) {
         }

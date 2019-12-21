@@ -12,6 +12,7 @@ import com.carmelitascoffee.pojo.Empleado;
 import com.carmelitascoffee.pojo.Orden;
 import com.carmelitascoffee.pojo.Producto;
 import com.carmelitascoffee.pojo.Servicio;
+import java.util.Formatter;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -93,5 +94,12 @@ public class CNuevaOrden {
         s.beginTransaction();
         s.save(dop);
         s.getTransaction().commit();
+    }
+
+    public String getNuevoCodigoFactura() {
+        String codigo = "O";
+        Criteria crit = s.createCriteria(Orden.class);
+        codigo += String.valueOf(new Formatter().format("%05d", crit.list().size()));
+        return codigo;
     }
 }
