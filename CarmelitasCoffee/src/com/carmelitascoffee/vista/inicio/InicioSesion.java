@@ -13,7 +13,15 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -33,6 +41,7 @@ public class InicioSesion extends JFrame {
 
     public InicioSesion() {
         initComponents();
+        recordarLogin();
         controlador = new CInicioSesion(s);
     }
 
@@ -40,6 +49,7 @@ public class InicioSesion extends JFrame {
         this.title = title;
         this.s = s;
         initComponents();
+        recordarLogin();
         controlador = new CInicioSesion(s);
     }
 
@@ -75,9 +85,8 @@ public class InicioSesion extends JFrame {
         labelZ2 = new swing.Controles.LabelZ();
         tfUsuario = new swing.Controles.TextFieldZ();
         pfClave = new swing.Controles.PasswordFieldZ();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textPaneZ1 = new swing.Controles.TextPaneZ();
         bIniciarSesion = new swing.Controles.ButtonZ();
+        cbRecuerdame = new swing.Controles.CheckBoxZ();
 
         setBackground(new java.awt.Color(97, 53, 1));
         setUndecorated(true);
@@ -169,26 +178,28 @@ public class InicioSesion extends JFrame {
         pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pContent.setLayout(new java.awt.GridBagLayout());
 
-        labelZ1.setText("Nombre de usuario");
+        labelZ1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZ1.setText("Nombre de usuario:");
         labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pContent.add(labelZ1, gridBagConstraints);
 
-        labelZ2.setText("Contraseña");
+        labelZ2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZ2.setText("Contraseña:");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pContent.add(labelZ2, gridBagConstraints);
 
         tfUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(28, 40, 51)));
@@ -213,10 +224,11 @@ public class InicioSesion extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 200;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pContent.add(tfUsuario, gridBagConstraints);
 
         pfClave.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(28, 40, 51)));
@@ -233,26 +245,12 @@ public class InicioSesion extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 200;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pContent.add(pfClave, gridBagConstraints);
-
-        textPaneZ1.setEditable(false);
-        textPaneZ1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(28, 40, 51), 0, true));
-        textPaneZ1.setForeground(new java.awt.Color(28, 40, 51));
-        textPaneZ1.setText("En caso de olvidar sus datos de usuario  comunicarselo al debido responsable ");
-        jScrollPane1.setViewportView(textPaneZ1);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        pContent.add(jScrollPane1, gridBagConstraints);
 
         bIniciarSesion.setText("Iniciar");
         bIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -262,12 +260,27 @@ public class InicioSesion extends JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         pContent.add(bIniciarSesion, gridBagConstraints);
+
+        cbRecuerdame.setText("Recuerdáme");
+        cbRecuerdame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRecuerdameActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.9;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        pContent.add(cbRecuerdame, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -346,6 +359,16 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_tfUsuarioActionPerformed
 
     private void bIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIniciarSesionActionPerformed
+        if (cbRecuerdame.isSelected()) {
+            try {
+                PrintWriter writer = new PrintWriter("login.txt", "UTF-8");
+                writer.println(tfUsuario.getText());
+                writer.println(new String(pfClave.getPassword()));
+                writer.close();
+            } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+            }
+        }
         if (controlador.validarUsuario(tfUsuario.getText(), new String(pfClave.getPassword()))) {
             iniciarAplicacion(controlador.getRol(tfUsuario.getText()), controlador.getIdUsuario(tfUsuario.getText()));
         } else {
@@ -364,26 +387,29 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_pfClaveKeyPressed
 
     private void tfUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusGained
-        System.out.println("foco ganado");
+
     }//GEN-LAST:event_tfUsuarioFocusGained
 
     private void tfUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUsuarioFocusLost
-        System.out.println("foco perdido");
+
     }//GEN-LAST:event_tfUsuarioFocusLost
+
+    private void cbRecuerdameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRecuerdameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRecuerdameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrar;
     private swing.Controles.ButtonZ bIniciarSesion;
     private javax.swing.JButton bMinimizar;
-    private javax.swing.JScrollPane jScrollPane1;
+    private swing.Controles.CheckBoxZ cbRecuerdame;
     private javax.swing.JLabel lTitle;
     private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ2;
     private javax.swing.JPanel pContent;
     private javax.swing.JPanel pToolBar;
     private swing.Controles.PasswordFieldZ pfClave;
-    private swing.Controles.TextPaneZ textPaneZ1;
     private swing.Controles.TextFieldZ tfUsuario;
     // End of variables declaration//GEN-END:variables
 
@@ -408,5 +434,20 @@ public class InicioSesion extends JFrame {
         fullResizibleFrame = new FullResizibleFrame(initialDimension, initialLocation, frameZ);
         this.setVisible(false);
         frameZ.setVisible(true);
+    }
+
+    private void recordarLogin() {
+        try {
+            FileReader f = new FileReader("login.txt");
+            BufferedReader b = new BufferedReader(f);
+            tfUsuario.setText(b.readLine());
+            pfClave.setText(b.readLine());
+            cbRecuerdame.setSelected(true);
+            
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

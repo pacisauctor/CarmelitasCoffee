@@ -16,8 +16,6 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -28,16 +26,15 @@ import org.hibernate.Session;
  *
  * @author admin
  */
-public class ModificarEmpleado extends JInternalFrame implements ActionListener{
+public class ModificarEmpleado extends JInternalFrame implements ActionListener {
 
     /**
      * Creates new form InternalFrameZ
      */
-    
     private CModificarEmpleado controlador;
     Empleado empleado_actualizar = null;
     Contrato contrato_actualizar = null;
-    
+
     public ModificarEmpleado() {
         initComponents();
         this.PANEL_main.add(this.PANEL_buscar);
@@ -45,7 +42,7 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         ((JSpinner.DefaultEditor) SPINNER_fechacontrato.getEditor()).getTextField().setEditable(false);
         ((JSpinner.DefaultEditor) SPINNER_edadempleado.getEditor()).getTextField().setEditable(false);
     }
-    
+
     public ModificarEmpleado(Session s) {
         controlador = new CModificarEmpleado(s);
         initComponents();
@@ -54,8 +51,6 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         ((JSpinner.DefaultEditor) SPINNER_fechacontrato.getEditor()).getTextField().setEditable(false);
         ((JSpinner.DefaultEditor) SPINNER_edadempleado.getEditor()).getTextField().setEditable(false);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -520,7 +515,7 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
     }//GEN-LAST:event_BTN_backActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void BTN_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_nextActionPerformed
@@ -528,14 +523,13 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         int fila = TABLE_buscarempleado.getSelectedRow();
         this.empleado_actualizar = controlador.getEmpleado(modelo.getValueAt(fila, 0).toString());
         this.contrato_actualizar = controlador.getContratoActivo(empleado_actualizar.getCedulaIdentidad());
-        
-        if(this.BTN_back.isEnabled()){
-            String sexo=null;
-            if(this.RADIOBTN_hombre.isSelected()){
-                sexo="H";
-            }
-            else if(this.RADIOBTN_mujer.isSelected()){
-                sexo="M";
+
+        if (this.BTN_back.isEnabled()) {
+            String sexo = null;
+            if (this.RADIOBTN_hombre.isSelected()) {
+                sexo = "H";
+            } else if (this.RADIOBTN_mujer.isSelected()) {
+                sexo = "M";
             }
             ActualizarEmpleado(
                     empleado_actualizar.getCedulaIdentidad(),
@@ -552,21 +546,20 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
                     contrato_actualizar.getPuesto(),
                     this.TEXTFIELD_sueldo.getText(),
                     this.TEXTFIELD_comisiones.getText(),
-                    (Date)this.SPINNER_fechacontrato.getValue(),
+                    (Date) this.SPINNER_fechacontrato.getValue(),
                     this.COMBOBOX_estado.getSelectedItem().toString()
             );
             this.dispose();
-        }
-        else if(contrato_actualizar!=null){
+        } else if (contrato_actualizar != null) {
             this.BTN_back.setEnabled(true);
             this.BTN_next.setText("Finalizar");
-            
+
             this.TEXTFIELD_sueldo.setText(contrato_actualizar.getSueldo().toString());
             this.TEXTFIELD_comisiones.setText(contrato_actualizar.getComisiones().toString());
             try {
                 this.SPINNER_fechacontrato.setValue(new SimpleDateFormat("yyyy-MM-dd").parse(contrato_actualizar.getFechaContratacion().toString()));
             } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(null,"Error en fecha: "+ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error en fecha: " + ex.getMessage());
             }
             this.COMBOBOX_estado.setSelectedItem(contrato_actualizar.getEstado());
             this.TEXTFIELD_pnombre.setText(empleado_actualizar.getPrimerNombre());
@@ -574,50 +567,46 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
             this.TEXTFIELD_papellido.setText(empleado_actualizar.getPrimerApellido());
             this.TEXTFIELD_sapellido.setText(empleado_actualizar.getSegundoApellido());
             this.BTNGROUP_sexoempleado.clearSelection();
-            if("H".equals(empleado_actualizar.getSexo().toString())){
+            if ("H".equals(empleado_actualizar.getSexo().toString())) {
                 this.RADIOBTN_hombre.setSelected(true);
-            }
-            else if("M".equals(empleado_actualizar.getSexo().toString())){
+            } else if ("M".equals(empleado_actualizar.getSexo().toString())) {
                 this.RADIOBTN_mujer.setSelected(true);
             }
             this.TEXTFIELD_direccion.setText(empleado_actualizar.getDireccion());
             this.TEXTFIELD_telefono.setText(empleado_actualizar.getTelefono());
             this.TEXTFIELD_estadocivil.setText(empleado_actualizar.getEstadoCivil());
             this.SPINNER_edadempleado.setValue(empleado_actualizar.getEdad());
-            
+
             this.PANEL_main.removeAll();
             this.PANEL_main.add(this.PANEL_modificar);
             this.ActualizarPanel();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Este empleado no tiene contratos activos");
+        } else {
+            JOptionPane.showMessageDialog(null, "Este empleado no tiene contratos activos");
         }
     }//GEN-LAST:event_BTN_nextActionPerformed
 
     private void TEXTFIELD_cedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TEXTFIELD_cedulaKeyReleased
-        if(TEXTFIELD_cedula.getText().isEmpty()){
-            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setRowCount(0);
+        if (TEXTFIELD_cedula.getText().isEmpty()) {
+            ((DefaultTableModel) this.TABLE_buscarempleado.getModel()).setRowCount(0);
             this.BTN_next.setEnabled(false);
-        }
-        else{
+        } else {
             BuscarEmpleado(this.TEXTFIELD_cedula.getText());
         }
     }//GEN-LAST:event_TEXTFIELD_cedulaKeyReleased
 
     private void TABLE_buscarempleadoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_buscarempleadoMouseReleased
-        if(this.TABLE_buscarempleado.getSelectedRowCount()>0){
+        if (this.TABLE_buscarempleado.getSelectedRowCount() > 0) {
             this.BTN_next.setEnabled(true);
         }
     }//GEN-LAST:event_TABLE_buscarempleadoMouseReleased
 
     private void TABLE_buscarempleadoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_TABLE_buscarempleadoPropertyChange
-        if(this.TABLE_buscarempleado.getSelectedRowCount()>0){
+        if (this.TABLE_buscarempleado.getSelectedRowCount() > 0) {
             this.BTN_next.setEnabled(true);
-        }
-        else{
+        } else {
             this.BTN_next.setEnabled(false);
         }
-        if(this.TABLE_buscarempleado.getRowCount()==0){
+        if (this.TABLE_buscarempleado.getRowCount() == 0) {
             this.BTN_next.setEnabled(false);
         }
     }//GEN-LAST:event_TABLE_buscarempleadoPropertyChange
@@ -626,24 +615,24 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
         // TODO add your handling code here:
     }//GEN-LAST:event_TEXTFIELD_cedulaActionPerformed
 
-    void ActualizarContrato(String puesto,String sueldo,String comisiones,Date fechacontrato,String estado){
+    void ActualizarContrato(String puesto, String sueldo, String comisiones, Date fechacontrato, String estado) {
         controlador.ModificarContrato(puesto, sueldo, comisiones, fechacontrato, estado);
     }
-    
-    void ActualizarEmpleado(String cedula, String pnombre,String snombre,String papellido,String sapellido,String sexo,String direccion,String Telefono,String estadocivil){
+
+    void ActualizarEmpleado(String cedula, String pnombre, String snombre, String papellido, String sapellido, String sexo, String direccion, String Telefono, String estadocivil) {
         controlador.ModificarEmpleado(cedula, pnombre, snombre, papellido, sapellido, sexo, direccion, Telefono, estadocivil);
     }
-    
-    void BuscarEmpleado(String txt_busqueda){
-        if(!txt_busqueda.isEmpty()){
-            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setRowCount(0);
-            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setColumnCount(10);
-            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setColumnIdentifiers(new String[]{"Cedula","Nombre","Apellido","Sexo","Edad","Direccion","Telefono","Correo","Estado civil","Escolaridad"});
+
+    void BuscarEmpleado(String txt_busqueda) {
+        if (!txt_busqueda.isEmpty()) {
+            ((DefaultTableModel) this.TABLE_buscarempleado.getModel()).setRowCount(0);
+            ((DefaultTableModel) this.TABLE_buscarempleado.getModel()).setColumnCount(10);
+            ((DefaultTableModel) this.TABLE_buscarempleado.getModel()).setColumnIdentifiers(new String[]{"Cedula", "Nombre", "Apellido", "Sexo", "Edad", "Direccion", "Telefono", "Correo", "Estado civil", "Escolaridad"});
             List<Empleado> empleados = controlador.BuscarEmpleados(txt_busqueda);
-            if(empleados.size()>0){
+            if (empleados.size() > 0) {
                 Iterator consulta = empleados.iterator();
                 DefaultTableModel modelo = (DefaultTableModel) this.TABLE_buscarempleado.getModel();
-                while(consulta.hasNext()){              
+                while (consulta.hasNext()) {
                     Vector datos = new Vector();
                     Empleado fila = (Empleado) consulta.next();
                     datos.add(fila.getCedulaIdentidad());
@@ -660,9 +649,8 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
                 }
                 this.TABLE_buscarempleado.setModel(modelo);
             }
-        }
-        else{
-            ((DefaultTableModel)this.TABLE_buscarempleado.getModel()).setRowCount(0);
+        } else {
+            ((DefaultTableModel) this.TABLE_buscarempleado.getModel()).setRowCount(0);
         }
     }
 
@@ -715,15 +703,15 @@ public class ModificarEmpleado extends JInternalFrame implements ActionListener{
     private swing.Controles.LabelZ labelZ7;
     private swing.Controles.LabelZ labelZ8;
     // End of variables declaration//GEN-END:variables
-    
-    private void ActualizarPanel(){
+
+    private void ActualizarPanel() {
         this.PANEL_main.revalidate();
         this.PANEL_main.repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+
     }
 
 }

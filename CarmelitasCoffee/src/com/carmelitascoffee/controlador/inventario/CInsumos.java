@@ -94,4 +94,10 @@ public class CInsumos {
             return s.createCriteria(Insumo.class).list();
         }
     }
+
+    public Insumo buscarPorId(int id) {
+        Insumo insbd = (Insumo) s.get(Insumo.class, id);
+
+        return insbd;
+    }
 }

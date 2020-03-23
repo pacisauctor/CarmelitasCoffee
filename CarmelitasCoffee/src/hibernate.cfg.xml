@@ -45,7 +45,7 @@ Contributor(s):
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/carmelitas_coffee?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
     <property name="hibernate.connection.username">coffee</property>
-    <property name="hibernate.connection.password">CarmelitasCoffee100!</property>
+    <property name="hibernate.connection.password">CoffeeSysttems100!</property>
     <mapping resource="com/carmelitascoffee/pojo/Cliente.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Usuario.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Orden.hbm.xml"/>

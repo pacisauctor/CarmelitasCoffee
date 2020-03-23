@@ -6,10 +6,8 @@
 package com.carmelitascoffee.vista.ventas;
 
 import com.carmelitascoffee.controlador.ventas.COrdenVista;
-import com.carmelitascoffee.pojo.Orden;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JInternalFrame;
@@ -21,18 +19,18 @@ import org.hibernate.Session;
  *
  * @author admin
  */
-public class OrdenVista extends JInternalFrame implements ActionListener{
+public class OrdenVista extends JInternalFrame implements ActionListener {
 
     /**
      * Creates new form InternalFrameZ
      */
     private COrdenVista controlador;
     private Session s;
-    
+
     public OrdenVista() {
         initComponents();
     }
-    
+
     public OrdenVista(Session s) {
         this.s = s;
         controlador = new COrdenVista(s);
@@ -188,11 +186,11 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        
+
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void TABLE_ordenesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TABLE_ordenesMouseReleased
-        if(this.TABLE_ordenes.getSelectedRowCount()>0){
+        if (this.TABLE_ordenes.getSelectedRowCount() > 0) {
             DefaultTableModel modelo = (DefaultTableModel) TABLE_ordenes.getModel();
             int fila = TABLE_ordenes.getSelectedRow();
             String numeroFactura = modelo.getValueAt(fila, 2).toString();
@@ -201,12 +199,12 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
         }
     }//GEN-LAST:event_TABLE_ordenesMouseReleased
 
-    void CargarOrdenProducto(String numeroFactura){
-        ((DefaultTableModel)this.TABLE_ordenproducto.getModel()).setRowCount(0);
+    void CargarOrdenProducto(String numeroFactura) {
+        ((DefaultTableModel) this.TABLE_ordenproducto.getModel()).setRowCount(0);
         List op = controlador.MostrarOrdenProducto(numeroFactura);
-        if(op.size()>0){
+        if (op.size() > 0) {
             DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenproducto.getModel();
-            for(int i=0; i<op.size(); i++){              
+            for (int i = 0; i < op.size(); i++) {
                 Vector datos = new Vector();
                 Object[] fila = (Object[]) op.get(i);
                 datos.add(fila[0]);
@@ -215,15 +213,15 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
                 modelo.addRow(datos);
             }
             this.TABLE_ordenproducto.setModel(modelo);
-        }        
+        }
     }
-    
-    void CargarOrdenServicio(String numeroFactura){
-        ((DefaultTableModel)this.TABLE_ordenservicio.getModel()).setRowCount(0);
+
+    void CargarOrdenServicio(String numeroFactura) {
+        ((DefaultTableModel) this.TABLE_ordenservicio.getModel()).setRowCount(0);
         List os = controlador.MostrarOrdenServicio(numeroFactura);
-        if(os.size()>0){
+        if (os.size() > 0) {
             DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenservicio.getModel();
-            for(int i=0; i<os.size(); i++){              
+            for (int i = 0; i < os.size(); i++) {
                 Vector datos = new Vector();
                 Object[] fila = (Object[]) os.get(i);
                 datos.add(fila[0]);
@@ -234,13 +232,13 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
             this.TABLE_ordenservicio.setModel(modelo);
         }
     }
-    
-    void CargarOrdenes(){
-        ((DefaultTableModel)this.TABLE_ordenes.getModel()).setRowCount(0);
+
+    void CargarOrdenes() {
+        ((DefaultTableModel) this.TABLE_ordenes.getModel()).setRowCount(0);
         List ordenes = controlador.MostrarOrdenes();
-        if(ordenes.size()>0){
+        if (ordenes.size() > 0) {
             DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenes.getModel();
-            for(int i=0; i<ordenes.size(); i++){              
+            for (int i = 0; i < ordenes.size(); i++) {
                 Vector datos = new Vector();
                 Object[] fila = (Object[]) ordenes.get(i);
                 datos.add(fila[0]);
@@ -253,9 +251,8 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
                 modelo.addRow(datos);
             }
             this.TABLE_ordenes.setModel(modelo);
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"No hay registros");
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay registros");
         }
     }
 
@@ -272,15 +269,15 @@ public class OrdenVista extends JInternalFrame implements ActionListener{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
-    
-    private void ActualizarPanel(){
+
+    private void ActualizarPanel() {
         this.PANEL_main.revalidate();
         this.PANEL_main.repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+
     }
 
 }

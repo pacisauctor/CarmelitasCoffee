@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package com.carmelitascoffee.vista.inventario;
-import com.carmelitascoffee.controlador.inventario.CInsumos;
+
 import com.carmelitascoffee.controlador.inventario.CInsumos;
 import com.carmelitascoffee.pojo.Insumo;
-import java.math.BigDecimal;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 
@@ -19,9 +20,10 @@ import org.hibernate.Session;
  */
 public class Insumos extends JInternalFrame {
 
-   private CInsumos controlador;
+    private CInsumos controlador;
     private Session se;
     private DefaultTableModel modelo;
+
     /**
      * Creates new form InternalFrameZ
      */
@@ -32,9 +34,10 @@ public class Insumos extends JInternalFrame {
         modelo.addColumn("Código");
         modelo.addColumn("Nombre");
         modelo.addColumn("Cantidad");;
-        controlador = new CInsumos(se,modelo);
-        controlador.LlenarTabla(tableZ1);
+        controlador = new CInsumos(se, modelo);
+        controlador.LlenarTabla(tInsumos);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,28 +46,110 @@ public class Insumos extends JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jdAgregarInsumo = new javax.swing.JDialog();
+        pAgregar = new swing.Contenedores.PanelZ();
+        lTitulo = new swing.Controles.LabelZ();
+        lDescripcion = new swing.Controles.LabelZ();
+        lCantidad = new swing.Controles.LabelZ();
+        tfDescripcion = new swing.Controles.TextFieldZ();
+        tfCantidad = new swing.Controles.TextFieldZ();
+        bAgregarInsumo = new swing.Controles.ButtonZ();
         labelZ2 = new swing.Controles.LabelZ();
         Bus = new swing.Controles.TextFieldZ();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableZ1 = new swing.Controles.TableZ();
-        labelZ1 = new swing.Controles.LabelZ();
-        cod = new swing.Controles.TextFieldZ();
-        nom = new swing.Controles.TextFieldZ();
-        labelZ5 = new swing.Controles.LabelZ();
-        cant = new swing.Controles.TextFieldZ();
-        labelZ3 = new swing.Controles.LabelZ();
-        btnEditar = new swing.Controles.ButtonZ();
+        tInsumos = new swing.Controles.TableZ();
         btnAñadir = new swing.Controles.ButtonZ();
+
+        pAgregar.setPreferredSize(new java.awt.Dimension(400, 190));
+        pAgregar.setLayout(new java.awt.GridBagLayout());
+
+        lTitulo.setText("Agregar Insumo");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pAgregar.add(lTitulo, gridBagConstraints);
+
+        lDescripcion.setText("Descripción: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(lDescripcion, gridBagConstraints);
+
+        lCantidad.setText("Cantidad En Inventario:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(lCantidad, gridBagConstraints);
+
+        tfDescripcion.setText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(tfDescripcion, gridBagConstraints);
+
+        tfCantidad.setText("");
+        tfCantidad.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(tfCantidad, gridBagConstraints);
+
+        bAgregarInsumo.setText("Agregar");
+        bAgregarInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarInsumoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 15);
+        pAgregar.add(bAgregarInsumo, gridBagConstraints);
+
+        jdAgregarInsumo.getContentPane().add(pAgregar, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(255, 247, 162));
         setClosable(true);
         setIconifiable(true);
         setTitle("Insumos");
         setVisible(true);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        labelZ2.setText("Buscar por nombre de Insumo");
+        labelZ2.setText("Buscar por nombre de Insumo:");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(labelZ2, gridBagConstraints);
 
         Bus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         Bus.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -77,60 +162,62 @@ public class Insumos extends JInternalFrame {
                 BusKeyTyped(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.9;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(Bus, gridBagConstraints);
 
-        tableZ1.setModel(new javax.swing.table.DefaultTableModel(
+        tInsumos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Código", "Nombre", "Cantidad"
             }
-        ));
-        tableZ1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tInsumos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableZ1MouseClicked(evt);
+                tInsumosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tableZ1);
-
-        labelZ1.setText("Código");
-        labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        cod.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        cod.setText("");
-        cod.setCaretColor(new java.awt.Color(255, 255, 255));
-        cod.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        cod.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        nom.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        nom.setText("");
-        nom.setCaretColor(new java.awt.Color(255, 255, 255));
-        nom.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        nom.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        labelZ5.setText("Nombre");
-        labelZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        cant.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        cant.setText("");
-        cant.setCaretColor(new java.awt.Color(255, 255, 255));
-        cant.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        cant.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        cant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cantActionPerformed(evt);
+        tInsumos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tInsumosKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tInsumosKeyReleased(evt);
             }
         });
+        jScrollPane1.setViewportView(tInsumos);
 
-        labelZ3.setText("Cantidad");
-        labelZ3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.6;
+        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 5, 15);
+        getContentPane().add(jScrollPane1, gridBagConstraints);
 
         btnAñadir.setText("Añadir");
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
@@ -138,126 +225,88 @@ public class Insumos extends JInternalFrame {
                 btnAñadirActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelZ1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelZ5, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                            .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelZ3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cant, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(63, 63, 63))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(Bus, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(63, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Bus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelZ3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cant, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(42, 42, 42))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(btnAñadir, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableZ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableZ1MouseClicked
-       int Selec = tableZ1.rowAtPoint(evt.getPoint());
-        cod.setText(String.valueOf(tableZ1.getValueAt(Selec, 0)));
-        nom.setText(String.valueOf(tableZ1.getValueAt(Selec, 1)));
-        cant.setText(String.valueOf(tableZ1.getValueAt(Selec, 2)));
-    }//GEN-LAST:event_tableZ1MouseClicked
+    private void tInsumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tInsumosMouseClicked
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-     Insumo insumo = new Insumo(nom.getText(),Integer.parseInt(cant.getText()));
-        //insumo.setInsumo(Integer.parseInt(cod.getText()));
-        insumo.setIdInsumo(Integer.parseInt(cod.getText()));
-        controlador.setInsumo(insumo);     
-        
-        controlador.LlenarTabla(tableZ1);
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_tInsumosMouseClicked
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-        String descripcion;
-        int cantidadInventario;
-
-        descripcion = nom.getText();
-        cantidadInventario = Integer.parseInt(cant.getText());
-        
-        Insumo insumo = new Insumo(descripcion,cantidadInventario);
-        controlador.AgregarInsumo(insumo);
-        cargarTabla(Bus.getText());
+        jdAgregarInsumo.setSize(400, 190);
+        jdAgregarInsumo.setLocationRelativeTo(this);
+        jdAgregarInsumo.setVisible(true);
     }//GEN-LAST:event_btnAñadirActionPerformed
 
     private void BusKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BusKeyTyped
         cargarTabla(Bus.getText());
     }//GEN-LAST:event_BusKeyTyped
 
-    private void cantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cantActionPerformed
+    private void tInsumosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tInsumosKeyPressed
+
+
+    }//GEN-LAST:event_tInsumosKeyPressed
+
+    private void tInsumosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tInsumosKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int columna = tInsumos.getSelectedColumn();
+            int fila = tInsumos.getSelectedRow();
+            int codigo = Integer.parseInt(tInsumos.getValueAt(fila, 0).toString());
+            Insumo insumo = controlador.buscarPorId(codigo);
+            // modificar nombre
+            if (columna == 1) {
+                insumo.setDescripcion((String) tInsumos.getValueAt(fila, 1));
+                // modificar cantidad en inventario
+            } else if (columna == 2) {
+                insumo.setCantidadInventario(Integer.parseInt(tInsumos.getValueAt(fila, 2).toString()));
+            }
+            controlador.setInsumo(insumo);
+            controlador.LlenarTabla(tInsumos);
+        }
+    }//GEN-LAST:event_tInsumosKeyReleased
+
+    private void bAgregarInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarInsumoActionPerformed
+        try {
+            String descripcion = tfDescripcion.getText();
+            int cantidad = Integer.parseInt(tfCantidad.getText());
+            Insumo insumo = new Insumo(descripcion, cantidad);
+            controlador.AgregarInsumo(insumo);
+            controlador.LlenarTabla(tInsumos);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        tfCantidad.setText("");
+        tfDescripcion.setText("");
+        jdAgregarInsumo.setVisible(false);
+
+    }//GEN-LAST:event_bAgregarInsumoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.TextFieldZ Bus;
+    private swing.Controles.ButtonZ bAgregarInsumo;
     private swing.Controles.ButtonZ btnAñadir;
-    private swing.Controles.ButtonZ btnEditar;
-    private swing.Controles.TextFieldZ cant;
-    private swing.Controles.TextFieldZ cod;
     private javax.swing.JScrollPane jScrollPane1;
-    private swing.Controles.LabelZ labelZ1;
+    private javax.swing.JDialog jdAgregarInsumo;
+    private swing.Controles.LabelZ lCantidad;
+    private swing.Controles.LabelZ lDescripcion;
+    private swing.Controles.LabelZ lTitulo;
     private swing.Controles.LabelZ labelZ2;
-    private swing.Controles.LabelZ labelZ3;
-    private swing.Controles.LabelZ labelZ5;
-    private swing.Controles.TextFieldZ nom;
-    private swing.Controles.TableZ tableZ1;
+    private swing.Contenedores.PanelZ pAgregar;
+    private swing.Controles.TableZ tInsumos;
+    private swing.Controles.TextFieldZ tfCantidad;
+    private swing.Controles.TextFieldZ tfDescripcion;
     // End of variables declaration//GEN-END:variables
 
-private void cargarTabla(String textFiltro) {
-        DefaultTableModel dtm = (DefaultTableModel) tableZ1.getModel();
+    private void cargarTabla(String textFiltro) {
+        DefaultTableModel dtm = (DefaultTableModel) tInsumos.getModel();
         dtm.setRowCount(0);
         List lista = controlador.cargarFiltros(textFiltro);
         Object[] row = new Object[3];
@@ -266,16 +315,9 @@ private void cargarTabla(String textFiltro) {
             row[0] = in.getIdInsumo();
             row[1] = in.getDescripcion();
             row[2] = in.getCantidadInventario();
-             dtm.addRow(row);
+            dtm.addRow(row);
         }
-        tableZ1.setModel(dtm);
+        tInsumos.setModel(dtm);
     }
 
-
-
-
 }
-
-
-
-

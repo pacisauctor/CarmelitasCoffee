@@ -35,7 +35,7 @@ public class CAgregarEmpleado {
 
     private Empleado buscarEmpleado(Empleado empleado) {
         String cedula = empleado.getCedulaIdentidad();
-        Criteria crit= s.createCriteria(Empleado.class).add(Restrictions.eq("cedulaIdentidad", cedula));
+        Criteria crit = s.createCriteria(Empleado.class).add(Restrictions.eq("cedulaIdentidad", cedula));
         empleado = (Empleado) crit.list().get(0);
         return empleado;
     }

@@ -6,7 +6,6 @@
 package com.carmelitascoffee.vista.inventario;
 
 import com.carmelitascoffee.controlador.inventario.CProductos;
-import com.carmelitascoffee.controlador.inventario.CProductos;
 import com.carmelitascoffee.pojo.Producto;
 import java.math.BigDecimal;
 import java.util.List;

@@ -49,8 +49,8 @@ class CargandoApp extends Thread {
     public void run() {
         while (cargando) {
             try {
-                Thread.sleep(500);
-                System.out.println("repetir");
+                Thread.sleep(200);
+                
                 primero.cambiarValorAumentandoEn(10);
             } catch (InterruptedException ex) {
                 Logger.getLogger(CargandoApp.class.getName()).log(Level.SEVERE, null, ex);

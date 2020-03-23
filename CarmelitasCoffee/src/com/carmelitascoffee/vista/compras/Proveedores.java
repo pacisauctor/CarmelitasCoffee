@@ -7,11 +7,9 @@ package com.carmelitascoffee.vista.compras;
 
 import com.carmelitascoffee.controlador.compras.CProveedores;
 import com.carmelitascoffee.pojo.Proveedor;
-import java.net.URL;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

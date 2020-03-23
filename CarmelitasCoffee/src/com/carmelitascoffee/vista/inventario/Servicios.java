@@ -6,14 +6,12 @@
 package com.carmelitascoffee.vista.inventario;
 
 import com.carmelitascoffee.controlador.inventario.CServicios;
-import com.carmelitascoffee.controlador.inventario.CServicios;
 import com.carmelitascoffee.pojo.Servicio;
 import java.math.BigDecimal;
 import javax.swing.JInternalFrame;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
-import javax.swing.JOptionPane;
 
 /**
  *
