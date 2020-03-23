@@ -46,7 +46,7 @@ public class CProductos {
             for (Object object : lista) {
                 com.carmelitascoffee.pojo.Producto p = (com.carmelitascoffee.pojo.Producto) object;
 
-                Object c[] = {p.getIdProducto(), p.getDescripcion(), p.getCantidadEnInventario(), p.getPrecio()};
+                Object c[] = {p.getIdProducto(), p.getDescripcion(), p.getCantidadEnInventario(), p.getPrecio(), p.isExentoIva()};
 
                 modelo.addRow(c);
             }
@@ -90,5 +90,9 @@ public class CProductos {
         } else {
             return s.createCriteria(Producto.class).list();
         }
+    }
+
+    public Producto obtenerPorId(int id) {
+        return (Producto) s.get(Producto.class, id);
     }
 }
