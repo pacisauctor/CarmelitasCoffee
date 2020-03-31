@@ -2,4 +2,5 @@ admin
 admin
 
 
-que onda axel 
+que onda axel */*/*
+--la khety no lo tiene actulizado
