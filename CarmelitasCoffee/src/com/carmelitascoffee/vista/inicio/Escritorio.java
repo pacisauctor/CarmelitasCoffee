@@ -20,6 +20,7 @@ import com.carmelitascoffee.vista.ventas.NuevaOrden;
 import com.carmelitascoffee.vista.ventas.PersonaContactoVista;
 import com.carmelitascoffee.vista.ventas.NuevoCliente;
 import com.carmelitascoffee.vista.ventas.OrdenVista;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -72,6 +73,8 @@ public class Escritorio extends JFrame {
         } else {
             division = "\\\\";
         }
+        URL ruta = getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "fondo-madera-cafe.png");
+        pPrincipalTb.setImagenfondo(new ImageIcon(ruta).getImage());
         addPaneles();
     }
 
@@ -132,17 +135,19 @@ public class Escritorio extends JFrame {
         bpInventario = new swing.Controles.ButtonZ();
         bpAjustes = new swing.Controles.ButtonZ();
         bpReportes = new swing.Controles.ButtonZ();
+        labelZ1 = new swing.Controles.LabelZ();
         pReportes = new swing.Contenedores.PanelZ();
         bReporteOrdPorEmpleado = new swing.Controles.ButtonZ();
         bRegresar6 = new swing.Controles.ButtonZ();
+        pAxel = new swing.Contenedores.PanelZ();
+        dpEscritorio = new swing.Contenedores.DesktopPaneZ();
+        pMenu = new swing.Contenedores.PanelZ();
         pToolBar = new javax.swing.JPanel();
         lTitle = new javax.swing.JLabel();
         bCerrar = new javax.swing.JButton();
         bMaximizar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
         pContent = new javax.swing.JPanel();
-        pMenu = new swing.Contenedores.PanelZ();
-        dpEscritorio = new swing.Contenedores.DesktopPaneZ();
 
         pCompras.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(28, 40, 51))); // NOI18N
         pCompras.setName("Compras"); // NOI18N
@@ -491,11 +496,11 @@ public class Escritorio extends JFrame {
         bNuevaPersonaContacto.setText("");
         bNuevaPersonaContacto.setToolTipText("Personas Contacto");
         bNuevaPersonaContacto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bNuevaPersonaContactoMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 bNuevaPersonaContactoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bNuevaPersonaContactoMouseExited(evt);
             }
         });
         bNuevaPersonaContacto.addActionListener(new java.awt.event.ActionListener() {
@@ -673,10 +678,12 @@ public class Escritorio extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpVentas, gridBagConstraints);
 
         bpCompras.setText("Compras");
@@ -686,12 +693,12 @@ public class Escritorio extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpCompras, gridBagConstraints);
 
         bpPersonal.setText("Personal");
@@ -701,12 +708,12 @@ public class Escritorio extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpPersonal, gridBagConstraints);
 
         bpEgresos.setText("Egresos");
@@ -717,11 +724,11 @@ public class Escritorio extends JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpEgresos, gridBagConstraints);
 
         bpInventario.setText("Inventario");
@@ -731,12 +738,12 @@ public class Escritorio extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpInventario, gridBagConstraints);
 
         bpAjustes.setText("Ajustes");
@@ -746,12 +753,12 @@ public class Escritorio extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpAjustes, gridBagConstraints);
 
         bpReportes.setText("Reportes");
@@ -761,13 +768,27 @@ public class Escritorio extends JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         pPrincipalTb.add(bpReportes, gridBagConstraints);
+
+        labelZ1.setForeground(new java.awt.Color(255, 255, 255));
+        labelZ1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZ1.setText("CARMELITAS COFFEE");
+        labelZ1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        labelZ1.setOpaque(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        pPrincipalTb.add(labelZ1, gridBagConstraints);
 
         pReportes.setLayout(new java.awt.GridBagLayout());
 
@@ -817,6 +838,24 @@ public class Escritorio extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         pReportes.add(bRegresar6, gridBagConstraints);
+
+        pAxel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        pAxel.add(dpEscritorio, gridBagConstraints);
+
+        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.Y_AXIS));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 1.0;
+        pAxel.add(pMenu, gridBagConstraints);
 
         setBackground(new java.awt.Color(97, 53, 1));
         setUndecorated(true);
@@ -928,20 +967,7 @@ public class Escritorio extends JFrame {
 
         pContent.setBackground(new java.awt.Color(255, 213, 162));
         pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pContent.setLayout(new java.awt.GridBagLayout());
-
-        pMenu.setLayout(new javax.swing.BoxLayout(pMenu, javax.swing.BoxLayout.Y_AXIS));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 1.0;
-        pContent.add(pMenu, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pContent.add(dpEscritorio, gridBagConstraints);
-
+        pContent.setLayout(new java.awt.BorderLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1118,9 +1144,13 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     private void bpVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpVentasActionPerformed
-        pMenu.removeAll();
 
+        pContent.removeAll();
+        pMenu.removeAll();
         pMenu.add(pVentas, "Ventas");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpVentasActionPerformed
@@ -1130,9 +1160,12 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bRegresar4ActionPerformed
 
     private void bpComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpComprasActionPerformed
+        pContent.removeAll();
         pMenu.removeAll();
-
         pMenu.add(pCompras, "Compras");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpComprasActionPerformed
@@ -1154,32 +1187,45 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bRegresar3ActionPerformed
 
     private void bpPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpPersonalActionPerformed
+        pContent.removeAll();
         pMenu.removeAll();
-
         pMenu.add(pPersonal, "Personal");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpPersonalActionPerformed
 
     private void bpEgresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpEgresosActionPerformed
+        pContent.removeAll();
         pMenu.removeAll();
-
         pMenu.add(pEgresos, "Egresos");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpEgresosActionPerformed
 
     private void bpInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpInventarioActionPerformed
+        pContent.removeAll();
         pMenu.removeAll();
-
         pMenu.add(pInventario, "Inventario");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpInventarioActionPerformed
 
     private void bpAjustesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpAjustesActionPerformed
+        pContent.removeAll();
         pMenu.removeAll();
         pMenu.add(pAjustes, "Ajustes");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpAjustesActionPerformed
@@ -1197,8 +1243,12 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bRegresar6ActionPerformed
 
     private void bpReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bpReportesActionPerformed
+        pContent.removeAll();
         pMenu.removeAll();
         pMenu.add(pReportes, "Reportes");
+        pContent.add(pAxel, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
         pMenu.revalidate();
         pMenu.repaint();
     }//GEN-LAST:event_bpReportesActionPerformed
@@ -1380,14 +1430,15 @@ public class Escritorio extends JFrame {
     }//GEN-LAST:event_bRegresar6MouseExited
 
     public void addPaneles() {
-
-        pMenu.add(pPrincipalTb, "Principal");
+        pContent.removeAll();
+        pContent.add(pPrincipalTb, BorderLayout.CENTER);
         setIconosMenu(pVentas);
         setIconosMenu(pAjustes);
         setIconosMenu(pCompras);
         setIconosMenu(pPersonal);
         setIconosMenu(pEgresos);
         setIconosMenu(pInventario);
+        // deshabilita los botones dependiendo del rol que sea el usuario ingresado
         if (null != rol) {
             switch (rol) {
                 case "maestro":
@@ -1464,7 +1515,9 @@ public class Escritorio extends JFrame {
     private swing.Controles.ButtonZ bpVentas;
     private swing.Contenedores.DesktopPaneZ dpEscritorio;
     private javax.swing.JLabel lTitle;
+    private swing.Controles.LabelZ labelZ1;
     private swing.Contenedores.PanelZ pAjustes;
+    private swing.Contenedores.PanelZ pAxel;
     private swing.Contenedores.PanelZ pCompras;
     private javax.swing.JPanel pContent;
     private swing.Contenedores.PanelZ pEgresos;
@@ -1598,10 +1651,10 @@ public class Escritorio extends JFrame {
     }
 
     public void regresarMenu() {
-        pMenu.removeAll();
-        pMenu.add(pPrincipalTb, "Principal");
-        pMenu.revalidate();
-        pMenu.repaint();
+        pContent.removeAll();
+        pContent.add(pPrincipalTb, BorderLayout.CENTER);
+        pContent.revalidate();
+        pContent.repaint();
     }
 
     private void generarReporteOrdPorEmpleado() {
