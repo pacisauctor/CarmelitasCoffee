@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 abr. 2020 17:56:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.carmelitascoffee.pojo.PagoMantenimiento" table="pago_mantenimiento" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idPagoMantenimiento" type="java.lang.Integer">
+            <column name="id_pago_mantenimiento" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="deposito" class="com.carmelitascoffee.pojo.Deposito" fetch="select">
+            <column name="id_deposito" not-null="true" />
+        </many-to-one>
+        <many-to-one name="mantenimiento" class="com.carmelitascoffee.pojo.Mantenimiento" fetch="select">
+            <column name="id_mantenimiento" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

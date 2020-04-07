@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 abr. 2020 17:56:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.carmelitascoffee.pojo.Notas" table="notas" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" not-null="true" />
+        </property>
+        <property name="calificacion" type="long">
+            <column name="calificacion" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

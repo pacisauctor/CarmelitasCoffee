@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 abr. 2020 17:56:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.carmelitascoffee.pojo.Orden" table="orden" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idOrden" type="java.lang.Integer">
+            <column name="id_orden" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="com.carmelitascoffee.pojo.Cliente" fetch="select">
+            <column name="id_cliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="empleado" class="com.carmelitascoffee.pojo.Empleado" fetch="select">
+            <column name="id_empleado" not-null="true" />
+        </many-to-one>
+        <property name="numeroFactura" type="string">
+            <column name="numero_factura" length="5" not-null="true" />
+        </property>
+        <property name="fechaOrden" type="date">
+            <column name="fecha_orden" length="10" not-null="true" />
+        </property>
+        <property name="fechaEntrega" type="date">
+            <column name="fecha_entrega" length="10" not-null="true" />
+        </property>
+        <property name="fechaRequerida" type="date">
+            <column name="fecha_requerida" length="10" not-null="true" />
+        </property>
+        <property name="subTotal" type="big_decimal">
+            <column name="sub_total" precision="11" scale="4" not-null="true" />
+        </property>
+        <property name="iva" type="big_decimal">
+            <column name="iva" precision="11" scale="4" not-null="true" />
+        </property>
+        <property name="total" type="big_decimal">
+            <column name="total" precision="11" scale="4" not-null="true" />
+        </property>
+        <set name="detalleOrdenProductos" table="detalle_orden_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_orden" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.DetalleOrdenProducto" />
+        </set>
+        <set name="detalleOrdenServicios" table="detalle_orden_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_orden" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.DetalleOrdenServicio" />
+        </set>
+    </class>
+</hibernate-mapping>

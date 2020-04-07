@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 abr. 2020 17:56:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.carmelitascoffee.pojo.Empleado" table="empleado" catalog="carmelitas_coffee" optimistic-lock="version">
+        <id name="idEmpleado" type="java.lang.Integer">
+            <column name="id_empleado" />
+            <generator class="identity" />
+        </id>
+        <property name="cedulaIdentidad" type="string">
+            <column name="cedula_identidad" length="45" unique="true" />
+        </property>
+        <property name="primerNombre" type="string">
+            <column name="primer_nombre" length="45" />
+        </property>
+        <property name="segundoNombre" type="string">
+            <column name="segundo_nombre" length="45" />
+        </property>
+        <property name="primerApellido" type="string">
+            <column name="primer_apellido" length="45" />
+        </property>
+        <property name="segundoApellido" type="string">
+            <column name="segundo_apellido" length="45" />
+        </property>
+        <property name="sexo" type="java.lang.Character">
+            <column name="sexo" length="1" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="edad" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="60" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="estadoCivil" type="string">
+            <column name="estado_civil" length="45" />
+        </property>
+        <property name="gradoEscolaridad" type="string">
+            <column name="grado_escolaridad" length="45" />
+        </property>
+        <set name="contratos" table="contrato" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.Contrato" />
+        </set>
+        <set name="empleadoPlanillas" table="empleado_planilla" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.EmpleadoPlanilla" />
+        </set>
+        <set name="ordens" table="orden" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.Orden" />
+        </set>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.Usuario" />
+        </set>
+        <set name="mantenimientos" table="mantenimiento" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.Mantenimiento" />
+        </set>
+        <set name="facturaInsumos" table="factura_insumo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_empleado" not-null="true" />
+            </key>
+            <one-to-many class="com.carmelitascoffee.pojo.FacturaInsumo" />
+        </set>
+    </class>
+</hibernate-mapping>
