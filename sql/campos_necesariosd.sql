@@ -4,6 +4,9 @@ insert into carmelitas_coffee.empleado (cedula_identidad, primer_nombre, segundo
 insert into carmelitas_coffee.usuario (nombre, id_empleado, clave_acceso, rol)
 	values ("admin",1,"admin","maestro");
     
+    insert into carmelitas_coffee.cliente ( numero_ruc, nombres, apellidos, telefono, correo, direccion, id_persona_contacto) 
+								values('J0110000018511','margarita','gracia',18002020,'magracia@gmail.com','hola', 2);
+    
 select * from persona_contacto
 
 /*
