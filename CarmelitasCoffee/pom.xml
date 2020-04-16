@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.carmelitascoffee</groupId>
     <artifactId>CarmelitasCoffee</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <repositories>
         <repository>
@@ -14,8 +14,8 @@
     </repositories>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.ant/ant -->
@@ -203,16 +203,24 @@
             <version>4.3.1.Final</version>
         </dependency>
         <dependency>
-            <groupId>unknown.binary</groupId>
-            <artifactId>mysql-connector-java-8.0.16</artifactId>
-            <version>SNAPSHOT</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/mysql-connector-java-8.0.16.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.guicomponentsZ</groupId>
+            <groupId>swing</groupId>
             <artifactId>componentsZ</artifactId>
             <version>1.0</version>
             <scope>system</scope>
             <systemPath>${basedir}/lib/GUIComponentsZ.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>GUIComponentsZ</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+        
     </dependencies>
 </project>

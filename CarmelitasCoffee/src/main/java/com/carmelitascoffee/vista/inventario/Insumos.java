@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 
+
 /**
  *
  * @author admin
@@ -288,7 +289,7 @@ public class Insumos extends JInternalFrame {
 
     }//GEN-LAST:event_bAgregarInsumoActionPerformed
 
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.TextFieldZ Bus;
     private swing.Controles.ButtonZ bAgregarInsumo;

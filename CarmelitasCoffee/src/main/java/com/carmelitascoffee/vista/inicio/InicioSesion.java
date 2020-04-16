@@ -5,6 +5,7 @@
  */
 package com.carmelitascoffee.vista.inicio;
 
+import com.carmelitascoffee.controlador.Utilidades;
 import com.carmelitascoffee.controlador.inicio.CInicioSesion;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,7 +23,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -38,11 +38,13 @@ public class InicioSesion extends JFrame {
     int x = 0, y = 0;
     private CInicioSesion controlador;
     private Session s;
+    private Utilidades util;
 
     public InicioSesion() {
         initComponents();
         recordarLogin();
-        controlador = new CInicioSesion(s);
+        util = new Utilidades(this);
+        setFondo();
     }
 
     public InicioSesion(String title, Session s) {
@@ -50,6 +52,8 @@ public class InicioSesion extends JFrame {
         this.s = s;
         initComponents();
         recordarLogin();
+        util = new Utilidades(this);
+        setFondo();
         controlador = new CInicioSesion(s);
     }
 
@@ -80,7 +84,7 @@ public class InicioSesion extends JFrame {
         lTitle = new javax.swing.JLabel();
         bCerrar = new javax.swing.JButton();
         bMinimizar = new javax.swing.JButton();
-        pContent = new javax.swing.JPanel();
+        pContenido = new swing.Contenedores.PanelZ();
         labelZ1 = new swing.Controles.LabelZ();
         labelZ2 = new swing.Controles.LabelZ();
         tfUsuario = new swing.Controles.TextFieldZ();
@@ -97,7 +101,7 @@ public class InicioSesion extends JFrame {
         });
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        pToolBar.setBackground(new java.awt.Color(178, 122, 57));
+        pToolBar.setBackground(new java.awt.Color(89, 24, 24));
         pToolBar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pToolBar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -126,7 +130,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 3);
         pToolBar.add(lTitle, gridBagConstraints);
 
-        bCerrar.setBackground(new java.awt.Color(178, 122, 57));
+        bCerrar.setBackground(new java.awt.Color(89, 24, 24));
         bCerrar.setToolTipText("");
         bCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -147,7 +151,7 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         pToolBar.add(bCerrar, gridBagConstraints);
 
-        bMinimizar.setBackground(new java.awt.Color(178, 122, 57));
+        bMinimizar.setBackground(new java.awt.Color(89, 24, 24));
         bMinimizar.setToolTipText("");
         bMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -174,13 +178,15 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(pToolBar, gridBagConstraints);
 
-        pContent.setBackground(new java.awt.Color(255, 247, 162));
-        pContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pContent.setLayout(new java.awt.GridBagLayout());
+        pContenido.setLayout(new java.awt.GridBagLayout());
 
+        labelZ1.setBackground(new java.awt.Color(89, 42, 42));
+        labelZ1.setBorder(null);
+        labelZ1.setForeground(java.awt.Color.white);
         labelZ1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelZ1.setText("Nombre de usuario:");
         labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelZ1.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -188,11 +194,15 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(labelZ1, gridBagConstraints);
+        pContenido.add(labelZ1, gridBagConstraints);
 
+        labelZ2.setBackground(new java.awt.Color(89, 42, 42));
+        labelZ2.setBorder(null);
+        labelZ2.setForeground(java.awt.Color.white);
         labelZ2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelZ2.setText("Contraseña:");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        labelZ2.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -200,10 +210,11 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(labelZ2, gridBagConstraints);
+        pContenido.add(labelZ2, gridBagConstraints);
 
-        tfUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(28, 40, 51)));
-        tfUsuario.setForeground(new java.awt.Color(28, 40, 51));
+        tfUsuario.setBackground(new java.awt.Color(89, 42, 42));
+        tfUsuario.setBorder(null);
+        tfUsuario.setForeground(java.awt.Color.white);
         tfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfUsuario.setText("");
         tfUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -229,10 +240,11 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(tfUsuario, gridBagConstraints);
+        pContenido.add(tfUsuario, gridBagConstraints);
 
-        pfClave.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(28, 40, 51)));
-        pfClave.setForeground(new java.awt.Color(28, 40, 51));
+        pfClave.setBackground(new java.awt.Color(89, 42, 42));
+        pfClave.setBorder(null);
+        pfClave.setForeground(java.awt.Color.white);
         pfClave.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pfClave.setText("");
         pfClave.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -250,8 +262,10 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(pfClave, gridBagConstraints);
+        pContenido.add(pfClave, gridBagConstraints);
 
+        bIniciarSesion.setBackground(new java.awt.Color(89, 42, 42));
+        bIniciarSesion.setForeground(java.awt.Color.white);
         bIniciarSesion.setText("Iniciar");
         bIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,8 +279,11 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(bIniciarSesion, gridBagConstraints);
+        pContenido.add(bIniciarSesion, gridBagConstraints);
 
+        cbRecuerdame.setBackground(new java.awt.Color(89, 42, 42));
+        cbRecuerdame.setBorder(null);
+        cbRecuerdame.setForeground(java.awt.Color.white);
         cbRecuerdame.setText("Recuerdáme");
         cbRecuerdame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,24 +297,23 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pContent.add(cbRecuerdame, gridBagConstraints);
+        pContenido.add(cbRecuerdame, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.6;
-        getContentPane().add(pContent, gridBagConstraints);
+        gridBagConstraints.weighty = 0.5;
+        getContentPane().add(pContenido, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseExited
-        bCerrar.setBackground(new Color(178, 122, 57));
+        Utilidades.cambiarColorBotonEntered(evt);
     }//GEN-LAST:event_bCerrarMouseExited
 
     private void bCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bCerrarMouseEntered
-        //[0,153,255]
-        bCerrar.setBackground(new Color(215, 163, 100));
+        Utilidades.cambiarColorBotonEntered(evt);
     }//GEN-LAST:event_bCerrarMouseEntered
 
     private void bCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarActionPerformed
@@ -305,11 +321,11 @@ public class InicioSesion extends JFrame {
     }//GEN-LAST:event_bCerrarActionPerformed
 
     private void bMinimizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseEntered
-        bMinimizar.setBackground(new Color(215, 163, 100));
+        Utilidades.cambiarColorBotonEntered(evt);
     }//GEN-LAST:event_bMinimizarMouseEntered
 
     private void bMinimizarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bMinimizarMouseExited
-        bMinimizar.setBackground(new Color(178, 122, 57));
+        Utilidades.cambiarColorBotonEntered(evt);
     }//GEN-LAST:event_bMinimizarMouseExited
 
     private void bMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMinimizarActionPerformed
@@ -337,10 +353,10 @@ public class InicioSesion extends JFrame {
         getContentPane().setBackground(new Color(0, 0, 204));
         //creando iconos 
         ImageIcon iconoCerrar, iconoMinimizar;
-        URL ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//close.png");
+        URL ruta = util.getImg("close.png");
         iconoCerrar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bCerrar.setIcon(iconoCerrar);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//minimize.png");
+        ruta = util.getImg("minimize.png");
         iconoMinimizar = new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         bMinimizar.setIcon(iconoMinimizar);
         //escribiendo título
@@ -348,7 +364,7 @@ public class InicioSesion extends JFrame {
             title = "Nueva Ventana";
         }
         lTitle.setText(title);
-        ruta = getClass().getClassLoader().getResource("com//carmelitascoffee//img//user.jpg");
+        ruta = util.getImg("user.jpg");
         this.setIconImage(new ImageIcon(ruta).getImage());
         lTitle.setIcon(new ImageIcon(new ImageIcon(ruta).getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
 
@@ -407,7 +423,7 @@ public class InicioSesion extends JFrame {
     private javax.swing.JLabel lTitle;
     private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ2;
-    private javax.swing.JPanel pContent;
+    private swing.Contenedores.PanelZ pContenido;
     private javax.swing.JPanel pToolBar;
     private swing.Controles.PasswordFieldZ pfClave;
     private swing.Controles.TextFieldZ tfUsuario;
@@ -443,11 +459,18 @@ public class InicioSesion extends JFrame {
             tfUsuario.setText(b.readLine());
             pfClave.setText(b.readLine());
             cbRecuerdame.setSelected(true);
-            
+
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         } catch (IOException ex) {
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void setFondo() {
+        controlador = new CInicioSesion(s);
+        URL ruta = util.getImg("fondo-madera-cafe.png");
+        Image imagenFondo = new ImageIcon(ruta).getImage();
+        pContenido.setImagenfondo(imagenFondo);
     }
 }

@@ -61,8 +61,6 @@ Contributor(s):
     <mapping resource="com/carmelitascoffee/pojo/PagoEmpleado.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Usuario.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Empleado.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Infos.hbm.xml"/>
-    <mapping resource="com/carmelitascoffee/pojo/Notas.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/PagoMantenimiento.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/DetalleFacturaInsumo.hbm.xml"/>
     <mapping resource="com/carmelitascoffee/pojo/Mantenimiento.hbm.xml"/>
