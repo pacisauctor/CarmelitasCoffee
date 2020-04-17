@@ -5,15 +5,10 @@
  */
 package com.carmelitascoffee.controlador;
 
-import com.carmelitascoffee.vista.inicio.Escritorio;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import swing.Controles.ButtonZ;
 
 /**
@@ -23,9 +18,9 @@ import swing.Controles.ButtonZ;
 public class Utilidades {
 
     public String division;
-    public JFrame frame;
+    public Object frame;
 
-    public Utilidades(JFrame frame) {
+    public Utilidades(Object frame) {
         String sSistemaOperativo = System.getProperty("os.name");
         if (sSistemaOperativo.equals("Linux")) {
             division = "//";

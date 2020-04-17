@@ -5,11 +5,15 @@
  */
 package com.carmelitascoffee.vista.compras;
 
+import com.carmelitascoffee.controlador.Utilidades;
 import com.carmelitascoffee.controlador.compras.CProveedores;
 import com.carmelitascoffee.pojo.Proveedor;
+import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,11 +29,16 @@ public class Proveedores extends JInternalFrame {
      * Creates new form InternalFrameZ
      */
     Session s;
+    Utilidades util;
     CProveedores controlador;
 
     public Proveedores(Session s) {
         initComponents();
+        util = new Utilidades(this);
+        URL ruta = util.getImg("fondo-madera-cafe.png");
+        pContenido.setImagenfondo(new ImageIcon(ruta).getImage());
         controlador = new CProveedores(s);
+        cargarTabla(controlador.getProveedores());
     }
 
     /**
@@ -42,6 +51,7 @@ public class Proveedores extends JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        pContenido = new swing.Contenedores.PanelZ();
         jScrollPane1 = new javax.swing.JScrollPane();
         tProveedores = new swing.Controles.TableZ();
         lNombre = new swing.Controles.LabelZ();
@@ -56,35 +66,65 @@ public class Proveedores extends JInternalFrame {
         taDirección = new swing.Controles.TextAreaZ();
         bAgregarProveedor = new swing.Controles.ButtonZ();
         tfTelefono = new javax.swing.JFormattedTextField();
+        tfBusquedaAvanzada = new swing.Controles.TextFieldZ();
+        labelZ1 = new swing.Controles.LabelZ();
 
-        setBackground(new java.awt.Color(255, 247, 162));
+        setBackground(new java.awt.Color(89, 24, 24));
+        setBorder(null);
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setResizable(true);
         setTitle("Proveedores");
         setName(""); // NOI18N
         setVisible(true);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        pContenido.setBackground(new java.awt.Color(89, 43, 42));
+        pContenido.setForeground(java.awt.Color.white);
+        pContenido.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane1.setBackground(new java.awt.Color(89, 24, 24));
+        jScrollPane1.setForeground(java.awt.Color.white);
+        jScrollPane1.setOpaque(true);
+
+        tProveedores.setBackground(new java.awt.Color(89, 24, 24));
+        tProveedores.setBorder(null);
+        tProveedores.setForeground(java.awt.Color.white);
         tProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nombre", "Descripción", "Teléfono", "Correo"
+                "Cod", "Nombre", "Descripción", "Teléfono", "Correo"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
         tProveedores.setColumnSelectionAllowed(true);
+        tProveedores.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tProveedoresKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tProveedores);
         tProveedores.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tProveedores.getColumnModel().getColumnCount() > 0) {
+            tProveedores.getColumnModel().getColumn(0).setResizable(false);
+            tProveedores.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -92,11 +132,15 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.8;
+        gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        pContenido.add(jScrollPane1, gridBagConstraints);
 
+        lNombre.setBackground(new java.awt.Color(89, 24, 24));
+        lNombre.setBorder(null);
+        lNombre.setForeground(java.awt.Color.white);
         lNombre.setText("Nombre del proveedor: ");
+        lNombre.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -104,8 +148,11 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(lNombre, gridBagConstraints);
+        pContenido.add(lNombre, gridBagConstraints);
 
+        tfNombre.setBackground(new java.awt.Color(89, 24, 24));
+        tfNombre.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfNombre.setForeground(java.awt.Color.white);
         tfNombre.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -114,9 +161,13 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfNombre, gridBagConstraints);
+        pContenido.add(tfNombre, gridBagConstraints);
 
+        lDescripcion.setBackground(new java.awt.Color(89, 24, 24));
+        lDescripcion.setBorder(null);
+        lDescripcion.setForeground(java.awt.Color.white);
         lDescripcion.setText("Descripción: ");
+        lDescripcion.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -124,8 +175,11 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(lDescripcion, gridBagConstraints);
+        pContenido.add(lDescripcion, gridBagConstraints);
 
+        tfDescripcion.setBackground(new java.awt.Color(89, 24, 24));
+        tfDescripcion.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfDescripcion.setForeground(java.awt.Color.white);
         tfDescripcion.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -134,9 +188,13 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfDescripcion, gridBagConstraints);
+        pContenido.add(tfDescripcion, gridBagConstraints);
 
+        labelZ3.setBackground(new java.awt.Color(89, 24, 24));
+        labelZ3.setBorder(null);
+        labelZ3.setForeground(java.awt.Color.white);
         labelZ3.setText("Teléfono: ");
+        labelZ3.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -144,9 +202,13 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(labelZ3, gridBagConstraints);
+        pContenido.add(labelZ3, gridBagConstraints);
 
+        lCorreo.setBackground(new java.awt.Color(89, 24, 24));
+        lCorreo.setBorder(null);
+        lCorreo.setForeground(java.awt.Color.white);
         lCorreo.setText("Correo: ");
+        lCorreo.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -154,8 +216,11 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(lCorreo, gridBagConstraints);
+        pContenido.add(lCorreo, gridBagConstraints);
 
+        tfCorreo.setBackground(new java.awt.Color(89, 24, 24));
+        tfCorreo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfCorreo.setForeground(java.awt.Color.white);
         tfCorreo.setText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -164,9 +229,13 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfCorreo, gridBagConstraints);
+        pContenido.add(tfCorreo, gridBagConstraints);
 
+        labelZ5.setBackground(new java.awt.Color(89, 24, 24));
+        labelZ5.setBorder(null);
+        labelZ5.setForeground(java.awt.Color.white);
         labelZ5.setText("Dirección: ");
+        labelZ5.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -175,10 +244,18 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(labelZ5, gridBagConstraints);
+        pContenido.add(labelZ5, gridBagConstraints);
+
+        jScrollPane2.setBackground(new java.awt.Color(89, 24, 24));
+        jScrollPane2.setBorder(null);
+        jScrollPane2.setForeground(java.awt.Color.white);
 
         taDirección.setEditable(true);
+        taDirección.setBackground(new java.awt.Color(89, 24, 24));
+        taDirección.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
         taDirección.setColumns(20);
+        taDirección.setForeground(java.awt.Color.white);
+        taDirección.setLineWrap(true);
         taDirección.setRows(5);
         taDirección.setText("");
         jScrollPane2.setViewportView(taDirección);
@@ -187,13 +264,26 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 20;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(jScrollPane2, gridBagConstraints);
+        pContenido.add(jScrollPane2, gridBagConstraints);
 
-        bAgregarProveedor.setText("Agregar Proveedo");
+        bAgregarProveedor.setBackground(new java.awt.Color(89, 24, 24));
+        bAgregarProveedor.setBorder(null);
+        bAgregarProveedor.setForeground(java.awt.Color.white);
+        bAgregarProveedor.setText("Agregar Proveedor");
+        bAgregarProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bAgregarProveedorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bAgregarProveedorMouseExited(evt);
+            }
+        });
         bAgregarProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAgregarProveedorActionPerformed(evt);
@@ -206,14 +296,17 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(bAgregarProveedor, gridBagConstraints);
+        pContenido.add(bAgregarProveedor, gridBagConstraints);
 
+        tfTelefono.setBackground(new java.awt.Color(89, 24, 24));
+        tfTelefono.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfTelefono.setForeground(java.awt.Color.white);
         tfTelefono.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
             public javax.swing.JFormattedTextField.AbstractFormatter
             getFormatter(javax.swing.JFormattedTextField tf){
 
                 try {
-                    return new javax.swing.text.MaskFormatter("####-####");
+                    return new javax.swing.text.MaskFormatter("########");
                 }
                 catch (java.text.ParseException pe){
                     pe.printStackTrace();
@@ -228,7 +321,33 @@ public class Proveedores extends JInternalFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(tfTelefono, gridBagConstraints);
+        pContenido.add(tfTelefono, gridBagConstraints);
+
+        tfBusquedaAvanzada.setBackground(new java.awt.Color(89, 24, 24));
+        tfBusquedaAvanzada.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfBusquedaAvanzada.setText("");
+        tfBusquedaAvanzada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfBusquedaAvanzadaKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        pContenido.add(tfBusquedaAvanzada, gridBagConstraints);
+
+        labelZ1.setBackground(new java.awt.Color(89, 42, 42));
+        labelZ1.setForeground(java.awt.Color.white);
+        labelZ1.setText("Busqueda Avanzada:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        pContenido.add(labelZ1, gridBagConstraints);
+
+        getContentPane().add(pContenido, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bAgregarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarProveedorActionPerformed
@@ -242,12 +361,84 @@ public class Proveedores extends JInternalFrame {
             p.setTelefono(tfTelefono.getText());
             if (controlador.agregarProveedores(p)) {
                 JOptionPane.showMessageDialog(this, "Proveedor agregado con éxito!");
-                cargarTabla();
+                vaciarTF();
+                cargarTabla(controlador.getProveedores());
             } else {
                 JOptionPane.showMessageDialog(this, "Error al guardar el proveedor");
             }
+        } else {
+            JOptionPane.showMessageDialog(this, mensaje);
+            vaciarTF();
+            cargarTabla(controlador.getProveedores());
         }
     }//GEN-LAST:event_bAgregarProveedorActionPerformed
+
+    private void tProveedoresKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tProveedoresKeyReleased
+        int row = tProveedores.getSelectedRow();
+        int column = tProveedores.getSelectedColumn();
+        String dato = (String) tProveedores.getValueAt(row, column);
+        if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
+            int codigoProveedor = (Integer) tProveedores.getValueAt(row, 0);
+            Proveedor proveedor = controlador.getElementById(codigoProveedor);
+            switch (column) {
+                // Nombre del proveedor
+                case 1:
+                    if (!dato.isEmpty()) {
+                        proveedor.setNombreProveedor(dato);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Campo vacío!");
+                        cargarTabla(controlador.getProveedores());
+                    }
+                    break;
+                // Descripción
+                case 2:
+                    if (!dato.isEmpty()) {
+                        proveedor.setDescripcion(dato);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Campo vacío!");
+                        cargarTabla(controlador.getProveedores());
+                    }
+                    break;
+                // Telefono
+                case 3:
+                    if (dato.length() == 8) {
+                        proveedor.setTelefono(dato);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Número invalido!");
+                        cargarTabla(controlador.getProveedores());
+                    }
+                    break;
+                // Correo
+                case 4:
+                    Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+                    Matcher mather = pattern.matcher(tfCorreo.getText());
+                    if (mather.find()) {
+                        proveedor.setCorreo(dato);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Correo invalido!");
+                        cargarTabla(controlador.getProveedores());
+                    }
+                    break;
+            }
+            controlador.setProveedor(proveedor, column - 1);
+            cargarTabla(controlador.getProveedores());
+        } else if (column == 3 && !Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tProveedoresKeyReleased
+
+    private void bAgregarProveedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarProveedorMouseEntered
+        Utilidades.cambiarColorBotonEntered(evt);
+    }//GEN-LAST:event_bAgregarProveedorMouseEntered
+
+    private void bAgregarProveedorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarProveedorMouseExited
+        Utilidades.cambiarColorBotonExited(evt);
+    }//GEN-LAST:event_bAgregarProveedorMouseExited
+
+    private void tfBusquedaAvanzadaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfBusquedaAvanzadaKeyTyped
+        String filtro = tfBusquedaAvanzada.getText();
+        cargarTabla(controlador.cargarFiltros(filtro));
+    }//GEN-LAST:event_tfBusquedaAvanzadaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -257,10 +448,13 @@ public class Proveedores extends JInternalFrame {
     private swing.Controles.LabelZ lCorreo;
     private swing.Controles.LabelZ lDescripcion;
     private swing.Controles.LabelZ lNombre;
+    private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ3;
     private swing.Controles.LabelZ labelZ5;
+    private swing.Contenedores.PanelZ pContenido;
     private swing.Controles.TableZ tProveedores;
     private swing.Controles.TextAreaZ taDirección;
+    private swing.Controles.TextFieldZ tfBusquedaAvanzada;
     private swing.Controles.TextFieldZ tfCorreo;
     private swing.Controles.TextFieldZ tfDescripcion;
     private swing.Controles.TextFieldZ tfNombre;
@@ -269,38 +463,51 @@ public class Proveedores extends JInternalFrame {
 
     private String validarDatos() {
         String error = "";
-        if (tfNombre.getText().length() > 50) {
-            error += "Nombre del proveedor muy largo (>50)\n";
-        }
-        if (tfDescripcion.getText().length() > 70) {
-            error += "Descripción demasiado largo (>70)\n";
-        }
-        if (tfCorreo.getText().length() > 30) {
-            error += "Correo demasiado largo (>30)\n";
+        if (tfNombre.getText().isEmpty() || tfDescripcion.getText().isEmpty() || tfCorreo.getText().isEmpty() || taDirección.getText().isEmpty()) {
+            error += "Datos incompletos";
         } else {
-            Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
-            Matcher mather = pattern.matcher(tfCorreo.getText());
-            if (mather.find() == false) {
-                error += "El email ingresado es inválido.\n";
+            if (tfNombre.getText().length() > 50) {
+                error += "Nombre del proveedor muy largo (>50)\n";
+            }
+            if (tfDescripcion.getText().length() > 70) {
+                error += "Descripción demasiado largo (>70)\n";
+            }
+            if (tfCorreo.getText().length() > 30) {
+                error += "Correo demasiado largo (>30)\n";
+            } else {
+                Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+                Matcher mather = pattern.matcher(tfCorreo.getText());
+                if (mather.find() == false) {
+                    error += "El email ingresado es inválido.\n";
+                }
             }
         }
         return error;
     }
 
-    private void cargarTabla() {
+    private void cargarTabla(List l) {
         DefaultTableModel model = (DefaultTableModel) tProveedores.getModel();
         model.setRowCount(0);
-        List l = controlador.getProveedores();
         for (Object object : l) {
             Proveedor p = (Proveedor) object;
-            Object[] row = new Object[4];
-            row[0] = p.getNombreProveedor();
-            row[1] = p.getDescripcion();
-            row[2] = p.getTelefono();
-            row[3] = p.getCorreo();
+            Object[] row = new Object[5];
+            row[0] = p.getIdProveedor();
+            row[1] = p.getNombreProveedor();
+            row[2] = p.getDescripcion();
+            row[3] = p.getTelefono();
+            row[4] = p.getCorreo();
             model.addRow(row);
         }
         tProveedores.setModel(model);
+    }
+
+    private void vaciarTF() {
+        tfNombre.setText("");
+        tfTelefono.setText("");
+        tfDescripcion.setText("");
+        tfCorreo.setText("");
+        taDirección.setText("");
+
     }
 
 }

@@ -178,18 +178,20 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         getContentPane().add(pToolBar, gridBagConstraints);
 
+        pContenido.setBackground(new java.awt.Color(89, 24, 24));
         pContenido.setLayout(new java.awt.GridBagLayout());
 
         labelZ1.setBackground(new java.awt.Color(89, 42, 42));
         labelZ1.setBorder(null);
         labelZ1.setForeground(java.awt.Color.white);
-        labelZ1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZ1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelZ1.setText("Nombre de usuario:");
         labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         labelZ1.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
@@ -199,13 +201,14 @@ public class InicioSesion extends JFrame {
         labelZ2.setBackground(new java.awt.Color(89, 42, 42));
         labelZ2.setBorder(null);
         labelZ2.setForeground(java.awt.Color.white);
-        labelZ2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZ2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         labelZ2.setText("Contraseña:");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         labelZ2.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
@@ -267,6 +270,14 @@ public class InicioSesion extends JFrame {
         bIniciarSesion.setBackground(new java.awt.Color(89, 42, 42));
         bIniciarSesion.setForeground(java.awt.Color.white);
         bIniciarSesion.setText("Iniciar");
+        bIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bIniciarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bIniciarSesionMouseExited(evt);
+            }
+        });
         bIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bIniciarSesionActionPerformed(evt);
@@ -276,6 +287,8 @@ public class InicioSesion extends JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.ipady = 20;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -284,7 +297,7 @@ public class InicioSesion extends JFrame {
         cbRecuerdame.setBackground(new java.awt.Color(89, 42, 42));
         cbRecuerdame.setBorder(null);
         cbRecuerdame.setForeground(java.awt.Color.white);
-        cbRecuerdame.setText("Recuerdáme");
+        cbRecuerdame.setText("Recuerdame");
         cbRecuerdame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbRecuerdameActionPerformed(evt);
@@ -293,7 +306,6 @@ public class InicioSesion extends JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.9;
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
@@ -413,6 +425,14 @@ public class InicioSesion extends JFrame {
     private void cbRecuerdameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRecuerdameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbRecuerdameActionPerformed
+
+    private void bIniciarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bIniciarSesionMouseEntered
+        Utilidades.cambiarColorBotonEntered(evt);
+    }//GEN-LAST:event_bIniciarSesionMouseEntered
+
+    private void bIniciarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bIniciarSesionMouseExited
+        Utilidades.cambiarColorBotonExited(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_bIniciarSesionMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
