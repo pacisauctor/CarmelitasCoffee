@@ -214,6 +214,11 @@
             <artifactId>PlaceHolder</artifactId>
             <version>1.0</version>
         </dependency>
-        
+        <dependency>
+            <groupId>com.carmelitascoffee</groupId>
+            <artifactId>CarmelitasCoffee</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

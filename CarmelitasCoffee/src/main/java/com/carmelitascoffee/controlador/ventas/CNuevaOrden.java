@@ -99,7 +99,7 @@ public class CNuevaOrden {
     public String getNuevoCodigoFactura() {
         String codigo = "O";
         Criteria crit = s.createCriteria(Orden.class);
-        codigo += String.valueOf(new Formatter().format("%05d", crit.list().size()));
+        codigo += String.valueOf(new Formatter().format("%04d", crit.list().size()));
         return codigo;
     }
 }

@@ -6,10 +6,13 @@
 package com.carmelitascoffee.vista.ventas;
 
 import com.carmelitascoffee.controlador.ventas.COrdenVista;
+import com.carmelitascoffee.pojo.DetalleOrdenProducto;
+import com.carmelitascoffee.pojo.DetalleOrdenServicio;
+import com.carmelitascoffee.pojo.Orden;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -46,6 +49,7 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         PANEL_main = new swing.Contenedores.PanelZ();
         PANEL_ordenes = new swing.Contenedores.PanelZ();
@@ -62,6 +66,8 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
         setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Vista de ordenes");
         setMinimumSize(new java.awt.Dimension(725, 562));
         setName("AgregarEmpleadoFRM"); // NOI18N
@@ -85,19 +91,28 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
             }
         });
 
-        PANEL_ordenes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ordenes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        PANEL_main.setLayout(new java.awt.GridBagLayout());
+
+        PANEL_ordenes.setBorder(javax.swing.BorderFactory.createTitledBorder("Ordenes"));
 
         TABLE_ordenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Cliente", "Cedula de empleado", "Factura", "Fecha de orden", "Fecha de entrega", "Fecha requerida", "Tipo de orden"
+                "Empleado", "Cliente", "Factura", "Fecha", "Subtotal", "IVA", "Total"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, true, true, true, true
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -113,7 +128,17 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
 
         PANEL_ordenes.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        PANEL_detallesdeorden.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detalles de orden", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(255, 255, 255))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        PANEL_main.add(PANEL_ordenes, gridBagConstraints);
+
+        PANEL_detallesdeorden.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalles de orden"));
         PANEL_detallesdeorden.setLayout(new javax.swing.BoxLayout(PANEL_detallesdeorden, javax.swing.BoxLayout.LINE_AXIS));
 
         TABLE_ordenproducto.setModel(new javax.swing.table.DefaultTableModel(
@@ -121,12 +146,19 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
 
             },
             new String [] {
-                "Producto", "Cantidad", "Descuento"
+                "Producto", "Precio", "Cantidad", "Descuento"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -142,12 +174,19 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
 
             },
             new String [] {
-                "Servicio", "Cantidad", "Descuento"
+                "Servicio", "Precio", "Cantidad", "Descuento"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -158,24 +197,17 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
 
         PANEL_detallesdeorden.add(jScrollPane3);
 
-        javax.swing.GroupLayout PANEL_mainLayout = new javax.swing.GroupLayout(PANEL_main);
-        PANEL_main.setLayout(PANEL_mainLayout);
-        PANEL_mainLayout.setHorizontalGroup(
-            PANEL_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PANEL_ordenes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PANEL_detallesdeorden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        PANEL_mainLayout.setVerticalGroup(
-            PANEL_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PANEL_mainLayout.createSequentialGroup()
-                .addComponent(PANEL_ordenes, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PANEL_detallesdeorden, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        PANEL_main.add(PANEL_detallesdeorden, gridBagConstraints);
 
         getContentPane().add(PANEL_main, java.awt.BorderLayout.CENTER);
-
-        PANEL_imagen.setBorder(null);
 
         LABEL_imagen.setBackground(new java.awt.Color(0, 0, 51));
         LABEL_imagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/carmelitascoffee/img/ordenes.png")));
@@ -200,60 +232,70 @@ public class OrdenVista extends JInternalFrame implements ActionListener {
     }//GEN-LAST:event_TABLE_ordenesMouseReleased
 
     void CargarOrdenProducto(String numeroFactura) {
-        ((DefaultTableModel) this.TABLE_ordenproducto.getModel()).setRowCount(0);
-        List op = controlador.MostrarOrdenProducto(numeroFactura);
-        if (op.size() > 0) {
-            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenproducto.getModel();
-            for (int i = 0; i < op.size(); i++) {
-                Vector datos = new Vector();
-                Object[] fila = (Object[]) op.get(i);
-                datos.add(fila[0]);
-                datos.add(fila[1]);
-                datos.add(fila[2]);
-                modelo.addRow(datos);
+        try {
+            DefaultTableModel dtm = (DefaultTableModel) TABLE_ordenproducto.getModel();
+            dtm.setRowCount(0);
+            List op = controlador.MostrarOrdenProducto(numeroFactura);
+            if (op.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay productos en esta orden.");
             }
-            this.TABLE_ordenproducto.setModel(modelo);
+            for (Object data : op) {
+                DetalleOrdenProducto ordenProducto = (DetalleOrdenProducto) data;
+                Object[] fila = new Object[4];
+                fila[0] = ordenProducto.getProducto().getDescripcion();
+                fila[1] = ordenProducto.getPrecioUnit().doubleValue();
+                fila[2] = ordenProducto.getCantidad();
+                fila[3] = ordenProducto.getDescuento();
+                dtm.addRow(fila);
+            }
+            TABLE_ordenproducto.setModel(dtm);
+        } catch (HeadlessException e) {
         }
     }
 
     void CargarOrdenServicio(String numeroFactura) {
-        ((DefaultTableModel) this.TABLE_ordenservicio.getModel()).setRowCount(0);
-        List os = controlador.MostrarOrdenServicio(numeroFactura);
-        if (os.size() > 0) {
-            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenservicio.getModel();
-            for (int i = 0; i < os.size(); i++) {
-                Vector datos = new Vector();
-                Object[] fila = (Object[]) os.get(i);
-                datos.add(fila[0]);
-                datos.add(fila[1]);
-                datos.add(fila[2]);
-                modelo.addRow(datos);
+        try {
+            DefaultTableModel dtm = (DefaultTableModel) TABLE_ordenservicio.getModel();
+            dtm.setRowCount(0);
+            List os = controlador.MostrarOrdenServicio(numeroFactura);
+            if (os.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay servicios en esta orden.");
             }
-            this.TABLE_ordenservicio.setModel(modelo);
+            for (Object data : os) {
+                DetalleOrdenServicio ordenServicio = (DetalleOrdenServicio) data;
+                Object[] fila = new Object[4];
+                fila[0] = ordenServicio.getServicio().getDescripcion();
+                fila[1] = ordenServicio.getPrecioUnit().doubleValue();
+                fila[2] = ordenServicio.getCantidad();
+                fila[3] = ordenServicio.getDescuento();
+                dtm.addRow(fila);
+            }
+            TABLE_ordenservicio.setModel(dtm);
+        } catch (HeadlessException e) {
         }
     }
 
     void CargarOrdenes() {
-        ((DefaultTableModel) this.TABLE_ordenes.getModel()).setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) TABLE_ordenes.getModel();
+        model.setRowCount(0);
         List ordenes = controlador.MostrarOrdenes();
-        if (ordenes.size() > 0) {
-            DefaultTableModel modelo = (DefaultTableModel) this.TABLE_ordenes.getModel();
-            for (int i = 0; i < ordenes.size(); i++) {
-                Vector datos = new Vector();
-                Object[] fila = (Object[]) ordenes.get(i);
-                datos.add(fila[0]);
-                datos.add(fila[1]);
-                datos.add(fila[2]);
-                datos.add(fila[3]);
-                datos.add(fila[4]);
-                datos.add(fila[5]);
-                datos.add(fila[6]);
-                modelo.addRow(datos);
-            }
-            this.TABLE_ordenes.setModel(modelo);
-        } else {
-            JOptionPane.showMessageDialog(null, "No hay registros");
+        for (Object orden : ordenes) {
+            Orden dato = (Orden) orden;
+            Object[] fila = new Object[7];
+            fila[0] = dato.getEmpleado().getCedulaIdentidad();
+            fila[1] = dato.getCliente().getNombres() + " " + dato.getCliente().getApellidos();
+            fila[2] = dato.getNumeroFactura();
+            fila[3] = dato.getFechaOrden().toString();
+            fila[4] = dato.getSubTotal();
+            fila[5] = dato.getIva();
+            fila[6] = dato.getTotal();
+            model.addRow(fila);
         }
+        TABLE_ordenes.setModel(model);
+        if (ordenes.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Sin registros!");
+        }
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

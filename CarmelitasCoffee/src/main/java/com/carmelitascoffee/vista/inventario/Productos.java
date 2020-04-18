@@ -356,8 +356,8 @@ public class Productos extends JInternalFrame {
     private void cargarTabla(String textFiltro) {
         DefaultTableModel dtm = (DefaultTableModel) tProductos.getModel();
         dtm.setRowCount(0);
-        List lista = controlador.cargarFiltros(Bus.getText());
-        Object[] row = new Object[4];
+        List lista = controlador.cargarFiltros(textFiltro);
+        Object[] row = new Object[5];
         for (int i = 0; i < lista.size(); i++) {
             Producto pr = (Producto) lista.get(i);
             row[0] = pr.getIdProducto();

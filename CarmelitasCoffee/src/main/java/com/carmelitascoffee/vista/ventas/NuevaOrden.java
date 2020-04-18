@@ -7,7 +7,6 @@ package com.carmelitascoffee.vista.ventas;
 
 import com.carmelitascoffee.controlador.Utilidades;
 import com.carmelitascoffee.controlador.ventas.CNuevaOrden;
-import com.carmelitascoffee.controlador.ventas.CNuevoCliente;
 import com.carmelitascoffee.pojo.Cliente;
 import com.carmelitascoffee.pojo.DetalleOrdenProducto;
 import com.carmelitascoffee.pojo.DetalleOrdenServicio;
@@ -17,19 +16,19 @@ import com.carmelitascoffee.pojo.Servicio;
 import com.carmelitascoffee.vista.inventario.Productos;
 import com.carmelitascoffee.vista.inventario.Servicios;
 import com.placeholder.PlaceHolder;
+import java.awt.Color;
 
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import swing.Controles.TableZ;
 
 /**
  *
@@ -59,6 +58,10 @@ public class NuevaOrden extends JInternalFrame {
         tfNumeroFactura.setText("Código: " + this.idFactura);
         util = new Utilidades(this);
         PlaceHolder holder = new PlaceHolder(tfIdCliente, "Cliente");
+        holder.setColorHolder(Color.WHITE);
+        holder.setColorSimple(Color.WHITE);
+        holder.setFont(tfIdCliente.getFont().getName());
+
     }
 
     /**
@@ -87,11 +90,11 @@ public class NuevaOrden extends JInternalFrame {
         bServiciosVista = new swing.Controles.ButtonZ();
         lTotal = new swing.Controles.LabelZ();
         tfCantidad = new swing.Controles.TextFieldZ();
-        tfCantidad1 = new swing.Controles.TextFieldZ();
+        tfDescuento = new swing.Controles.TextFieldZ();
         labelZ1 = new swing.Controles.LabelZ();
         labelZ3 = new swing.Controles.LabelZ();
         bAgregar = new swing.Controles.ButtonZ();
-        lTotal1 = new swing.Controles.LabelZ();
+        lIVA = new swing.Controles.LabelZ();
 
         setBackground(new java.awt.Color(89, 42, 42));
         setClosable(true);
@@ -102,11 +105,8 @@ public class NuevaOrden extends JInternalFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         tfEmpleadoid.setEditable(false);
-        tfEmpleadoid.setBackground(new java.awt.Color(89, 24, 24));
         tfEmpleadoid.setBorder(null);
-        tfEmpleadoid.setForeground(java.awt.Color.white);
         tfEmpleadoid.setText("");
-        tfEmpleadoid.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
@@ -117,11 +117,8 @@ public class NuevaOrden extends JInternalFrame {
         getContentPane().add(tfEmpleadoid, gridBagConstraints);
 
         tfNumeroFactura.setEditable(false);
-        tfNumeroFactura.setBackground(new java.awt.Color(89, 24, 24));
-        tfNumeroFactura.setBorder(null);
-        tfNumeroFactura.setForeground(java.awt.Color.white);
+        tfNumeroFactura.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
         tfNumeroFactura.setText("");
-        tfNumeroFactura.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -131,11 +128,8 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfNumeroFactura, gridBagConstraints);
 
-        cbtipoOrden.setBackground(new java.awt.Color(89, 24, 24));
         cbtipoOrden.setBorder(null);
-        cbtipoOrden.setForeground(java.awt.Color.white);
         cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Producto", "Servicio" }));
-        cbtipoOrden.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -145,9 +139,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(cbtipoOrden, gridBagConstraints);
 
-        tOrden.setBackground(new java.awt.Color(89, 24, 24));
         tOrden.setBorder(null);
-        tOrden.setForeground(java.awt.Color.white);
         tOrden.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -189,9 +181,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
-        bRegistrarOrden.setBackground(new java.awt.Color(89, 24, 24));
         bRegistrarOrden.setBorder(null);
-        bRegistrarOrden.setForeground(java.awt.Color.white);
         bRegistrarOrden.setText("Registrar Orden");
         bRegistrarOrden.setFont(new java.awt.Font("Dialog", 3, 11)); // NOI18N
         bRegistrarOrden.setOpaque(true);
@@ -219,11 +209,8 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bRegistrarOrden, gridBagConstraints);
 
-        tfIdCliente.setBackground(new java.awt.Color(89, 24, 24));
-        tfIdCliente.setBorder(null);
-        tfIdCliente.setForeground(java.awt.Color.white);
+        tfIdCliente.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
         tfIdCliente.setText("");
-        tfIdCliente.setOpaque(true);
         tfIdCliente.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tfIdClienteFocusGained(evt);
@@ -233,6 +220,9 @@ public class NuevaOrden extends JInternalFrame {
             }
         });
         tfIdCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfIdClienteKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfIdClienteKeyTyped(evt);
             }
@@ -247,19 +237,14 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfIdCliente, gridBagConstraints);
 
-        lTitulo2.setBackground(new java.awt.Color(89, 24, 24));
         lTitulo2.setBorder(null);
-        lTitulo2.setForeground(java.awt.Color.white);
         lTitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lTitulo2.setText("Código del Producto/Servicio:");
         pAgregarPSO.add(lTitulo2, java.awt.BorderLayout.NORTH);
 
-        tfId.setBackground(new java.awt.Color(89, 24, 24));
         tfId.setBorder(null);
-        tfId.setForeground(java.awt.Color.white);
         tfId.setText("");
         tfId.setToolTipText("");
-        tfId.setOpaque(true);
         tfId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfIdKeyPressed(evt);
@@ -279,9 +264,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(pAgregarPSO, gridBagConstraints);
 
-        bPersonasContactoVista.setBackground(new java.awt.Color(89, 24, 24));
         bPersonasContactoVista.setBorder(null);
-        bPersonasContactoVista.setForeground(java.awt.Color.white);
         bPersonasContactoVista.setText("Ver clientes registrados");
         bPersonasContactoVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         bPersonasContactoVista.setOpaque(true);
@@ -312,16 +295,13 @@ public class NuevaOrden extends JInternalFrame {
         tfFechaRegistro.setForeground(java.awt.Color.white);
         tfFechaRegistro.setModel(new javax.swing.SpinnerDateModel());
         tfFechaRegistro.setFocusable(false);
-        tfFechaRegistro.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfFechaRegistro, gridBagConstraints);
 
-        bProductosVista.setBackground(new java.awt.Color(89, 24, 24));
         bProductosVista.setBorder(null);
-        bProductosVista.setForeground(java.awt.Color.white);
         bProductosVista.setText("Ver productos registrados");
         bProductosVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         bProductosVista.setOpaque(true);
@@ -347,9 +327,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bProductosVista, gridBagConstraints);
 
-        bServiciosVista.setBackground(new java.awt.Color(89, 24, 24));
         bServiciosVista.setBorder(null);
-        bServiciosVista.setForeground(java.awt.Color.white);
         bServiciosVista.setText("Ver servicios registrados");
         bServiciosVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         bServiciosVista.setOpaque(true);
@@ -375,9 +353,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bServiciosVista, gridBagConstraints);
 
-        lTotal.setBackground(new java.awt.Color(89, 24, 24));
-        lTotal.setBorder(null);
-        lTotal.setForeground(java.awt.Color.white);
+        lTotal.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
         lTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lTotal.setText("Total: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -387,11 +363,17 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         getContentPane().add(lTotal, gridBagConstraints);
 
-        tfCantidad.setBackground(new java.awt.Color(89, 24, 24));
-        tfCantidad.setBorder(null);
-        tfCantidad.setForeground(java.awt.Color.white);
-        tfCantidad.setText("");
-        tfCantidad.setOpaque(true);
+        tfCantidad.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCantidad.setText("1");
+        tfCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCantidadKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCantidadKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -401,11 +383,16 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfCantidad, gridBagConstraints);
 
-        tfCantidad1.setBackground(new java.awt.Color(89, 24, 24));
-        tfCantidad1.setBorder(null);
-        tfCantidad1.setForeground(java.awt.Color.white);
-        tfCantidad1.setText("");
-        tfCantidad1.setOpaque(true);
+        tfDescuento.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        tfDescuento.setText("0.0");
+        tfDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfDescuentoKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfDescuentoKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
@@ -413,9 +400,9 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        getContentPane().add(tfCantidad1, gridBagConstraints);
+        getContentPane().add(tfDescuento, gridBagConstraints);
 
-        labelZ1.setText("Cliente:");
+        labelZ1.setText("Comprador: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -430,6 +417,7 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(labelZ3, gridBagConstraints);
 
+        bAgregar.setBorder(null);
         bAgregar.setText("Agregar");
         bAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -449,18 +437,16 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.gridy = 5;
         getContentPane().add(bAgregar, gridBagConstraints);
 
-        lTotal1.setBackground(new java.awt.Color(89, 24, 24));
-        lTotal1.setBorder(null);
-        lTotal1.setForeground(java.awt.Color.white);
-        lTotal1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lTotal1.setText("Total: ");
+        lIVA.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, java.awt.Color.white));
+        lIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lIVA.setText("IVA: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
-        getContentPane().add(lTotal1, gridBagConstraints);
+        getContentPane().add(lIVA, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bPersonasContactoVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaActionPerformed
@@ -493,7 +479,9 @@ public class NuevaOrden extends JInternalFrame {
     private void tOrdenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tOrdenKeyReleased
         try {
             int rowSelect = tOrden.getSelectedRow();
+            rowSelect = (rowSelect < 0) ? 0 : rowSelect;
             int columnSelect = tOrden.getSelectedColumn();
+            columnSelect = (columnSelect < 0) ? 0 : columnSelect;
             int cantidad = Integer.parseInt(tOrden.getValueAt(rowSelect, 3) + "");
             double precio = Double.parseDouble(tOrden.getValueAt(rowSelect, 2) + "");
             float descuento = Float.parseFloat(tOrden.getValueAt(rowSelect, 4) + "");
@@ -533,7 +521,8 @@ public class NuevaOrden extends JInternalFrame {
 
                 calcularSubTotal(rowSelect);
                 calcularIVA(rowSelect);
-
+                calcularIVA();
+                calcularTotal();
             }
 
             if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
@@ -544,7 +533,7 @@ public class NuevaOrden extends JInternalFrame {
                     calcularTotal();
                 }
             }
-        } catch (HeadlessException | NumberFormatException e) {
+        } catch (HeadlessException | NumberFormatException | NullPointerException | ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_tOrdenKeyReleased
@@ -562,7 +551,7 @@ public class NuevaOrden extends JInternalFrame {
     }//GEN-LAST:event_tfIdKeyTyped
 
     private void tfIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdKeyPressed
-        if (tfEmpleadoid.getText().length() != 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (tfId.getText().length() != 0 && tfDescuento.getText().length() != 0 && tfDescuento.getText().length() != 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
             agregarDetalleOrden();
         }
     }//GEN-LAST:event_tfIdKeyPressed
@@ -576,33 +565,35 @@ public class NuevaOrden extends JInternalFrame {
                 o.setFechaOrden((Date) tfFechaRegistro.getValue());
                 o.setFechaRequerida((Date) tfFechaRegistro.getValue());
                 o.setFechaEntrega((Date) tfFechaRegistro.getValue());
+                o.setIva(getIVATotal());
+                o.setTotal(getTotal());
+                o.setSubTotal(new BigDecimal(o.getTotal().doubleValue() - o.getIva().doubleValue()));
                 o = controlador.agregarOrden(o);
 
                 DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
                 for (int i = 0; i < model.getRowCount(); i++) {
-                    String tipoOrden = (String) model.getValueAt(i, 0);
+                    String tipoOrden = model.getValueAt(i, 0).toString().split("-")[0];
+                    int id = Integer.parseInt(model.getValueAt(i, 0).toString().substring(2));
                     int cantidad = Integer.parseInt(tOrden.getValueAt(i, 3) + "");
                     float descuento = Float.parseFloat(tOrden.getValueAt(i, 4) + "");
-                    float precio = Float.parseFloat(tOrden.getValueAt(i, 2) + "");
-                    String celda1 = (String) tOrden.getValueAt(i, 1);
-                    if ("Servicio".equals(tipoOrden)) {
-                        int idServicio = Integer.parseInt(celda1.split("-")[0]);
+
+                    if ("S".equals(tipoOrden)) {
+                        int idServicio = id;
                         Servicio servicio = controlador.getServicios(idServicio);
                         DetalleOrdenServicio dos = new DetalleOrdenServicio(o, servicio);
                         dos.setCantidad(cantidad);
                         dos.setDescuento(new BigDecimal(descuento));
-                        dos.setPrecioUnit(new BigDecimal(precio));
+                        dos.setPrecioUnit(servicio.getPrecio());
                         controlador.agregarDetalleOrdenServicio(dos);
 
-                    } else if ("Producto".equals(tipoOrden)) {
-                        int idProducto = Integer.parseInt(celda1.split("-")[0]);
+                    } else if ("P".equals(tipoOrden)) {
+                        int idProducto = id;
                         Producto producto = controlador.getProducto(idProducto);
                         DetalleOrdenProducto dop = new DetalleOrdenProducto(o, producto);
                         dop.setCantidad(cantidad);
                         dop.setDescuento(new BigDecimal(descuento));
-                        dop.setPrecioUnit(new BigDecimal(precio));
+                        dop.setPrecioUnit(producto.getPrecio());
                         controlador.agregarDetalleOrdenProducto(dop);
-
                     }
                 }
                 JOptionPane.showMessageDialog(this, "Orden registrada exitosamente!");
@@ -612,7 +603,7 @@ public class NuevaOrden extends JInternalFrame {
                 idFactura = controlador.getNuevoCodigoFactura();
                 tfNumeroFactura.setText("Código: " + idFactura);
             } catch (NumberFormatException | HibernateException e) {
-                JOptionPane.showMessageDialog(this, e + "" + e.getMessage());
+                JOptionPane.showMessageDialog(this, e.toString());
             }
         } else {
             JOptionPane.showMessageDialog(this, validarDatos());
@@ -629,21 +620,23 @@ public class NuevaOrden extends JInternalFrame {
     }//GEN-LAST:event_bRegistrarOrdenMouseExited
 
     private void tfIdClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdClienteKeyTyped
-        if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
-            tfIdCliente.setFocusable(false);
-        } else if (!Character.isDigit(evt.getKeyChar())) {
-            evt.consume();
-        }
+
 
     }//GEN-LAST:event_tfIdClienteKeyTyped
 
     private void tfIdClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfIdClienteFocusLost
-        idCliente = Integer.parseInt(tfIdCliente.getText());
-        Cliente cliente = controlador.getCliente(idCliente);
-        if (cliente != null) {
-            tfIdCliente.setEditable(false);
-            tfIdCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
+        try {
+            idCliente = Integer.parseInt(tfIdCliente.getText());
+            Cliente cliente = controlador.getCliente(idCliente);
+            if (cliente != null) {
+                tfIdCliente.setEditable(false);
+                tfIdCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
+            }
+
+        } catch (NumberFormatException e) {
+
         }
+        tfId.requestFocus();
     }//GEN-LAST:event_tfIdClienteFocusLost
 
     private void tfIdClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfIdClienteFocusGained
@@ -652,7 +645,7 @@ public class NuevaOrden extends JInternalFrame {
     }//GEN-LAST:event_tfIdClienteFocusGained
 
     private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
-        // TODO add your handling code here:
+        agregarDetalleOrden();
     }//GEN-LAST:event_bAgregarActionPerformed
 
     private void bAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarMouseEntered
@@ -663,6 +656,61 @@ public class NuevaOrden extends JInternalFrame {
         Utilidades.cambiarColorBotonExited(evt);        // TODO add your handling code here:
     }//GEN-LAST:event_bAgregarMouseExited
 
+    private void tfCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCantidadKeyPressed
+        if (tfId.getText().length() != 0 && tfDescuento.getText().length() != 0 && tfDescuento.getText().length() != 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            agregarDetalleOrden();
+        }
+    }//GEN-LAST:event_tfCantidadKeyPressed
+
+    private void tfCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCantidadKeyReleased
+
+        try {
+            int i = Integer.parseInt(tfCantidad.getText());
+            if (i <= 0) {
+                tfCantidad.setBorder(new MatteBorder(1, 1, 1, 1, Color.RED));
+            } else {
+                tfCantidad.setBorder(new MatteBorder(0, 0, 2, 0, Color.WHITE));
+            }
+        } catch (NumberFormatException e) {
+            tfCantidad.setBorder(new MatteBorder(1, 1, 1, 1, Color.RED));
+
+        }
+    }//GEN-LAST:event_tfCantidadKeyReleased
+
+    private void tfDescuentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescuentoKeyReleased
+        try {
+            double i = Double.parseDouble(tfDescuento.getText());
+            if (i < 0.0 || i > 1) {
+                tfDescuento.setBorder(new MatteBorder(1, 1, 1, 1, Color.RED));
+            } else {
+                tfDescuento.setBorder(new MatteBorder(0, 0, 2, 0, Color.WHITE));
+            }
+
+        } catch (NumberFormatException e) {
+            tfDescuento.setBorder(new MatteBorder(1, 1, 1, 1, Color.RED));
+        }
+    }//GEN-LAST:event_tfDescuentoKeyReleased
+
+    private void tfDescuentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescuentoKeyPressed
+        if (tfId.getText().length() != 0 && tfDescuento.getText().length() != 0 && tfDescuento.getText().length() != 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            agregarDetalleOrden();
+        }
+    }//GEN-LAST:event_tfDescuentoKeyPressed
+
+    private void tfIdClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdClienteKeyReleased
+        if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
+            idCliente = Integer.parseInt(tfIdCliente.getText());
+            Cliente cliente = controlador.getCliente(idCliente);
+            if (cliente != null) {
+                tfIdCliente.setEditable(false);
+                tfIdCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
+            }
+            tfId.requestFocus();
+        } else if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfIdClienteKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.ButtonZ bAgregar;
@@ -672,15 +720,15 @@ public class NuevaOrden extends JInternalFrame {
     private swing.Controles.ButtonZ bServiciosVista;
     private swing.Controles.ComboBoxZ cbtipoOrden;
     private javax.swing.JScrollPane jScrollPane1;
+    private swing.Controles.LabelZ lIVA;
     private swing.Controles.LabelZ lTitulo2;
     private swing.Controles.LabelZ lTotal;
-    private swing.Controles.LabelZ lTotal1;
     private swing.Controles.LabelZ labelZ1;
     private swing.Controles.LabelZ labelZ3;
     private swing.Contenedores.PanelZ pAgregarPSO;
     private swing.Controles.TableZ tOrden;
     private swing.Controles.TextFieldZ tfCantidad;
-    private swing.Controles.TextFieldZ tfCantidad1;
+    private swing.Controles.TextFieldZ tfDescuento;
     private swing.Controles.TextFieldZ tfEmpleadoid;
     private swing.Controles.SpinnerZ tfFechaRegistro;
     private swing.Controles.TextFieldZ tfId;
@@ -689,34 +737,48 @@ public class NuevaOrden extends JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void agregarFila(Producto p) {
-        DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
-        Object[] row = new Object[7];
-        double total = p.getPrecio().doubleValue() * 1.0;
-        row[0] = "P-" + p.getIdProducto();
-        row[1] = p.getDescripcion();
-        row[2] = p.getPrecio().toString();
-        row[3] = 1;
-        row[4] = 0;
-        row[5] = (p.isExentoIva()) ? 0 : total * util.getIVA();
-        row[6] = (p.isExentoIva()) ? total : total * (1 + util.getIVA());
-        model.addRow(row);
-        calcularTotal();
+        try {
+            DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
+            Object[] row = new Object[7];
+            int cantidad = Integer.parseInt(tfCantidad.getText());
+            double desc = Float.parseFloat(tfDescuento.getText());
+            double total = p.getPrecio().doubleValue() * cantidad * (1 - desc);
+            row[0] = "P-" + p.getIdProducto();
+            row[1] = p.getDescripcion();
+            row[2] = p.getPrecio().toString();
+            row[3] = cantidad;
+            row[4] = desc;
+            row[5] = (p.isExentoIva()) ? 0 : total * util.getIVA();
+            row[6] = (p.isExentoIva()) ? total : total * (1 + util.getIVA());
+            model.addRow(row);
+            calcularIVA();
+            calcularTotal();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+
     }
 
     private void agregarFila(Servicio p) {
-        DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
-        Object[] row = new Object[7];
-        double total = p.getPrecio().doubleValue() * 1.0;
-        row[0] = "S-" + p.getIdServicio();
-        row[1] = p.getDescripcion();
-        row[2] = p.getPrecio().toString();
-        row[3] = 1;
-        row[4] = 0;
-        row[5] = (p.isExentoIva()) ? 0 : total * util.getIVA();
-        row[6] = (p.isExentoIva()) ? total : total * (1 + util.getIVA());
-        model.addRow(row);
-        calcularTotal();
-
+        try {
+            DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
+            Object[] row = new Object[7];
+            int cantidad = Integer.parseInt(tfCantidad.getText());
+            double desc = Float.parseFloat(tfDescuento.getText());
+            double total = p.getPrecio().doubleValue() * cantidad * (1 - desc);
+            row[0] = "S-" + p.getIdServicio();
+            row[1] = p.getDescripcion();
+            row[2] = p.getPrecio().toString();
+            row[3] = cantidad;
+            row[4] = desc;
+            row[5] = (p.isExentoIva()) ? 0 : total * util.getIVA();
+            row[6] = (p.isExentoIva()) ? total : total * (1 + util.getIVA());
+            model.addRow(row);
+            calcularIVA();
+            calcularTotal();
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
     }
 
     private void calcularTotal() {
@@ -741,6 +803,7 @@ public class NuevaOrden extends JInternalFrame {
                 mensaje += "No existe un cliente con ese id!!";
             }
         } catch (NumberFormatException numberFormatException) {
+
         }
 
         return mensaje;
@@ -782,7 +845,7 @@ public class NuevaOrden extends JInternalFrame {
                 }
             }
 
-        } catch (HeadlessException | NumberFormatException e) {
+        } catch (HeadlessException | NumberFormatException | StringIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
@@ -794,7 +857,7 @@ public class NuevaOrden extends JInternalFrame {
 
             iva += Double.parseDouble(model.getValueAt(i, 5) + "");
         }
-        lTotal1.setText("IVA: " + iva);
+        lIVA.setText("IVA: " + iva);
     }
 
     private void calcularIVA(int fila) {
@@ -825,14 +888,25 @@ public class NuevaOrden extends JInternalFrame {
     }
 
     private void calcularSubTotal(int fila) {
-        double total = 0;
+        double total;
 
         int cantidad = Integer.parseInt(tOrden.getValueAt(fila, 3) + "");
         double precio = Double.parseDouble(tOrden.getValueAt(fila, 2) + "");
         double descuento = Double.parseDouble(tOrden.getValueAt(fila, 4) + "");
         double iva = Double.parseDouble(tOrden.getValueAt(fila, 5) + "");
-        total = cantidad * precio * (1 - descuento) * (1 + iva);
+        total = cantidad * precio * (1 - descuento) + iva;
+
         tOrden.setValueAt(total, fila, 6);
         calcularTotal();
+    }
+
+    private BigDecimal getIVATotal() {
+        String iva = lIVA.getText().substring(5);
+        return new BigDecimal(iva);
+    }
+
+    private BigDecimal getTotal() {
+        String total = lTotal.getText().substring(7);
+        return new BigDecimal(total);
     }
 }
