@@ -79,7 +79,7 @@ public class Proveedores extends JInternalFrame {
         setName(""); // NOI18N
         setVisible(true);
 
-        pContenido.setBackground(new java.awt.Color(89, 43, 42));
+        pContenido.setBackground(new java.awt.Color(89, 42, 42));
         pContenido.setForeground(java.awt.Color.white);
         pContenido.setLayout(new java.awt.GridBagLayout());
 
@@ -440,7 +440,7 @@ public class Proveedores extends JInternalFrame {
         cargarTabla(controlador.cargarFiltros(filtro));
     }//GEN-LAST:event_tfBusquedaAvanzadaKeyTyped
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.ButtonZ bAgregarProveedor;
     private javax.swing.JScrollPane jScrollPane1;

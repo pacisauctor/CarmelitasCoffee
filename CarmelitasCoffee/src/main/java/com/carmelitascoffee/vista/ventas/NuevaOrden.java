@@ -5,7 +5,10 @@
  */
 package com.carmelitascoffee.vista.ventas;
 
+import com.carmelitascoffee.controlador.Utilidades;
 import com.carmelitascoffee.controlador.ventas.CNuevaOrden;
+import com.carmelitascoffee.controlador.ventas.CNuevoCliente;
+import com.carmelitascoffee.pojo.Cliente;
 import com.carmelitascoffee.pojo.DetalleOrdenProducto;
 import com.carmelitascoffee.pojo.DetalleOrdenServicio;
 import com.carmelitascoffee.pojo.Orden;
@@ -13,10 +16,12 @@ import com.carmelitascoffee.pojo.Producto;
 import com.carmelitascoffee.pojo.Servicio;
 import com.carmelitascoffee.vista.inventario.Productos;
 import com.carmelitascoffee.vista.inventario.Servicios;
-import java.awt.Color;
+import com.placeholder.PlaceHolder;
+
 import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -24,6 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import swing.Controles.TableZ;
 
 /**
  *
@@ -32,8 +38,10 @@ import org.hibernate.Session;
 public class NuevaOrden extends JInternalFrame {
 
     Session s;
-    int idEmpleado;
+    int idEmpleado, idCliente;
+    String idFactura;
     CNuevaOrden controlador;
+    Utilidades util;
 
     /**
      * Creates new form InternalFrameZ
@@ -45,10 +53,12 @@ public class NuevaOrden extends JInternalFrame {
         initComponents();
         this.s = s;
         this.idEmpleado = idEmpleado;
-        tfEmpleadoid.setText("" + idEmpleado);
+        tfEmpleadoid.setText("Empleado #" + idEmpleado);
         controlador = new CNuevaOrden(s);
-        tfNumeroFactura.setText(controlador.getNuevoCodigoFactura());
-
+        this.idFactura = controlador.getNuevoCodigoFactura();
+        tfNumeroFactura.setText("Código: " + this.idFactura);
+        util = new Utilidades(this);
+        PlaceHolder holder = new PlaceHolder(tfIdCliente, "Cliente");
     }
 
     /**
@@ -61,14 +71,9 @@ public class NuevaOrden extends JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        lEmpleadoid = new swing.Controles.LabelZ();
         tfEmpleadoid = new swing.Controles.TextFieldZ();
-        lNumeroFactura = new swing.Controles.LabelZ();
         tfNumeroFactura = new swing.Controles.TextFieldZ();
-        lTipoOrden = new swing.Controles.LabelZ();
         cbtipoOrden = new swing.Controles.ComboBoxZ();
-        lFechaRegistro = new swing.Controles.LabelZ();
-        lIDClientes = new swing.Controles.LabelZ();
         jScrollPane1 = new javax.swing.JScrollPane();
         tOrden = new swing.Controles.TableZ();
         bRegistrarOrden = new swing.Controles.ButtonZ();
@@ -81,8 +86,14 @@ public class NuevaOrden extends JInternalFrame {
         bProductosVista = new swing.Controles.ButtonZ();
         bServiciosVista = new swing.Controles.ButtonZ();
         lTotal = new swing.Controles.LabelZ();
+        tfCantidad = new swing.Controles.TextFieldZ();
+        tfCantidad1 = new swing.Controles.TextFieldZ();
+        labelZ1 = new swing.Controles.LabelZ();
+        labelZ3 = new swing.Controles.LabelZ();
+        bAgregar = new swing.Controles.ButtonZ();
+        lTotal1 = new swing.Controles.LabelZ();
 
-        setBackground(new java.awt.Color(255, 247, 162));
+        setBackground(new java.awt.Color(89, 42, 42));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -90,98 +101,66 @@ public class NuevaOrden extends JInternalFrame {
         setVisible(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        lEmpleadoid.setText("Empleado: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(lEmpleadoid, gridBagConstraints);
-
         tfEmpleadoid.setEditable(false);
+        tfEmpleadoid.setBackground(new java.awt.Color(89, 24, 24));
+        tfEmpleadoid.setBorder(null);
+        tfEmpleadoid.setForeground(java.awt.Color.white);
         tfEmpleadoid.setText("");
+        tfEmpleadoid.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(tfEmpleadoid, gridBagConstraints);
 
-        lNumeroFactura.setText("Número de Factura: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(lNumeroFactura, gridBagConstraints);
-
         tfNumeroFactura.setEditable(false);
+        tfNumeroFactura.setBackground(new java.awt.Color(89, 24, 24));
+        tfNumeroFactura.setBorder(null);
+        tfNumeroFactura.setForeground(java.awt.Color.white);
         tfNumeroFactura.setText("");
+        tfNumeroFactura.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(tfNumeroFactura, gridBagConstraints);
-
-        lTipoOrden.setText("Tipo de Orden: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(lTipoOrden, gridBagConstraints);
-
-        cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Producto", "Servicio" }));
-        cbtipoOrden.setOpaque(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(cbtipoOrden, gridBagConstraints);
-
-        lFechaRegistro.setText("Fecha de registro de la Orden: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(lFechaRegistro, gridBagConstraints);
-
-        lIDClientes.setText("Id Cliente: ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        getContentPane().add(lIDClientes, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(tfNumeroFactura, gridBagConstraints);
 
+        cbtipoOrden.setBackground(new java.awt.Color(89, 24, 24));
+        cbtipoOrden.setBorder(null);
+        cbtipoOrden.setForeground(java.awt.Color.white);
+        cbtipoOrden.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Producto", "Servicio" }));
+        cbtipoOrden.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(cbtipoOrden, gridBagConstraints);
+
+        tOrden.setBackground(new java.awt.Color(89, 24, 24));
+        tOrden.setBorder(null);
+        tOrden.setForeground(java.awt.Color.white);
         tOrden.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Tipo Orden", "Nombre", "Precio", "Cantidad", "Descuento Unit", "SubTotal"
+                "Cod", "Nombre", "Precio", "Cantidad", "Descuento Unit", "IVA", "SubTotal"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, false
+                false, false, false, true, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -201,8 +180,8 @@ public class NuevaOrden extends JInternalFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.8;
@@ -210,17 +189,28 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
-        bRegistrarOrden.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        bRegistrarOrden.setBackground(new java.awt.Color(89, 24, 24));
+        bRegistrarOrden.setBorder(null);
+        bRegistrarOrden.setForeground(java.awt.Color.white);
         bRegistrarOrden.setText("Registrar Orden");
         bRegistrarOrden.setFont(new java.awt.Font("Dialog", 3, 11)); // NOI18N
+        bRegistrarOrden.setOpaque(true);
+        bRegistrarOrden.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bRegistrarOrdenMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegistrarOrdenMouseExited(evt);
+            }
+        });
         bRegistrarOrden.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bRegistrarOrdenActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
@@ -229,51 +219,78 @@ public class NuevaOrden extends JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bRegistrarOrden, gridBagConstraints);
 
+        tfIdCliente.setBackground(new java.awt.Color(89, 24, 24));
+        tfIdCliente.setBorder(null);
+        tfIdCliente.setForeground(java.awt.Color.white);
         tfIdCliente.setText("");
+        tfIdCliente.setOpaque(true);
+        tfIdCliente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfIdClienteFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfIdClienteFocusLost(evt);
+            }
+        });
+        tfIdCliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfIdClienteKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfIdCliente, gridBagConstraints);
 
+        lTitulo2.setBackground(new java.awt.Color(89, 24, 24));
+        lTitulo2.setBorder(null);
+        lTitulo2.setForeground(java.awt.Color.white);
         lTitulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lTitulo2.setText("Digite el Id del Producto/Servicio:");
+        lTitulo2.setText("Código del Producto/Servicio:");
         pAgregarPSO.add(lTitulo2, java.awt.BorderLayout.NORTH);
 
+        tfId.setBackground(new java.awt.Color(89, 24, 24));
+        tfId.setBorder(null);
+        tfId.setForeground(java.awt.Color.white);
         tfId.setText("");
         tfId.setToolTipText("");
+        tfId.setOpaque(true);
         tfId.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfIdKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfIdKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfIdKeyTyped(evt);
             }
         });
         pAgregarPSO.add(tfId, java.awt.BorderLayout.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(pAgregarPSO, gridBagConstraints);
 
-        bPersonasContactoVista.setBackground(new java.awt.Color(255, 247, 162));
+        bPersonasContactoVista.setBackground(new java.awt.Color(89, 24, 24));
         bPersonasContactoVista.setBorder(null);
-        bPersonasContactoVista.setForeground(new java.awt.Color(10, 13, 67));
+        bPersonasContactoVista.setForeground(java.awt.Color.white);
         bPersonasContactoVista.setText("Ver clientes registrados");
         bPersonasContactoVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bPersonasContactoVista.setOpaque(true);
         bPersonasContactoVista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bPersonasContactoVistaMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bPersonasContactoVistaMouseEntered(evt);
+                bRegistrarOrdenMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegistrarOrdenMouseExited(evt);
             }
         });
         bPersonasContactoVista.addActionListener(new java.awt.event.ActionListener() {
@@ -282,31 +299,38 @@ public class NuevaOrden extends JInternalFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bPersonasContactoVista, gridBagConstraints);
 
+        tfFechaRegistro.setBackground(new java.awt.Color(89, 24, 24));
+        tfFechaRegistro.setBorder(null);
+        tfFechaRegistro.setForeground(java.awt.Color.white);
         tfFechaRegistro.setModel(new javax.swing.SpinnerDateModel());
         tfFechaRegistro.setFocusable(false);
+        tfFechaRegistro.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(tfFechaRegistro, gridBagConstraints);
 
-        bProductosVista.setBackground(new java.awt.Color(255, 247, 162));
+        bProductosVista.setBackground(new java.awt.Color(89, 24, 24));
         bProductosVista.setBorder(null);
-        bProductosVista.setForeground(new java.awt.Color(10, 13, 67));
+        bProductosVista.setForeground(java.awt.Color.white);
         bProductosVista.setText("Ver productos registrados");
         bProductosVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bProductosVista.setOpaque(true);
         bProductosVista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bProductosVistaMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bProductosVistaMouseEntered(evt);
+                bRegistrarOrdenMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegistrarOrdenMouseExited(evt);
             }
         });
         bProductosVista.addActionListener(new java.awt.event.ActionListener() {
@@ -316,23 +340,25 @@ public class NuevaOrden extends JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bProductosVista, gridBagConstraints);
 
-        bServiciosVista.setBackground(new java.awt.Color(255, 247, 162));
+        bServiciosVista.setBackground(new java.awt.Color(89, 24, 24));
         bServiciosVista.setBorder(null);
-        bServiciosVista.setForeground(new java.awt.Color(10, 13, 67));
+        bServiciosVista.setForeground(java.awt.Color.white);
         bServiciosVista.setText("Ver servicios registrados");
         bServiciosVista.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        bServiciosVista.setOpaque(true);
         bServiciosVista.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bServiciosVistaMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bServiciosVistaMouseEntered(evt);
+                bRegistrarOrdenMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bRegistrarOrdenMouseExited(evt);
             }
         });
         bServiciosVista.addActionListener(new java.awt.event.ActionListener() {
@@ -342,30 +368,100 @@ public class NuevaOrden extends JInternalFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         getContentPane().add(bServiciosVista, gridBagConstraints);
 
+        lTotal.setBackground(new java.awt.Color(89, 24, 24));
+        lTotal.setBorder(null);
+        lTotal.setForeground(java.awt.Color.white);
         lTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lTotal.setText("Total: ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         getContentPane().add(lTotal, gridBagConstraints);
+
+        tfCantidad.setBackground(new java.awt.Color(89, 24, 24));
+        tfCantidad.setBorder(null);
+        tfCantidad.setForeground(java.awt.Color.white);
+        tfCantidad.setText("");
+        tfCantidad.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(tfCantidad, gridBagConstraints);
+
+        tfCantidad1.setBackground(new java.awt.Color(89, 24, 24));
+        tfCantidad1.setBorder(null);
+        tfCantidad1.setForeground(java.awt.Color.white);
+        tfCantidad1.setText("");
+        tfCantidad1.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(tfCantidad1, gridBagConstraints);
+
+        labelZ1.setText("Cliente:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(labelZ1, gridBagConstraints);
+
+        labelZ3.setText("unidades con un descuento de: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        getContentPane().add(labelZ3, gridBagConstraints);
+
+        bAgregar.setText("Agregar");
+        bAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bAgregarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bAgregarMouseExited(evt);
+            }
+        });
+        bAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 5;
+        getContentPane().add(bAgregar, gridBagConstraints);
+
+        lTotal1.setBackground(new java.awt.Color(89, 24, 24));
+        lTotal1.setBorder(null);
+        lTotal1.setForeground(java.awt.Color.white);
+        lTotal1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lTotal1.setText("Total: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        getContentPane().add(lTotal1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bPersonasContactoVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseExited
-        bPersonasContactoVista.setBackground(new Color(255, 247, 162));
-    }//GEN-LAST:event_bPersonasContactoVistaMouseExited
-
-    private void bPersonasContactoVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaMouseEntered
-        bPersonasContactoVista.setBackground(new Color(255, 247, 162));
-    }//GEN-LAST:event_bPersonasContactoVistaMouseEntered
 
     private void bPersonasContactoVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPersonasContactoVistaActionPerformed
         JDesktopPane jdp = getDesktopPane();
@@ -376,15 +472,6 @@ public class NuevaOrden extends JInternalFrame {
         clienteVista.toFront();
     }//GEN-LAST:event_bPersonasContactoVistaActionPerformed
 
-    private void bProductosVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bProductosVistaMouseExited
-        bProductosVista.setBackground(new Color(255, 247, 162));
-
-    }//GEN-LAST:event_bProductosVistaMouseExited
-
-    private void bProductosVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bProductosVistaMouseEntered
-        bProductosVista.setBackground(new Color(255, 247, 162));
-    }//GEN-LAST:event_bProductosVistaMouseEntered
-
     private void bProductosVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bProductosVistaActionPerformed
         JDesktopPane jdp = getDesktopPane();
         Productos productos = new Productos(s);
@@ -393,15 +480,6 @@ public class NuevaOrden extends JInternalFrame {
         jdp.add(productos);
         productos.toFront();
     }//GEN-LAST:event_bProductosVistaActionPerformed
-
-    private void bServiciosVistaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bServiciosVistaMouseExited
-        bServiciosVista.setBackground(new Color(255, 247, 162));
-    }//GEN-LAST:event_bServiciosVistaMouseExited
-
-    private void bServiciosVistaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bServiciosVistaMouseEntered
-        bServiciosVista.setBackground(new Color(255, 247, 162));
-
-    }//GEN-LAST:event_bServiciosVistaMouseEntered
 
     private void bServiciosVistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bServiciosVistaActionPerformed
         JDesktopPane jdp = getDesktopPane();
@@ -417,11 +495,18 @@ public class NuevaOrden extends JInternalFrame {
             int rowSelect = tOrden.getSelectedRow();
             int columnSelect = tOrden.getSelectedColumn();
             int cantidad = Integer.parseInt(tOrden.getValueAt(rowSelect, 3) + "");
+            double precio = Double.parseDouble(tOrden.getValueAt(rowSelect, 2) + "");
             float descuento = Float.parseFloat(tOrden.getValueAt(rowSelect, 4) + "");
-            String nombre = (String) tOrden.getValueAt(rowSelect, 1);
-            nombre = nombre.split("-")[0];
-            int idProducto = Integer.parseInt(nombre);
-            Producto p = controlador.getProducto(idProducto);
+            String codigo = (String) tOrden.getValueAt(rowSelect, 0);
+            String tipo = codigo.split("-")[0];
+            codigo = codigo.split("-")[1];
+            int id = Integer.parseInt(codigo);
+
+            Producto p = null;
+
+            if ("P".equals(tipo)) {
+                p = controlador.getProducto(id);
+            }
 
             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                 if (columnSelect == 4) {
@@ -429,22 +514,33 @@ public class NuevaOrden extends JInternalFrame {
                         JOptionPane.showMessageDialog(this, "El descuento tiene que estar entre 0 y 1");
                         descuento = 0;
                         tOrden.setValueAt(0, rowSelect, 4);
+
                     }
                 } else if (columnSelect == 3) {
-
-                    if (cantidad < 0 || cantidad > p.getCantidadEnInventario()) {
-                        JOptionPane.showMessageDialog(this, "La Cantidad debe de estar entre 0 y el número de unidades en inventario");
+                    if (cantidad < 0) {
+                        JOptionPane.showMessageDialog(this, "La cantidad debe ser mayor que 0");
                         tOrden.setValueAt(0, rowSelect, 3);
                         cantidad = 0;
                     }
+                    if ("P".equals(tipo)) {
+                        if (cantidad > p.getCantidadEnInventario()) {
+                            JOptionPane.showMessageDialog(this, "La Cantidad debe de estar entre 0 y el número de unidades en inventario");
+                            tOrden.setValueAt(p.getCantidadEnInventario(), rowSelect, 3);
+                            cantidad = p.getCantidadEnInventario();
+                        }
+                    }
                 }
-                tOrden.setValueAt(cantidad * p.getPrecio().floatValue() * (1 - descuento), rowSelect, 5);
-                calcularTotal();
+
+                calcularSubTotal(rowSelect);
+                calcularIVA(rowSelect);
+
             }
+
             if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
                 rowSelect = tOrden.getSelectedRow();
                 if (JOptionPane.showConfirmDialog(this, "¿Seguro de eliminar la fila seleccionada?") == 0) {
                     eliminarFila(rowSelect);
+                    calcularIVA();
                     calcularTotal();
                 }
             }
@@ -454,52 +550,29 @@ public class NuevaOrden extends JInternalFrame {
     }//GEN-LAST:event_tOrdenKeyReleased
 
     private void tfIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdKeyTyped
-
+        String textoId = tfId.getText();
+        char caracterDigitado = evt.getKeyChar();
+        if (textoId.length() == 0) {
+            if (caracterDigitado != 'S' && caracterDigitado != 'P') {
+                evt.consume();
+            }
+        } else if (!Character.isDigit(caracterDigitado) && !Character.isISOControl(caracterDigitado)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_tfIdKeyTyped
 
     private void tfIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdKeyPressed
-
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            //agregar detalle orden producto
-            if (cbtipoOrden.getSelectedIndex() == 0) {
-                try {
-                    int idProducto = Integer.parseInt(tfId.getText());
-                    if (controlador.existeProducto(idProducto)) {
-                        Producto p = controlador.getProducto(idProducto);
-                        agregarFila(p);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los productos\n"
-                                + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
-                    }
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los productos identificados\n"
-                            + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
-                }
-            } else if (cbtipoOrden.getSelectedIndex() == 1) { // agregar detalle orden servicio
-                try {
-                    int idServicio = Integer.parseInt(tfId.getText());
-                    if (controlador.existeServicio(idServicio)) {
-                        Servicio serv = controlador.getServicios(idServicio);
-                        agregarFila(serv);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los servicios\n"
-                                + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
-                    }
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los servicios identificados\n"
-                            + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
-                }
-            }
+        if (tfEmpleadoid.getText().length() != 0 && evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            agregarDetalleOrden();
         }
     }//GEN-LAST:event_tfIdKeyPressed
 
     private void bRegistrarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRegistrarOrdenActionPerformed
         if (validarDatos().isEmpty()) {
             try {
-                int idCliente = Integer.parseInt(tfIdCliente.getText());
 
                 Orden o = new Orden(controlador.getCliente(idCliente), controlador.getEmpleado(idEmpleado));
-                o.setNumeroFactura(tfNumeroFactura.getText());
+                o.setNumeroFactura(idFactura);
                 o.setFechaOrden((Date) tfFechaRegistro.getValue());
                 o.setFechaRequerida((Date) tfFechaRegistro.getValue());
                 o.setFechaEntrega((Date) tfFechaRegistro.getValue());
@@ -536,9 +609,10 @@ public class NuevaOrden extends JInternalFrame {
                 model.setRowCount(0);
                 tOrden.setModel(model);
                 tfIdCliente.setText("");
-                tfNumeroFactura.setText(controlador.getNuevoCodigoFactura());
+                idFactura = controlador.getNuevoCodigoFactura();
+                tfNumeroFactura.setText("Código: " + idFactura);
             } catch (NumberFormatException | HibernateException e) {
-                JOptionPane.showMessageDialog(this, e);
+                JOptionPane.showMessageDialog(this, e + "" + e.getMessage());
             }
         } else {
             JOptionPane.showMessageDialog(this, validarDatos());
@@ -546,23 +620,67 @@ public class NuevaOrden extends JInternalFrame {
 
     }//GEN-LAST:event_bRegistrarOrdenActionPerformed
 
+    private void bRegistrarOrdenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegistrarOrdenMouseEntered
+        Utilidades.cambiarColorBotonEntered(evt);
+    }//GEN-LAST:event_bRegistrarOrdenMouseEntered
+
+    private void bRegistrarOrdenMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bRegistrarOrdenMouseExited
+        Utilidades.cambiarColorBotonExited(evt);
+    }//GEN-LAST:event_bRegistrarOrdenMouseExited
+
+    private void tfIdClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfIdClienteKeyTyped
+        if (KeyEvent.VK_ENTER == evt.getKeyCode()) {
+            tfIdCliente.setFocusable(false);
+        } else if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_tfIdClienteKeyTyped
+
+    private void tfIdClienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfIdClienteFocusLost
+        idCliente = Integer.parseInt(tfIdCliente.getText());
+        Cliente cliente = controlador.getCliente(idCliente);
+        if (cliente != null) {
+            tfIdCliente.setEditable(false);
+            tfIdCliente.setText(cliente.getNombres() + " " + cliente.getApellidos());
+        }
+    }//GEN-LAST:event_tfIdClienteFocusLost
+
+    private void tfIdClienteFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfIdClienteFocusGained
+        tfIdCliente.setEditable(true);
+        tfIdCliente.setText("" + idCliente);
+    }//GEN-LAST:event_tfIdClienteFocusGained
+
+    private void bAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAgregarActionPerformed
+
+    private void bAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarMouseEntered
+        Utilidades.cambiarColorBotonEntered(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_bAgregarMouseEntered
+
+    private void bAgregarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarMouseExited
+        Utilidades.cambiarColorBotonExited(evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_bAgregarMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Controles.ButtonZ bAgregar;
     private swing.Controles.ButtonZ bPersonasContactoVista;
     private swing.Controles.ButtonZ bProductosVista;
     private swing.Controles.ButtonZ bRegistrarOrden;
     private swing.Controles.ButtonZ bServiciosVista;
     private swing.Controles.ComboBoxZ cbtipoOrden;
     private javax.swing.JScrollPane jScrollPane1;
-    private swing.Controles.LabelZ lEmpleadoid;
-    private swing.Controles.LabelZ lFechaRegistro;
-    private swing.Controles.LabelZ lIDClientes;
-    private swing.Controles.LabelZ lNumeroFactura;
-    private swing.Controles.LabelZ lTipoOrden;
     private swing.Controles.LabelZ lTitulo2;
     private swing.Controles.LabelZ lTotal;
+    private swing.Controles.LabelZ lTotal1;
+    private swing.Controles.LabelZ labelZ1;
+    private swing.Controles.LabelZ labelZ3;
     private swing.Contenedores.PanelZ pAgregarPSO;
     private swing.Controles.TableZ tOrden;
+    private swing.Controles.TextFieldZ tfCantidad;
+    private swing.Controles.TextFieldZ tfCantidad1;
     private swing.Controles.TextFieldZ tfEmpleadoid;
     private swing.Controles.SpinnerZ tfFechaRegistro;
     private swing.Controles.TextFieldZ tfId;
@@ -572,26 +690,30 @@ public class NuevaOrden extends JInternalFrame {
 
     private void agregarFila(Producto p) {
         DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
-        Object[] row = new Object[6];
-        row[0] = cbtipoOrden.getSelectedItem();
-        row[1] = p.getIdProducto() + "-" + p.getDescripcion();
+        Object[] row = new Object[7];
+        double total = p.getPrecio().doubleValue() * 1.0;
+        row[0] = "P-" + p.getIdProducto();
+        row[1] = p.getDescripcion();
         row[2] = p.getPrecio().toString();
         row[3] = 1;
         row[4] = 0;
-        row[5] = p.getPrecio().doubleValue() * Double.parseDouble(row[3] + "");
+        row[5] = (p.isExentoIva()) ? 0 : total * util.getIVA();
+        row[6] = (p.isExentoIva()) ? total : total * (1 + util.getIVA());
         model.addRow(row);
         calcularTotal();
     }
 
     private void agregarFila(Servicio p) {
         DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
-        Object[] row = new Object[6];
-        row[0] = cbtipoOrden.getSelectedItem();
-        row[1] = p.getIdServicio() + "-" + p.getDescripcion();
+        Object[] row = new Object[7];
+        double total = p.getPrecio().doubleValue() * 1.0;
+        row[0] = "S-" + p.getIdServicio();
+        row[1] = p.getDescripcion();
         row[2] = p.getPrecio().toString();
         row[3] = 1;
         row[4] = 0;
-        row[5] = p.getPrecio().doubleValue() * Double.parseDouble(row[3] + "");
+        row[5] = (p.isExentoIva()) ? 0 : total * util.getIVA();
+        row[6] = (p.isExentoIva()) ? total : total * (1 + util.getIVA());
         model.addRow(row);
         calcularTotal();
 
@@ -601,7 +723,7 @@ public class NuevaOrden extends JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
         float total = 0;
         for (int i = 0; i < model.getRowCount(); i++) {
-            total += Double.parseDouble(model.getValueAt(i, 5) + "");
+            total += Double.parseDouble(model.getValueAt(i, 6) + "");
         }
         lTotal.setText("Total: " + total);
     }
@@ -615,7 +737,6 @@ public class NuevaOrden extends JInternalFrame {
     private String validarDatos() {
         String mensaje = "";
         try {
-            int idCliente = Integer.parseInt(tfIdCliente.getText());
             if (controlador.getCliente(idCliente) == null) {
                 mensaje += "No existe un cliente con ese id!!";
             }
@@ -623,5 +744,95 @@ public class NuevaOrden extends JInternalFrame {
         }
 
         return mensaje;
+    }
+
+    private void agregarDetalleOrden() {
+
+        String identificador = tfId.getText();
+        try {
+
+            int idDetalle = Integer.parseInt(identificador.substring(1, identificador.length()));
+            if (identificador.charAt(0) == 'P') {
+                try {
+                    int idProducto = idDetalle;
+                    if (controlador.existeProducto(idProducto)) {
+                        Producto p = controlador.getProducto(idProducto);
+                        agregarFila(p);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los productos\n"
+                                + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los productos identificados\n"
+                            + "De click al botón \"Ver productos registrados\" para encontrar el id a ingresar.");
+                }
+            } else if (identificador.charAt(0) == 'S') { // agregar detalle orden servicio
+                try {
+                    int idServicio = idDetalle;
+                    if (controlador.existeServicio(idServicio)) {
+                        Servicio serv = controlador.getServicios(idServicio);
+                        agregarFila(serv);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El id ingresado no pertenece a los id's registrados de los servicios\n"
+                                + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "La cadena digitada no corresponde al formato de los servicios identificados\n"
+                            + "De click al botón \"Ver servicios registrados\" para encontrar el id a ingresar.");
+                }
+            }
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    private void calcularIVA() {
+        DefaultTableModel model = (DefaultTableModel) tOrden.getModel();
+        float iva = 0;
+        for (int i = 0; i < model.getRowCount(); i++) {
+
+            iva += Double.parseDouble(model.getValueAt(i, 5) + "");
+        }
+        lTotal1.setText("IVA: " + iva);
+    }
+
+    private void calcularIVA(int fila) {
+
+        double iva = 0;
+
+        int cantidad = Integer.parseInt(tOrden.getValueAt(fila, 3) + "");
+        double precio = Double.parseDouble(tOrden.getValueAt(fila, 2) + "");
+        double descuento = Double.parseDouble(tOrden.getValueAt(fila, 4) + "");
+        String codigo = (String) tOrden.getValueAt(fila, 0);
+        String tipo = codigo.split("-")[0];
+        codigo = codigo.split("-")[1];
+        int id = Integer.parseInt(codigo);
+        boolean exento = false;
+        Producto p = null;
+        Servicio s = null;
+        if ("P".equals(tipo)) {
+            p = controlador.getProducto(id);
+            exento = p.isExentoIva();
+        } else if ("S".equals(tipo)) {
+            s = controlador.getServicios(id);
+            exento = s.isExentoIva();
+        }
+        iva = (exento) ? 0 : cantidad * precio * (1 - descuento) * util.getIVA();
+        tOrden.setValueAt(iva, fila, 5);
+        calcularIVA();
+
+    }
+
+    private void calcularSubTotal(int fila) {
+        double total = 0;
+
+        int cantidad = Integer.parseInt(tOrden.getValueAt(fila, 3) + "");
+        double precio = Double.parseDouble(tOrden.getValueAt(fila, 2) + "");
+        double descuento = Double.parseDouble(tOrden.getValueAt(fila, 4) + "");
+        double iva = Double.parseDouble(tOrden.getValueAt(fila, 5) + "");
+        total = cantidad * precio * (1 - descuento) * (1 + iva);
+        tOrden.setValueAt(total, fila, 6);
+        calcularTotal();
     }
 }

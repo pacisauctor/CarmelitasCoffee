@@ -220,7 +220,6 @@ public class Productos extends JInternalFrame {
         });
         jScrollPane1.setViewportView(tProductos);
 
-        labelZ2.setForeground(new java.awt.Color(29, 32, 98));
         labelZ2.setText("Buscar por nombre de producto");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 

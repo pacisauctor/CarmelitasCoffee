@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=lib/PlaceHolder.jar -DgroupId=com.placeholder -DartifactId=PlaceHolder -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=lib/GUIComponentsZ.jar -DgroupId=swing -DartifactId=GUIComponentsZ -Dversion=1.0 -Dpackaging=jar

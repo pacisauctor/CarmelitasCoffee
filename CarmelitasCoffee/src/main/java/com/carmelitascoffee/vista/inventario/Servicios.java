@@ -5,11 +5,15 @@
  */
 package com.carmelitascoffee.vista.inventario;
 
+import com.carmelitascoffee.controlador.Utilidades;
 import com.carmelitascoffee.controlador.inventario.CServicios;
+import com.carmelitascoffee.pojo.Producto;
 import com.carmelitascoffee.pojo.Servicio;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.JInternalFrame;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Session;
 
@@ -25,16 +29,16 @@ public class Servicios extends JInternalFrame {
 
     /**
      * Creates new form InternalFrameZ
+     *
+     * @param s
      */
     public Servicios(Session s) {
         initComponents();
         se = s;
-        modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Precio");
+        modelo = (DefaultTableModel) tServicios.getModel();
         controlador = new CServicios(se, modelo);
-        controlador.LlenarTabla(tableZ1);
+        controlador.LlenarTabla(tServicios);
+        cargarTabla("");
     }
 
     /**
@@ -45,30 +49,118 @@ public class Servicios extends JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jdAgregarServicio = new javax.swing.JDialog();
+        pAgregar = new swing.Contenedores.PanelZ();
+        lTitulo = new swing.Controles.LabelZ();
+        lDescripcion = new swing.Controles.LabelZ();
+        tfDescripcion = new swing.Controles.TextFieldZ();
+        bAgregarProducto = new swing.Controles.ButtonZ();
+        lPrecio = new swing.Controles.LabelZ();
+        tfPrecio = new swing.Controles.TextFieldZ();
+        cbExentoIVA = new swing.Controles.CheckBoxZ();
         panelZ1 = new swing.Contenedores.PanelZ();
-        labelZ1 = new swing.Controles.LabelZ();
         Bus = new swing.Controles.TextFieldZ();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableZ1 = new swing.Controles.TableZ();
+        tServicios = new swing.Controles.TableZ();
         labelZ2 = new swing.Controles.LabelZ();
-        labelZ4 = new swing.Controles.LabelZ();
-        labelZ5 = new swing.Controles.LabelZ();
-        nom = new swing.Controles.TextFieldZ();
-        pre = new swing.Controles.TextFieldZ();
-        cod = new swing.Controles.TextFieldZ();
-        btnEditar = new swing.Controles.ButtonZ();
         btnAñadir = new swing.Controles.ButtonZ();
+
+        pAgregar.setPreferredSize(new java.awt.Dimension(400, 190));
+        pAgregar.setLayout(new java.awt.GridBagLayout());
+
+        lTitulo.setText("Agregar Servicio");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        pAgregar.add(lTitulo, gridBagConstraints);
+
+        lDescripcion.setText("Descripción: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(lDescripcion, gridBagConstraints);
+
+        tfDescripcion.setText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(tfDescripcion, gridBagConstraints);
+
+        bAgregarProducto.setText("Agregar");
+        bAgregarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bAgregarProductoMouseExited(evt);
+            }
+        });
+        bAgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarProductoActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(bAgregarProducto, gridBagConstraints);
+
+        lPrecio.setText("Precio: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.3;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(lPrecio, gridBagConstraints);
+
+        tfPrecio.setText("");
+        tfPrecio.setToolTipText("");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        pAgregar.add(tfPrecio, gridBagConstraints);
+
+        cbExentoIVA.setText("Excento IVA");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        pAgregar.add(cbExentoIVA, gridBagConstraints);
+
+        jdAgregarServicio.getContentPane().add(pAgregar, java.awt.BorderLayout.CENTER);
 
         setBackground(new java.awt.Color(0, 51, 102));
         setClosable(true);
+        setForeground(java.awt.Color.white);
         setIconifiable(true);
-        setTitle("Productos");
+        setTitle("Servicios");
         setVisible(true);
 
-        labelZ1.setForeground(new java.awt.Color(29, 32, 98));
-        labelZ1.setText("Código");
-        labelZ1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        panelZ1.setLayout(new java.awt.GridBagLayout());
 
         Bus.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
         Bus.setText("");
@@ -80,127 +172,99 @@ public class Servicios extends JInternalFrame {
                 BusActionPerformed(evt);
             }
         });
+        Bus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                BusKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        panelZ1.add(Bus, gridBagConstraints);
 
-        tableZ1.setModel(new javax.swing.table.DefaultTableModel(
+        tServicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nombre", "Precio"
+                "Código", "Nombre", "Precio", "ExentoIVA"
             }
-        ));
-        tableZ1.addMouseListener(new java.awt.event.MouseAdapter() {
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tServicios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableZ1MouseClicked(evt);
+                tServiciosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tableZ1);
+        tServicios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tServiciosKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tServicios);
 
-        labelZ2.setForeground(new java.awt.Color(29, 32, 98));
-        labelZ2.setText("Buscar por nombre de servicio");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        panelZ1.add(jScrollPane1, gridBagConstraints);
+
+        labelZ2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelZ2.setText("Buscar por nombre de servicio:");
         labelZ2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        labelZ4.setForeground(new java.awt.Color(29, 32, 98));
-        labelZ4.setText("Precio");
-        labelZ4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        labelZ5.setForeground(new java.awt.Color(29, 32, 98));
-        labelZ5.setText("Nombre");
-        labelZ5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        nom.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        nom.setText("");
-        nom.setCaretColor(new java.awt.Color(255, 255, 255));
-        nom.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        nom.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        pre.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        pre.setText("");
-        pre.setCaretColor(new java.awt.Color(255, 255, 255));
-        pre.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        pre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        cod.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 2, true));
-        cod.setText("");
-        cod.setCaretColor(new java.awt.Color(255, 255, 255));
-        cod.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        cod.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        panelZ1.add(labelZ2, gridBagConstraints);
 
         btnAñadir.setText("Añadir");
+        btnAñadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEditarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEditarMouseExited(evt);
+            }
+        });
         btnAñadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAñadirActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout panelZ1Layout = new javax.swing.GroupLayout(panelZ1);
-        panelZ1.setLayout(panelZ1Layout);
-        panelZ1Layout.setHorizontalGroup(
-            panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelZ1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelZ1Layout.createSequentialGroup()
-                                .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(136, 136, 136))
-                            .addGroup(panelZ1Layout.createSequentialGroup()
-                                .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pre, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelZ1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelZ1Layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(Bus, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
-        );
-        panelZ1Layout.setVerticalGroup(
-            panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelZ1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Bus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelZ2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAñadir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(panelZ1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelZ5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelZ4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        panelZ1.add(btnAñadir, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -214,67 +278,126 @@ public class Servicios extends JInternalFrame {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableZ1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableZ1MouseClicked
-        // TODO add your handling code here:
-        int Selec = tableZ1.rowAtPoint(evt.getPoint());
-        cod.setText(String.valueOf(tableZ1.getValueAt(Selec, 0)));
-        nom.setText(String.valueOf(tableZ1.getValueAt(Selec, 1)));
-        pre.setText(String.valueOf(tableZ1.getValueAt(Selec, 2)));
-    }//GEN-LAST:event_tableZ1MouseClicked
+    private void tServiciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tServiciosMouseClicked
+        try {
+
+            int fila = tServicios.rowAtPoint(evt.getPoint());
+            int codigo = (int) tServicios.getValueAt(fila, 0);
+            Servicio s = controlador.getElementById(codigo);
+            Boolean exentoIVA = Boolean.parseBoolean(tServicios.getValueAt(fila, 3).toString());
+            s.setExentoIva(exentoIVA);
+            controlador.setServicio(s);
+            cargarTabla("");
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_tServiciosMouseClicked
 
     private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
-        String descripcion;
-        float precio;
-
-        descripcion = nom.getText();
-        precio = Float.parseFloat(pre.getText());
-
-        Servicio servicio = new Servicio(new BigDecimal(precio), descripcion);
-        controlador.AgregarServicio(servicio);
-        controlador.LlenarTabla(tableZ1);
+        jdAgregarServicio.setSize(400, 190);
+        jdAgregarServicio.setLocationRelativeTo(this);
+        jdAgregarServicio.setVisible(true);
     }//GEN-LAST:event_btnAñadirActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Servicio servicio = new Servicio(new BigDecimal(pre.getText()), nom.getText());
-        servicio.setIdServicio(Integer.parseInt(cod.getText()));
-        controlador.setServicio(servicio);
-
-        controlador.LlenarTabla(tableZ1);
-    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void BusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusActionPerformed
         cargarTabla(Bus.getText());
     }//GEN-LAST:event_BusActionPerformed
 
+    private void btnEditarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseEntered
+        Utilidades.cambiarColorBotonEntered(evt);
+    }//GEN-LAST:event_btnEditarMouseEntered
+
+    private void btnEditarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseExited
+        Utilidades.cambiarColorBotonExited(evt);
+    }//GEN-LAST:event_btnEditarMouseExited
+
+    private void bAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarProductoActionPerformed
+        String descripcion = tfDescripcion.getText();
+
+        double precio = Double.parseDouble(tfPrecio.getText());
+        boolean excentoIVA = cbExentoIVA.isSelected();
+        Servicio servicio = new Servicio(new BigDecimal(precio), descripcion, excentoIVA);
+
+        controlador.AgregarServicio(servicio);
+        tfDescripcion.setText("");
+        tfPrecio.setText("");
+        cbExentoIVA.setSelected(false);
+        jdAgregarServicio.setVisible(false);
+        cargarTabla("");
+    }//GEN-LAST:event_bAgregarProductoActionPerformed
+
+    private void tServiciosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tServiciosKeyReleased
+        try {
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                int fila = tServicios.getSelectedRow();
+                int columna = tServicios.getSelectedColumn();
+                int codigo = (int) tServicios.getValueAt(fila, 0);
+                Servicio s = controlador.getElementById(codigo);
+                switch (columna) {
+                    case 1:
+                        String nombre = (String) tServicios.getValueAt(fila, 1);
+                        s.setDescripcion(nombre);
+                        break;
+                    case 2:
+                        Double precio = Double.parseDouble(tServicios.getValueAt(fila, 2).toString());
+                        s.setPrecio(new BigDecimal(precio));
+                        break;
+                    case 3:
+                        Boolean exentoIVA = Boolean.parseBoolean(tServicios.getValueAt(fila, 3).toString());
+                        s.setExentoIva(exentoIVA);
+                        break;
+                    default:
+                        break;
+                }
+                controlador.setServicio(s);
+                cargarTabla("");
+            }
+
+        } catch (NumberFormatException |ArrayIndexOutOfBoundsException  e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_tServiciosKeyReleased
+
+    private void bAgregarProductoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bAgregarProductoMouseExited
+        Utilidades.cambiarColorBotonExited(evt);
+    }//GEN-LAST:event_bAgregarProductoMouseExited
+
+    private void BusKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BusKeyTyped
+        cargarTabla(Bus.getText());
+    }//GEN-LAST:event_BusKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Controles.TextFieldZ Bus;
+    private swing.Controles.ButtonZ bAgregarProducto;
     private swing.Controles.ButtonZ btnAñadir;
-    private swing.Controles.ButtonZ btnEditar;
-    public swing.Controles.TextFieldZ cod;
+    private swing.Controles.CheckBoxZ cbExentoIVA;
     private javax.swing.JScrollPane jScrollPane1;
-    private swing.Controles.LabelZ labelZ1;
+    private javax.swing.JDialog jdAgregarServicio;
+    private swing.Controles.LabelZ lDescripcion;
+    private swing.Controles.LabelZ lPrecio;
+    private swing.Controles.LabelZ lTitulo;
     private swing.Controles.LabelZ labelZ2;
-    private swing.Controles.LabelZ labelZ4;
-    private swing.Controles.LabelZ labelZ5;
-    public swing.Controles.TextFieldZ nom;
+    private swing.Contenedores.PanelZ pAgregar;
     private swing.Contenedores.PanelZ panelZ1;
-    public swing.Controles.TextFieldZ pre;
-    private swing.Controles.TableZ tableZ1;
+    private swing.Controles.TableZ tServicios;
+    private swing.Controles.TextFieldZ tfDescripcion;
+    private swing.Controles.TextFieldZ tfPrecio;
     // End of variables declaration//GEN-END:variables
 
     private void cargarTabla(String textFiltro) {
-        DefaultTableModel dtm = (DefaultTableModel) tableZ1.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tServicios.getModel();
         dtm.setRowCount(0);
         List lista = controlador.cargarFiltros(textFiltro);
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         for (int i = 0; i < lista.size(); i++) {
             Servicio sr = (Servicio) lista.get(i);
             row[0] = sr.getIdServicio();
             row[1] = sr.getDescripcion();
             row[2] = sr.getPrecio();
+            row[3] = sr.isExentoIva();
             dtm.addRow(row);
         }
-        tableZ1.setModel(dtm);
+        tServicios.setModel(dtm);
     }
 }

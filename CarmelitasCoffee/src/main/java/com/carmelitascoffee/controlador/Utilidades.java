@@ -87,4 +87,8 @@ public class Utilidades {
     public URL getImgMenuVentas(String nombre) {
         return frame.getClass().getClassLoader().getResource("com" + division + "carmelitascoffee" + division + "img" + division + "menu" + division + "ventas" + division + nombre);
     }
+
+    public double getIVA() {
+        return 0.25;
+    }
 }

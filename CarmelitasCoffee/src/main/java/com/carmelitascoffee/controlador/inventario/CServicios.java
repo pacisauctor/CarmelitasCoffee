@@ -83,6 +83,7 @@ public class CServicios {
         Servicio serbd = (Servicio) s.get(Servicio.class, servicio.getIdServicio());
         serbd.setDescripcion(servicio.getDescripcion());
         serbd.setPrecio(servicio.getPrecio());
+        serbd.setExentoIva(servicio.isExentoIva());
         s.update(serbd);
         terminarSesion();
     }
@@ -100,5 +101,9 @@ public class CServicios {
         } else {
             return s.createCriteria(Servicio.class).list();
         }
+    }
+
+    public Servicio getElementById(int codigo) {
+        return (Servicio) s.get(Servicio.class, codigo);
     }
 }
